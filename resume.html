@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="public/imgs/bolt.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Panthaweekan</title>
+  </head>
+  <!-- <main class="flex flex-col w-full max-w-3xl px-4 mx-auto pt-24 pb-12 text-lg text-gray-700 dark:text-300 leading-8"> -->
+  <div
+    id="home"
+    class="bg-light dark:bg-black dark:text-white min-h-screen flex flex-col font-['Helvetica Neue'] transition-colors duration-300"
+  >
+    <div class="flex-grow flex flex-col text-black">
+      <div class="flex items-center justify-center min-h-screen">
+        <nav
+          class="navbar fixed top-0 w-screen bg-white flex justify-center p-8 dark:bg-black dark:text-white z-20"
+        >
+          <div class="navbar-menu">
+            <ul class="menu flex space-x-4 font-bold text-lg gap-10">
+              <li>
+                <a class="hover:underline" href="#home">Home</a>
+              </li>
+              <li>
+                <a class="hover:underline" href="#about" aria-current="page"
+                  >About me</a
+                >
+              </li>
+              <li><a class="hover:underline" href="#project">Project</a></li>
+            </ul>
+          </div>
+        </nav>
+        <header>
+          <div class="text-center max-w-4xl mx-auto px-4">
+            <div class="relative">
+              <div
+                class="absolute inset-0 flex items-center justify-center"
+              ></div>
+            </div>
+            <h1
+              class="flex flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none text-shadow-glow-subtle dark:text-white text-black"
+            >
+              Panthaweekan
+              <img src="/public/imgs/bolt.svg" class="size-20 relative z-10" />
+              <span class="font-garamond font-normal underline">Somngam</span>
+            </h1>
+
+            <p
+              class="text-xl md:text-2xl font-semibold mb-8 dark:text-white text-black"
+            >
+              I'm
+              <span
+                class="typing bg-gradient-to-r from-[#9C83FF] to-[#FF9051] text-transparent bg-clip-text"
+                id="typing-text"
+              ></span>
+              <span
+                class="cursor text-3xl"
+                style="animation: blink 0.7s infinite"
+                >|</span
+              >
+              <script>
+                const texts = [
+                  "Coder",
+                  "Programmer",
+                  "Fullstack Developer",
+                  "Golang Developer",
+                  "Software Engineer",
+                ];
+                let count = 0;
+                let index = 0;
+                let currentText = "";
+                let letter = "";
+                let isDeleting = false;
+
+                (function type() {
+                  if (count === texts.length) {
+                    count = 0;
+                  }
+                  currentText = texts[count];
+
+                  if (isDeleting) {
+                    letter = currentText.slice(0, --index);
+                  } else {
+                    letter = currentText.slice(0, ++index);
+                  }
+
+                  document.getElementById("typing-text").textContent = letter;
+
+                  let typeSpeed = 100;
+                  if (isDeleting) {
+                    typeSpeed /= 2;
+                  }
+
+                  if (!isDeleting && letter.length === currentText.length) {
+                    typeSpeed = 2000;
+                    isDeleting = true;
+                  } else if (isDeleting && letter.length === 0) {
+                    isDeleting = false;
+                    count++;
+                    typeSpeed = 500;
+                  }
+
+                  setTimeout(type, typeSpeed);
+                })();
+              </script>
+              <style>
+                @keyframes blink {
+                  0% {
+                    opacity: 1;
+                  }
+                  50% {
+                    opacity: 0;
+                  }
+                  100% {
+                    opacity: 1;
+                  }
+                }
+              </style>
+            </p>
+          </div>
+        </header>
+      </div>
+      <div
+        id="about"
+        class="section py-20 bg-gray-100 dark:bg-gray-900 visible text-white"
+      >
+        <div class="container mx-auto px-4 mt-10">
+          <h2
+            class="text-3xl font-bold mb-8 text-center dark:text-white text-black"
+          >
+            About me
+          </h2>
+          <div
+            class="flex flex-col md:flex-row items-center md:items-start justify-center space-y-8 md:space-y-0 md:space-x-12"
+          >
+            <div class="max-w-2xl text-center md:text-left">
+              <p
+                class="about-text text-lg leading-relaxed text-gray-800 dark:text-gray-200"
+              >
+                Hi there! 👋 I'm a Fullstack Developer and DevOps with a tech
+                stack that includes React, Vite, Tailwind CSS, and Golang. I
+                have 1+ years of experience in feature development and system
+                enhancement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      id="project"
+      class="section py-20 bg-gray-100 dark:bg-gray-900 visible text-white"
+    >
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-3xl font-bold mb-8 text-center dark:text-white text-black"
+        >
+          Tech stack
+        </h2>
+        <div
+          class="flex flex-col md:flex-row items-center md:items-start justify-center space-y-8 md:space-y-0 md:space-x-12"
+        >
+          <img src="/public/imgs/react.svg" class="size-16" />
+          <img src="/public/imgs/go.svg" class="size-16" />
+          <img src="/public/imgs/tw.svg" class="size-16" />
+          <img src="/public/imgs/ts.svg" class="size-16" />
+          <img src="/public/imgs/pg.svg" class="size-16" />
+        </div>
+      </div>
+    </div>
+    <div
+      id="projects"
+      class="section py-20 pb-40 bg-gray-100 dark:bg-gray-900 visible text-white"
+    >
+      <div class="container mx-auto px-4">
+        <h2
+          class="text-3xl font-bold mb-8 text-center dark:text-white text-black"
+        >
+          Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div
+            class="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+          >
+            <img
+              src="public/imgs/lp_pj.svg"
+              alt="LongPlan Preview"
+              class="w-full h-48 object-cover mb-4 rounded-lg"
+            />
+            <div class="flex flex-row gap-2 items-center justify-start mb-2">
+              <img src="public/imgs/lp.svg" class="size-8" />
+              <h3 class="text-xl font-bold text-center">LongPlan</h3>
+            </div>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Study planner & Checker for CMU Engineer
+            </p>
+            <a
+              href="https://longplan.se.cpe.eng.cmu.ac.th/"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >View Project</a
+            >
+          </div>
+          <div
+            class="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+          >
+            <img
+              src="public/imgs/letter_pj.svg"
+              alt="LongPlan Preview"
+              class="w-full h-48 object-cover mb-4 rounded-lg"
+            />
+            <h3 class="text-xl font-bold mb-2">Letter SD</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Web application for student to request a certificate and admin
+              approve it.
+            </p>
+            <a
+              href="https://letter.eng.cmu.ac.th/"
+              target="_blank"
+              class="text-blue-500 hover:underline"
+              >View Project</a
+            >
+          </div>
+          <div
+            class="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+          >
+            <img
+              src="public/imgs/sdbook_pj.svg"
+              alt="LongPlan Preview"
+              class="w-full h-48 object-cover mb-4 rounded-lg"
+            />
+            <h3 class="text-xl font-bold mb-2">SD Booking Calendar</h3>
+            <p class="text-gray-700 dark:text-gray-300 mb-4">
+              Web application for employee to book a room with admin approve it.
+            </p>
+            <a href="" target="_blank" class="text-blue-500 hover:underline"
+              >View Project</a
+            >
+          </div>
+          <!-- Add more project cards as needed -->
+        </div>
+      </div>
+    </div>
+    <footer class="bg-white p-8">
+      <div class="flex flex-row gap-4 items-center justify-end">
+        <p class="text-blue-800 font-bold mr-8">@ Panthaweekan</p>
+        <a href="https://github.com/Panthaweekan" target="_blank">
+          <img src="/public/imgs/github-mark.svg" class="size-8" />
+        </a>
+        <a href="https://www.linkedin.com/in/panthaweekan/" target="_blank">
+          <img src="/public/imgs/linkedin.svg" class="size-8" />
+        </a>
+        <a href="https://www.instagram.com/_.xanta/" target="_blank">
+          <img src="/public/imgs/ig.svg" class="size-12" />
+        </a>
+      </div>
+    </footer>
+  </div>
+</html>
