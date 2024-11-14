@@ -15,10 +15,12 @@
     <div class="flex-grow flex flex-col text-black">
       <div class="flex items-center justify-center min-h-screen">
         <nav
-          class="navbar fixed top-0 w-screen bg-white flex justify-center p-8 dark:bg-black dark:text-white z-20"
+          class="navbar fixed top-0 w-screen bg-white flex justify-center sm:p-4 md:p-8 xl:p-8 p-4 dark:bg-black dark:text-white z-20"
         >
           <div class="navbar-menu">
-            <ul class="menu flex space-x-4 font-bold text-lg gap-10">
+            <ul
+              class="menu flex space-x-4 font-bold gap-10 sm:text-sm md:text-base lg:text-lg xl:text-xl"
+            >
               <li>
                 <a class="hover:underline" href="#home">Home</a>
               </li>
@@ -39,15 +41,18 @@
               ></div>
             </div>
             <h1
-              class="flex flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none text-shadow-glow-subtle dark:text-white text-black"
+              class="flex flex-col md:flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none text-shadow-glow-subtle dark:text-white text-black"
             >
               Panthaweekan
-              <img src="./public/imgs/bolt.svg" class="size-20 relative z-10" />
+              <img
+                src="./public/imgs/bolt.svg"
+                class="size-20 relative z-10 mx-auto md:mx-0"
+              />
               <span class="font-garamond font-normal underline">Somngam</span>
             </h1>
 
             <p
-              class="text-xl md:text-2xl font-semibold mb-8 dark:text-white text-black"
+              class="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-8 dark:text-white text-black"
             >
               I'm
               <span
@@ -61,10 +66,8 @@
               >
               <script>
                 const texts = [
-                  "Coder",
-                  "Programmer",
                   "Fullstack Developer",
-                  "Golang Developer",
+                  "GO Developer",
                   "Software Engineer",
                 ];
                 let count = 0;
@@ -136,7 +139,7 @@
           >
             <div class="max-w-2xl text-center md:text-left">
               <p
-                class="about-text text-lg leading-relaxed text-gray-800 dark:text-gray-200"
+                class="about-text sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-gray-800 dark:text-gray-200"
               >
                 Hi there! 👋 I'm a Fullstack Developer and DevOps with a tech
                 stack that includes React, Vite, Tailwind CSS, and Golang. I
@@ -158,15 +161,143 @@
         >
           Tech stack
         </h2>
-        <div
-          class="flex flex-col md:flex-row items-center md:items-start justify-center space-y-8 md:space-y-0 md:space-x-12"
-        >
-          <img src="./public/imgs/react.svg" class="size-16" />
-          <img src="./public/imgs/go.svg" class="size-16" />
-          <img src="./public/imgs/tw.svg" class="size-16" />
-          <img src="./public/imgs/ts.svg" class="size-16" />
-          <img src="./public/imgs/pg.svg" class="size-16" />
+
+        <style>
+          /* Animation to move in from the right to the center */
+          @keyframes moveLeftToCenter {
+            from {
+              transform: translateX(100%);
+            }
+            to {
+              transform: translateX(0%);
+            }
+          }
+
+          /* Animation to move out from center to the left */
+          @keyframes moveOut {
+            from {
+              transform: translateX(0%);
+            }
+            to {
+              transform: translateX(-100%);
+            }
+          }
+
+          .moving-div-container {
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            width: 100%; /* Full width of the container */
+          }
+
+          .moving-div {
+            display: inline-flex;
+            width: fit-content;
+            transform: translateX(100%); /* Start off-screen */
+          }
+
+          .moving-div.animate-in {
+            animation: moveLeftToCenter 2.5s ease-out forwards;
+          }
+
+          .moving-div.animate-out {
+            animation: moveOut 2.5s ease-in forwards;
+          }
+
+          .moving-div img {
+            width: 82px;
+            height: 82px;
+            margin: 0 2rem;
+          }
+
+          /* Responsive adjustments */
+          @media (max-width: 1024px) {
+            .moving-div img {
+              width: 48px;
+              height: 48px;
+              margin: 0 1.5rem;
+            }
+            .moving-div.animate-in,
+            .moving-div.animate-out {
+              animation-duration: 2s;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .moving-div img {
+              width: 40px;
+              height: 40px;
+              margin: 0 1rem;
+            }
+            .moving-div.animate-in,
+            .moving-div.animate-out {
+              animation-duration: 1.5s;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .moving-div img {
+              width: 32px;
+              height: 32px;
+              margin: 0 0.5rem;
+            }
+            .moving-div.animate-in,
+            .moving-div.animate-out {
+              animation-duration: 1s;
+            }
+          }
+        </style>
+
+        <div class="moving-div-container">
+          <div class="moving-div" id="animatedDiv">
+            <img src="./public/imgs/react.svg" alt="React Logo" />
+            <img src="./public/imgs/go.svg" alt="Go Logo" />
+            <img src="./public/imgs/tw.svg" alt="Tailwind CSS Logo" />
+            <img src="./public/imgs/ts.svg" alt="TypeScript Logo" />
+            <img src="./public/imgs/pg.svg" alt="PostgreSQL Logo" />
+          </div>
         </div>
+
+        <script>
+          // Function to handle intersection and resizing
+          function setupAnimationObserver() {
+            const animatedDiv = document.getElementById("animatedDiv");
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    // Element is in view, add entry animation
+                    animatedDiv.classList.add("animate-in");
+                    animatedDiv.classList.remove("animate-out");
+                  } else {
+                    // Element is out of view, add exit animation
+                    animatedDiv.classList.remove("animate-in");
+                    animatedDiv.classList.add("animate-out");
+                  }
+                });
+              },
+              {
+                threshold: 0.5, // Trigger when 50% of the element is in view
+              }
+            );
+
+            // Observe the element
+            observer.observe(animatedDiv);
+
+            // Reset animations on resize
+            window.addEventListener("resize", () => {
+              animatedDiv.classList.remove("animate-in", "animate-out");
+              void animatedDiv.offsetWidth; // Trigger reflow to restart animation
+              observer.unobserve(animatedDiv); // Unobserve to avoid multiple calls
+              observer.observe(animatedDiv); // Re-observe with updated positions
+            });
+          }
+
+          // Initialize the observer
+          setupAnimationObserver();
+        </script>
       </div>
     </div>
     <div
@@ -186,7 +317,7 @@
             <img
               src="./public/imgs/lp_pj.svg"
               alt="LongPlan Preview"
-              class="w-full h-48 object-cover mb-4 rounded-lg"
+              class="w-full h-60 object-cover mb-4 rounded-lg"
             />
             <div class="flex flex-row gap-2 items-center justify-start mb-2">
               <img src="./public/imgs/lp.svg" class="size-8" />
@@ -208,7 +339,7 @@
             <img
               src="./public/imgs/letter_pj.svg"
               alt="LongPlan Preview"
-              class="w-full h-48 object-cover mb-4 rounded-lg"
+              class="w-full h-60 object-cover mb-4 rounded-lg"
             />
             <h3 class="text-xl font-bold mb-2">Letter SD</h3>
             <p class="text-gray-700 dark:text-gray-300 mb-4">
@@ -228,7 +359,7 @@
             <img
               src="./public/imgs/sdbook_pj.svg"
               alt="LongPlan Preview"
-              class="w-full h-48 object-cover mb-4 rounded-lg"
+              class="w-full h-60 object-cover mb-4 rounded-lg"
             />
             <h3 class="text-xl font-bold mb-2">SD Booking Calendar</h3>
             <p class="text-gray-700 dark:text-gray-300 mb-4">
@@ -242,9 +373,13 @@
         </div>
       </div>
     </div>
-    <footer class="bg-white p-8">
+    <footer class="bg-white sm:p-4 md:p-8 xl:p-8 p-4">
       <div class="flex flex-row gap-4 items-center justify-end">
-        <p class="text-blue-800 font-bold mr-8">@ Panthaweekan</p>
+        <p
+          class="text-blue-800 font-bold mr-8 sm:text-sm md:text-base lg:text-lg xl:text-xl"
+        >
+          @ Panthaweekan
+        </p>
         <a href="https://github.com/Panthaweekan" target="_blank">
           <img src="./public/imgs/github-mark.svg" class="size-8" />
         </a>
