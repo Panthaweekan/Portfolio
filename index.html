@@ -1,135 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
-    <meta name="charset" content="utf-8" />
+    <meta charset="utf-8" />
     <meta name="author" content="Panthaweekan" />
-    <meta name="description" content="Panthaweekan, Developer" />
+    <meta
+      name="description"
+      content="Panthaweekan Somngam | Full-Stack Developer"
+    />
     <meta name="og:title" content="Panthaweekan" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="./public/imgs/bolt.svg" />
-    <!-- Tailwind CSS with class strategy -->
+    <!-- Tailwind CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- OR download tailwind.min cdn file and paste your file -->
-    <!-- <script src="./assets/tailwind/tailwind.min.js"></script> -->
-    <!-- Configure your strategy -->
     <script>
       tailwind.config = {
-        darkMode:
-          "class" /* class/media, here we use class to enable manually dark mode */,
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              light: "#F9FAFB",
+              dark: "#111827",
+              300: "#D1D5DB",
+              primary: "#9C83FF",
+              secondary: "#FF9051",
+            },
+            fontFamily: {
+              sans: ["IBM Plex Sans", "sans-serif"],
+            },
+          },
+        },
       };
     </script>
-    <script>
-      /**
-       * Loads the theme stored
-       */
-      if (
-        localStorage.getItem("color-theme") === "dark" ||
-        (!("color-theme" in localStorage) &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script>
-    <title>Panthaweekan</title>
+    <title>Panthaweekan | Full-Stack Developer</title>
   </head>
-  <!-- <main class="flex flex-col w-full max-w-3xl px-4 mx-auto pt-24 pb-12 text-lg text-gray-700 dark:text-300 leading-8"> -->
   <body
-    id="home"
-    class="bg-light dark:bg-black dark:text-white bg-white text-black min-h-screen flex flex-col font-['Helvetica Neue'] transition-colors duration-300"
+    class="font-sans bg-white dark:bg-black text-black dark:text-white min-h-screen flex flex-col transition-colors duration-300"
   >
-    <div class="flex-grow flex flex-col text-black">
+    <!-- Header/Hero Section -->
+    <div class="flex-grow">
       <div class="flex items-center justify-center min-h-screen">
-        <nav
-          class="navbar fixed top-0 w-screen bg-white flex justify-center sm:p-4 md:p-8 xl:p-8 p-4 dark:bg-black dark:text-white z-20"
-        >
-          <div class="navbar-menu">
-            <ul
-              class="menu flex space-x-4 font-bold gap-10 sm:text-sm md:text-base lg:text-lg xl:text-xl"
+        <div class="bottom-4 left-4 fixed">
+          <button
+            id="theme-toggle"
+            type="button"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 dark:bg-white bg-gray-700 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 z-5"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden size-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              <li>
-                <a href="#home">
-                  <p class="hover:scale-125 transition-all duration-300">
-                    HOME
-                  </p></a
-                >
-              </li>
-              <li>
-                <a href="#about" aria-current="page"
-                  ><p class="hover:scale-125 transition-all duration-300">
-                    ABOUT ME
-                  </p></a
-                >
-              </li>
-              <li>
-                <a href="#project"
-                  ><p class="hover:scale-125 transition-all duration-300">
-                    PROJECTS
-                  </p></a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="bottom-4 left-4 fixed">
-            <button
-              id="theme-toggle"
-              type="button"
-              class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 dark:bg-white bg-gray-700 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 z-5"
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="hidden size-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              <svg
-                id="theme-toggle-dark-icon"
-                class="hidden size-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                ></path>
-              </svg>
-              <svg
-                id="theme-toggle-light-icon"
-                class="hidden size-4"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4
-  
-   11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </nav>
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
         <header>
           <div class="text-center max-w-4xl mx-auto px-4">
-            <div class="relative">
-              <div
-                class="absolute inset-0 flex items-center justify-center"
-              ></div>
-            </div>
             <h1
-              class="flex flex-col md:flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none text-shadow-glow-subtle dark:text-white text-black"
+              class="flex flex-col md:flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none"
             >
               Panthaweekan
               <img
                 src="./public/imgs/bolt.svg"
                 class="size-20 relative z-10 mx-auto md:mx-0"
               />
-              <span class="font-garamond font-normal underline">Somngam</span>
+              <span class="font-normal underline">Somngam</span>
             </h1>
-
             <p
-              class="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-8 dark:text-white text-black"
+              class="sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-8"
             >
               I'm
               <span
-                class="typing bg-gradient-to-r from-[#9C83FF] to-[#FF9051] text-transparent bg-clip-text"
+                class="typing bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text"
                 id="typing-text"
               ></span>
               <span
@@ -137,328 +100,414 @@
                 style="animation: blink 0.7s infinite"
                 >|</span
               >
-              <script>
-                const texts = [
-                  "Fullstack Developer",
-                  "GO Developer",
-                  "Software Engineer",
-                ];
-                let count = 0;
-                let index = 0;
-                let currentText = "";
-                let letter = "";
-                let isDeleting = false;
-
-                (function type() {
-                  if (count === texts.length) {
-                    count = 0;
-                  }
-                  currentText = texts[count];
-
-                  if (isDeleting) {
-                    letter = currentText.slice(0, --index);
-                  } else {
-                    letter = currentText.slice(0, ++index);
-                  }
-
-                  document.getElementById("typing-text").textContent = letter;
-
-                  let typeSpeed = 100;
-                  if (isDeleting) {
-                    typeSpeed /= 2;
-                  }
-
-                  if (!isDeleting && letter.length === currentText.length) {
-                    typeSpeed = 2000;
-                    isDeleting = true;
-                  } else if (isDeleting && letter.length === 0) {
-                    isDeleting = false;
-                    count++;
-                    typeSpeed = 500;
-                  }
-
-                  setTimeout(type, typeSpeed);
-                })();
-              </script>
-              <style>
-                @keyframes blink {
-                  0% {
-                    opacity: 1;
-                  }
-                  50% {
-                    opacity: 0;
-                  }
-                  100% {
-                    opacity: 1;
-                  }
-                }
-              </style>
             </p>
+            <div class="flex gap-4 justify-center">
+              <a
+                href="#projects"
+                class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-90 transition"
+                >View Projects</a
+              >
+              <a
+                href="#contact"
+                class="px-6 py-3 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white transition"
+                >Contact Me</a
+              >
+            </div>
           </div>
         </header>
       </div>
-      <div
-        id="about"
-        class="section py-20 bg-gray-100 dark:bg-gray-900 visible text-white"
-      >
-        <div class="container mx-auto px-4 mt-10">
-          <h2
-            class="text-3xl font-bold mb-8 text-center dark:text-white text-black"
-          >
-            About me
-          </h2>
-          <div
-            class="flex flex-col md:flex-row items-center md:items-start justify-center space-y-8 md:space-y-0 md:space-x-12"
-          >
-            <div class="max-w-2xl text-center md:text-left">
-              <p
-                class="about-text sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-gray-800 dark:text-gray-200"
-              >
-                Hi there! 👋 I'm a Fullstack Developer with a tech stack that
-                includes React, Vite, Tailwind CSS, and Golang. I have 1+ years
-                of experience in feature development and system enhancement. I'm
-                currently studying at Chiang Mai University, majoring in
-                Computer Engineering. I'm passionate about learning new
-                technologies and building useful projects.
+
+      <!-- About Section -->
+      <section id="about" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold mb-12 text-center">About Me</h2>
+          <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/2">
+              <p class="text-lg leading-relaxed mb-6">
+                With my experience working on various projects, I specialize in
+                full-stack web development, with a strong focus in this area. My
+                goal is to continue improving my skills and gain more practical
+                experience in the field of web development.
               </p>
+              <div class="space-y-4">
+                <div>
+                  <h3 class="font-bold text-xl mb-2">Education</h3>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    Chiang Mai University | B.Eng. Computer Engineering (GPA:
+                    3.32)
+                  </p>
+                </div>
+                <div>
+                  <h3 class="font-bold text-xl mb-2">Interests</h3>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    Full-Stack Development, Cloud Architecture, DevSecOps
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="md:w-1/2">
+              <h3 class="font-bold text-xl mb-4">Skills</h3>
+              <div class="flex flex-wrap gap-3">
+                <!-- Core Dev -->
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >Go</span
+                >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >TypeScript</span
+                >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >Python</span
+                >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >Java</span
+                >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >C++</span
+                >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >Haskell</span
+                >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                >OCaml</span
+              >
+              <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+              >Rust (Learning)</span
+            >
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                  >Ruby (Learning)</span
+                >
+                <!-- Web Dev -->
+                <span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  >React</span
+                >
+                <span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  >Node.js</span
+                >
+                <span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  >Tailwind CSS</span
+                >
+                <span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  >Vite</span
+                >
+                <span
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  >Ruby On Rails (Learning)</span
+                >
+                <!-- Databases -->
+                <span
+                  class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full"
+                  >PostgreSQL</span
+                >
+                <span
+                  class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full"
+                  >MySQL</span
+                >
+                <!-- DevOps -->
+                <span
+                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full"
+                  >Docker</span
+                >
+                <span
+                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full"
+                  >Basic CI/CD (Github action)</span
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      id="project"
-      class="section py-20 bg-gray-100 dark:bg-gray-900 visible text-white"
-    >
-      <div class="container mx-auto px-4">
-        <h2
-          class="text-3xl font-bold mb-8 text-center dark:text-white text-black"
-        >
-          Tech stack
-        </h2>
+      </section>
 
-        <style>
-          /* Keyframes for smooth left-to-center animation */
-          @keyframes moveLeftToCenter {
-            from {
-              transform: translate3d(
-                100%,
-                0,
-                0
-              ); /* Start off-screen to the right */
-            }
-            to {
-              transform: translate3d(0, 0, 0); /* End at the center */
-            }
-          }
-
-          .moving-div-container {
-            overflow: hidden;
-            white-space: nowrap;
-            display: flex;
-            justify-content: center;
-            width: 100%;
-          }
-
-          .moving-div {
-            display: inline-flex;
-            animation: moveLeftToCenter 1.5s ease-out forwards;
-            will-change: transform;
-          }
-
-          .moving-div img {
-            width: 76px;
-            height: 76px;
-            margin: 0 1.5rem;
-          }
-
-          /* Media query for smaller screens */
-          @media (max-width: 768px) {
-            .moving-div img {
-              width: 60px;
-              height: 60px;
-              margin: 0 1rem;
-            }
-          }
-
-          @media (max-width: 640px) {
-            .moving-div img {
-              width: 48px;
-              height: 48px;
-              margin: 0 1rem;
-            }
-          }
-        </style>
-
-        <div class="moving-div-container">
-          <div class="moving-div">
-            <img src="./public/imgs/react.svg" alt="React Logo" />
-            <img src="./public/imgs/go.svg" alt="Go Logo" />
-            <img src="./public/imgs/tw.svg" alt="Tailwind CSS Logo" />
-            <img src="./public/imgs/ts.svg" alt="TypeScript Logo" />
-            <img src="./public/imgs/pg.svg" alt="PostgreSQL Logo" />
-            <img src="./public/imgs/docker.svg" alt="Docker Logo" />
-          </div>
-        </div>
-
-        <script>
-          // Delay the animation until the page has fully loaded
-          window.addEventListener("load", () => {
-            const movingDiv = document.querySelector(".moving-div");
-            // Trigger CSS animation by adding a class after a small delay
-            setTimeout(() => {
-              movingDiv.style.animationPlayState = "running";
-            }, 1000); // Delay start by 1000ms for smoother load on mobile
-          });
-
-          // Reset animation if moving-div is scrolled out of view
-          window.addEventListener("scroll", () => {
-            const movingDiv = document.querySelector(".moving-div");
-            const rect = movingDiv.getBoundingClientRect();
-            const isVisible =
-              rect.top >= 0 && rect.bottom <= window.innerHeight;
-
-            if (!isVisible) {
-              movingDiv.style.animation = "none";
-              setTimeout(() => {
-                movingDiv.style.animation = "";
-              }, 10); // Small delay to reset the animation
-            }
-          });
-        </script>
-      </div>
-    </div>
-    <div
-      id="projects"
-      class="section py-20 pb-40 bg-gray-100 dark:bg-gray-900 visible text-white"
-    >
-      <div class="container mx-auto px-4">
-        <h2
-          class="text-3xl font-bold mb-8 text-center dark:text-white text-black"
-        >
-          Projects
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div
-            class="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
-          >
-            <img
-              src="./public/imgs/lp_pj.svg"
-              alt="LongPlan Preview"
-              class="w-full h-60 object-cover mb-4 rounded-lg hover:scale-110 transition-all duration-300"
+      <!-- Projects Section -->
+      <section id="projects" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold mb-12 text-center">Projects</h2>
+          <p class="text-center m-8">
+            <div class="flex justify-center mb-4">            
+              <img 
+              src="https://skillicons.dev/icons?i=go,typescript,react,vite,twitter,tailwindcss,postgresql,docker"
             />
-            <div class="flex flex-row gap-2 items-center justify-start mb-2">
-              <img src="./public/imgs/lp.svg" class="size-8" />
-              <h3 class="text-xl font-bold text-center">LongPlan</h3>
-            </div>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              Web application for Engineer CMU student for Study planner &
-              Checker
-            </p>
-            <div class="flex flex-row h-10 gap-4">
-              <a
-                href="https://longplan.se.cpe.eng.cmu.ac.th/"
-                target="_blank"
-                class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-800 transition-all duration-300"
-                >View Project</a
-              >
-              <!-- <a
-                href="#project"
-                class="inline-block bg-white text-white font-bold py-2 px-4 rounded hover:bg-gray-400 transition-all duration-300"
-                ><img src="./public/imgs/github-mark.svg" class="size-full"
-              /></a> -->
-            </div>
           </div>
-          <div
-            class="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
-          >
-            <img
-              src="./public/imgs/letter_pj.svg"
-              alt="LongPlan Preview"
-              class="w-full h-60 object-cover mb-4 rounded-lg hover:scale-110 transition-all duration-300"
-            />
-            <h3 class="text-xl font-bold mb-2">Letter SD</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              Web application for student to request a certificate and admin
-              approve it.
-            </p>
-            <div class="flex flex-row h-10 gap-4">
-              <a
-                href="https://letter.eng.cmu.ac.th/"
-                target="_blank"
-                class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-800 transition-all duration-300"
-                >View Project</a
-              >
-            </div>
-          </div>
-          <div
-            class="project-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
-          >
-            <img
-              src="./public/imgs/sdbook_pj.svg"
-              alt="LongPlan Preview"
-              class="w-full h-60 object-cover mb-4 rounded-lg hover:scale-110 transition-all duration-300"
-            />
-            <h3 class="text-xl font-bold mb-2">SD Booking Calendar</h3>
-            <p class="text-gray-700 dark:text-gray-300 mb-4">
-              Web application for employee to book a room with admin approve it.
-            </p>
-            <div class="flex flex-row h-10 gap-4">
-              <a
-                href="https://sdbooking.eng.cmu.ac.th/"
-                class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-800 transition-all duration-300"
-                >View Project</a
-              >
-            </div>
-          </div>
-          <!-- Add more project cards as needed -->
-        </div>
-      </div>
-    </div>
-    <footer
-      class="bg-gradient-to-r from-[#9C83FF] to-[#FF9051] sm:p-4 md:p-8 xl:p-8 p-4"
-    >
-      <div class="flex flex-row gap-2 items-center justify-end">
-        <div
-          class="bg-white flex flex-row items-center gap-4 p-2 rounded-xl px-4"
-        >
-          <p
-            class="cursor-default bg-gradient-to-r from-[#9C83FF] to-[#FF9051] text-transparent bg-clip-text font-semibold mr-8 sm:text-xs md:text-sm lg:text-base xl:text-base"
-          >
-            Panthaweekan ©
+
           </p>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- SD-Booking -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
+            >
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">SD-Booking</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Room Reservation System with role-based access control.
+                </p>
 
-          <a href="https://github.com/Panthaweekan" target="_blank">
-            <img
-              src="./public/imgs/github-mark.svg"
-              class="size-8 hover:scale-125 transition-all duration-300"
-            />
-          </a>
-          <a href="https://www.linkedin.com/in/panthaweekan/" target="_blank">
-            <img
-              src="./public/imgs/linkedin.svg"
-              class="size-8 hover:scale-125 transition-all duration-300"
-            />
-          </a>
-          <a href="https://www.instagram.com/_.xanta/" target="_blank">
-            <img
-              src="./public/imgs/ig.svg"
-              class="size-8 hover:scale-125 transition-all duration-300"
-            />
-          </a>
+                <img src="./public/imgs/sdbook_pj.svg" class="w-full h-64 object-cover object-top mb-4 rounded-lg"  />
+
+                <ul
+                  class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
+                >
+                  <li>Supports status checks, bookings, and admin approvals</li>
+                  <li>Admins manage room data, permissions, and allocations</li>
+                  <li>
+                    Integrated Web Hook–based PWA notifications via SDQueue to
+                    reduce user wait time
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- LongPlan -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
+            >
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">LongPlan</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Study Plan Validator for curriculum compliance.
+                </p>
+
+                <img src="./public/imgs/lp_pj.svg" class="w-full h-64 object-cover object-top mb-4 rounded-lg"  />
+                <ul
+                  class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
+                >
+                  <li>
+                    Validates subject prerequisites, credits, and graduation
+                    rules following student's enrolled courses and curriculum
+                  </li>
+                  <li>
+                    Provides a user-friendly interface for students to view
+                    their study plan
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- SD-Letter -->
+            <div
+              class="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
+            >
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">SD-Letter</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Certificate Request System with admin workflows.
+                </p>
+
+                <img src="./public/imgs/letter_pj.svg" class="w-full h-64 object-cover object-top mb-4 rounded-lg" />
+
+                <ul
+                  class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
+                >
+                  <li>
+                    Supports interaction between Admin and Student about
+                    Certificate Request. (Approved , Rejected , Resubmited ,
+                    Published)
+                  </li>
+                  <li>Uses Web Hooks to push notifications via SDQueue.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience" class="py-20 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold mb-12 text-center">Experience</h2>
+          <div class="max-w-3xl mx-auto">
+            <div class="border-l-2 border-primary pl-8 relative pb-8">
+              <div
+                class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"
+              ></div>
+              <h3 class="text-xl font-bold">
+                Fullstack Developer – CMU Engineering
+              </h3>
+              <p class="text-gray-500 mb-4">2023 - Present</p>
+              <ul
+                class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300"
+              >
+                <li>
+                  <strong
+                    >Work-study scholarship at Chiang Mai University</strong
+                  >
+                </li>
+                <li>Developed and maintained internal web applications.</li>
+                <li>
+                  Collaborated with a stakeholder to gather requirements and
+                  provide technical solutions for internal systems.
+                </li>
+                <li>
+                  Gained hands-on experience in full-stack development,
+                  including front-end and back-end technologies and database
+                  management.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
+          <div class="max-w-2xl mx-auto grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="text-xl font-bold mb-4">Contact Info</h3>
+              <ul class="space-y-3">
+                <li class="flex items-center gap-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                  <span>+66 946359510</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span>panthaweekansomngam@gmail.com</span>
+                </li>
+              </ul>
+              <div class="mt-6 flex gap-4">
+                <a
+                  href="https://github.com/Panthaweekan"
+                  target="_blank"
+                  class="p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                >
+                  <img src="./public/imgs/github-mark.svg" class="h-6 w-6" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/panthaweekan/"
+                  target="_blank"
+                  class="p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                >
+                  <img src="./public/imgs/linkedin.svg" class="h-6 w-6" />
+                </a>
+              </div>
+            </div>
+            <form
+              action="https://formspree.io/f/xwplygnl"
+              method="POST"
+              class="space-y-4"
+            >
+              <div>
+              <label for="name" class="block mb-1">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+                required
+              />
+              </div>
+              <div>
+              <label for="email" class="block mb-1">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+                required
+              />
+              </div>
+              <div>
+              <label for="message" class="block mb-1">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+                required
+              ></textarea>
+              </div>
+              <button
+              type="submit"
+              class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-90 transition w-full"
+              >
+              Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-primary to-secondary p-6">
+      <div class="container mx-auto text-center text-white">
+        <p>© 2025 Panthaweekan Somngam. All rights reserved.</p>
       </div>
     </footer>
-    <!-- Load theme on page load -->
+
+    <!-- Scripts -->
     <script>
-      var themeToggleDarkIcon = document.getElementById(
+      // Typing animation
+      const texts = [
+        "Fullstack Developer",
+        "Go Developer",
+        "Software Engineer",
+      ];
+      let count = 0;
+      let index = 0;
+      let currentText = "";
+      let letter = "";
+      let isDeleting = false;
+
+      (function type() {
+        if (count === texts.length) count = 0;
+        currentText = texts[count];
+        letter = isDeleting
+          ? currentText.slice(0, --index)
+          : currentText.slice(0, ++index);
+        document.getElementById("typing-text").textContent = letter;
+
+        let typeSpeed = 100;
+        if (isDeleting) typeSpeed /= 2;
+        if (!isDeleting && letter.length === currentText.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && letter.length === 0) {
+          isDeleting = false;
+          count++;
+          typeSpeed = 500;
+        }
+        setTimeout(type, typeSpeed);
+      })();
+
+      // Theme toggle
+      const themeToggleDarkIcon = document.getElementById(
         "theme-toggle-dark-icon"
       );
-      var themeToggleLightIcon = document.getElementById(
+      const themeToggleLightIcon = document.getElementById(
         "theme-toggle-light-icon"
       );
+      const themeToggleBtn = document.getElementById("theme-toggle");
 
-      // Change the icons inside the button based on previous settings
       if (
         localStorage.getItem("color-theme") === "dark" ||
         (!("color-theme" in localStorage) &&
@@ -469,14 +518,10 @@
         themeToggleDarkIcon.classList.remove("hidden");
       }
 
-      var themeToggleBtn = document.getElementById("theme-toggle");
-
-      themeToggleBtn.addEventListener("click", function () {
-        // toggle icons inside button
+      themeToggleBtn.addEventListener("click", () => {
         themeToggleDarkIcon.classList.toggle("hidden");
         themeToggleLightIcon.classList.toggle("hidden");
 
-        // if set via local storage previously
         if (localStorage.getItem("color-theme")) {
           if (localStorage.getItem("color-theme") === "light") {
             document.documentElement.classList.add("dark");
@@ -496,5 +541,16 @@
         }
       });
     </script>
+    <style>
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
   </body>
 </html>
