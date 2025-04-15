@@ -104,16 +104,24 @@
                 >|</span
               >
             </p>
-            <div class="flex gap-4 justify-center">
+            <div
+              class="flex flex-wrap md:flex-nowrap gap-4 justify-center items-center"
+            >
               <a
                 href="#projects"
-                class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-70 hover:scale-110 transition"
+                class="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-70 hover:scale-110 transition"
                 >View Projects</a
               >
               <a
                 href="#contact"
-                class="px-6 py-3 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition"
+                class="px-6 py-2 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition"
                 >Contact Me</a
+              >
+              <a
+                href="resume.html"
+                target="_blank"
+                class="px-6 py-2 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition"
+                >Resume</a
               >
             </div>
           </div>
@@ -139,7 +147,168 @@
           </a>
         </div>
       </div>
+      <!-- Sticky Navbar -->
+      <nav
+        id="navbar"
+        class="fixed top-0 left-0 w-full bg-gradient-to-r from-primary to-secondary text-white py-3 shadow-lg z-50 transform -translate-y-full transition-all duration-500 ease-out backdrop-blur-sm bg-opacity-90"
+      >
+        <div class="container mx-auto flex justify-between items-center px-6">
+          <a
+            href="#"
+            class="text-xl font-bold hover:scale-105 transition-transform"
+          >
+            <span class="flex items-center">
+              <img src="./public/imgs/bolt.svg" class="h-6 w-6 mr-2" />
+              Panthaweekan
+            </span>
+          </a>
 
+          <!-- Desktop Menu -->
+          <ul class="hidden md:flex space-x-8">
+            <li>
+              <a
+                href="#about"
+                class="hover:opacity-80 transition-opacity relative group"
+              >
+                About
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="hover:opacity-80 transition-opacity relative group"
+              >
+                Projects
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#experience"
+                class="hover:opacity-80 transition-opacity relative group"
+              >
+                Experience
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                class="hover:opacity-80 transition-opacity relative group"
+              >
+                Contact
+                <span
+                  class="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"
+                ></span>
+              </a>
+            </li>
+          </ul>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="md:hidden hidden bg-primary/95 backdrop-blur-md"
+        >
+          <div class="container mx-auto px-6 py-4 flex flex-col space-y-4">
+            <a
+              href="#about"
+              class="hover:opacity-80 transition-opacity py-2 border-b border-white/10"
+              >About</a
+            >
+            <a
+              href="#projects"
+              class="hover:opacity-80 transition-opacity py-2 border-b border-white/10"
+              >Projects</a
+            >
+            <a
+              href="#experience"
+              class="hover:opacity-80 transition-opacity py-2 border-b border-white/10"
+              >Experience</a
+            >
+            <a href="#contact" class="hover:opacity-80 transition-opacity py-2"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <script>
+        const navbar = document.getElementById("navbar");
+        const header = document.querySelector("header");
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+        let lastScrollPosition = 0;
+
+        // Show/hide navbar on scroll
+        window.addEventListener("scroll", () => {
+          const currentScrollPosition = window.scrollY;
+
+          // Always show when scrolling down, hide when scrolling up past header
+          if (currentScrollPosition > header.offsetHeight) {
+            if (currentScrollPosition > lastScrollPosition) {
+              // Scrolling down
+              navbar.classList.remove("transform", "-translate-y-full");
+            } else {
+              // Scrolling up
+              navbar.classList.remove("transform", "-translate-y-full");
+            }
+          } else {
+            // At top of page
+            navbar.classList.add("transform", "-translate-y-full");
+          }
+
+          lastScrollPosition = currentScrollPosition;
+        });
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+          // Toggle icon between hamburger and X
+          const isOpen = !mobileMenu.classList.contains("hidden");
+          mobileMenuButton.innerHTML = isOpen
+            ? `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg>`
+            : `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+         </svg>`;
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll("#mobile-menu a").forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            mobileMenuButton.innerHTML = `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>`;
+          });
+        });
+      </script>
       <!-- About Section -->
       <section id="about" class="py-20 bg-gray-100 dark:bg-gray-900">
         <div class="container mx-auto px-4">
