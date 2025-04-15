@@ -118,6 +118,26 @@
             </div>
           </div>
         </header>
+        <div
+          class="absolute bottom-10 transform -translate-x-1/2 animate-bounce"
+        >
+          <a href="#about">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-10 w-10 text-primary dark:text-secondary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </a>
+        </div>
       </div>
 
       <!-- About Section -->
@@ -256,7 +276,7 @@
       </section>
 
       <!-- Projects Section -->
-      <section class="py-20 bg-white dark:bg-gray-800">
+      <section class="py-20 bg-white dark:bg-gray-800" id="projects">
         <div class="container mx-auto px-4">
           <h2 class="text-3xl font-bold mb-12 text-center">Projects</h2>
           <div class="text-center m-8">
@@ -266,7 +286,7 @@
               />
             </div>
           </div>
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects">
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- SD-Booking -->
             <div
               class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
