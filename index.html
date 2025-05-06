@@ -42,18 +42,292 @@
       };
     </script>
     <title>Panthaweekan | Portal</title>
+    <style>
+      /* Interactive background */
+      #interactive-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        background: radial-gradient(
+          circle at center,
+          rgba(100, 100, 255, 0.1),
+          transparent 40%
+        );
+        transition: background 0.3s ease-out;
+      }
+
+      /* Floating particles */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -5;
+        opacity: 0.7;
+      }
+
+      @media (min-width: 768px) {
+        .particle {
+          width: 70px; /* Larger size for medium screens */
+          height: 70px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .particle {
+          width: 100px; /* Larger size for large screens */
+          height: 100px;
+        }
+      }
+
+      /* Parallax layers */
+      .parallax-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+      }
+
+      /* Gradient overlay */
+      .gradient-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(156, 131, 255, 0.1) 0%,
+          transparent 50%,
+          rgba(255, 144, 81, 0.1) 100%
+        );
+        z-index: -8;
+        pointer-events: none;
+      }
+
+      /* Animated gradient border */
+      .gradient-border {
+        position: relative;
+        border-radius: 0.5rem;
+      }
+
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        border-radius: 0.5rem;
+        background: linear-gradient(45deg, #9c83ff, #ff9051, #9c83ff);
+        background-size: 200% 200%;
+        animation: gradientBorder 3s ease infinite;
+      }
+
+      @keyframes gradientBorder {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(5%, -5%);
+        }
+        50% {
+          transform: translate(10%, 5%);
+        }
+        75% {
+          transform: translate(-5%, 10%);
+        }
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Blinking cursor */
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px; /* Adjusted for responsiveness */
+        height: 35px; /* Adjusted for responsiveness */
+        border: 2px solid #9c83ff;
+        border-radius: 12px;
+      }
+
+      @media (min-width: 768px) {
+        .scroll-indicator {
+          width: 24px; /* Larger size for medium screens */
+          height: 40px;
+        }
+      }
+
+      .scroll-indicator::before {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        width: 4px;
+        height: 8px;
+        background: #9c83ff;
+        border-radius: 2px;
+        transform: translateX(-50%);
+        animation: scrollIndicator 2s infinite;
+      }
+
+      @keyframes scrollIndicator {
+        0% {
+          opacity: 1;
+          transform: translateY(0) translateX(-50%);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(16px) translateX(-50%);
+        }
+      }
+    </style>
+    <style>
+      /* Enhanced Section Backgrounds */
+      .section-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(156, 131, 255, 0.03) 20%,
+          rgba(255, 144, 81, 0.03) 80%,
+          transparent
+        );
+        transition: all 0.5s ease-out;
+      }
+
+      .section-particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.1;
+        filter: blur(60px);
+        animation: float 20s ease-in-out infinite;
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Unified color scheme for particles */
+      .section-particle-primary {
+        background-color: rgba(156, 131, 255, 0.3);
+      }
+
+      .section-particle-secondary {
+        background-color: rgba(255, 144, 81, 0.3);
+      }
+
+      .section-particle-accent {
+        background-color: rgba(131, 255, 156, 0.2);
+      }
+
+      /* Size variations */
+      .section-particle-lg {
+        width: 200px;
+        height: 200px;
+      }
+
+      .section-particle-md {
+        width: 150px;
+        height: 150px;
+      }
+
+      .section-particle-sm {
+        width: 100px;
+        height: 100px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .section-particle-lg {
+          width: 150px;
+          height: 150px;
+        }
+        .section-particle-md {
+          width: 120px;
+          height: 120px;
+        }
+        .section-particle-sm {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      /* Enhanced float animation for smoother movement */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        20% {
+          transform: translate(5%, -3%) rotate(2deg);
+        }
+        40% {
+          transform: translate(8%, 2%) rotate(-1deg);
+        }
+        60% {
+          transform: translate(-4%, 6%) rotate(3deg);
+        }
+        80% {
+          transform: translate(-6%, -2%) rotate(-2deg);
+        }
+      }
+    </style>
   </head>
   <body
-    class="font-sans bg-white dark:bg-black text-black dark:text-white min-h-screen flex flex-col transition-colors duration-300"
+    class="font-sans bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen flex flex-col transition-colors duration-300 overflow-x-hidden"
   >
+    <!-- Interactive background elements -->
+    <div id="interactive-bg"></div>
+    <div class="gradient-overlay"></div>
+
+    <!-- Floating particles will be added by JS -->
+
     <!-- Header/Hero Section -->
-    <div class="flex-grow">
-      <div class="flex items-center justify-center min-h-screen">
-        <div class="bottom-4 left-4 fixed">
+    <div class="flex-grow relative">
+      <div class="flex items-center justify-center min-h-screen relative">
+        <!-- Theme toggle button -->
+        <div class="bottom-4 left-4 fixed z-50">
           <button
             id="theme-toggle"
             type="button"
-            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 dark:bg-white bg-gray-700 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 z-5"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 dark:bg-white bg-gray-700 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 z-50 transition-all hover:scale-110"
           >
             <svg
               id="theme-toggle-dark-icon"
@@ -79,15 +353,17 @@
             </svg>
           </button>
         </div>
-        <header>
+
+        <header class="relative z-10">
           <div class="text-center max-w-4xl mx-auto px-4">
             <h1
               class="flex flex-col gap-4 md:flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none"
             >
-              Panthaweekan
+              <span class="floating">Panthaweekan</span>
               <img
                 src="./public/imgs/bolt.svg"
-                class="md:size-20 size-14 relative z-10 mx-auto md:block md:mx-0"
+                class="md:size-20 size-14 relative z-10 mx-auto md:block md:mx-0 floating"
+                style="animation-delay: 0.5s"
               />
             </h1>
             <p
@@ -109,43 +385,27 @@
             >
               <a
                 href="#projects"
-                class="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-70 hover:scale-110 transition"
+                class="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-70 hover:scale-110 transition-all gradient-border"
                 >View Projects</a
               >
               <a
                 href="#contact"
-                class="px-6 py-2 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition"
+                class="px-6 py-2 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition-all"
                 >Contact Me</a
               >
               <a
                 href="resume.html"
-                class="px-6 py-2 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition"
+                class="px-6 py-2 border-2 border-primary text-primary dark:text-white rounded-lg font-medium hover:bg-primary hover:text-white hover:scale-110 transition-all"
                 >Resume</a
               >
             </div>
           </div>
         </header>
-        <div
-          class="absolute bottom-10 transform -translate-x-1/2 animate-bounce"
-        >
-          <a href="#about">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-10 w-10 text-primary dark:text-secondary"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </a>
-        </div>
+
+        <!-- Animated scroll indicator -->
+        <a href="#about" class="scroll-indicator"></a>
       </div>
+
       <!-- Sticky Navbar -->
       <nav
         id="navbar"
@@ -308,9 +568,27 @@
           });
         });
       </script>
-      <!-- About Section -->
-      <section id="about" class="py-20 bg-gray-100 dark:bg-gray-900">
-        <div class="container mx-auto px-4">
+
+      <!-- About Section with Parallax -->
+      <section
+        id="about"
+        class="py-20 bg-gray-100 dark:bg-gray-900 relative overflow-hidden section-bg"
+      >
+        <!-- Parallax background elements -->
+        <div
+          class="parallax-layer"
+          data-speed="0.1"
+          style="top: 0; left: 0; z-index: -1"
+        >
+          <div
+            class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-primary/20 blur-xl"
+          ></div>
+          <div
+            class="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-secondary/20 blur-xl"
+          ></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
           <h2 class="text-3xl font-bold mb-12 text-center">About Me</h2>
           <div class="flex flex-col md:flex-row gap-12 items-center">
             <div class="md:w-1/2">
@@ -321,14 +599,18 @@
                 experience in the field of web development.
               </p>
               <div class="space-y-4">
-                <div>
+                <div
+                  class="bg-white/10 dark:bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm"
+                >
                   <h3 class="font-bold text-xl mb-2">Education</h3>
                   <p class="text-gray-700 dark:text-gray-300">
                     Chiang Mai University | B.Eng. Computer Engineering (GPA:
                     3.32)
                   </p>
                 </div>
-                <div>
+                <div
+                  class="bg-white/10 dark:bg-gray-800/50 p-4 rounded-lg backdrop-blur-sm"
+                >
                   <h3 class="font-bold text-xl mb-2">Interests</h3>
                   <p class="text-gray-700 dark:text-gray-300">
                     Full-Stack Development, Cloud Architecture, DevSecOps
@@ -340,101 +622,110 @@
               <h3 class="font-bold text-xl mb-4">Programming Skills</h3>
               <div class="flex flex-wrap gap-3 mb-4">
                 <!-- Core Dev -->
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >Go</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >TypeScript</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >Python</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >Java</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >C++</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >Haskell</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >OCaml</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >Rust (Learning)</span
                 >
-                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full"
+                <span
+                  class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
                   >Ruby (Learning)</span
                 >
                 <!-- Web Dev -->
                 <span
-                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full hover:scale-105 transition-transform"
                   >React</span
                 >
                 <span
-                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full hover:scale-105 transition-transform"
                   >Node.js</span
                 >
                 <span
-                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full hover:scale-105 transition-transform"
                   >Tailwind CSS</span
                 >
                 <span
-                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full hover:scale-105 transition-transform"
                   >Vite</span
                 >
                 <span
-                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full"
+                  class="px-3 py-1 bg-secondary/10 text-secondary rounded-full hover:scale-105 transition-transform"
                   >Ruby On Rails (Learning)</span
                 >
                 <!-- Databases -->
                 <span
-                  class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full"
+                  class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full hover:scale-105 transition-transform"
                   >PostgreSQL</span
                 >
                 <span
-                  class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full"
+                  class="px-3 py-1 bg-purple-500/10 text-purple-500 rounded-full hover:scale-105 transition-transform"
                   >MySQL</span
                 >
                 <!-- DevOps -->
                 <span
-                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full"
+                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full hover:scale-105 transition-transform"
                   >Docker</span
                 >
                 <span
-                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full"
+                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full hover:scale-105 transition-transform"
                   >Basic CI/CD (Github action)</span
                 >
               </div>
               <h3 class="font-bold text-xl mb-4">Soft Skills</h3>
               <div class="flex flex-wrap gap-3">
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Effective Communication</span
                 >
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Active Listening</span
                 >
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Respect & Support</span
                 >
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Teamwork</span
                 >
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Adaptive</span
                 >
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Problem-Solving</span
                 >
                 <span
-                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full"
+                  class="px-3 py-1 bg-yellow-500/10 text-yellow-500 rounded-full hover:scale-105 transition-transform"
                   >Abstract Thinking</span
                 >
               </div>
@@ -443,21 +734,45 @@
         </div>
       </section>
 
-      <!-- Projects Section -->
-      <section class="py-20 bg-white dark:bg-gray-800" id="projects">
-        <div class="container mx-auto px-4">
+      <!-- Projects Section with Parallax -->
+      <section
+        class="py-20 bg-white dark:bg-gray-800 relative overflow-hidden section-bg"
+        id="projects"
+      >
+        <!-- Parallax background elements -->
+        <div
+          class="parallax-layer"
+          data-speed="0.15"
+          style="top: 0; right: 0; z-index: -1"
+        >
+          <div
+            class="absolute top-1/3 right-1/4 w-48 h-48 rounded-full bg-primary/10 blur-xl"
+          ></div>
+        </div>
+        <div
+          class="parallax-layer"
+          data-speed="0.05"
+          style="bottom: 0; left: 0; z-index: -1"
+        >
+          <div
+            class="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-secondary/10 blur-xl"
+          ></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
           <h2 class="text-3xl font-bold mb-12 text-center">Projects</h2>
           <div class="text-center m-8">
             <div class="flex justify-center mb-4">
               <img
                 src="https://skillicons.dev/icons?i=go,typescript,react,vite,tailwindcss,postgresql,docker"
+                class="hover:scale-105 transition-transform"
               />
             </div>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- SD-Booking -->
             <div
-              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group"
             >
               <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">SD-Booking</h3>
@@ -465,10 +780,17 @@
                   Room Reservation System with role-based access control.
                 </p>
 
-                <img
-                  src="./public/imgs/sdbook_pj.svg"
-                  class="w-full h-64 object-cover object-top mb-4 rounded-lg"
-                />
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                  <img
+                    src="./public/imgs/sdbook_pj.svg"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"
+                  >
+                    <span class="text-white">Click to learn more</span>
+                  </div>
+                </div>
 
                 <ul
                   class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
@@ -485,7 +807,7 @@
 
             <!-- LongPlan -->
             <div
-              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group"
             >
               <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">LongPlan</h3>
@@ -493,10 +815,17 @@
                   Study Plan Validator for curriculum compliance.
                 </p>
 
-                <img
-                  src="./public/imgs/lp_pj.svg"
-                  class="w-full h-64 object-cover object-top mb-4 rounded-lg"
-                />
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                  <img
+                    src="./public/imgs/lp_pj.svg"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"
+                  >
+                    <span class="text-white">Click to learn more</span>
+                  </div>
+                </div>
                 <ul
                   class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
                 >
@@ -514,7 +843,7 @@
 
             <!-- SD-Letter -->
             <div
-              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition"
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group"
             >
               <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">SD-Letter</h3>
@@ -522,10 +851,17 @@
                   Certificate Request System with admin workflows.
                 </p>
 
-                <img
-                  src="./public/imgs/letter_pj.svg"
-                  class="w-full h-64 object-cover object-top mb-4 rounded-lg"
-                />
+                <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                  <img
+                    src="./public/imgs/letter_pj.svg"
+                    class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"
+                  >
+                    <span class="text-white">Click to learn more</span>
+                  </div>
+                </div>
 
                 <ul
                   class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
@@ -543,9 +879,32 @@
         </div>
       </section>
 
-      <!-- Experience Section -->
-      <section id="experience" class="py-20 bg-gray-100 dark:bg-gray-900">
-        <div class="container mx-auto px-4">
+      <!-- Experience Section with Parallax -->
+      <section
+        id="experience"
+        class="py-20 bg-gray-100 dark:bg-gray-900 relative overflow-hidden section-bg"
+      >
+        <!-- Parallax background elements -->
+        <div
+          class="parallax-layer"
+          data-speed="0.1"
+          style="top: 20%; left: 10%; z-index: -1"
+        >
+          <div
+            class="absolute w-24 h-24 rounded-full bg-primary/20 blur-xl"
+          ></div>
+        </div>
+        <div
+          class="parallax-layer"
+          data-speed="0.05"
+          style="bottom: 30%; right: 15%; z-index: -1"
+        >
+          <div
+            class="absolute w-32 h-32 rounded-full bg-secondary/20 blur-xl"
+          ></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
           <h2 class="text-3xl font-bold mb-12 text-center">Experience</h2>
           <div class="max-w-3xl mx-auto">
             <div class="border-l-2 border-primary pl-8 relative pb-8">
@@ -580,9 +939,32 @@
         </div>
       </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="py-20 bg-white dark:bg-gray-800">
-        <div class="container mx-auto px-4">
+      <!-- Contact Section with Parallax -->
+      <section
+        id="contact"
+        class="py-20 bg-white dark:bg-gray-800 relative overflow-hidden section-bg"
+      >
+        <!-- Parallax background elements -->
+        <div
+          class="parallax-layer"
+          data-speed="0.1"
+          style="top: 0; left: 0; z-index: -1"
+        >
+          <div
+            class="absolute top-1/4 left-1/4 w-48 h-48 rounded-full bg-primary/10 blur-xl"
+          ></div>
+        </div>
+        <div
+          class="parallax-layer"
+          data-speed="0.15"
+          style="bottom: 0; right: 0; z-index: -1"
+        >
+          <div
+            class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-secondary/10 blur-xl"
+          ></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
           <h2 class="text-3xl font-bold mb-12 text-center">Get In Touch</h2>
           <div class="max-w-2xl mx-auto grid md:grid-cols-2 gap-8">
             <div>
@@ -679,7 +1061,7 @@
               </div>
               <button
                 type="submit"
-                class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-70 hover:scale-105 transition w-full"
+                class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-medium hover:opacity-70 hover:scale-105 transition w-full gradient-border"
               >
                 Send Message
               </button>
@@ -690,8 +1072,28 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-primary to-secondary p-6">
-      <div class="container mx-auto text-center text-white">
+    <footer
+      class="bg-gradient-to-r from-primary to-secondary p-6 relative overflow-hidden"
+    >
+      <!-- Animated footer background -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+          <div
+            class="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-white animate-pulse"
+            style="animation-delay: 0.3s"
+          ></div>
+          <div
+            class="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-white animate-pulse"
+            style="animation-delay: 0.7s"
+          ></div>
+          <div
+            class="absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-white animate-pulse"
+            style="animation-delay: 1.1s"
+          ></div>
+        </div>
+      </div>
+
+      <div class="container mx-auto text-center text-white relative z-10">
         <p>© 2025 Panthaweekan Somngam. All rights reserved.</p>
       </div>
     </footer>
@@ -771,17 +1173,130 @@
           }
         }
       });
-    </script>
-    <style>
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
+
+      // Mouse move interactive background
+      const bg = document.getElementById("interactive-bg");
+      document.addEventListener("mousemove", (e) => {
+        let x = (e.clientX / window.innerWidth) * 100;
+        let y = (e.clientY / window.innerHeight) * 100;
+        bg.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(156, 131, 255, 0.2), transparent 40%)`;
+      });
+
+      // Create floating particles
+      function createParticles() {
+        const particleCount = 20;
+        const colors = [
+          "rgba(156, 131, 255, 0.5)",
+          "rgba(255, 144, 81, 0.5)",
+          "rgba(255, 255, 255, 0.3)",
+        ];
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+
+          // Random properties
+          const size = Math.random() * 5 + 3;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const posX = Math.random() * window.innerWidth;
+          const posY = Math.random() * window.innerHeight;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+
+          // Apply styles
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.background = color;
+          particle.style.left = `${posX}px`;
+          particle.style.top = `${posY}px`;
+          particle.style.opacity = Math.random() * 0.5 + 0.1;
+          particle.style.animation = `float ${duration}s ease-in-out infinite`;
+          particle.style.animationDelay = `${delay}s`;
+
+          document.body.appendChild(particle);
         }
       }
-    </style>
+
+      // Parallax scroll effect
+      function updateParallax() {
+        const scrollPosition = window.scrollY;
+        const layers = document.querySelectorAll(".parallax-layer");
+
+        layers.forEach((layer) => {
+          const speed = parseFloat(layer.getAttribute("data-speed"));
+          const yPos = -(scrollPosition * speed);
+          layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+      }
+
+      // Initialize effects
+      window.addEventListener("load", () => {
+        createParticles();
+        updateParallax();
+      });
+
+      window.addEventListener("scroll", updateParallax);
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    </script>
+
+    <script>
+      function createSectionBackgrounds() {
+        const sections = document.querySelectorAll("section");
+
+        sections.forEach((section, index) => {
+          // Create background container
+          const bgContainer = document.createElement("div");
+          bgContainer.className = "section-bg";
+
+          // Create particles (3 per section)
+          for (let i = 0; i < 3; i++) {
+            const particle = document.createElement("div");
+            particle.className = `section-particle ${
+              i === 0
+                ? "section-particle-sm"
+                : i === 1
+                ? "section-particle-md"
+                : "section-particle-lg"
+            }`;
+
+            // Random position and color
+            const colors = ["#9C83FF", "#FF9051", "#83FF9C", "#FFD783"];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            particle.style.backgroundColor = color;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+
+            bgContainer.appendChild(particle);
+          }
+
+          // Add to section
+          section.style.position = "relative";
+          section.style.overflow = "hidden";
+          section.insertBefore(bgContainer, section.firstChild);
+        });
+      }
+
+      // Call the function when page loads
+      window.addEventListener("load", createSectionBackgrounds);
+    </script>
   </body>
 </html>
