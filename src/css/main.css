@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #9C83FF;
+  --color-secondary: #FF9051;
+  --color-light: #F9FAFB;
+  --color-dark: #111827;
+
+  --font-sans: "IBM Plex Sans", sans-serif;
+}
+
+@layer utilities {
+  /* Interactive background */
+  #interactive-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    background: radial-gradient(
+      circle at center,
+      rgba(100, 100, 255, 0.1),
+      transparent 40%
+    );
+    transition: background 0.3s ease-out;
+  }
+
+  /* Floating particles */
+  .particle {
+    position: absolute;
+    border-radius: 100%;
+    pointer-events: none;
+    z-index: -5;
+    background: radial-gradient(
+      circle,
+      rgba(156, 131, 255, 0.3),
+      rgba(255, 144, 81, 0.3)
+    );
+    opacity: 0.7;
+  }
+
+  /* Parallax layers */
+  .parallax-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+  }
+
+  /* Gradient overlay */
+  .gradient-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(156, 131, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(255, 144, 81, 0.1) 100%
+    );
+    z-index: -8;
+    pointer-events: none;
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    border-radius: 0.5rem;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    border-radius: 0.5rem;
+    background: linear-gradient(45deg, #9c83ff, #ff9051, #9c83ff);
+    background-size: 200% 200%;
+    animation: gradientBorder 3s ease infinite;
+  }
+
+  @keyframes gradientBorder {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    20% {
+      transform: translate(5%, -3%) rotate(2deg);
+    }
+    40% {
+      transform: translate(8%, 2%) rotate(-1deg);
+    }
+    60% {
+      transform: translate(-4%, 6%) rotate(3deg);
+    }
+    80% {
+      transform: translate(-6%, -2%) rotate(-2deg);
+    }
+  }
+
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Blinking cursor */
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 35px;
+    border: 2px solid #9c83ff;
+    border-radius: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .scroll-indicator {
+      width: 24px;
+      height: 40px;
+    }
+  }
+
+  .scroll-indicator::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    background: #9c83ff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: scrollIndicator 2s infinite;
+  }
+
+  @keyframes scrollIndicator {
+    0% {
+      opacity: 1;
+      transform: translateY(0) translateX(-50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(16px) translateX(-50%);
+    }
+  }
+
+  /* Enhanced Section Backgrounds */
+  .section-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(156, 131, 255, 0.03) 20%,
+      rgba(255, 144, 81, 0.03) 80%,
+      transparent
+    );
+    transition: all 0.5s ease-out;
+  }
+
+  .section-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.1;
+    filter: blur(60px);
+    animation: float 20s ease-in-out infinite;
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Unified color scheme for particles */
+  .section-particle-primary {
+    background-color: rgba(156, 131, 255, 0.3);
+  }
+
+  .section-particle-secondary {
+    background-color: rgba(255, 144, 81, 0.3);
+  }
+
+  .section-particle-accent {
+    background-color: rgba(131, 255, 156, 0.2);
+  }
+
+  /* Size variations */
+  .section-particle-lg {
+    width: 200px;
+    height: 200px;
+  }
+
+  .section-particle-md {
+    width: 150px;
+    height: 150px;
+  }
+
+  .section-particle-sm {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-particle-lg {
+      width: 150px;
+      height: 150px;
+    }
+    .section-particle-md {
+      width: 120px;
+      height: 120px;
+    }
+    .section-particle-sm {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
