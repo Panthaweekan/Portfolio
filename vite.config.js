@@ -5,7 +5,7 @@ import { resolve } from 'path';
 // Base should be '/repo-name/'
 // For user/org site (username.github.io repo): base should be '/'
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/github.io/' : '/github.io/',
+  base: process.env.NODE_ENV === 'production' ? '/Portfolio/' : '/',
   build: {
     rollupOptions: {
       input: {
