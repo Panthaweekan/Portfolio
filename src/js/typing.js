@@ -1,9 +1,9 @@
 // Typing animation
 export function initTypingAnimation() {
   const texts = [
+    "Associate Software Engineer",
     "Fullstack Developer",
     "Go Developer",
-    "Software Engineer",
   ];
   let count = 0;
   let index = 0;

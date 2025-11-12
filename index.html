@@ -100,7 +100,7 @@
 
       /* Enhanced focus states for accessibility */
       *:focus-visible {
-        outline: 2px solid #9C83FF;
+        outline: 2px solid #9c83ff;
         outline-offset: 2px;
         border-radius: 4px;
       }
@@ -404,7 +404,10 @@
             <h1
               class="flex flex-col gap-4 md:flex-row text-4xl md:text-6xl lg:text-7xl font-black mb-2 tracking-tighter leading-none"
             >
-              <span class="floating">Panthaweekan</span>
+              <span
+                class="floating bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text"
+                >Panthaweekan</span
+              >
               <img
                 src="./imgs/bolt.svg"
                 alt="Lightning bolt logo"
@@ -417,7 +420,7 @@
             >
               I'm
               <span
-                class="typing bg-linear-to-r from-primary to-secondary text-transparent bg-clip-text"
+                class="typing bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text"
                 id="typing-text"
                 aria-live="polite"
                 aria-atomic="true"
@@ -597,10 +600,22 @@
           <div class="flex flex-col md:flex-row gap-12 items-center">
             <div class="md:w-1/2">
               <p class="text-lg leading-relaxed mb-6">
-                With my experience working on various projects, I specialize in
-                full-stack web development, with a strong focus in this area. My
-                goal is to continue improving my skills and gain more practical
-                experience in the field of web development.
+                Associate Software Engineer with expertise in enterprise API
+                gateway infrastructure, cloud migration, and full-stack web
+                development. Currently contributing to SCB TechX's digital
+                transformation initiatives, specializing in hybrid cloud
+                architecture and API gateway solutions using CA Layer 7 and Kong
+                API Gateway. Experienced in building scalable web applications
+                with modern technologies including Go, TypeScript, Ruby on
+                Rails, and React.
+              </p>
+              <p class="text-lg leading-relaxed mb-6">
+                Passionate about clean code architecture and sustainable
+                software design, with extensive experience implementing
+                Hexagonal Architecture, Domain-Driven Design, and SOLID
+                principles across production systems. Strong advocate for
+                microservices patterns, with hands-on experience building
+                production-grade systems that serve real users.
               </p>
               <div class="space-y-4">
                 <div
@@ -657,11 +672,24 @@
                 >
                 <span
                   class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
-                  >Rust (Learning)</span
+                  >Ruby</span
                 >
                 <span
                   class="px-3 py-1 bg-primary/10 text-primary rounded-full hover:scale-105 transition-transform"
-                  >Ruby (Learning)</span
+                  >Rust (Learning)</span
+                >
+                <!-- API Gateway & Integration -->
+                <span
+                  class="px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full hover:scale-105 transition-transform"
+                  >Kong API Gateway</span
+                >
+                <span
+                  class="px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full hover:scale-105 transition-transform"
+                  >CA Layer 7 API Gateway</span
+                >
+                <span
+                  class="px-3 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full hover:scale-105 transition-transform"
+                  >Microservices Architecture</span
                 >
                 <!-- Web Dev -->
                 <span
@@ -682,7 +710,7 @@
                 >
                 <span
                   class="px-3 py-1 bg-secondary/10 text-secondary rounded-full hover:scale-105 transition-transform"
-                  >Ruby On Rails (Learning)</span
+                  >Ruby on Rails</span
                 >
                 <!-- Databases -->
                 <span
@@ -700,7 +728,28 @@
                 >
                 <span
                   class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full hover:scale-105 transition-transform"
-                  >Basic CI/CD (Github action)</span
+                  >CI/CD Pipelines</span
+                >
+                <span
+                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full hover:scale-105 transition-transform"
+                  >Cloud Migration</span
+                >
+                <span
+                  class="px-3 py-1 bg-emerald-500/10 text-emerald-500 rounded-full hover:scale-105 transition-transform"
+                  >Hybrid Cloud Architecture</span
+                >
+                <!-- Software Architecture -->
+                <span
+                  class="px-3 py-1 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-full hover:scale-105 transition-transform"
+                  >Hexagonal Architecture</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-full hover:scale-105 transition-transform"
+                  >Domain-Driven Design (DDD)</span
+                >
+                <span
+                  class="px-3 py-1 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-full hover:scale-105 transition-transform"
+                  >SOLID Principles</span
                 >
               </div>
               <h3 class="font-bold text-xl mb-4">Soft Skills</h3>
@@ -777,6 +826,131 @@
             </div>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Inventory Asset Management System -->
+            <div
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group relative"
+            >
+              <div class="p-6">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-xl font-bold">
+                    Inventory Asset Management System
+                  </h3>
+                  <span
+                    class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold rounded"
+                  >
+                    Production
+                  </span>
+                </div>
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-3 text-sm font-medium"
+                >
+                  Full-Stack Developer • Enterprise Asset Management
+                </p>
+
+                <div
+                  class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center"
+                >
+                  <span class="text-6xl opacity-30">📦</span>
+                </div>
+
+                <!-- Problem-Solution Story -->
+                <div class="space-y-3 mb-4 text-sm">
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-primary">Challenge:</strong> Company
+                    needed centralized asset tracking system with request/return
+                    workflows and single source of truth.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-secondary">Solution:</strong> Built
+                    full-stack system with Ruby on Rails backend, React
+                    frontend, complete CRUD operations, and workflow automation.
+                  </p>
+                </div>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-2 py-1 bg-red-500/10 text-red-600 dark:text-red-400 text-xs rounded"
+                    >Ruby on Rails</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs rounded"
+                    >React</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >TypeScript</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs rounded"
+                    >PostgreSQL</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Custom Hybrid API Gateway Solution -->
+            <div
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group relative"
+            >
+              <div class="p-6">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-xl font-bold">Custom Hybrid API Gateway</h3>
+                  <span
+                    class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold rounded"
+                  >
+                    Production
+                  </span>
+                </div>
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-3 text-sm font-medium"
+                >
+                  Lead Developer • Experimental API Gateway Architecture
+                </p>
+
+                <div
+                  class="relative overflow-hidden rounded-lg mb-4 h-48 bg-gradient-to-br from-blue-500/20 to-green-500/20 flex items-center justify-center"
+                >
+                  <span class="text-6xl opacity-30">🚀</span>
+                </div>
+
+                <!-- Problem-Solution Story -->
+                <div class="space-y-3 mb-4 text-sm">
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-primary">Challenge:</strong> Need to
+                    preserve CA Layer 7 logic while integrating Kong API Gateway
+                    best practices for cloud migration.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-secondary">Solution:</strong> Designed
+                    hybrid architecture in Go with Fiber framework, combining
+                    strengths of both platforms via database event-driven
+                    design.
+                  </p>
+                </div>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >Go</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs rounded"
+                    >Fiber Framework</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs rounded"
+                    >Kong API Gateway</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs rounded"
+                    >CA Layer 7</span
+                  >
+                </div>
+              </div>
+            </div>
+
             <!-- SD-Booking -->
             <div
               class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group relative"
@@ -1077,31 +1251,101 @@
         <div class="container mx-auto px-4 relative z-10">
           <h2 class="text-3xl font-bold mb-12 text-center">Experience</h2>
           <div class="max-w-3xl mx-auto">
+            <!-- SCB TechX Experience -->
             <div class="border-l-2 border-primary pl-8 relative pb-8">
               <div
                 class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"
               ></div>
               <h3 class="text-xl font-bold">
-                Fullstack Developer – CMU Engineering
+                Associate Software Engineer – SCB TechX
               </h3>
-              <p class="text-gray-500 mb-4">2023 - Present</p>
+              <p class="text-gray-500 mb-2">May 2025 - Present</p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+                Bangkok, Thailand (Hybrid)
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+                <strong>Technologies:</strong> API Gateway • Kong API Gateway •
+                CA Layer 7 • Go • Fiber Framework • Ruby on Rails • React •
+                TypeScript • Microservices
+              </p>
               <ul
                 class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300"
               >
                 <li>
-                  <strong
-                    >Work-study scholarship at Chiang Mai University</strong
-                  >
-                </li>
-                <li>Developed and maintained internal web applications.</li>
-                <li>
-                  Collaborated with a stakeholder to gather requirements and
-                  provide technical solutions for internal systems.
+                  Designed, developed, and maintained enterprise API gateway
+                  infrastructure across hybrid environments, including CA Layer
+                  7 API Gateway and Kong API Gateway for both on-premise and
+                  cloud-based systems
                 </li>
                 <li>
-                  Gained hands-on experience in full-stack development,
-                  including front-end and back-end technologies and database
-                  management.
+                  Collaborated cross-functionally on cloud migration
+                  initiatives, ensuring seamless transition of API gateway logic
+                  and maintaining service continuity during the migration
+                  process
+                </li>
+                <li>
+                  Developed and architected a full-stack Inventory Asset
+                  Management System (Ruby on Rails, React, TypeScript) featuring
+                  full CRUD operations, asset request/return workflows, and a
+                  centralized database serving as a single source of truth for
+                  company-wide asset tracking
+                </li>
+                <li>
+                  Led the experimental development of a custom API gateway
+                  solution that preserved existing CA Layer 7 logic while
+                  integrating Kong API Gateway best practices. Designed a hybrid
+                  architecture—implemented in Go using the Fiber (fasthttp)
+                  framework—that combined the strengths of both platforms
+                  through a database event-driven design
+                </li>
+              </ul>
+            </div>
+
+            <!-- CMU Engineering Experience -->
+            <div class="border-l-2 border-primary pl-8 relative pb-8">
+              <div
+                class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"
+              ></div>
+              <h3 class="text-xl font-bold">
+                Full Stack Developer (Work-Study Scholarship) – CMU Engineering
+              </h3>
+              <p class="text-gray-500 mb-2">2023 - 2025</p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+                Chiang Mai, Thailand
+              </p>
+              <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm">
+                <strong>Technologies:</strong> Go • Fiber Framework • TypeScript
+                • React • PostgreSQL • Docker • Hexagonal Architecture
+              </p>
+              <ul
+                class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300"
+              >
+                <li>
+                  Designed and developed multiple production-grade internal web
+                  applications for faculty administration and student services,
+                  serving over 2,000 active users across the engineering faculty
+                </li>
+                <li>
+                  Conducted regular meetings with faculty stakeholders,
+                  administrators, and end-users to gather requirements, provide
+                  technical consultation, and deliver solutions aligned with
+                  business needs
+                </li>
+                <li>
+                  Built full-stack applications using Go with Fiber framework
+                  for backend RESTful APIs, React with TypeScript for frontend,
+                  PostgreSQL for database, and Docker for containerization and
+                  deployment
+                </li>
+                <li>
+                  Consistently applied Hexagonal Architecture principles and
+                  SOLID design patterns to ensure all applications were
+                  maintainable, testable, and scalable for future enhancements
+                </li>
+                <li>
+                  Successfully deployed and maintained multiple applications in
+                  production environments, handling incident response and
+                  implementing continuous improvements based on user feedback
                 </li>
               </ul>
             </div>
@@ -1287,7 +1531,11 @@
     <!-- Inline JavaScript -->
     <script>
       // Typing animation
-      const texts = ["Fullstack Developer", "Go Developer", "Software Engineer"];
+      const texts = [
+        "Fullstack Developer",
+        "Go Developer",
+        "Software Engineer",
+      ];
       let count = 0;
       let index = 0;
       let currentText = "";
@@ -1316,8 +1564,12 @@
       })();
 
       // Theme toggle
-      const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
-      const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+      const themeToggleDarkIcon = document.getElementById(
+        "theme-toggle-dark-icon"
+      );
+      const themeToggleLightIcon = document.getElementById(
+        "theme-toggle-light-icon"
+      );
       const themeToggleBtn = document.getElementById("theme-toggle");
 
       if (localStorage.getItem("color-theme") === "dark") {
@@ -1465,7 +1717,11 @@
           for (let i = 0; i < 3; i++) {
             const particle = document.createElement("div");
             particle.className = `section-particle ${
-              i === 0 ? "section-particle-sm" : i === 1 ? "section-particle-md" : "section-particle-lg"
+              i === 0
+                ? "section-particle-sm"
+                : i === 1
+                ? "section-particle-md"
+                : "section-particle-lg"
             }`;
 
             const colors = ["#9C83FF", "#FF9051", "#83FF9C"];
