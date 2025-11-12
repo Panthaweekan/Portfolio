@@ -35,6 +35,17 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Verify build output
+        run: |
+          echo "Checking dist folder structure..."
+          ls -la dist/
+          echo "Checking imgs folder..."
+          ls -la dist/imgs/ || echo "imgs folder not found"
+          echo "Checking assets folder..."
+          ls -la dist/assets/ || echo "assets folder not found"
+          echo "Verifying .nojekyll..."
+          ls -la dist/.nojekyll || echo ".nojekyll not found"
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
