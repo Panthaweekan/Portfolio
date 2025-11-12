@@ -1,19 +1,33 @@
-// Interactive background effects
+// Interactive background effects (optimized with throttling)
 export function initInteractiveBackground() {
   const bg = document.getElementById("interactive-bg");
 
   if (bg) {
+    let ticking = false;
+    let lastX = 50;
+    let lastY = 50;
+
     document.addEventListener("mousemove", (e) => {
-      let x = (e.clientX / window.innerWidth) * 100;
-      let y = (e.clientY / window.innerHeight) * 100;
-      bg.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(156, 131, 255, 0.2), transparent 40%)`;
-    });
+      lastX = (e.clientX / window.innerWidth) * 100;
+      lastY = (e.clientY / window.innerHeight) * 100;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          bg.style.background = `radial-gradient(circle at ${lastX}% ${lastY}%, rgba(156, 131, 255, 0.2), transparent 40%)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
   }
 }
 
-// Create floating particles
+// Create floating particles (optimized count based on device)
 export function createParticles() {
-  const particleCount = 20;
+  // Reduce particle count on mobile for better performance
+  const isMobile = window.innerWidth < 768;
+  const particleCount = isMobile ? 5 : 10;
+
   const colors = [
     "rgba(156, 131, 255, 0.5)",
     "rgba(255, 144, 81, 0.5)",

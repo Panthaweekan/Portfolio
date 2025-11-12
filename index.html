@@ -2,28 +2,70 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="author" content="Panthaweekan" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Panthaweekan Somngam" />
     <meta
       name="description"
-      content="Panthaweekan Somngam | Full-Stack Developer"
+      content="Panthaweekan Somngam - Full-Stack Developer specializing in Go, TypeScript, and React. Building scalable web applications with Hexagonal Architecture. View my portfolio and projects."
     />
-    <meta name="og:title" content="Panthaweekan" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="./public/imgs/bolt.svg" />
+    <meta
+      name="keywords"
+      content="Full-Stack Developer, Go Developer, TypeScript, React, Hexagonal Architecture, Web Development, Portfolio, Software Engineer"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://panthaweekan.github.io/github.io/"
+    />
+    <meta
+      property="og:title"
+      content="Panthaweekan Somngam | Full-Stack Developer Portfolio"
+    />
+    <meta
+      property="og:description"
+      content="Full-Stack Developer specializing in Go, TypeScript, and React. Building scalable web applications with Hexagonal Architecture."
+    />
+    <meta
+      property="og:image"
+      content="https://panthaweekan.github.io/github.io/imgs/bolt.svg"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://panthaweekan.github.io/github.io/"
+    />
+    <meta
+      property="twitter:title"
+      content="Panthaweekan Somngam | Full-Stack Developer Portfolio"
+    />
+    <meta
+      property="twitter:description"
+      content="Full-Stack Developer specializing in Go, TypeScript, and React. Building scalable web applications with Hexagonal Architecture."
+    />
+    <meta
+      property="twitter:image"
+      content="https://panthaweekan.github.io/github.io/imgs/bolt.svg"
+    />
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://panthaweekan.github.io/github.io/" />
+    <link rel="icon" type="image/svg+xml" href="/imgs/bolt.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <title>Panthaweekan | Portal</title>
     <!-- Theme script - runs immediately to prevent flash -->
     <script>
-      (function() {
+      (function () {
         const savedTheme = localStorage.getItem("color-theme");
         if (savedTheme === "light") {
           document.documentElement.classList.remove("dark");
@@ -40,11 +82,19 @@
   <body
     class="font-sans bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen flex flex-col transition-colors duration-300 overflow-x-hidden"
   >
-    <!-- Interactive background elements -->
-    <div id="neural-network-bg"></div>
-    <div id="lightning-bg"></div>
+    <!-- Skip to main content link for keyboard navigation -->
+    <a
+      href="#main-content"
+      class="skip-to-content sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-primary focus:text-white focus:rounded-lg focus:font-medium focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
 
-    <div class="gradient-overlay"></div>
+    <!-- Interactive background elements -->
+    <div id="neural-network-bg" aria-hidden="true"></div>
+    <div id="lightning-bg" aria-hidden="true"></div>
+
+    <div class="gradient-overlay" aria-hidden="true"></div>
 
     <!-- Floating particles will be added by JS -->
 
@@ -56,7 +106,8 @@
           <button
             id="theme-toggle"
             type="button"
-            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 dark:bg-white bg-gray-700 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2 z-50 transition-all hover:scale-110"
+            aria-label="Toggle dark/light mode"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 dark:bg-white bg-gray-700 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-3 md:p-4 z-50 transition-all hover:scale-110 min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             <svg
               id="theme-toggle-dark-icon"
@@ -90,7 +141,8 @@
             >
               <span class="floating">Panthaweekan</span>
               <img
-                src="./public/imgs/bolt.svg"
+                src="/imgs/bolt.svg"
+                alt="Lightning bolt logo"
                 class="md:size-20 size-14 relative z-10 mx-auto md:block md:mx-0 floating"
                 style="animation-delay: 0.5s"
               />
@@ -100,12 +152,15 @@
             >
               I'm
               <span
-                class="typing bg-gradient-to-r from-primary to-secondary text-transparent bg-clip-text"
+                class="typing bg-linear-to-r from-primary to-secondary text-transparent bg-clip-text"
                 id="typing-text"
+                aria-live="polite"
+                aria-atomic="true"
               ></span>
               <span
                 class="cursor text-3xl"
                 style="animation: blink 0.7s infinite"
+                aria-hidden="true"
                 >|</span
               >
             </p>
@@ -138,7 +193,9 @@
       <!-- Sticky Navbar -->
       <nav
         id="navbar"
-        class="fixed top-0 left-0 w-full bg-gradient-to-r from-primary to-secondary text-white py-3 shadow-lg z-50 transform -translate-y-full transition-all duration-500 ease-out backdrop-blur-sm bg-opacity-90"
+        role="navigation"
+        aria-label="Main navigation"
+        class="fixed top-0 left-0 w-full bg-linear-to-r from-primary to-secondary text-white py-3 shadow-lg z-50 transform -translate-y-full transition-all duration-500 ease-out backdrop-blur-sm bg-opacity-90"
       >
         <div class="container mx-auto flex justify-between items-center px-6">
           <a
@@ -146,7 +203,12 @@
             class="text-xl font-bold hover:scale-105 transition-transform"
           >
             <span class="flex items-center">
-              <img src="./public/imgs/bolt.svg" class="h-6 w-6 mr-2" />
+              <img
+                src="/imgs/bolt.svg"
+                alt=""
+                class="h-6 w-6 mr-2"
+                aria-hidden="true"
+              />
               Panthaweekan
             </span>
           </a>
@@ -200,12 +262,19 @@
           </ul>
 
           <!-- Mobile Menu Button -->
-          <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+          <button
+            id="mobile-menu-button"
+            class="md:hidden focus:outline-none p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label="Toggle navigation menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
             <svg
               class="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -243,6 +312,7 @@
         id="about"
         class="py-20 bg-gray-100 dark:bg-gray-900 relative overflow-hidden section-bg"
       >
+        <div id="main-content"></div>
         <!-- Parallax background elements -->
         <div
           class="parallax-layer"
@@ -435,114 +505,279 @@
             <div class="flex justify-center mb-4">
               <img
                 src="https://skillicons.dev/icons?i=go,typescript,react,vite,tailwindcss,postgresql,docker"
+                alt="Technology stack icons: Go, TypeScript, React, Vite, Tailwind CSS, PostgreSQL, Docker"
                 class="hover:scale-105 transition-transform"
+                loading="lazy"
               />
             </div>
           </div>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- SD-Booking -->
             <div
-              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group"
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group relative"
             >
               <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">SD-Booking</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                  Room Reservation System with role-based access control.
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-xl font-bold">SD-Booking</h3>
+                  <span
+                    class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold rounded"
+                  >
+                    Production
+                  </span>
+                </div>
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-3 text-sm font-medium"
+                >
+                  Full-Stack Developer • Room Reservation Platform
                 </p>
 
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-48">
                   <img
-                    src="./public/imgs/sdbook_pj.svg"
+                    src="/imgs/sdbook_pj.svg"
+                    alt="SD-Booking application screenshot showing room reservation interface"
                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    width="400"
+                    height="192"
                   />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"
-                  >
-                    <span class="text-white">Click to learn more</span>
-                  </div>
                 </div>
 
-                <ul
-                  class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
-                >
-                  <li>Supports status checks, bookings, and admin approvals</li>
-                  <li>Admins manage room data, permissions, and allocations</li>
-                  <li>
-                    Integrated Web Hook–based PWA notifications via SDQueue to
-                    reduce user wait time
-                  </li>
-                </ul>
+                <!-- Problem-Solution Story -->
+                <div class="space-y-3 mb-4 text-sm">
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-primary">Challenge:</strong> Faculty
+                    needed a centralized system to manage 50+ room bookings with
+                    complex approval workflows.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-secondary">Solution:</strong> Built
+                    full-stack booking platform using Hexagonal Architecture
+                    with real-time PWA notifications via WebHooks.
+                  </p>
+                </div>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >Go</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >TypeScript</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs rounded"
+                    >React</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs rounded"
+                    >PostgreSQL</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-orange-500/10 text-orange-600 dark:text-orange-400 text-xs rounded"
+                    >Docker</span
+                  >
+                </div>
+
+                <!-- Action Buttons -->
+                <!-- <div class="flex gap-3">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-4 py-2 bg-linear-to-r from-primary to-secondary text-white text-center rounded-lg font-medium hover:opacity-90 transition text-sm min-h-[44px] flex items-center justify-center"
+                    aria-label="View SD-Booking live demo"
+                  >
+                    Live Demo
+                  </a>
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-4 py-2 border-2 border-primary text-primary dark:text-white text-center rounded-lg font-medium hover:bg-primary hover:text-white transition text-sm min-h-[44px] flex items-center justify-center"
+                    aria-label="View SD-Booking source code on GitHub"
+                  >
+                    View Code
+                  </a>
+                </div> -->
               </div>
             </div>
 
             <!-- LongPlan -->
             <div
-              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group"
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group relative"
             >
               <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">LongPlan</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                  Study Plan Validator for curriculum compliance.
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-xl font-bold">LongPlan</h3>
+                  <span
+                    class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold rounded"
+                  >
+                    Production
+                  </span>
+                </div>
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-3 text-sm font-medium"
+                >
+                  Full-Stack Developer • Study Plan Validator
                 </p>
 
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-48">
                   <img
-                    src="./public/imgs/lp_pj.svg"
+                    src="/imgs/lp_pj.svg"
+                    alt="LongPlan application screenshot showing study plan validator interface"
                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    width="400"
+                    height="192"
                   />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"
-                  >
-                    <span class="text-white">Click to learn more</span>
-                  </div>
                 </div>
-                <ul
-                  class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
-                >
-                  <li>
-                    Validates subject prerequisites, credits, and graduation
-                    rules following student's enrolled courses and curriculum
-                  </li>
-                  <li>
-                    Provides a user-friendly interface for students to view
-                    their study plan
-                  </li>
-                </ul>
+
+                <!-- Problem-Solution Story -->
+                <div class="space-y-3 mb-4 text-sm">
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-primary">Challenge:</strong> Students
+                    struggled to manually validate 500+ course combinations
+                    against complex curriculum prerequisites.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-secondary">Solution:</strong> Developed
+                    automated validator checking prerequisites, credit
+                    requirements, and graduation rules in real-time.
+                  </p>
+                </div>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >Go</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >TypeScript</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs rounded"
+                    >React</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs rounded"
+                    >PostgreSQL</span
+                  >
+                </div>
+
+                <!-- Action Buttons -->
+                <!-- <div class="flex gap-3">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-4 py-2 bg-linear-to-r from-primary to-secondary text-white text-center rounded-lg font-medium hover:opacity-90 transition text-sm min-h-[44px] flex items-center justify-center"
+                    aria-label="View LongPlan live demo"
+                  >
+                    Live Demo
+                  </a>
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-4 py-2 border-2 border-primary text-primary dark:text-white text-center rounded-lg font-medium hover:bg-primary hover:text-white transition text-sm min-h-[44px] flex items-center justify-center"
+                    aria-label="View LongPlan source code on GitHub"
+                  >
+                    View Code
+                  </a>
+                </div> -->
               </div>
             </div>
 
             <!-- SD-Letter -->
             <div
-              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group"
+              class="project-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] group relative"
             >
               <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">SD-Letter</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
-                  Certificate Request System with admin workflows.
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="text-xl font-bold">SD-Letter</h3>
+                  <span
+                    class="px-2 py-1 bg-green-500/10 text-green-600 dark:text-green-400 text-xs font-semibold rounded"
+                  >
+                    Production
+                  </span>
+                </div>
+                <p
+                  class="text-gray-600 dark:text-gray-300 mb-3 text-sm font-medium"
+                >
+                  Full-Stack Developer • Certificate Request System
                 </p>
 
-                <div class="relative overflow-hidden rounded-lg mb-4 h-64">
+                <div class="relative overflow-hidden rounded-lg mb-4 h-48">
                   <img
-                    src="./public/imgs/letter_pj.svg"
+                    src="/imgs/letter_pj.svg"
+                    alt="SD-Letter application screenshot showing certificate request system interface"
                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    width="400"
+                    height="192"
                   />
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4"
-                  >
-                    <span class="text-white">Click to learn more</span>
-                  </div>
                 </div>
 
-                <ul
-                  class="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 mb-4"
-                >
-                  <li>
-                    Supports interaction between Admin and Student about
-                    Certificate Request. (Approved , Rejected , Resubmited ,
-                    Published)
-                  </li>
-                  <li>Uses Web Hooks to push notifications via SDQueue.</li>
-                </ul>
+                <!-- Problem-Solution Story -->
+                <div class="space-y-3 mb-4 text-sm">
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-primary">Challenge:</strong> Manual
+                    certificate processing created bottlenecks with unclear
+                    request status and delayed notifications.
+                  </p>
+                  <p class="text-gray-700 dark:text-gray-300">
+                    <strong class="text-secondary">Solution:</strong> Created
+                    automated workflow system with approval stages (Approved,
+                    Rejected, Resubmitted, Published) and real-time WebHook
+                    notifications.
+                  </p>
+                </div>
+
+                <!-- Tech Stack Tags -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >Go</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs rounded"
+                    >TypeScript</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs rounded"
+                    >React</span
+                  >
+                  <span
+                    class="px-2 py-1 bg-purple-500/10 text-purple-600 dark:text-purple-400 text-xs rounded"
+                    >PostgreSQL</span
+                  >
+                </div>
+
+                <!-- Action Buttons -->
+                <!-- <div class="flex gap-3">
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-4 py-2 bg-linear-to-r from-primary to-secondary text-white text-center rounded-lg font-medium hover:opacity-90 transition text-sm min-h-[44px] flex items-center justify-center"
+                    aria-label="View SD-Letter live demo"
+                  >
+                    Live Demo
+                  </a>
+                  <a
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex-1 px-4 py-2 border-2 border-primary text-primary dark:text-white text-center rounded-lg font-medium hover:bg-primary hover:text-white transition text-sm min-h-[44px] flex items-center justify-center"
+                    aria-label="View SD-Letter source code on GitHub"
+                  >
+                    View Code
+                  </a>
+                </div> -->
               </div>
             </div>
           </div>
@@ -681,16 +916,32 @@
                 <a
                   href="https://github.com/Panthaweekan"
                   target="_blank"
-                  class="p-2 rounded-full dark:hover:bg-gray-200 hover:bg-white hover:scale-105 transition"
+                  rel="noopener noreferrer"
+                  aria-label="Visit my GitHub profile"
+                  title="GitHub"
+                  class="p-2 rounded-full dark:hover:bg-gray-200 hover:bg-white hover:scale-105 transition min-w-[44px] min-h-[44px] flex items-center justify-center"
                 >
-                  <img src="./public/imgs/github-mark.svg" class="h-6 w-6" />
+                  <img
+                    src="/imgs/github-mark.svg"
+                    alt=""
+                    class="h-6 w-6"
+                    aria-hidden="true"
+                  />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/panthaweekan/"
                   target="_blank"
-                  class="p-2 rounded-full dark:hover:bg-gray-200 hover:bg-white hover:scale-105 transition"
+                  rel="noopener noreferrer"
+                  aria-label="Visit my LinkedIn profile"
+                  title="LinkedIn"
+                  class="p-2 rounded-full dark:hover:bg-gray-200 hover:bg-white hover:scale-105 transition min-w-[44px] min-h-[44px] flex items-center justify-center"
                 >
-                  <img src="./public/imgs/linkedin.svg" class="h-6 w-6" />
+                  <img
+                    src="/imgs/linkedin.svg"
+                    alt=""
+                    class="h-6 w-6"
+                    aria-hidden="true"
+                  />
                 </a>
               </div>
             </div>

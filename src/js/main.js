@@ -8,6 +8,7 @@ import { initInteractiveBackground, createParticles, createSectionBackgrounds } 
 import { initParallax } from './parallax.js';
 import { initNavbar } from './navbar.js';
 import { initSmoothScroll } from './smoothScroll.js';
+import { initContactForm } from './contactForm.js';
 
 // Initialize all features when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initNavbar();
   initSmoothScroll();
+  initContactForm();
 });
 
 // Initialize effects when page is fully loaded
