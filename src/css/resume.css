@@ -259,6 +259,142 @@ a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 9pt;
+    background: #ffffff;
+  }
+
+  .page-layout {
+    margin: 0;
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  .my-name {
+    font-size: 20pt;
+    line-height: 1.2;
+  }
+
+  .my-role {
+    font-size: 11pt;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 9pt;
+  }
+
+  .contact-item {
+    word-break: break-word;
+  }
+
+  .page-subheader {
+    font-size: 10pt;
+  }
+
+  .job-header,
+  .education-header,
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .date-range {
+    white-space: normal;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .skill-category {
+    font-weight: 700;
+    margin-top: 0.5rem;
+  }
+
+  .principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-stack {
+    font-size: 8.5pt;
+    padding: 0.5rem;
+  }
+
+  .print-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    top: auto;
+    padding: 0;
+    font-size: 24px;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-indent: 0;
+  }
+
+  ul {
+    padding-left: 1rem;
+  }
+
+  li {
+    font-size: 9pt;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .page-layout {
+    padding: 0.75rem;
+  }
+
+  .my-name {
+    font-size: 18pt;
+  }
+
+  .my-role {
+    font-size: 10pt;
+  }
+
+  .contact-info {
+    font-size: 8.5pt;
+  }
+
+  .page-subheader {
+    font-size: 9.5pt;
+  }
+
+  .job-title,
+  .degree-title,
+  .project-title {
+    font-size: 10pt;
+  }
+
+  .company-name,
+  .institution-name {
+    font-size: 9.5pt;
+  }
+
+  .tech-stack {
+    font-size: 8pt;
+  }
+
+  li {
+    font-size: 8.5pt;
+  }
+}
+
 @media print {
   body {
     background: white;
