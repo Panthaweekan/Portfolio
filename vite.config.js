@@ -6,6 +6,7 @@ import { resolve } from 'path';
 // For user/org site (username.github.io repo): base should be '/'
 export default defineConfig({
   base: '/Portfolio/',
+  publicDir: 'public', // Explicitly set public directory
   build: {
     rollupOptions: {
       input: {
