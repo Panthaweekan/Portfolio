@@ -62,7 +62,272 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              light: "#F9FAFB",
+              dark: "#111827",
+              300: "#D1D5DB",
+              primary: "#9C83FF",
+              secondary: "#FF9051",
+            },
+            fontFamily: {
+              sans: ["IBM Plex Sans", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
     <title>Panthaweekan | Portal</title>
+    <style>
+      /* Accessibility - Screen reader only */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      /* Enhanced focus states for accessibility */
+      *:focus-visible {
+        outline: 2px solid #9C83FF;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+
+      /* Interactive background */
+      #interactive-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        background: radial-gradient(
+          circle at center,
+          rgba(100, 100, 255, 0.1),
+          transparent 40%
+        );
+        transition: background 0.3s ease-out;
+      }
+
+      /* Floating particles */
+      .particle {
+        position: absolute;
+        border-radius: 100%;
+        pointer-events: none;
+        z-index: -5;
+        background: radial-gradient(
+          circle,
+          rgba(156, 131, 255, 0.3),
+          rgba(255, 144, 81, 0.3)
+        );
+        opacity: 0.7;
+      }
+
+      /* Parallax layers */
+      .parallax-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+      }
+
+      /* Gradient overlay */
+      .gradient-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(156, 131, 255, 0.1) 0%,
+          transparent 50%,
+          rgba(255, 144, 81, 0.1) 100%
+        );
+        z-index: -8;
+        pointer-events: none;
+      }
+
+      /* Animated gradient border */
+      .gradient-border {
+        position: relative;
+        border-radius: 0.5rem;
+      }
+
+      .gradient-border::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        border-radius: 0.5rem;
+        background: linear-gradient(45deg, #9c83ff, #ff9051, #9c83ff);
+        background-size: 200% 200%;
+        animation: gradientBorder 3s ease infinite;
+      }
+
+      @keyframes gradientBorder {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Floating animation */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        20% {
+          transform: translate(5%, -3%) rotate(2deg);
+        }
+        40% {
+          transform: translate(8%, 2%) rotate(-1deg);
+        }
+        60% {
+          transform: translate(-4%, 6%) rotate(3deg);
+        }
+        80% {
+          transform: translate(-6%, -2%) rotate(-2deg);
+        }
+      }
+
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Blinking cursor */
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 35px;
+        border: 2px solid #9c83ff;
+        border-radius: 12px;
+      }
+
+      @media (min-width: 768px) {
+        .scroll-indicator {
+          width: 24px;
+          height: 40px;
+        }
+      }
+
+      .scroll-indicator::before {
+        content: "";
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        width: 4px;
+        height: 8px;
+        background: #9c83ff;
+        border-radius: 2px;
+        transform: translateX(-50%);
+        animation: scrollIndicator 2s infinite;
+      }
+
+      @keyframes scrollIndicator {
+        0% {
+          opacity: 1;
+          transform: translateY(0) translateX(-50%);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(16px) translateX(-50%);
+        }
+      }
+
+      /* Enhanced Section Backgrounds */
+      .section-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(156, 131, 255, 0.03) 20%,
+          rgba(255, 144, 81, 0.03) 80%,
+          transparent
+        );
+        transition: all 0.5s ease-out;
+      }
+
+      .section-particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0.1;
+        filter: blur(60px);
+        animation: float 20s ease-in-out infinite;
+        transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .section-particle-lg {
+        width: 200px;
+        height: 200px;
+      }
+
+      .section-particle-md {
+        width: 150px;
+        height: 150px;
+      }
+
+      .section-particle-sm {
+        width: 100px;
+        height: 100px;
+      }
+
+      @media (max-width: 768px) {
+        .section-particle-lg {
+          width: 150px;
+          height: 150px;
+        }
+        .section-particle-md {
+          width: 120px;
+          height: 120px;
+        }
+        .section-particle-sm {
+          width: 80px;
+          height: 80px;
+        }
+      }
+    </style>
     <!-- Theme script - runs immediately to prevent flash -->
     <script>
       (function () {
@@ -1019,6 +1284,209 @@
       </div>
     </footer>
 
-    <script type="module" src="/src/js/main.js"></script>
+    <!-- Inline JavaScript -->
+    <script>
+      // Typing animation
+      const texts = ["Fullstack Developer", "Go Developer", "Software Engineer"];
+      let count = 0;
+      let index = 0;
+      let currentText = "";
+      let letter = "";
+      let isDeleting = false;
+
+      (function type() {
+        if (count === texts.length) count = 0;
+        currentText = texts[count];
+        letter = isDeleting
+          ? currentText.slice(0, --index)
+          : currentText.slice(0, ++index);
+        document.getElementById("typing-text").textContent = letter;
+
+        let typeSpeed = 100;
+        if (isDeleting) typeSpeed /= 2;
+        if (!isDeleting && letter.length === currentText.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && letter.length === 0) {
+          isDeleting = false;
+          count++;
+          typeSpeed = 500;
+        }
+        setTimeout(type, typeSpeed);
+      })();
+
+      // Theme toggle
+      const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+      const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+      const themeToggleBtn = document.getElementById("theme-toggle");
+
+      if (localStorage.getItem("color-theme") === "dark") {
+        themeToggleLightIcon.classList.remove("hidden");
+        document.documentElement.classList.add("dark");
+      } else {
+        themeToggleDarkIcon.classList.remove("hidden");
+        document.documentElement.classList.remove("dark");
+        if (!localStorage.getItem("color-theme")) {
+          localStorage.setItem("color-theme", "light");
+        }
+      }
+
+      themeToggleBtn.addEventListener("click", () => {
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+        } else {
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+      });
+
+      // Mouse move interactive background
+      const bg = document.getElementById("interactive-bg");
+      if (bg) {
+        document.addEventListener("mousemove", (e) => {
+          let x = (e.clientX / window.innerWidth) * 100;
+          let y = (e.clientY / window.innerHeight) * 100;
+          bg.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(156, 131, 255, 0.2), transparent 40%)`;
+        });
+      }
+
+      // Create floating particles
+      function createParticles() {
+        const particleCount = 20;
+        const colors = [
+          "rgba(156, 131, 255, 0.5)",
+          "rgba(255, 144, 81, 0.5)",
+          "rgba(255, 255, 255, 0.3)",
+        ];
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+
+          const size = Math.random() * 12 + 3;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const posX = Math.random() * window.innerWidth;
+          const posY = Math.random() * window.innerHeight;
+          const duration = Math.random() * 20 + 10;
+          const delay = Math.random() * 5;
+
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.background = color;
+          particle.style.left = `${posX}px`;
+          particle.style.top = `${posY}px`;
+          particle.style.opacity = Math.random() * 0.5 + 0.1;
+          particle.style.animation = `float ${duration}s ease-in-out infinite`;
+          particle.style.animationDelay = `${delay}s`;
+
+          document.body.appendChild(particle);
+        }
+      }
+
+      // Parallax scroll effect
+      function updateParallax() {
+        const scrollPosition = window.scrollY;
+        const layers = document.querySelectorAll(".parallax-layer");
+
+        layers.forEach((layer) => {
+          const speed = parseFloat(layer.getAttribute("data-speed"));
+          const yPos = -(scrollPosition * speed);
+          layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+        });
+      }
+
+      // Navbar
+      const navbar = document.getElementById("navbar");
+      const header = document.querySelector("header");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      let lastScrollPosition = 0;
+
+      window.addEventListener("scroll", () => {
+        const currentScrollPosition = window.scrollY;
+
+        if (currentScrollPosition > header.offsetHeight) {
+          navbar.classList.remove("transform", "-translate-y-full");
+        } else {
+          navbar.classList.add("transform", "-translate-y-full");
+        }
+
+        lastScrollPosition = currentScrollPosition;
+        updateParallax();
+      });
+
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", isOpen);
+      });
+
+      document.querySelectorAll("#mobile-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Section backgrounds
+      function createSectionBackgrounds() {
+        const sections = document.querySelectorAll("section");
+        sections.forEach((section) => {
+          for (let i = 0; i < 3; i++) {
+            const particle = document.createElement("div");
+            particle.className = `section-particle ${
+              i === 0 ? "section-particle-sm" : i === 1 ? "section-particle-md" : "section-particle-lg"
+            }`;
+
+            const colors = ["#9C83FF", "#FF9051", "#83FF9C"];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+
+            particle.style.backgroundColor = color;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+
+            section.appendChild(particle);
+          }
+        });
+      }
+
+      // Initialize
+      window.addEventListener("load", () => {
+        createParticles();
+        createSectionBackgrounds();
+        updateParallax();
+      });
+    </script>
   </body>
 </html>
