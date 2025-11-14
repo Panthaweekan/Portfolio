@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from './ui/button';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 
@@ -72,10 +73,10 @@ export function Hero() {
               Get In Touch
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="/resume.html" target="_blank" rel="noopener noreferrer">
+              <Link to="/resume">
                 <FileText className="mr-2 h-5 w-5" />
                 View Resume
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a
