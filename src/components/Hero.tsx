@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 
 export function Hero() {
   const [text, setText] = useState('');
@@ -70,6 +70,12 @@ export function Hero() {
             <Button size="lg" onClick={scrollToContact}>
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <a href="/resume.html" target="_blank" rel="noopener noreferrer">
+                <FileText className="mr-2 h-5 w-5" />
+                View Resume
+              </a>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a
