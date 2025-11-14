@@ -3,23 +3,25 @@ import { Code2, Database, Server, GraduationCap, Users, Lightbulb } from 'lucide
 
 export function About() {
   const programmingSkills = [
-    { label: 'Go', color: 'bg-primary/10 text-primary' },
-    { label: 'TypeScript', color: 'bg-primary/10 text-primary' },
+    { label: 'Go (Primary)', color: 'bg-primary/10 text-primary' },
+    { label: 'TypeScript (Primary)', color: 'bg-primary/10 text-primary' },
+    { label: 'Ruby', color: 'bg-primary/10 text-primary' },
     { label: 'Python', color: 'bg-primary/10 text-primary' },
     { label: 'Java', color: 'bg-primary/10 text-primary' },
     { label: 'C++', color: 'bg-primary/10 text-primary' },
     { label: 'Haskell', color: 'bg-primary/10 text-primary' },
     { label: 'OCaml', color: 'bg-primary/10 text-primary' },
     { label: 'Rust (Learning)', color: 'bg-primary/10 text-primary' },
-    { label: 'Ruby (Learning)', color: 'bg-primary/10 text-primary' },
   ];
 
   const webDevSkills = [
     { label: 'React', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Ruby on Rails', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Go Fiber', color: 'bg-secondary/10 text-secondary' },
     { label: 'Node.js', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Express.js', color: 'bg-secondary/10 text-secondary' },
     { label: 'Tailwind CSS', color: 'bg-secondary/10 text-secondary' },
     { label: 'Vite', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Ruby On Rails (Learning)', color: 'bg-secondary/10 text-secondary' },
   ];
 
   const databaseSkills = [
@@ -49,10 +51,11 @@ export function About() {
           About Me
         </h2>
         <div className="max-w-4xl mx-auto mb-12">
-          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-            With my experience working on various projects, I specialize in full-stack web
-            development, with a strong focus in this area. My goal is to continue improving my
-            skills and gain more practical experience in the field of web development.
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            Associate Software Engineer with expertise in enterprise API gateway infrastructure, cloud migration, and full-stack web development. Currently contributing to SCB TechX's digital transformation initiatives, specializing in hybrid cloud architecture and API gateway solutions using CA Layer 7 and Kong API Gateway. Experienced in building scalable web applications with modern technologies including Go, TypeScript, Ruby on Rails, and React.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            Passionate about clean code architecture and sustainable software design, with extensive experience implementing Hexagonal Architecture, Domain-Driven Design, and SOLID principles across production systems. Strong advocate for microservices patterns, with hands-on experience building production-grade systems that serve real users.
           </p>
         </div>
 
