@@ -92,7 +92,7 @@ export function Hero() {
               <Github className="h-6 w-6" />
             </a>
             <a
-              href="https://www.linkedin.com/in/panthaweekan-somngam-a96b1b253/"
+              href="https://www.linkedin.com/in/panthaweekan/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -100,7 +100,7 @@ export function Hero() {
               <Linkedin className="h-6 w-6" />
             </a>
             <a
-              href="mailto:panthaweekan.som@gmail.com"
+              href="mailto:panthaweekansomngam@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
               <Mail className="h-6 w-6" />

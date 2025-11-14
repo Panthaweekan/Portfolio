@@ -5,28 +5,31 @@ import { ExternalLink, Github } from 'lucide-react';
 export function Projects() {
   const projects = [
     {
-      title: 'E-Commerce Platform',
+      title: 'SD-Booking',
       description:
-        'A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, product management, and payment integration.',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
+        'Room Reservation System with role-based access control. Supports status checks, bookings, and admin approvals with real-time updates. Integrated Web Hook-based PWA notifications via SDQueue to reduce user wait time.',
+      technologies: ['Go', 'Fiber', 'TypeScript', 'React', 'Vite', 'Tailwind CSS', 'PostgreSQL', 'Docker', 'PWA'],
       github: 'https://github.com/Panthaweekan',
       demo: '#',
+      image: '/imgs/sdbook_pj.svg',
     },
     {
-      title: 'Task Management App',
+      title: 'LongPlan',
       description:
-        'A collaborative task management application with real-time updates using WebSockets. Built with Next.js and MongoDB.',
-      technologies: ['Next.js', 'MongoDB', 'Socket.io', 'TailwindCSS'],
+        'Study Plan Validator for curriculum compliance. Validates subject prerequisites, credits, and graduation rules following student\'s enrolled courses and curriculum. Provides a user-friendly interface for students to view their study plan.',
+      technologies: ['Go', 'Fiber', 'TypeScript', 'React', 'PostgreSQL', 'Hexagonal Architecture', 'Docker'],
       github: 'https://github.com/Panthaweekan',
       demo: '#',
+      image: '/imgs/lp_pj.svg',
     },
     {
-      title: 'API Gateway Service',
+      title: 'SD-Letter',
       description:
-        'A high-performance API gateway built with Go, featuring rate limiting, authentication, and request routing.',
-      technologies: ['Go', 'Redis', 'Docker', 'Kubernetes'],
+        'Certificate Request System with admin workflows. Supports interaction between Admin and Student about Certificate Request (Approved, Rejected, Resubmitted, Published). Uses Web Hooks to push notifications via SDQueue.',
+      technologies: ['Go', 'Fiber', 'TypeScript', 'React', 'PostgreSQL', 'WebHooks', 'Docker'],
       github: 'https://github.com/Panthaweekan',
       demo: '#',
+      image: '/imgs/letter_pj.svg',
     },
   ];
 
@@ -38,7 +41,19 @@ export function Projects() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="flex flex-col hover:shadow-xl transition-shadow">
+            <Card key={index} className="flex flex-col hover:shadow-xl transition-shadow overflow-hidden group">
+              {project.image && (
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <span className="text-white text-sm">Click to learn more</span>
+                  </div>
+                </div>
+              )}
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
                 <CardDescription>{project.description}</CardDescription>

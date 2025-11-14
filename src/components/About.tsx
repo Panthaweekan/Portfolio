@@ -1,28 +1,45 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Code2, Database, Server, Smartphone } from 'lucide-react';
+import { Code2, Database, Server, GraduationCap, Users, Lightbulb } from 'lucide-react';
 
 export function About() {
-  const skills = [
-    {
-      icon: Code2,
-      title: 'Frontend Development',
-      description: 'React, TypeScript, Next.js, TailwindCSS',
-    },
-    {
-      icon: Server,
-      title: 'Backend Development',
-      description: 'Go, Node.js, Express, RESTful APIs',
-    },
-    {
-      icon: Database,
-      title: 'Database',
-      description: 'PostgreSQL, MongoDB, Redis',
-    },
-    {
-      icon: Smartphone,
-      title: 'Mobile Development',
-      description: 'React Native, Flutter',
-    },
+  const programmingSkills = [
+    { label: 'Go', color: 'bg-primary/10 text-primary' },
+    { label: 'TypeScript', color: 'bg-primary/10 text-primary' },
+    { label: 'Python', color: 'bg-primary/10 text-primary' },
+    { label: 'Java', color: 'bg-primary/10 text-primary' },
+    { label: 'C++', color: 'bg-primary/10 text-primary' },
+    { label: 'Haskell', color: 'bg-primary/10 text-primary' },
+    { label: 'OCaml', color: 'bg-primary/10 text-primary' },
+    { label: 'Rust (Learning)', color: 'bg-primary/10 text-primary' },
+    { label: 'Ruby (Learning)', color: 'bg-primary/10 text-primary' },
+  ];
+
+  const webDevSkills = [
+    { label: 'React', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Node.js', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Tailwind CSS', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Vite', color: 'bg-secondary/10 text-secondary' },
+    { label: 'Ruby On Rails (Learning)', color: 'bg-secondary/10 text-secondary' },
+  ];
+
+  const databaseSkills = [
+    { label: 'PostgreSQL', color: 'bg-purple-500/10 text-purple-500' },
+    { label: 'MySQL', color: 'bg-purple-500/10 text-purple-500' },
+  ];
+
+  const devopsSkills = [
+    { label: 'Docker', color: 'bg-emerald-500/10 text-emerald-500' },
+    { label: 'Basic CI/CD (Github action)', color: 'bg-emerald-500/10 text-emerald-500' },
+  ];
+
+  const softSkills = [
+    { label: 'Effective Communication', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Active Listening', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Respect & Support', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Teamwork', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Adaptive', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Problem-Solving', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Abstract Thinking', color: 'bg-yellow-500/10 text-yellow-500' },
   ];
 
   return (
@@ -31,28 +48,130 @@ export function About() {
         <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           About Me
         </h2>
-        <div className="max-w-4xl mx-auto mb-16">
-          <p className="text-lg text-muted-foreground text-center leading-relaxed">
-            I'm a passionate Full-Stack Developer with expertise in building modern web
-            applications. I love working with cutting-edge technologies and constantly
-            learning new skills to deliver high-quality solutions. My goal is to create
-            efficient, scalable, and user-friendly applications that make a difference.
+        <div className="max-w-4xl mx-auto mb-12">
+          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            With my experience working on various projects, I specialize in full-stack web
+            development, with a strong focus in this area. My goal is to continue improving my
+            skills and gain more practical experience in the field of web development.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skills.map((skill, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <skill.icon className="h-6 w-6 text-primary" />
+
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 mb-12">
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <GraduationCap className="h-5 w-5 text-primary" />
                 </div>
-                <CardTitle className="text-xl">{skill.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">{skill.description}</CardDescription>
-              </CardContent>
-            </Card>
-          ))}
+                <CardTitle className="text-xl">Education</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground mb-1">
+                Chiang Mai University | B.Eng. Computer Engineering (GPA: 3.32)
+              </p>
+              <p className="font-bold text-primary">Second-Class Honour</p>
+            </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Lightbulb className="h-5 w-5 text-primary" />
+                </div>
+                <CardTitle className="text-xl">Interests</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                Full-Stack Development, Cloud Architecture, DevSecOps
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div>
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Code2 className="h-6 w-6 text-primary" />
+              Programming Skills
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Core Development</h4>
+                <div className="flex flex-wrap gap-3">
+                  {programmingSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Web Development</h4>
+                <div className="flex flex-wrap gap-3">
+                  {webDevSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Databases</h4>
+                <div className="flex flex-wrap gap-3">
+                  {databaseSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">DevOps</h4>
+                <div className="flex flex-wrap gap-3">
+                  {devopsSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
+              <Users className="h-6 w-6 text-primary" />
+              Soft Skills
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {softSkills.map((skill, index) => (
+                <span
+                  key={index}
+                  className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                >
+                  {skill.label}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

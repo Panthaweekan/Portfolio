@@ -4,33 +4,14 @@ import { Briefcase } from 'lucide-react';
 export function Experience() {
   const experiences = [
     {
-      title: 'Senior Full-Stack Developer',
-      company: 'Tech Company',
-      period: '2022 - Present',
+      title: 'Fullstack Developer',
+      company: 'CMU Engineering (Work-study scholarship)',
+      period: '2023 - Present',
       description: [
-        'Led development of microservices architecture using Go and Node.js',
-        'Implemented CI/CD pipelines reducing deployment time by 60%',
-        'Mentored junior developers and conducted code reviews',
-      ],
-    },
-    {
-      title: 'Full-Stack Developer',
-      company: 'Startup Inc',
-      period: '2020 - 2022',
-      description: [
-        'Built responsive web applications using React and TypeScript',
-        'Designed and implemented RESTful APIs with Node.js and Express',
-        'Collaborated with cross-functional teams in Agile environment',
-      ],
-    },
-    {
-      title: 'Junior Developer',
-      company: 'Digital Agency',
-      period: '2019 - 2020',
-      description: [
-        'Developed and maintained client websites using modern web technologies',
-        'Participated in database design and optimization',
-        'Contributed to open-source projects and internal tools',
+        'Work-study scholarship at Chiang Mai University',
+        'Developed and maintained internal web applications',
+        'Collaborated with stakeholders to gather requirements and provide technical solutions for internal systems',
+        'Gained hands-on experience in full-stack development, including front-end and back-end technologies and database management',
       ],
     },
   ];

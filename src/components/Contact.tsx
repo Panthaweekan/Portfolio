@@ -7,14 +7,14 @@ export function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'panthaweekan.som@gmail.com',
-      href: 'mailto:panthaweekan.som@gmail.com',
+      value: 'panthaweekansomngam@gmail.com',
+      href: 'mailto:panthaweekansomngam@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+66 XX XXX XXXX',
-      href: 'tel:+66xxxxxxxxxx',
+      value: '+66 946359510',
+      href: 'tel:+66946359510',
     },
     {
       icon: MapPin,
@@ -33,7 +33,7 @@ export function Contact() {
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/panthaweekan-somngam-a96b1b253/',
+      href: 'https://www.linkedin.com/in/panthaweekan/',
     },
   ];
 
