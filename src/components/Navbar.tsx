@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Moon, Sun, Menu, X, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -87,10 +88,10 @@ export function Navbar() {
               Contact
             </button>
             <Button variant="default" size="sm" asChild>
-              <a href="/resume.html" target="_blank" rel="noopener noreferrer">
+              <Link to="/resume">
                 <FileText className="mr-2 h-4 w-4" />
                 Resume
-              </a>
+              </Link>
             </Button>
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -146,10 +147,10 @@ export function Navbar() {
               Contact
             </button>
             <Button variant="default" className="w-full justify-start" asChild>
-              <a href="/resume.html" target="_blank" rel="noopener noreferrer">
+              <Link to="/resume">
                 <FileText className="mr-2 h-4 w-4" />
                 View Resume
-              </a>
+              </Link>
             </Button>
           </div>
         )}
