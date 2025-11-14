@@ -1,0 +1,94 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
+
+export function Contact() {
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: 'Email',
+      value: 'panthaweekan.som@gmail.com',
+      href: 'mailto:panthaweekan.som@gmail.com',
+    },
+    {
+      icon: Phone,
+      label: 'Phone',
+      value: '+66 XX XXX XXXX',
+      href: 'tel:+66xxxxxxxxxx',
+    },
+    {
+      icon: MapPin,
+      label: 'Location',
+      value: 'Bangkok, Thailand',
+      href: null,
+    },
+  ];
+
+  const socialLinks = [
+    {
+      icon: Github,
+      label: 'GitHub',
+      href: 'https://github.com/Panthaweekan',
+    },
+    {
+      icon: Linkedin,
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/panthaweekan-somngam-a96b1b253/',
+    },
+  ];
+
+  return (
+    <section id="contact" className="py-20">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          Get In Touch
+        </h2>
+        <div className="max-w-4xl mx-auto">
+          <Card className="shadow-xl">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl">Let's Work Together</CardTitle>
+              <CardDescription className="text-base">
+                Feel free to reach out for collaborations or just a friendly hello
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {contactInfo.map((info, index) => (
+                  <div key={index} className="flex flex-col items-center text-center p-4">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                      <info.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold mb-1">{info.label}</h3>
+                    {info.href ? (
+                      <a
+                        href={info.href}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">{info.value}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="border-t pt-8">
+                <h3 className="text-center font-semibold mb-4">Connect With Me</h3>
+                <div className="flex justify-center gap-4">
+                  {socialLinks.map((link, index) => (
+                    <Button key={index} variant="outline" size="lg" asChild>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        <link.icon className="mr-2 h-5 w-5" />
+                        {link.label}
+                      </a>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+}
