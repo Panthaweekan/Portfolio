@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { m } from 'framer-motion';
 import { Button } from './ui/button';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 
@@ -90,28 +91,34 @@ export function Hero() {
             </Button>
           </div>
           <div className="flex gap-6 justify-center animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-700">
-            <a
+            <m.a
               href="https://github.com/Panthaweekan"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Github className="h-6 w-6" />
-            </a>
-            <a
+            </m.a>
+            <m.a
               href="https://www.linkedin.com/in/panthaweekan/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.2, rotate: -5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Linkedin className="h-6 w-6" />
-            </a>
-            <a
+            </m.a>
+            <m.a
               href="mailto:panthaweekansomngam@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.2, rotate: 5 }}
+              whileTap={{ scale: 0.9 }}
             >
               <Mail className="h-6 w-6" />
-            </a>
+            </m.a>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { ExternalLink, Github } from 'lucide-react';
@@ -54,17 +55,30 @@ export function Projects() {
   return (
     <section id="projects" className="py-20 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <m.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Key Projects & Portfolio
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A collection of production-grade applications built with modern technologies and best practices
           </p>
-        </div>
+        </m.div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <Card key={index} className="flex flex-col hover:shadow-2xl hover:border-primary/50 transition-all duration-300 group">
+            <m.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+            <Card className="flex flex-col h-full hover:shadow-2xl hover:border-primary/50 transition-all duration-300 group backdrop-blur-sm bg-card/95">
               <CardHeader className="space-y-3">
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors">
@@ -113,6 +127,7 @@ export function Projects() {
                 )}
               </CardFooter>
             </Card>
+            </m.div>
           ))}
         </div>
       </div>
