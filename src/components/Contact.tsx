@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
@@ -38,13 +39,28 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 relative overflow-hidden">
+      {/* Background gradient effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 -z-10" />
+
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <m.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+        >
           Get In Touch
-        </h2>
-        <div className="max-w-4xl mx-auto">
-          <Card className="shadow-xl">
+        </m.h2>
+        <m.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-4xl mx-auto"
+        >
+          <Card className="shadow-2xl backdrop-blur-md bg-card/95 border-primary/10">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl">Let's Work Together</CardTitle>
               <CardDescription className="text-base">
@@ -87,7 +103,7 @@ export function Contact() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, ChevronDown, ChevronUp } from 'lucide-react';
+import { MermaidDiagram } from './MermaidDiagram';
 
 export function Projects() {
+  const [expandedDiagram, setExpandedDiagram] = useState<number | null>(null);
+
+  const toggleDiagram = (index: number) => {
+    setExpandedDiagram(expandedDiagram === index ? null : index);
+  };
+
   const projects = [
     {
       title: 'Inventory Asset Management System',
@@ -13,6 +21,32 @@ export function Projects() {
       technologies: ['Ruby on Rails', 'React', 'TypeScript', 'PostgreSQL', 'RESTful APIs'],
       github: 'https://github.com/Panthaweekan',
       demo: '#',
+      architecture: `
+graph TB
+    subgraph "Client Layer"
+        UI[React + TypeScript UI]
+    end
+
+    subgraph "Application Layer"
+        Rails[Ruby on Rails API]
+        Auth[Authentication Service]
+    end
+
+    subgraph "Data Layer"
+        DB[(PostgreSQL<br/>Asset Database)]
+        Cache[(Redis Cache)]
+    end
+
+    UI -->|HTTP/REST| Rails
+    Rails -->|Auth Check| Auth
+    Rails -->|CRUD Operations| DB
+    Rails -->|Session Data| Cache
+
+    style UI fill:#9C83FF,stroke:#fff,color:#fff
+    style Rails fill:#FF9051,stroke:#fff,color:#fff
+    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
+    style Cache fill:#1e293b,stroke:#FF9051,color:#fff
+      `,
     },
     {
       title: 'Custom Hybrid API Gateway Solution',
@@ -22,6 +56,46 @@ export function Projects() {
       technologies: ['Go', 'Fiber Framework', 'PostgreSQL', 'CA Layer 7', 'Kong API Gateway', 'Microservices'],
       github: 'https://github.com/Panthaweekan',
       demo: '#',
+      architecture: `
+graph LR
+    subgraph "Client Applications"
+        App1[Mobile App]
+        App2[Web App]
+        App3[Partner APIs]
+    end
+
+    subgraph "Hybrid API Gateway - Go Fiber"
+        GW[API Gateway<br/>Request Router]
+        L7Logic[CA Layer 7<br/>Logic Engine]
+        KongPolicy[Kong<br/>Policy Engine]
+        EventDB[(PostgreSQL<br/>Event Store)]
+    end
+
+    subgraph "Backend Microservices"
+        Auth[Auth Service]
+        User[User Service]
+        Payment[Payment Service]
+        Catalog[Catalog Service]
+    end
+
+    App1 -->|HTTPS| GW
+    App2 -->|HTTPS| GW
+    App3 -->|HTTPS| GW
+
+    GW -->|Route Logic| L7Logic
+    GW -->|Apply Policies| KongPolicy
+    GW -->|Log Events| EventDB
+
+    GW -->|Forward| Auth
+    GW -->|Forward| User
+    GW -->|Forward| Payment
+    GW -->|Forward| Catalog
+
+    style GW fill:#FF9051,stroke:#fff,color:#fff
+    style L7Logic fill:#9C83FF,stroke:#fff,color:#fff
+    style KongPolicy fill:#9C83FF,stroke:#fff,color:#fff
+    style EventDB fill:#1e293b,stroke:#9C83FF,color:#fff
+      `,
     },
     {
       title: 'SD-Booking — Room Reservation System',
@@ -31,6 +105,40 @@ export function Projects() {
       technologies: ['Go', 'Fiber Framework', 'TypeScript', 'React', 'Vite', 'Tailwind CSS', 'PostgreSQL', 'Docker', 'Hexagonal Architecture', 'PWA', 'WebHooks'],
       github: 'https://github.com/Panthaweekan',
       demo: '#',
+      architecture: `
+graph TB
+    subgraph "Adapters - Driving Side"
+        REST[REST API<br/>Go Fiber]
+        WebUI[React UI<br/>Vite + Tailwind]
+    end
+
+    subgraph "Application Core - Hexagonal Architecture"
+        Ports[Ports/Interfaces]
+        Domain[Domain Logic<br/>Booking Rules]
+        UseCases[Use Cases<br/>Book/Approve/Cancel]
+    end
+
+    subgraph "Adapters - Driven Side"
+        DBAdapter[PostgreSQL<br/>Repository]
+        WebHook[WebHook<br/>Notifier]
+        PWA[PWA Push<br/>Service]
+    end
+
+    WebUI -->|HTTP| REST
+    REST -->|Inbound| Ports
+    Ports -->|Execute| UseCases
+    UseCases -->|Business Rules| Domain
+    Domain -->|Outbound| Ports
+    Ports -->|Persist| DBAdapter
+    Ports -->|Notify| WebHook
+    Ports -->|Push| PWA
+
+    style Domain fill:#FF9051,stroke:#fff,color:#fff
+    style UseCases fill:#9C83FF,stroke:#fff,color:#fff
+    style Ports fill:#9C83FF,stroke:#fff,color:#fff
+    style REST fill:#1e293b,stroke:#9C83FF,color:#fff
+    style DBAdapter fill:#1e293b,stroke:#9C83FF,color:#fff
+      `,
     },
     {
       title: 'LongPlan — Study Plan Validator',
@@ -109,6 +217,32 @@ export function Projects() {
                     ))}
                   </div>
                 </div>
+                {'architecture' in project && project.architecture && (
+                  <div className="pt-4 border-t border-border">
+                    <button
+                      onClick={() => toggleDiagram(index)}
+                      className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+                    >
+                      {expandedDiagram === index ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )}
+                      {expandedDiagram === index ? 'Hide' : 'View'} Architecture Diagram
+                    </button>
+                    {expandedDiagram === index && (
+                      <m.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="mt-4 p-4 rounded-lg bg-muted/30 backdrop-blur-sm overflow-hidden"
+                      >
+                        <MermaidDiagram chart={project.architecture} className="my-4" />
+                      </m.div>
+                    )}
+                  </div>
+                )}
               </CardContent>
               <CardFooter className="gap-3 pt-6">
                 <Button variant="outline" size="sm" className="flex-1" asChild>
