@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { LazyMotion, domAnimation, MotionConfig } from 'framer-motion';
+import { SmoothScroll } from './components/SmoothScroll';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -23,13 +25,22 @@ function PortfolioPage() {
 }
 
 function App() {
+  // Respect user's motion preferences for accessibility
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   return (
-    <div className="min-h-screen">
-      <Routes>
-        <Route path="/" element={<PortfolioPage />} />
-        <Route path="/resume" element={<Resume />} />
-      </Routes>
-    </div>
+    <SmoothScroll>
+      <LazyMotion features={domAnimation} strict>
+        <MotionConfig reducedMotion={prefersReducedMotion ? 'always' : 'never'}>
+          <div className="min-h-screen">
+            <Routes>
+              <Route path="/" element={<PortfolioPage />} />
+              <Route path="/resume" element={<Resume />} />
+            </Routes>
+          </div>
+        </MotionConfig>
+      </LazyMotion>
+    </SmoothScroll>
   );
 }
 

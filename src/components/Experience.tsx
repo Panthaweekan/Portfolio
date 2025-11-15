@@ -1,3 +1,4 @@
+import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Briefcase } from 'lucide-react';
 
@@ -35,17 +36,30 @@ export function Experience() {
   return (
     <section id="experience" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <m.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Professional Experience
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Building scalable solutions and driving innovation across enterprise systems and academic platforms
           </p>
-        </div>
+        </m.div>
         <div className="max-w-5xl mx-auto space-y-8">
           {experiences.map((experience, index) => (
-            <Card key={index} className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+            <m.div
+              key={index}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+            >
+            <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
               <CardHeader>
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -82,6 +96,7 @@ export function Experience() {
                 </ul>
               </CardContent>
             </Card>
+            </m.div>
           ))}
         </div>
       </div>
