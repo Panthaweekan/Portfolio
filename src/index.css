@@ -3,59 +3,82 @@
 @tailwind utilities;
 
 @layer base {
+  /* Monochromatic Design System - Light Mode */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Backgrounds - Pure whites and off-whites for clean aesthetic */
+    --background: 0 0% 98.5%;         /* #FAFAFA - Soft white background */
+    --foreground: 0 0% 18%;           /* #2E2E2E - Dark grey text for strong contrast */
+    --card: 0 0% 100%;                /* #FFFFFF - Pure white cards */
+    --card-foreground: 0 0% 24.7%;    /* #3F3F3F - Headings on cards */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 262 80% 75%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 20 100% 65%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 262 80% 75%;
+    --popover-foreground: 0 0% 18%;
+
+    /* Primary - Black/Dark Grey for emphasis */
+    --primary: 0 0% 11%;              /* #1C1C1C - Very dark grey, almost black */
+    --primary-foreground: 0 0% 100%;  /* White text on dark buttons */
+
+    /* Secondary - Medium greys for secondary actions */
+    --secondary: 0 0% 31.8%;          /* #515151 - Medium-dark grey */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted - Light greys for backgrounds and subtle elements */
+    --muted: 0 0% 94.1%;              /* #F0F0F0 - Light grey backgrounds */
+    --muted-foreground: 0 0% 50%;     /* #808080 - Medium grey text */
+
+    /* Accent - Slightly darker for hover states */
+    --accent: 0 0% 91%;               /* #E8E8E8 - Subtle dividers/hover */
+    --accent-foreground: 0 0% 24.7%;  /* #3F3F3F - Dark text on accent */
+
+    /* Destructive - Using darker grey for errors */
+    --destructive: 0 0% 20%;          /* Dark grey for errors (monochrome) */
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 0 0% 83.1%;             /* #D4D4D4 - Light grey borders */
+    --input: 0 0% 83.1%;              /* #D4D4D4 - Input borders */
+    --ring: 0 0% 31.8%;               /* #515151 - Focus ring (darker for visibility) */
+
+    /* Border radius */
     --radius: 0.5rem;
 
-    /* Enhanced color palette */
-    --gradient-start: 262 80% 75%;
-    --gradient-middle: 280 70% 70%;
-    --gradient-end: 20 100% 65%;
+    /* Font families */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Roboto', sans-serif;
   }
 
+  /* Monochromatic Design System - Dark Mode */
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 262 80% 75%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 20 100% 65%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 262 80% 75%;
+    --background: 0 0% 11%;           /* #1C1C1C - Very dark background */
+    --foreground: 0 0% 96.1%;         /* #F5F5F5 - Off-white text */
+    --card: 0 0% 18%;                 /* #2E2E2E - Dark cards */
+    --card-foreground: 0 0% 96.1%;    /* Off-white text on cards */
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 96.1%;
 
-    /* Enhanced color palette for dark mode */
-    --gradient-start: 262 80% 75%;
-    --gradient-middle: 280 70% 70%;
-    --gradient-end: 20 100% 65%;
+    /* Primary - Light grey/white for emphasis in dark mode */
+    --primary: 0 0% 96.1%;            /* #F5F5F5 - Off-white */
+    --primary-foreground: 0 0% 11%;   /* Dark text on light buttons */
+
+    /* Secondary - Medium-light greys */
+    --secondary: 0 0% 50%;            /* #808080 - Medium grey */
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted - Dark greys for backgrounds */
+    --muted: 0 0% 24.7%;              /* #3F3F3F - Medium-dark background */
+    --muted-foreground: 0 0% 62.7%;   /* #A0A0A0 - Light grey text */
+
+    /* Accent */
+    --accent: 0 0% 31.8%;             /* #515151 - Hover states */
+    --accent-foreground: 0 0% 96.1%;
+
+    /* Destructive */
+    --destructive: 0 0% 80%;          /* Light grey for errors in dark mode */
+    --destructive-foreground: 0 0% 11%;
+
+    /* Borders and inputs */
+    --border: 0 0% 31.8%;             /* #515151 - Medium-dark borders */
+    --input: 0 0% 31.8%;
+    --ring: 0 0% 62.7%;               /* #A0A0A0 - Lighter focus ring for dark mode */
   }
 }
 
@@ -63,7 +86,142 @@
   * {
     @apply border-border;
   }
+
+  /* Body with font family and improved readability */
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  /* Typography Hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: hsl(var(--foreground));
+  }
+
+  h1 {
+    font-size: 3rem;      /* 48px */
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 2.25rem;   /* 36px */
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;    /* 24px */
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 1.25rem;   /* 20px */
+    font-weight: 500;
+  }
+
+  h5, h6 {
+    font-size: 1rem;      /* 16px */
+    font-weight: 500;
+  }
+
+  /* Responsive typography */
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 3.5rem;  /* 56px on larger screens */
+    }
+
+    h2 {
+      font-size: 2.625rem; /* 42px */
+    }
+
+    h3 {
+      font-size: 1.75rem;  /* 28px */
+    }
+  }
+
+  /* Paragraph and text styles */
+  p {
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  /* Focus states for accessibility (WCAG 2.1 compliant) */
+  *:focus-visible {
+    outline: 3px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove default focus for mouse users, keep for keyboard */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Text selection - monochromatic theme */
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  ::-moz-selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Smooth transitions for color changes */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  /* Link styles - subtle underline with monochromatic colors */
+  a {
+    color: hsl(var(--foreground));
+    text-decoration: underline;
+    text-decoration-color: hsl(var(--muted-foreground));
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    color: hsl(var(--primary));
+    text-decoration-color: hsl(var(--primary));
+  }
+
+  /* Small text and captions */
+  small,
+  .text-small {
+    font-size: 0.875rem; /* 14px */
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Code blocks with monochromatic styling */
+  code {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  pre {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+  }
+
+  pre code {
+    background-color: transparent;
+    padding: 0;
   }
 }
