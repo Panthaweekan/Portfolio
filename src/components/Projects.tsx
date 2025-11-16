@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { m } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Card,
   CardContent,
@@ -11,13 +13,51 @@ import {
 import { Button } from "./ui/button";
 import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
 import { MermaidDiagram } from "./MermaidDiagram";
+import { FluentEmoji } from "@lobehub/ui";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Projects() {
   const [expandedDiagram, setExpandedDiagram] = useState<number | null>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
 
   const toggleDiagram = (index: number) => {
     setExpandedDiagram(expandedDiagram === index ? null : index);
   };
+
+  useEffect(() => {
+    if (projectsRef.current) {
+      const cards = projectsRef.current.querySelectorAll('.project-card');
+
+      cards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 50,
+            rotateX: -15,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              end: 'top 60%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   const projects = [
     {
@@ -228,24 +268,21 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Key Projects & Portfolio
-          </h2>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <FluentEmoji emoji="🚀" size={50} type="3d" />
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Key Projects & Portfolio
+            </h2>
+          </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             A collection of production-grade applications built with modern
             technologies and best practices
           </p>
         </m.div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+        <div ref={projectsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <m.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card className="flex flex-col h-full hover:shadow-2xl hover:border-primary/50 transition-all duration-300 group backdrop-blur-sm bg-card/95">
+            <div key={index}>
+              <Card className="project-card flex flex-col h-full hover:shadow-2xl hover:border-primary/50 transition-all duration-300 group backdrop-blur-sm bg-card/95">
                 <CardHeader className="space-y-3">
                   <div className="flex items-start justify-between gap-2">
                     <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors">
@@ -339,7 +376,7 @@ export function Projects() {
                   )}
                 </CardFooter>
               </Card>
-            </m.div>
+            </div>
           ))}
         </div>
       </div>

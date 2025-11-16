@@ -1,6 +1,5 @@
 import { m } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { Briefcase } from 'lucide-react';
+import { AnimatedTimeline } from './AnimatedTimeline';
 
 export function Experience() {
   const experiences = [
@@ -50,54 +49,8 @@ export function Experience() {
             Building scalable solutions and driving innovation across enterprise systems and academic platforms
           </p>
         </m.div>
-        <div className="max-w-5xl mx-auto space-y-8">
-          {experiences.map((experience, index) => (
-            <m.div
-              key={index}
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-            >
-            <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm bg-card/95">
-              <CardHeader>
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Briefcase className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex-grow">
-                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-2">
-                      <CardTitle className="text-xl md:text-2xl">{experience.title}</CardTitle>
-                      <span className="text-xs font-semibold text-muted-foreground bg-muted px-3 py-1 rounded-full whitespace-nowrap w-fit">
-                        {experience.period}
-                      </span>
-                    </div>
-                    <CardDescription className="text-base font-semibold text-foreground/80">
-                      {experience.company}
-                    </CardDescription>
-                    <p className="text-sm text-muted-foreground mt-1">{experience.location}</p>
-                    {experience.technologies && (
-                      <div className="mt-3 p-3 bg-muted/50 rounded-md">
-                        <p className="text-xs font-semibold text-foreground/70 mb-1">Technologies & Knowledge:</p>
-                        <p className="text-sm text-foreground/90">{experience.technologies}</p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3 ml-0 md:ml-16">
-                  {experience.description.map((item, itemIndex) => (
-                    <li key={itemIndex} className="text-sm text-muted-foreground flex items-start leading-relaxed">
-                      <span className="mr-2 text-primary font-bold">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-            </m.div>
-          ))}
+        <div className="max-w-5xl mx-auto">
+          <AnimatedTimeline items={experiences} />
         </div>
       </div>
     </section>

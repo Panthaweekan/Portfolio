@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { m } from 'framer-motion';
 import { Moon, Sun, Menu, X, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -57,45 +58,62 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
-            <button
+            <m.button
               onClick={() => scrollToSection('hero')}
-              className="text-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.05, color: 'hsl(var(--primary))' }}
+              whileTap={{ scale: 0.95 }}
+              className="text-foreground transition-colors relative group"
             >
               Home
-            </button>
-            <button
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </m.button>
+            <m.button
               onClick={() => scrollToSection('about')}
-              className="text-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.05, color: 'hsl(var(--primary))' }}
+              whileTap={{ scale: 0.95 }}
+              className="text-foreground transition-colors relative group"
             >
               About
-            </button>
-            <button
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </m.button>
+            <m.button
               onClick={() => scrollToSection('projects')}
-              className="text-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.05, color: 'hsl(var(--primary))' }}
+              whileTap={{ scale: 0.95 }}
+              className="text-foreground transition-colors relative group"
             >
               Projects
-            </button>
-            <button
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </m.button>
+            <m.button
               onClick={() => scrollToSection('experience')}
-              className="text-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.05, color: 'hsl(var(--primary))' }}
+              whileTap={{ scale: 0.95 }}
+              className="text-foreground transition-colors relative group"
             >
               Experience
-            </button>
-            <button
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </m.button>
+            <m.button
               onClick={() => scrollToSection('contact')}
-              className="text-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.05, color: 'hsl(var(--primary))' }}
+              whileTap={{ scale: 0.95 }}
+              className="text-foreground transition-colors relative group"
             >
               Contact
-            </button>
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+            </m.button>
             <Button variant="default" size="sm" asChild>
               <Link to="/resume">
                 <FileText className="mr-2 h-4 w-4" />
                 Resume
               </Link>
             </Button>
-            <Button variant="ghost" size="icon" onClick={toggleTheme}>
-              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-            </Button>
+            <m.div whileHover={{ rotate: 180 }} transition={{ duration: 0.3 }}>
+              <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+            </m.div>
           </div>
 
           {/* Mobile Menu Button */}
