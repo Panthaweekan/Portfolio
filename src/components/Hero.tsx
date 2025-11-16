@@ -53,13 +53,22 @@ export function Hero() {
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       {/* Animated Background - Monochromatic */}
-      <div className="absolute inset-0 -z-10">
-        <Suspense fallback={<Particles />}>
-          <ThreeBackground />
-        </Suspense>
-        <Particles />
-        <div className="absolute inset-0 bg-gradient-to-br from-mono-100 via-background to-mono-200" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02),transparent_50%)]" />
+      <div className="absolute inset-0" style={{ zIndex: -10 }}>
+        {/* 3D Background Layer - Behind everything */}
+        <div className="absolute inset-0" style={{ zIndex: 1 }}>
+          <Suspense fallback={null}>
+            <ThreeBackground />
+          </Suspense>
+        </div>
+
+        {/* Particles Layer */}
+        <div className="absolute inset-0" style={{ zIndex: 2 }}>
+          <Particles />
+        </div>
+
+        {/* Gradient Overlays - On top of 3D and particles */}
+        <div className="absolute inset-0 bg-gradient-to-br from-mono-100/40 via-background/60 to-mono-200/40" style={{ zIndex: 3 }} />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.01),transparent_50%)]" style={{ zIndex: 4 }} />
       </div>
 
       <div className="container mx-auto px-4 py-20">
