@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
 import "../styles/resume.css";
 
-export function Resume() {
+function Resume() {
   const navigate = useNavigate();
 
   const handlePrint = useCallback(() => {
@@ -443,3 +443,5 @@ export function Resume() {
     </div>
   );
 }
+
+export default Resume;

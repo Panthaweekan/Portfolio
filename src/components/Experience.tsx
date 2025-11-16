@@ -59,7 +59,7 @@ export function Experience() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-            <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300">
+            <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm bg-card/95">
               <CardHeader>
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
