@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        heading: ['Montserrat', 'sans-serif'],
+        body: ['Roboto', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -41,11 +45,34 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // Monochromatic color palette
+        mono: {
+          '50': '#FAFAFA',   // Closest to white for subtle backgrounds
+          '100': '#F5F5F5',  // Off-white primary background
+          '200': '#F0F0F0',  // Light backgrounds
+          '300': '#E8E8E8',  // Subtle dividers
+          '400': '#D4D4D4',  // Borders
+          '500': '#A0A0A0',  // Secondary text
+          '600': '#808080',  // Medium text
+          '700': '#636363',  // Primary body text
+          '800': '#515151',  // Strong emphasis
+          '900': '#3F3F3F',  // Headings
+          '950': '#2E2E2E',  // Dark sections
+          '1000': '#1C1C1C', // Very dark background
+          '1100': '#000000', // Pure black
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      letterSpacing: {
+        tighter: '-0.05em',
+        tight: '-0.025em',
+        normal: '0em',
+        wide: '0.025em',
+        wider: '0.05em',
       },
       keyframes: {
         'accordion-down': {

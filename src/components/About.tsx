@@ -1,64 +1,67 @@
 import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { H2, Body } from './ui/typography';
 import { Code2, Database, Server, GraduationCap, Users, Lightbulb } from 'lucide-react';
 import { AnimatedSkillBar } from './AnimatedSkillBar';
 import { FluentEmoji } from '@lobehub/ui';
 
 export function About() {
+  // Monochromatic color scheme with varying grey tones for visual hierarchy
   const programmingSkills = [
-    { label: 'Go (Primary)', color: 'bg-primary/10 text-primary' },
-    { label: 'TypeScript (Primary)', color: 'bg-primary/10 text-primary' },
-    { label: 'Ruby', color: 'bg-primary/10 text-primary' },
-    { label: 'Python', color: 'bg-primary/10 text-primary' },
-    { label: 'Java', color: 'bg-primary/10 text-primary' },
-    { label: 'C++', color: 'bg-primary/10 text-primary' },
-    { label: 'Haskell', color: 'bg-primary/10 text-primary' },
-    { label: 'OCaml', color: 'bg-primary/10 text-primary' },
-    { label: 'Rust (Learning)', color: 'bg-primary/10 text-primary' },
+    { label: 'Go (Primary)', color: 'bg-mono-900 text-white dark:bg-mono-100 dark:text-mono-1000' },
+    { label: 'TypeScript (Primary)', color: 'bg-mono-900 text-white dark:bg-mono-100 dark:text-mono-1000' },
+    { label: 'Ruby', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
+    { label: 'Python', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
+    { label: 'Java', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
+    { label: 'C++', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
+    { label: 'Haskell', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'OCaml', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Rust (Learning)', color: 'bg-mono-500 text-white dark:bg-mono-500 dark:text-white' },
   ];
 
   const webDevSkills = [
-    { label: 'React', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Ruby on Rails', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Go Fiber', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Node.js', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Express.js', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Tailwind CSS', color: 'bg-secondary/10 text-secondary' },
-    { label: 'Vite', color: 'bg-secondary/10 text-secondary' },
+    { label: 'React', color: 'bg-mono-900 text-white dark:bg-mono-100 dark:text-mono-1000' },
+    { label: 'Ruby on Rails', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
+    { label: 'Go Fiber', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
+    { label: 'Node.js', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
+    { label: 'Express.js', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
+    { label: 'Tailwind CSS', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Vite', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
   ];
 
   const databaseSkills = [
-    { label: 'PostgreSQL', color: 'bg-purple-500/10 text-purple-500' },
-    { label: 'MySQL', color: 'bg-purple-500/10 text-purple-500' },
+    { label: 'PostgreSQL', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
+    { label: 'MySQL', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
   ];
 
   const devopsSkills = [
-    { label: 'Docker', color: 'bg-emerald-500/10 text-emerald-500' },
-    { label: 'Basic CI/CD (Github action)', color: 'bg-emerald-500/10 text-emerald-500' },
+    { label: 'Docker', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
+    { label: 'Basic CI/CD (Github action)', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
   ];
 
   const softSkills = [
-    { label: 'Effective Communication', color: 'bg-yellow-500/10 text-yellow-500' },
-    { label: 'Active Listening', color: 'bg-yellow-500/10 text-yellow-500' },
-    { label: 'Respect & Support', color: 'bg-yellow-500/10 text-yellow-500' },
-    { label: 'Teamwork', color: 'bg-yellow-500/10 text-yellow-500' },
-    { label: 'Adaptive', color: 'bg-yellow-500/10 text-yellow-500' },
-    { label: 'Problem-Solving', color: 'bg-yellow-500/10 text-yellow-500' },
-    { label: 'Abstract Thinking', color: 'bg-yellow-500/10 text-yellow-500' },
+    { label: 'Effective Communication', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Active Listening', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Respect & Support', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Teamwork', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Adaptive', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Problem-Solving', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Abstract Thinking', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
   ];
 
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
-        <m.h2
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
         >
-          About Me
-        </m.h2>
+          <H2 className="text-center mb-12">
+            About Me
+          </H2>
+        </m.div>
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,12 +69,12 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto mb-12"
         >
-          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+          <Body className="text-lg mb-4" variant="muted">
             Associate Software Engineer with expertise in enterprise API gateway infrastructure, cloud migration, and full-stack web development. Currently contributing to SCB TechX's digital transformation initiatives, specializing in hybrid cloud architecture and API gateway solutions using CA Layer 7 and Kong API Gateway. Experienced in building scalable web applications with modern technologies including Go, TypeScript, Ruby on Rails, and React.
-          </p>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          </Body>
+          <Body className="text-lg" variant="muted">
             Passionate about clean code architecture and sustainable software design, with extensive experience implementing Hexagonal Architecture, Domain-Driven Design, and SOLID principles across production systems. Strong advocate for microservices patterns, with hands-on experience building production-grade systems that serve real users.
-          </p>
+          </Body>
         </m.div>
 
         <m.div
