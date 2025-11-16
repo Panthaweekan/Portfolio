@@ -92,7 +92,7 @@ export function FloatingShapes3D({
   className = ''
 }: FloatingShapes3DProps) {
   return (
-    <div className={`absolute inset-0 pointer-events-none ${className}`} style={{ zIndex: 0 }}>
+    <div className={`absolute inset-0 pointer-events-none ${className}`} style={{ zIndex: 50 }}>
       <Suspense fallback={null}>
         <Canvas
           camera={{ position: [0, 0, 5], fov: 50 }}
