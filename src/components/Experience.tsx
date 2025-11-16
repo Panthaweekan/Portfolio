@@ -1,5 +1,6 @@
 import { m } from 'framer-motion';
 import { AnimatedTimeline } from './AnimatedTimeline';
+import { FloatingShapes3D } from './FloatingShapes3D';
 
 export function Experience() {
   const experiences = [
@@ -32,12 +33,39 @@ export function Experience() {
     },
   ];
 
+  const floatingShapesConfig = [
+    {
+      type: 'sphere' as const,
+      position: [-2.5, 0.5, -2] as [number, number, number],
+      scale: 0.7,
+      color: '#FF9051',
+      wireframe: false,
+    },
+    {
+      type: 'octahedron' as const,
+      position: [2, -1.5, -2.5] as [number, number, number],
+      scale: 0.9,
+      color: '#2DBBEE',
+      wireframe: true,
+    },
+    {
+      type: 'box' as const,
+      position: [0, 1.5, -3] as [number, number, number],
+      scale: 0.5,
+      color: '#9C83FF',
+      wireframe: true,
+    },
+  ];
+
   return (
     <section id="experience" className="py-20 relative overflow-hidden">
       {/* Vibrant Background Layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-background to-primary/5 -z-10" />
       <div className="absolute inset-0 bg-grid opacity-40 -z-10" />
       <div className="absolute inset-0 bg-stripes -z-10" />
+
+      {/* 3D Floating Shapes */}
+      <FloatingShapes3D shapes={floatingShapesConfig} />
 
       <div className="container mx-auto px-4">
         <m.div

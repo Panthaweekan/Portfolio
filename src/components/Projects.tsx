@@ -14,8 +14,125 @@ import { Button } from "./ui/button";
 import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
 import { MermaidDiagram } from "./MermaidDiagram";
 import { FluentEmoji } from "@lobehub/ui";
+import { use3DTilt } from "../hooks/use3DTilt";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Project Card Component with 3D Tilt
+function ProjectCard({ project, index, expandedDiagram, toggleDiagram }: {
+  project: any;
+  index: number;
+  expandedDiagram: number | null;
+  toggleDiagram: (index: number) => void;
+}) {
+  const cardRef = use3DTilt<HTMLDivElement>({
+    maxTilt: 10,
+    perspective: 1000,
+    scale: 1.02,
+    speed: 400,
+    glare: true,
+    glareMaxOpacity: 0.15,
+  });
+
+  return (
+    <div ref={cardRef} style={{ position: 'relative' }}>
+      <Card className="project-card glass-card flex flex-col h-full hover:shadow-2xl hover:border-primary/70 hover:glow-primary transition-all duration-300 group">
+        <CardHeader className="space-y-3">
+          <div className="flex items-start justify-between gap-2">
+            <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors">
+              {project.title}
+            </CardTitle>
+            <span className="text-xs font-semibold text-muted-foreground bg-muted px-3 py-1 rounded-full whitespace-nowrap">
+              {project.dateRange}
+            </span>
+          </div>
+          <CardDescription className="text-sm font-medium text-foreground/80 italic">
+            {project.subtitle}
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex-grow space-y-4">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            {project.description}
+          </p>
+          <div className="pt-2">
+            <p className="text-xs font-semibold text-foreground/70 mb-2">
+              Tech Stack:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {project.technologies.map((tech: string, techIndex: number) => (
+                <span
+                  key={techIndex}
+                  className="px-2.5 py-1 text-xs font-medium rounded-md bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          {"architecture" in project && project.architecture && (
+            <div className="pt-4 border-t border-border">
+              <button
+                onClick={() => toggleDiagram(index)}
+                className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
+              >
+                {expandedDiagram === index ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+                {expandedDiagram === index ? "Hide" : "View"}{" "}
+                Architecture Diagram
+              </button>
+              {expandedDiagram === index && (
+                <m.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 p-4 rounded-lg bg-muted/30 backdrop-blur-sm overflow-hidden"
+                >
+                  <MermaidDiagram
+                    chart={project.architecture}
+                    className="my-4"
+                  />
+                </m.div>
+              )}
+            </div>
+          )}
+        </CardContent>
+        <CardFooter className="gap-3 pt-6">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1"
+            asChild
+          >
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="mr-2 h-4 w-4" />
+              View Code
+            </a>
+          </Button>
+          {project.demo !== "#" && (
+            <Button size="sm" className="flex-1" asChild>
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ExternalLink className="mr-2 h-4 w-4" />
+                Live Demo
+              </a>
+            </Button>
+          )}
+        </CardFooter>
+      </Card>
+    </div>
+  );
+}
 
 export function Projects() {
   const [expandedDiagram, setExpandedDiagram] = useState<number | null>(null);
@@ -286,102 +403,13 @@ export function Projects() {
         </m.div>
         <div ref={projectsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <div key={index}>
-              <Card className="project-card glass-card flex flex-col h-full hover:shadow-2xl hover:border-primary/70 hover:glow-primary transition-all duration-300 group">
-                <CardHeader className="space-y-3">
-                  <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors">
-                      {project.title}
-                    </CardTitle>
-                    <span className="text-xs font-semibold text-muted-foreground bg-muted px-3 py-1 rounded-full whitespace-nowrap">
-                      {project.dateRange}
-                    </span>
-                  </div>
-                  <CardDescription className="text-sm font-medium text-foreground/80 italic">
-                    {project.subtitle}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-grow space-y-4">
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
-                  <div className="pt-2">
-                    <p className="text-xs font-semibold text-foreground/70 mb-2">
-                      Tech Stack:
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2.5 py-1 text-xs font-medium rounded-md bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  {"architecture" in project && project.architecture && (
-                    <div className="pt-4 border-t border-border">
-                      <button
-                        onClick={() => toggleDiagram(index)}
-                        className="flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
-                      >
-                        {expandedDiagram === index ? (
-                          <ChevronUp className="h-4 w-4" />
-                        ) : (
-                          <ChevronDown className="h-4 w-4" />
-                        )}
-                        {expandedDiagram === index ? "Hide" : "View"}{" "}
-                        Architecture Diagram
-                      </button>
-                      {expandedDiagram === index && (
-                        <m.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-4 p-4 rounded-lg bg-muted/30 backdrop-blur-sm overflow-hidden"
-                        >
-                          <MermaidDiagram
-                            chart={project.architecture}
-                            className="my-4"
-                          />
-                        </m.div>
-                      )}
-                    </div>
-                  )}
-                </CardContent>
-                <CardFooter className="gap-3 pt-6">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1"
-                    asChild
-                  >
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                      View Code
-                    </a>
-                  </Button>
-                  {project.demo !== "#" && (
-                    <Button size="sm" className="flex-1" asChild>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
-                      </a>
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            </div>
+            <ProjectCard
+              key={index}
+              project={project}
+              index={index}
+              expandedDiagram={expandedDiagram}
+              toggleDiagram={toggleDiagram}
+            />
           ))}
         </div>
       </div>

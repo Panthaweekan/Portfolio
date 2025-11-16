@@ -4,6 +4,7 @@ import { H2, Body } from './ui/typography';
 import { Code2, Database, Server, GraduationCap, Users, Lightbulb } from 'lucide-react';
 import { AnimatedSkillBar } from './AnimatedSkillBar';
 import { FluentEmoji } from '@lobehub/ui';
+import { FloatingShapes3D } from './FloatingShapes3D';
 
 export function About() {
   // Vibrant color scheme with purple, cyan, and orange accents
@@ -55,6 +56,9 @@ export function About() {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 -z-10" />
       <div className="absolute inset-0 bg-stripes -z-10" />
       <div className="absolute inset-0 bg-grid opacity-40 -z-10" />
+
+      {/* 3D Floating Shapes */}
+      <FloatingShapes3D />
 
       <div className="container mx-auto px-4">
         <m.div
