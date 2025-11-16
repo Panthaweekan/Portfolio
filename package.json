@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Panthaweekan/github.io#readme",
   "description": "Personal portfolio website for Panthaweekan Somngam",
   "devDependencies": {
-    "@types/react": "^19.2.4",
+    "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "autoprefixer": "^10.4.22",
