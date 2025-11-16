@@ -24,6 +24,11 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 262 80% 75%;
     --radius: 0.5rem;
+
+    /* Enhanced color palette */
+    --gradient-start: 262 80% 75%;
+    --gradient-middle: 280 70% 70%;
+    --gradient-end: 20 100% 65%;
   }
 
   .dark {
@@ -46,6 +51,11 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 262 80% 75%;
+
+    /* Enhanced color palette for dark mode */
+    --gradient-start: 262 80% 75%;
+    --gradient-middle: 280 70% 70%;
+    --gradient-end: 20 100% 65%;
   }
 }
 

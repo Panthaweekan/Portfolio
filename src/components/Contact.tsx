@@ -2,6 +2,7 @@ import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Mail, MapPin, Phone, Github, Linkedin } from 'lucide-react';
+import { FluentEmoji } from '@lobehub/ui';
 
 export function Contact() {
   const contactInfo = [
@@ -44,15 +45,20 @@ export function Contact() {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 -z-10" />
 
       <div className="container mx-auto px-4">
-        <m.h2
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+          className="text-center mb-12"
         >
-          Get In Touch
-        </m.h2>
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <FluentEmoji emoji="👋" size={50} type="3d" />
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Get In Touch
+            </h2>
+          </div>
+        </m.div>
         <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

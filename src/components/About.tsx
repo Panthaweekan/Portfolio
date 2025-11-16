@@ -1,6 +1,8 @@
 import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Code2, Database, Server, GraduationCap, Users, Lightbulb } from 'lucide-react';
+import { AnimatedSkillBar } from './AnimatedSkillBar';
+import { FluentEmoji } from '@lobehub/ui';
 
 export function About() {
   const programmingSkills = [
@@ -198,6 +200,33 @@ export function About() {
                   {skill.label}
                 </span>
               ))}
+            </div>
+          </div>
+        </m.div>
+
+        <m.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="max-w-4xl mx-auto mt-12"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <FluentEmoji emoji="📊" size={40} type="3d" />
+            <h3 className="text-2xl font-bold">Skill Proficiency</h3>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <AnimatedSkillBar skill="Go / Golang" percentage={90} color="bg-primary" delay={0} />
+              <AnimatedSkillBar skill="TypeScript" percentage={90} color="bg-primary" delay={0.1} />
+              <AnimatedSkillBar skill="React" percentage={85} color="bg-secondary" delay={0.2} />
+              <AnimatedSkillBar skill="Ruby on Rails" percentage={80} color="bg-secondary" delay={0.3} />
+            </div>
+            <div className="space-y-4">
+              <AnimatedSkillBar skill="PostgreSQL" percentage={85} color="bg-purple-500" delay={0.4} />
+              <AnimatedSkillBar skill="Docker" percentage={80} color="bg-emerald-500" delay={0.5} />
+              <AnimatedSkillBar skill="API Gateway Design" percentage={85} color="bg-primary" delay={0.6} />
+              <AnimatedSkillBar skill="Hexagonal Architecture" percentage={85} color="bg-secondary" delay={0.7} />
             </div>
           </div>
         </m.div>

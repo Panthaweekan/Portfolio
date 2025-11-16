@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { m } from 'framer-motion';
 import { Button } from './ui/button';
 import { Particles } from './Particles';
+import { ThreeBackground } from './ThreeBackground';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 
 export function Hero() {
@@ -52,6 +53,9 @@ export function Hero() {
     >
       {/* Animated Background */}
       <div className="absolute inset-0 -z-10">
+        <Suspense fallback={<Particles />}>
+          <ThreeBackground />
+        </Suspense>
         <Particles />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(156,131,255,0.1),transparent_50%)]" />
