@@ -50,9 +50,9 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-mesh-gradient"
     >
-      {/* Animated Background - Monochromatic */}
+      {/* Animated Background Layers */}
       <div className="absolute inset-0" style={{ zIndex: -10 }}>
         {/* 3D Background Layer - Behind everything */}
         <div className="absolute inset-0" style={{ zIndex: 1 }}>
@@ -66,9 +66,14 @@ export function Hero() {
           <Particles />
         </div>
 
-        {/* Gradient Overlays - On top of 3D and particles */}
-        <div className="absolute inset-0 bg-gradient-to-br from-mono-100/40 via-background/60 to-mono-200/40" style={{ zIndex: 3 }} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.01),transparent_50%)]" style={{ zIndex: 4 }} />
+        {/* Vibrant Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-animated" style={{ zIndex: 3 }} />
+
+        {/* Spotlight Effect */}
+        <div className="absolute inset-0 bg-spotlight" style={{ zIndex: 4 }} />
+
+        {/* Subtle Pattern Overlay */}
+        <div className="absolute inset-0 bg-dots opacity-50" style={{ zIndex: 5 }} />
       </div>
 
       <div className="container mx-auto px-4 py-20">
@@ -77,8 +82,8 @@ export function Hero() {
             Panthaweekan Somngam
           </H1>
           <div className="text-2xl md:text-4xl font-heading font-semibold mb-8 h-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
-            <span className="text-mono-900 dark:text-mono-100">{text}</span>
-            <span className="animate-pulse text-mono-700 dark:text-mono-300">|</span>
+            <span className="text-gradient">{text}</span>
+            <span className="animate-pulse text-primary">|</span>
           </div>
           <Body className="text-lg md:text-xl mb-12 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300" variant="muted">
             Passionate about building scalable web applications and solving complex problems
@@ -111,29 +116,29 @@ export function Hero() {
               href="https://github.com/Panthaweekan"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-mono-600 hover:text-mono-1100 dark:text-mono-400 dark:hover:text-mono-50 transition-colors"
+              className="text-muted-foreground hover:text-primary transition-all hover:glow-primary"
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Github className="h-6 w-6" />
+              <Github className="h-7 w-7" />
             </m.a>
             <m.a
               href="https://www.linkedin.com/in/panthaweekan/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-mono-600 hover:text-mono-1100 dark:text-mono-400 dark:hover:text-mono-50 transition-colors"
+              className="text-muted-foreground hover:text-accent transition-all hover:glow-primary"
               whileHover={{ scale: 1.2, rotate: -5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Linkedin className="h-6 w-6" />
+              <Linkedin className="h-7 w-7" />
             </m.a>
             <m.a
               href="mailto:panthaweekansomngam@gmail.com"
-              className="text-mono-600 hover:text-mono-1100 dark:text-mono-400 dark:hover:text-mono-50 transition-colors"
+              className="text-muted-foreground hover:text-secondary transition-all hover:glow-secondary"
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Mail className="h-6 w-6" />
+              <Mail className="h-7 w-7" />
             </m.a>
           </div>
         </div>

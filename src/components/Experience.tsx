@@ -33,7 +33,12 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-muted/30">
+    <section id="experience" className="py-20 relative overflow-hidden">
+      {/* Vibrant Background Layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-background to-primary/5 -z-10" />
+      <div className="absolute inset-0 bg-grid opacity-40 -z-10" />
+      <div className="absolute inset-0 bg-stripes -z-10" />
+
       <div className="container mx-auto px-4">
         <m.div
           initial={{ opacity: 0, y: -20 }}
@@ -42,7 +47,7 @@ export function Experience() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
             Professional Experience
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
