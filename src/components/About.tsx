@@ -79,7 +79,7 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 mb-12"
         >
-          <Card className="hover:shadow-lg transition-shadow">
+          <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm bg-card/95">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -96,7 +96,7 @@ export function About() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow">
+          <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm bg-card/95">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
