@@ -6,51 +6,56 @@ import { AnimatedSkillBar } from './AnimatedSkillBar';
 import { FluentEmoji } from '@lobehub/ui';
 
 export function About() {
-  // Monochromatic color scheme with varying grey tones for visual hierarchy
+  // Vibrant color scheme with purple, cyan, and orange accents
   const programmingSkills = [
-    { label: 'Go (Primary)', color: 'bg-mono-900 text-white dark:bg-mono-100 dark:text-mono-1000' },
-    { label: 'TypeScript (Primary)', color: 'bg-mono-900 text-white dark:bg-mono-100 dark:text-mono-1000' },
-    { label: 'Ruby', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
-    { label: 'Python', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
-    { label: 'Java', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
-    { label: 'C++', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
-    { label: 'Haskell', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'OCaml', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Rust (Learning)', color: 'bg-mono-500 text-white dark:bg-mono-500 dark:text-white' },
+    { label: 'Go (Primary)', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'TypeScript (Primary)', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'Ruby', color: 'bg-secondary/90 text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Python', color: 'bg-accent/90 text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'Java', color: 'bg-primary/80 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'C++', color: 'bg-secondary/80 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Haskell', color: 'bg-accent/80 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'OCaml', color: 'bg-primary/70 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'Rust (Learning)', color: 'bg-gradient-to-r from-secondary to-primary text-white border-2 border-primary/20 shadow-md' },
   ];
 
   const webDevSkills = [
-    { label: 'React', color: 'bg-mono-900 text-white dark:bg-mono-100 dark:text-mono-1000' },
-    { label: 'Ruby on Rails', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
-    { label: 'Go Fiber', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
-    { label: 'Node.js', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
-    { label: 'Express.js', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
-    { label: 'Tailwind CSS', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Vite', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'React', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'Ruby on Rails', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Go Fiber', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'Node.js', color: 'bg-accent/85 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Express.js', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'Tailwind CSS', color: 'bg-accent/75 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Vite', color: 'bg-gradient-to-r from-primary to-accent text-white border-2 border-primary/20 shadow-md' },
   ];
 
   const databaseSkills = [
-    { label: 'PostgreSQL', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
-    { label: 'MySQL', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
+    { label: 'PostgreSQL', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'MySQL', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
   ];
 
   const devopsSkills = [
-    { label: 'Docker', color: 'bg-mono-800 text-white dark:bg-mono-200 dark:text-mono-900' },
-    { label: 'Basic CI/CD (Github action)', color: 'bg-mono-700 text-white dark:bg-mono-300 dark:text-mono-900' },
+    { label: 'Docker', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'Basic CI/CD (Github action)', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
   ];
 
   const softSkills = [
-    { label: 'Effective Communication', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Active Listening', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Respect & Support', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Teamwork', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Adaptive', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Problem-Solving', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
-    { label: 'Abstract Thinking', color: 'bg-mono-600 text-white dark:bg-mono-400 dark:text-mono-900' },
+    { label: 'Effective Communication', color: 'bg-gradient-to-r from-primary/80 to-accent/80 text-white border border-primary/30 shadow-md' },
+    { label: 'Active Listening', color: 'bg-gradient-to-r from-accent/80 to-secondary/80 text-white border border-accent/30 shadow-md' },
+    { label: 'Respect & Support', color: 'bg-gradient-to-r from-secondary/80 to-primary/80 text-white border border-secondary/30 shadow-md' },
+    { label: 'Teamwork', color: 'bg-gradient-to-r from-primary/80 to-secondary/80 text-white border border-primary/30 shadow-md' },
+    { label: 'Adaptive', color: 'bg-gradient-to-r from-accent/80 to-primary/80 text-white border border-accent/30 shadow-md' },
+    { label: 'Problem-Solving', color: 'bg-gradient-to-r from-secondary/80 to-accent/80 text-white border border-secondary/30 shadow-md' },
+    { label: 'Abstract Thinking', color: 'bg-gradient-to-r from-primary/80 to-accent/80 text-white border border-primary/30 shadow-md' },
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/30">
+    <section id="about" className="py-20 relative overflow-hidden">
+      {/* Vibrant Background Layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5 -z-10" />
+      <div className="absolute inset-0 bg-stripes -z-10" />
+      <div className="absolute inset-0 bg-grid opacity-40 -z-10" />
+
       <div className="container mx-auto px-4">
         <m.div
           initial={{ opacity: 0, y: -20 }}
@@ -84,11 +89,11 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 mb-12"
         >
-          <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm bg-card/95">
+          <Card className="glass-card hover:shadow-2xl hover:border-primary/50 hover:glow-primary transition-all duration-300">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <GraduationCap className="h-5 w-5 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg">
+                  <GraduationCap className="h-6 w-6 text-white" />
                 </div>
                 <CardTitle className="text-xl">Education</CardTitle>
               </div>
@@ -97,15 +102,15 @@ export function About() {
               <p className="text-muted-foreground mb-1">
                 Chiang Mai University | B.Eng. Computer Engineering (GPA: 3.32)
               </p>
-              <p className="font-bold text-primary">Second-Class Honour</p>
+              <p className="font-bold text-gradient">Second-Class Honour</p>
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-2xl hover:border-primary/50 transition-all duration-300 backdrop-blur-sm bg-card/95">
+          <Card className="glass-card hover:shadow-2xl hover:border-secondary/50 hover:glow-secondary transition-all duration-300">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Lightbulb className="h-5 w-5 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary to-primary flex items-center justify-center shadow-lg">
+                  <Lightbulb className="h-6 w-6 text-white" />
                 </div>
                 <CardTitle className="text-xl">Interests</CardTitle>
               </div>

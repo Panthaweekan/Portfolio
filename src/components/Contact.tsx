@@ -41,8 +41,11 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
-      {/* Background gradient effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 -z-10" />
+      {/* Vibrant Background Layers */}
+      <div className="absolute inset-0 bg-mesh-gradient -z-10" />
+      <div className="absolute inset-0 bg-gradient-animated -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-secondary/10 -z-10" />
+      <div className="absolute inset-0 bg-dots opacity-30 -z-10" />
 
       <div className="container mx-auto px-4">
         <m.div
@@ -54,7 +57,7 @@ export function Contact() {
         >
           <div className="flex items-center justify-center gap-3 mb-2">
             <FluentEmoji emoji="👋" size={50} type="3d" />
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold text-gradient">
               Get In Touch
             </h2>
           </div>
@@ -66,9 +69,9 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >
-          <Card className="shadow-2xl backdrop-blur-md bg-card/95 border-primary/10">
+          <Card className="glass-card shadow-2xl hover:glow-primary border-primary/20">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Let's Work Together</CardTitle>
+              <CardTitle className="text-2xl text-gradient">Let's Work Together</CardTitle>
               <CardDescription className="text-base">
                 Feel free to reach out for collaborations or just a friendly hello
               </CardDescription>
@@ -77,8 +80,8 @@ export function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex flex-col items-center text-center p-4">
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                      <info.icon className="h-6 w-6 text-primary" />
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center mb-3 shadow-lg animate-float">
+                      <info.icon className="h-7 w-7 text-white" />
                     </div>
                     <h3 className="font-semibold mb-1">{info.label}</h3>
                     {info.href ? (

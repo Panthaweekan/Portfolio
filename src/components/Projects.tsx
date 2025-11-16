@@ -258,8 +258,13 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-b from-background to-muted/20"
+      className="py-20 relative overflow-hidden"
     >
+      {/* Vibrant Background Layers */}
+      <div className="absolute inset-0 bg-mesh-gradient-intense -z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-secondary/5 to-transparent -z-10" />
+      <div className="absolute inset-0 bg-dots opacity-30 -z-10" />
+
       <div className="container mx-auto px-4">
         <m.div
           initial={{ opacity: 0, y: -20 }}
@@ -270,7 +275,7 @@ export function Projects() {
         >
           <div className="flex items-center justify-center gap-4 mb-4">
             <FluentEmoji emoji="🚀" size={50} type="3d" />
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold text-gradient">
               Key Projects & Portfolio
             </h2>
           </div>
@@ -282,7 +287,7 @@ export function Projects() {
         <div ref={projectsRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <div key={index}>
-              <Card className="project-card flex flex-col h-full hover:shadow-2xl hover:border-primary/50 transition-all duration-300 group backdrop-blur-sm bg-card/95">
+              <Card className="project-card glass-card flex flex-col h-full hover:shadow-2xl hover:border-primary/70 hover:glow-primary transition-all duration-300 group">
                 <CardHeader className="space-y-3">
                   <div className="flex items-start justify-between gap-2">
                     <CardTitle className="text-xl md:text-2xl group-hover:text-primary transition-colors">

@@ -3,40 +3,40 @@
 @tailwind utilities;
 
 @layer base {
-  /* Monochromatic Design System - Light Mode */
+  /* Vibrant Modern Design System - Light Mode */
   :root {
-    /* Backgrounds - Pure whites and off-whites for clean aesthetic */
-    --background: 0 0% 98.5%;         /* #FAFAFA - Soft white background */
-    --foreground: 0 0% 18%;           /* #2E2E2E - Dark grey text for strong contrast */
-    --card: 0 0% 100%;                /* #FFFFFF - Pure white cards */
-    --card-foreground: 0 0% 24.7%;    /* #3F3F3F - Headings on cards */
+    /* Backgrounds - Subtle color-tinted whites */
+    --background: 240 20% 99%;         /* #FCFCFD - Very light blue-tinted white */
+    --foreground: 240 10% 15%;         /* #222233 - Deep blue-grey text */
+    --card: 0 0% 100%;                 /* #FFFFFF - Pure white cards */
+    --card-foreground: 240 8% 20%;     /* #2D2D3D - Card text */
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 18%;
+    --popover-foreground: 240 10% 15%;
 
-    /* Primary - Black/Dark Grey for emphasis */
-    --primary: 0 0% 11%;              /* #1C1C1C - Very dark grey, almost black */
-    --primary-foreground: 0 0% 100%;  /* White text on dark buttons */
+    /* Primary - Vibrant Purple/Blue */
+    --primary: 262 80% 65%;            /* #9C83FF - Vibrant purple */
+    --primary-foreground: 0 0% 100%;   /* White text on primary */
 
-    /* Secondary - Medium greys for secondary actions */
-    --secondary: 0 0% 31.8%;          /* #515151 - Medium-dark grey */
+    /* Secondary - Warm Orange/Coral */
+    --secondary: 20 95% 65%;           /* #FF9051 - Warm coral/orange */
     --secondary-foreground: 0 0% 100%;
 
-    /* Muted - Light greys for backgrounds and subtle elements */
-    --muted: 0 0% 94.1%;              /* #F0F0F0 - Light grey backgrounds */
-    --muted-foreground: 0 0% 50%;     /* #808080 - Medium grey text */
+    /* Muted - Soft purple-grey backgrounds */
+    --muted: 240 15% 96%;              /* #F4F5F9 - Light purple-grey */
+    --muted-foreground: 240 5% 45%;    /* #6E6E7A - Muted text */
 
-    /* Accent - Slightly darker for hover states */
-    --accent: 0 0% 91%;               /* #E8E8E8 - Subtle dividers/hover */
-    --accent-foreground: 0 0% 24.7%;  /* #3F3F3F - Dark text on accent */
+    /* Accent - Bright cyan/blue */
+    --accent: 195 85% 55%;             /* #2DBBEE - Bright cyan */
+    --accent-foreground: 0 0% 100%;
 
-    /* Destructive - Using darker grey for errors */
-    --destructive: 0 0% 20%;          /* Dark grey for errors (monochrome) */
+    /* Destructive - Vibrant red */
+    --destructive: 0 84% 60%;          /* #F04444 - Vibrant red */
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 0 0% 83.1%;             /* #D4D4D4 - Light grey borders */
-    --input: 0 0% 83.1%;              /* #D4D4D4 - Input borders */
-    --ring: 0 0% 31.8%;               /* #515151 - Focus ring (darker for visibility) */
+    --border: 240 10% 88%;             /* #DDDDE5 - Soft grey-blue border */
+    --input: 240 10% 88%;
+    --ring: 262 80% 65%;               /* Primary purple for focus */
 
     /* Border radius */
     --radius: 0.5rem;
@@ -44,41 +44,63 @@
     /* Font families */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Roboto', sans-serif;
+
+    /* Gradient colors */
+    --gradient-from: 262 80% 65%;      /* Purple */
+    --gradient-via: 280 70% 60%;       /* Pink-purple */
+    --gradient-to: 195 85% 55%;        /* Cyan */
+
+    /* Mesh gradient colors */
+    --mesh-1: 262 80% 65%;             /* Purple */
+    --mesh-2: 195 85% 55%;             /* Cyan */
+    --mesh-3: 20 95% 65%;              /* Orange */
+    --mesh-4: 280 70% 60%;             /* Pink */
   }
 
-  /* Monochromatic Design System - Dark Mode */
+  /* Vibrant Modern Design System - Dark Mode */
   .dark {
-    --background: 0 0% 11%;           /* #1C1C1C - Very dark background */
-    --foreground: 0 0% 96.1%;         /* #F5F5F5 - Off-white text */
-    --card: 0 0% 18%;                 /* #2E2E2E - Dark cards */
-    --card-foreground: 0 0% 96.1%;    /* Off-white text on cards */
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 96.1%;
+    --background: 240 15% 8%;          /* #0F0F14 - Very dark blue-grey */
+    --foreground: 240 5% 95%;          /* #F0F0F2 - Off-white */
+    --card: 240 12% 12%;               /* #181820 - Dark card background */
+    --card-foreground: 240 5% 95%;
+    --popover: 240 15% 8%;
+    --popover-foreground: 240 5% 95%;
 
-    /* Primary - Light grey/white for emphasis in dark mode */
-    --primary: 0 0% 96.1%;            /* #F5F5F5 - Off-white */
-    --primary-foreground: 0 0% 11%;   /* Dark text on light buttons */
+    /* Primary - Vibrant Purple (slightly brighter for dark mode) */
+    --primary: 262 80% 70%;            /* #B19BFF - Lighter purple */
+    --primary-foreground: 240 15% 8%;  /* Dark text on bright buttons */
 
-    /* Secondary - Medium-light greys */
-    --secondary: 0 0% 50%;            /* #808080 - Medium grey */
-    --secondary-foreground: 0 0% 100%;
+    /* Secondary - Warm Orange */
+    --secondary: 20 95% 65%;           /* #FF9051 - Coral orange */
+    --secondary-foreground: 240 15% 8%;
 
-    /* Muted - Dark greys for backgrounds */
-    --muted: 0 0% 24.7%;              /* #3F3F3F - Medium-dark background */
-    --muted-foreground: 0 0% 62.7%;   /* #A0A0A0 - Light grey text */
+    /* Muted - Dark purple-grey */
+    --muted: 240 10% 18%;              /* #262630 - Dark purple-grey */
+    --muted-foreground: 240 5% 65%;    /* #9E9EA8 - Muted text */
 
-    /* Accent */
-    --accent: 0 0% 31.8%;             /* #515151 - Hover states */
-    --accent-foreground: 0 0% 96.1%;
+    /* Accent - Bright cyan */
+    --accent: 195 85% 60%;             /* #33C3F5 - Bright cyan */
+    --accent-foreground: 240 15% 8%;
 
-    /* Destructive */
-    --destructive: 0 0% 80%;          /* Light grey for errors in dark mode */
-    --destructive-foreground: 0 0% 11%;
+    /* Destructive - Vibrant red */
+    --destructive: 0 84% 65%;          /* #FF5555 - Bright red */
+    --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 0 0% 31.8%;             /* #515151 - Medium-dark borders */
-    --input: 0 0% 31.8%;
-    --ring: 0 0% 62.7%;               /* #A0A0A0 - Lighter focus ring for dark mode */
+    --border: 240 10% 22%;             /* #31313D - Dark border */
+    --input: 240 10% 22%;
+    --ring: 262 80% 70%;               /* Lighter purple for focus */
+
+    /* Gradient colors */
+    --gradient-from: 262 80% 70%;      /* Lighter purple */
+    --gradient-via: 280 70% 65%;       /* Pink-purple */
+    --gradient-to: 195 85% 60%;        /* Cyan */
+
+    /* Mesh gradient colors */
+    --mesh-1: 262 80% 70%;             /* Purple */
+    --mesh-2: 195 85% 60%;             /* Cyan */
+    --mesh-3: 20 95% 65%;              /* Orange */
+    --mesh-4: 280 70% 65%;             /* Pink */
   }
 }
 
@@ -223,5 +245,167 @@
   pre code {
     background-color: transparent;
     padding: 0;
+  }
+}
+
+/* Modern Background Utilities */
+@layer utilities {
+  /* Mesh Gradient Backgrounds */
+  .bg-mesh-gradient {
+    background: radial-gradient(at 0% 0%, hsl(var(--mesh-1) / 0.3) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsl(var(--mesh-2) / 0.25) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(var(--mesh-3) / 0.3) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(var(--mesh-4) / 0.25) 0px, transparent 50%),
+      hsl(var(--background));
+    background-attachment: fixed;
+  }
+
+  .bg-mesh-gradient-intense {
+    background: radial-gradient(at 0% 0%, hsl(var(--mesh-1) / 0.5) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsl(var(--mesh-2) / 0.4) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(var(--mesh-3) / 0.5) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(var(--mesh-4) / 0.4) 0px, transparent 50%),
+      hsl(var(--background));
+    background-attachment: fixed;
+  }
+
+  /* Animated Gradient Background */
+  .bg-gradient-animated {
+    background: linear-gradient(
+      -45deg,
+      hsl(var(--gradient-from) / 0.15),
+      hsl(var(--gradient-via) / 0.12),
+      hsl(var(--gradient-to) / 0.15),
+      hsl(var(--gradient-from) / 0.12)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Glassmorphism Effects */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .glass-card {
+    background: rgba(24, 24, 32, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-from)),
+      hsl(var(--gradient-via)),
+      hsl(var(--gradient-to))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Dotted Pattern Background */
+  .bg-dots {
+    background-image: radial-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .dark .bg-dots {
+    background-image: radial-gradient(hsl(var(--primary) / 0.2) 1px, transparent 1px);
+  }
+
+  /* Grid Pattern Background */
+  .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .dark .bg-grid {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px);
+  }
+
+  /* Radial Gradient Spotlight */
+  .bg-spotlight {
+    background: radial-gradient(
+      circle at 50% 0%,
+      hsl(var(--primary) / 0.15),
+      transparent 60%
+    );
+  }
+
+  /* Diagonal Stripes */
+  .bg-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      hsl(var(--primary) / 0.03) 0,
+      hsl(var(--primary) / 0.03) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  }
+
+  .dark .bg-stripes {
+    background-image: repeating-linear-gradient(
+      45deg,
+      hsl(var(--primary) / 0.05) 0,
+      hsl(var(--primary) / 0.05) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+                0 0 40px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px hsl(var(--secondary) / 0.3),
+                0 0 40px hsl(var(--secondary) / 0.2);
+  }
+
+  /* Floating Animation */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse Glow Animation */
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.5),
+                  0 0 60px hsl(var(--primary) / 0.3);
+    }
   }
 }
