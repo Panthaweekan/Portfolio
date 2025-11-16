@@ -1,28 +1,37 @@
-import { Button } from './ui/button';
-import { FileDown, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/resume.css';
+import { Button } from "./ui/button";
+import { FileDown, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
+import "../styles/resume.css";
 
 export function Resume() {
   const navigate = useNavigate();
 
-  const handlePrint = () => {
+  const handlePrint = useCallback(() => {
     window.print();
-  };
+  }, []);
 
   return (
     <div className="resume-container">
-      <div className="no-print" style={{ padding: '1rem', maxWidth: '1200px', margin: '0 auto' }}>
-        <Button onClick={() => navigate('/')} variant="outline" size="sm">
+      <div
+        className="no-print"
+        style={{ padding: "1rem", maxWidth: "1200px", margin: "0 auto" }}
+      >
+        <Button onClick={() => navigate("/")} variant="outline" size="sm">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Portfolio
         </Button>
       </div>
 
-      <Button className="print-button no-print" onClick={handlePrint}>
-        <FileDown className="mr-2 h-4 w-4" />
-        Export to PDF
-      </Button>
+      <div
+        className="no-print"
+        style={{ position: "fixed", top: "1rem", right: "1rem", zIndex: 1000 }}
+      >
+        <Button onClick={handlePrint}>
+          <FileDown className="mr-2 h-4 w-4" />
+          Export to PDF
+        </Button>
+      </div>
 
       <div className="page-layout" id="cv">
         {/* HEADER */}
@@ -41,7 +50,9 @@ export function Resume() {
             </div>
             <div className="contact-item">
               <strong>GitHub:</strong>&nbsp;
-              <a href="https://github.com/Panthaweekan">github.com/Panthaweekan</a>
+              <a href="https://github.com/Panthaweekan">
+                github.com/Panthaweekan
+              </a>
             </div>
             <div className="contact-item">
               <strong>Portfolio:</strong>&nbsp;
@@ -55,20 +66,22 @@ export function Resume() {
         {/* PROFESSIONAL SUMMARY */}
         <section>
           <div className="page-subheader">Professional Summary</div>
-          <p style={{ marginBottom: '0.75rem' }}>
+          <p style={{ marginBottom: "0.75rem" }}>
             Associate Software Engineer with expertise in enterprise API gateway
-            infrastructure, cloud migration, and full-stack web development. Currently
-            contributing to SCB TechX's digital transformation initiatives, specializing
-            in hybrid cloud architecture and API gateway solutions using CA Layer 7 and
-            Kong API Gateway. Experienced in building scalable web applications with
-            modern technologies including Go, TypeScript, Ruby on Rails, and React.
+            infrastructure, cloud migration, and full-stack web development.
+            Currently contributing to SCB TechX's digital transformation
+            initiatives, specializing in hybrid cloud architecture and API
+            gateway solutions using CA Layer 7 and Kong API Gateway. Experienced
+            in building scalable web applications with modern technologies
+            including Go, TypeScript, Ruby on Rails, and React.
           </p>
           <p>
-            Passionate about clean code architecture and sustainable software design,
-            with extensive experience implementing Hexagonal Architecture, Domain-Driven
-            Design, and SOLID principles across production systems. Strong advocate for
-            microservices patterns, with hands-on experience building production-grade
-            systems that serve real users.
+            Passionate about clean code architecture and sustainable software
+            design, with extensive experience implementing Hexagonal
+            Architecture, Domain-Driven Design, and SOLID principles across
+            production systems. Strong advocate for microservices patterns, with
+            hands-on experience building production-grade systems that serve
+            real users.
           </p>
         </section>
 
@@ -87,34 +100,37 @@ export function Resume() {
             <div className="job-location">Bangkok, Thailand (Hybrid)</div>
 
             <div className="tech-stack">
-              <strong>Technologies & knowledge:</strong> API Gateway architecture • Kong
-              API Gateway • Go • Fiber Framework • Ruby on Rails • React • TypeScript •
-              Microservices
+              <strong>Technologies & knowledge:</strong> API Gateway
+              architecture • Kong API Gateway • Go • Fiber Framework • Ruby on
+              Rails • React • TypeScript • Microservices
             </div>
 
             <ul>
               <li>
-                Designed, developed, and maintained enterprise API gateway infrastructure
-                across hybrid environments, including CA Layer 7 API Gateway and Kong API
-                Gateway for both on-premise and cloud-based systems
+                Designed, developed, and maintained enterprise API gateway
+                infrastructure across hybrid environments, including CA Layer 7
+                API Gateway and Kong API Gateway for both on-premise and
+                cloud-based systems
               </li>
               <li>
-                Collaborated cross-functionally on cloud migration initiatives, ensuring
-                seamless transition of API gateway logic and maintaining service
-                continuity during the migration process
+                Collaborated cross-functionally on cloud migration initiatives,
+                ensuring seamless transition of API gateway logic and
+                maintaining service continuity during the migration process
               </li>
               <li>
-                Developed and architected a full-stack Inventory Asset Management System
-                (Ruby on Rails, React, TypeScript) featuring full CRUD operations, asset
-                request/return workflows, and a centralized database serving as a single
-                source of truth for company-wide asset tracking
+                Developed and architected a full-stack Inventory Asset
+                Management System (Ruby on Rails, React, TypeScript) featuring
+                full CRUD operations, asset request/return workflows, and a
+                centralized database serving as a single source of truth for
+                company-wide asset tracking
               </li>
               <li>
-                Led the experimental development of a custom API gateway solution that
-                preserved existing CA Layer 7 logic while integrating Kong API Gateway
-                best practices. Designed a hybrid architecture—implemented in Go using
-                the Fiber (fasthttp) framework—that combined the strengths of both
-                platforms through a database event-driven design
+                Led the experimental development of a custom API gateway
+                solution that preserved existing CA Layer 7 logic while
+                integrating Kong API Gateway best practices. Designed a hybrid
+                architecture—implemented in Go using the Fiber (fasthttp)
+                framework—that combined the strengths of both platforms through
+                a database event-driven design
               </li>
             </ul>
           </div>
@@ -134,36 +150,38 @@ export function Resume() {
             <div className="job-location">Chiang Mai, Thailand</div>
 
             <div className="tech-stack">
-              <strong>Technologies:</strong> Go • Fiber Framework • TypeScript • React •
-              Vite • Tailwind CSS • PostgreSQL • Docker • Hexagonal Architecture •
-              Event-Driven Design
+              <strong>Technologies:</strong> Go • Fiber Framework • TypeScript •
+              React • Vite • Tailwind CSS • PostgreSQL • Docker • Hexagonal
+              Architecture • Event-Driven Design
             </div>
 
             <ul>
               <li>
                 Designed and developed multiple production-grade internal web
-                applications for faculty administration and student services, serving
-                over 2,000 active users across the engineering faculty
+                applications for faculty administration and student services,
+                serving over 2,000 active users across the engineering faculty
               </li>
               <li>
-                Conducted regular meetings with faculty stakeholders, administrators, and
-                end-users to gather requirements, provide technical consultation, and
-                deliver solutions aligned with business needs
+                Conducted regular meetings with faculty stakeholders,
+                administrators, and end-users to gather requirements, provide
+                technical consultation, and deliver solutions aligned with
+                business needs
               </li>
               <li>
-                Built full-stack applications using Go with Fiber framework for backend
-                RESTful APIs, React with TypeScript for frontend, PostgreSQL for
-                database, and Docker for containerization and deployment
+                Built full-stack applications using Go with Fiber framework for
+                backend RESTful APIs, React with TypeScript for frontend,
+                PostgreSQL for database, and Docker for containerization and
+                deployment
               </li>
               <li>
-                Consistently applied Hexagonal Architecture principles and SOLID design
-                patterns to ensure all applications were maintainable, testable, and
-                scalable for future enhancements
+                Consistently applied Hexagonal Architecture principles and SOLID
+                design patterns to ensure all applications were maintainable,
+                testable, and scalable for future enhancements
               </li>
               <li>
-                Successfully deployed and maintained multiple applications in production
-                environments, handling incident response and implementing continuous
-                improvements based on user feedback
+                Successfully deployed and maintained multiple applications in
+                production environments, handling incident response and
+                implementing continuous improvements based on user feedback
               </li>
             </ul>
           </div>
@@ -182,14 +200,16 @@ export function Resume() {
             </div>
             <div className="date-range">Graduated 2025</div>
           </div>
-          <p style={{ marginTop: '0.5rem' }}>
-            <strong>Relevant Coursework:</strong> Software Engineering, Database Systems,
-            Web Application Development, Data Structures & Algorithms, Computer Networks,
-            Operating Systems, Artificial Intelligence, Machine Learning, Computer Vision
+          <p style={{ marginTop: "0.5rem" }}>
+            <strong>Relevant Coursework:</strong> Software Engineering, Database
+            Systems, Web Application Development, Data Structures & Algorithms,
+            Computer Networks, Operating Systems, Artificial Intelligence,
+            Machine Learning, Computer Vision
           </p>
-          <p style={{ marginTop: '0.5rem' }}>
-            <strong>Thesis Project:</strong> LongPlan - Study Plan Validator (Thesis
-            project utilizing algorithmic validation and curriculum rule enforcement)
+          <p style={{ marginTop: "0.5rem" }}>
+            <strong>Thesis Project:</strong> LongPlan - Study Plan Validator
+            (Thesis project utilizing algorithmic validation and curriculum rule
+            enforcement)
           </p>
         </section>
 
@@ -199,14 +219,14 @@ export function Resume() {
           <div className="skills-grid">
             <div className="skill-category">Programming Languages</div>
             <div className="skill-items">
-              Go (Primary) • TypeScript (Primary) • Ruby • Python • Java • C++ • Haskell
-              • OCaml • Rust (Learning)
+              Go (Primary) • TypeScript (Primary) • Ruby • Python • Java • C++ •
+              Haskell • OCaml • Rust (Learning)
             </div>
 
             <div className="skill-category">API Gateway & Integration</div>
             <div className="skill-items">
-              CA Layer 7 API Gateway • Kong API Gateway • RESTful APIs • Microservices
-              Architecture •
+              CA Layer 7 API Gateway • Kong API Gateway • RESTful APIs •
+              Microservices Architecture •
             </div>
 
             <div className="skill-category">Backend Frameworks</div>
@@ -216,8 +236,8 @@ export function Resume() {
 
             <div className="skill-category">Frontend Development</div>
             <div className="skill-items">
-              React • TypeScript • Vite • Tailwind CSS • HTML5 • CSS3 • Responsive
-              Design • PWA
+              React • TypeScript • Vite • Tailwind CSS • HTML5 • CSS3 •
+              Responsive Design • PWA
             </div>
 
             <div className="skill-category">Databases & Storage</div>
@@ -227,20 +247,20 @@ export function Resume() {
 
             <div className="skill-category">DevOps & Infrastructure</div>
             <div className="skill-items">
-              Docker • Docker Compose • Linux • Git • GitHub • CI/CD Pipelines • Cloud
-              Migration • Hybrid Cloud Architecture
+              Docker • Docker Compose • Linux • Git • GitHub • CI/CD Pipelines •
+              Cloud Migration • Hybrid Cloud Architecture
             </div>
 
             <div className="skill-category">Software Architecture</div>
             <div className="skill-items">
-              Hexagonal Architecture (Ports & Adapters) • Domain-Driven Design (DDD) •
-              Microservices • SOLID Principles
+              Hexagonal Architecture (Ports & Adapters) • Domain-Driven Design
+              (DDD) • Microservices • SOLID Principles
             </div>
 
             <div className="skill-category">AI & Machine Learning</div>
             <div className="skill-items">
-              Text Classification (RNN, GRU, LSTM) • Computer Vision (CNN) • TensorFlow
-              • PyTorch • Model Training & Evaluation
+              Text Classification (RNN, GRU, LSTM) • Computer Vision (CNN) •
+              TensorFlow • PyTorch • Model Training & Evaluation
             </div>
 
             <div className="skill-category">Development Practices</div>
@@ -258,12 +278,14 @@ export function Resume() {
           {/* Project 1: Inventory Asset Management System */}
           <div className="project-entry">
             <div className="project-header">
-              <div className="project-title">Inventory Asset Management System</div>
+              <div className="project-title">
+                Inventory Asset Management System
+              </div>
               <div className="date-range">2025</div>
             </div>
             <div className="project-description">
-              Enterprise-grade full-stack asset management solution with centralized
-              tracking and workflow automation
+              Enterprise-grade full-stack asset management solution with
+              centralized tracking and workflow automation
             </div>
 
             <div className="tech-stack">
@@ -273,10 +295,11 @@ export function Resume() {
 
             <ul>
               <li>
-                Developed and architected a full-stack Inventory Asset Management System
-                (Ruby on Rails, React, TypeScript) featuring full CRUD operations, asset
-                request/return workflows, and a centralized database serving as a single
-                source of truth for company-wide asset tracking
+                Developed and architected a full-stack Inventory Asset
+                Management System (Ruby on Rails, React, TypeScript) featuring
+                full CRUD operations, asset request/return workflows, and a
+                centralized database serving as a single source of truth for
+                company-wide asset tracking
               </li>
             </ul>
           </div>
@@ -284,30 +307,32 @@ export function Resume() {
           {/* Project 2: Custom Hybrid API Gateway Solution */}
           <div className="project-entry">
             <div className="project-header">
-              <div className="project-title">Custom Hybrid API Gateway Solution</div>
+              <div className="project-title">
+                Custom Hybrid API Gateway Solution
+              </div>
               <div className="date-range">2025</div>
             </div>
             <div className="project-description">
-              Experimental API gateway combining CA Layer 7 and Kong best practices with
-              database-driven architecture
+              Experimental API gateway combining CA Layer 7 and Kong best
+              practices with database-driven architecture
             </div>
 
             <div className="tech-stack">
-              <strong>Tech Stack:</strong> Go • Fiber Framework (fasthttp) • PostgreSQL
-              • Database-Driven Architecture • CA Layer 7 API Gateway • Kong API Gateway
-              • Microservices
+              <strong>Tech Stack:</strong> Go • Fiber Framework (fasthttp) •
+              PostgreSQL • Database-Driven Architecture • CA Layer 7 API Gateway
+              • Kong API Gateway • Microservices
             </div>
 
             <ul>
               <li>
-                Led the experimental development of a custom API gateway solution that
-                preserved existing CA Layer 7 logic while integrating Kong API Gateway
-                best practices
+                Led the experimental development of a custom API gateway
+                solution that preserved existing CA Layer 7 logic while
+                integrating Kong API Gateway best practices
               </li>
               <li>
                 Designed a hybrid architecture—implemented in Go using the Fiber
-                (fasthttp) framework—that combined the strengths of both platforms
-                through a database event-driven design
+                (fasthttp) framework—that combined the strengths of both
+                platforms through a database event-driven design
               </li>
             </ul>
           </div>
@@ -315,37 +340,39 @@ export function Resume() {
           {/* Project 3: SD-Booking */}
           <div className="project-entry">
             <div className="project-header">
-              <div className="project-title">SD-Booking — Room Reservation System</div>
+              <div className="project-title">
+                SD-Booking — Room Reservation System
+              </div>
               <div className="date-range">2023 - 2025</div>
             </div>
             <div className="project-description">
-              Enterprise room booking platform with role-based access control and
-              real-time notification system
+              Enterprise room booking platform with role-based access control
+              and real-time notification system
             </div>
 
             <div className="tech-stack">
-              <strong>Tech Stack:</strong> Go • Fiber Framework • TypeScript • React •
-              Vite • Tailwind CSS • PostgreSQL • Docker • Hexagonal Architecture • PWA •
-              WebHooks
+              <strong>Tech Stack:</strong> Go • Fiber Framework • TypeScript •
+              React • Vite • Tailwind CSS • PostgreSQL • Docker • Hexagonal
+              Architecture • PWA • WebHooks
             </div>
 
             <ul>
               <li>
-                Designed and developed following Hexagonal Architecture principles using
-                Go, TypeScript, React, Vite, Tailwind CSS, and PostgreSQL with production
-                deployment on Docker
+                Designed and developed following Hexagonal Architecture
+                principles using Go, TypeScript, React, Vite, Tailwind CSS, and
+                PostgreSQL with production deployment on Docker
               </li>
               <li>
-                Supports status checks, bookings, and admin approvals with real-time
-                updates
+                Supports status checks, bookings, and admin approvals with
+                real-time updates
               </li>
               <li>
-                Admins manage room data, permissions, and allocations through intuitive
-                dashboard
+                Admins manage room data, permissions, and allocations through
+                intuitive dashboard
               </li>
               <li>
-                Integrated Web Hook-based PWA notifications via SDQueue to reduce user
-                wait time
+                Integrated Web Hook-based PWA notifications via SDQueue to
+                reduce user wait time
               </li>
             </ul>
           </div>
@@ -353,28 +380,31 @@ export function Resume() {
           {/* Project 4: LongPlan */}
           <div className="project-entry">
             <div className="project-header">
-              <div className="project-title">LongPlan — Study Plan Validator</div>
+              <div className="project-title">
+                LongPlan — Study Plan Validator
+              </div>
               <div className="date-range">2023 - 2025</div>
             </div>
             <div className="project-description">
-              Algorithmic study plan validation system enforcing complex curriculum rules
-              and graduation requirements (Senior Thesis Project)
+              Algorithmic study plan validation system enforcing complex
+              curriculum rules and graduation requirements (Senior Thesis
+              Project)
             </div>
 
             <div className="tech-stack">
-              <strong>Tech Stack:</strong> Go • Fiber Framework • TypeScript • React •
-              PostgreSQL • Graph Algorithms • Rule Engine • Hexagonal Architecture •
-              Docker
+              <strong>Tech Stack:</strong> Go • Fiber Framework • TypeScript •
+              React • PostgreSQL • Graph Algorithms • Rule Engine • Hexagonal
+              Architecture • Docker
             </div>
 
             <ul>
               <li>
-                Validates subject prerequisites, credits, and graduation rules following
-                student's enrolled courses and curriculum
+                Validates subject prerequisites, credits, and graduation rules
+                following student's enrolled courses and curriculum
               </li>
               <li>
-                Provides a user-friendly interface for students to view and plan their
-                academic progression
+                Provides a user-friendly interface for students to view and plan
+                their academic progression
               </li>
             </ul>
           </div>
@@ -382,27 +412,29 @@ export function Resume() {
           {/* Project 5: SD-Letter */}
           <div className="project-entry">
             <div className="project-header">
-              <div className="project-title">SD-Letter — Certificate Request System</div>
+              <div className="project-title">
+                SD-Letter — Certificate Request System
+              </div>
               <div className="date-range">2023 - 2025</div>
             </div>
             <div className="project-description">
-              Digital certificate request workflow system with multi-stage approval
-              process and automated notifications
+              Digital certificate request workflow system with multi-stage
+              approval process and automated notifications
             </div>
 
             <div className="tech-stack">
-              <strong>Tech Stack:</strong> Go • Fiber Framework • TypeScript • React •
-              PostgreSQL • WebHooks • Docker • Hexagonal Architecture
+              <strong>Tech Stack:</strong> Go • Fiber Framework • TypeScript •
+              React • PostgreSQL • WebHooks • Docker • Hexagonal Architecture
             </div>
 
             <ul>
               <li>
-                Supports interaction between Admin and Student about Certificate Request
-                (Approved, Rejected, Resubmitted, Published)
+                Supports interaction between Admin and Student about Certificate
+                Request (Approved, Rejected, Resubmitted, Published)
               </li>
               <li>
-                Uses Web Hooks to push notifications via SDQueue for real-time status
-                updates
+                Uses Web Hooks to push notifications via SDQueue for real-time
+                status updates
               </li>
             </ul>
           </div>
