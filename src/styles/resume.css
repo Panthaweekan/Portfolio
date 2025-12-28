@@ -1,100 +1,160 @@
-/* Resume Page Styles */
+/* ============================================
+   Enterprise Resume Export Styles
+   Optimized for A4 PDF Export (210mm × 297mm)
+   ============================================ */
 
+/* Import professional font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+  --resume-primary: #4F46E5;      /* Indigo-600 */
+  --resume-primary-light: #E0E7FF; /* Indigo-100 */
+  --resume-text-dark: #111827;     /* Gray-900 */
+  --resume-text-medium: #374151;   /* Gray-700 */
+  --resume-text-light: #6B7280;    /* Gray-500 */
+  --resume-border: #E5E7EB;        /* Gray-200 */
+  --resume-bg-subtle: #F9FAFB;     /* Gray-50 */
+  --resume-spacing-xs: 0.25rem;
+  --resume-spacing-sm: 0.5rem;
+  --resume-spacing-md: 1rem;
+  --resume-spacing-lg: 1.5rem;
+  --resume-spacing-xl: 2rem;
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
 .resume-container {
   min-height: 100vh;
-  background-color: hsl(var(--background));
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-/* Print Button */
-.print-button {
-  position: fixed !important;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transform: translateZ(0); /* Force GPU acceleration */
-  will-change: transform; /* Optimize for animations */
-  backface-visibility: hidden; /* Prevent flickering */
-}
-
-/* Page Layout */
+/* ============================================
+   PAGE LAYOUT (A4 Preview)
+   ============================================ */
 .page-layout {
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 3rem;
+  max-width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 20mm 18mm;
   background-color: white;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  color: #1a202c;
-  line-height: 1.6;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--resume-text-dark);
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
-/* Header */
+/* ============================================
+   HEADER
+   ============================================ */
 .page-head {
   text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 3px solid #9c83ff;
+  margin-bottom: var(--resume-spacing-lg);
+  padding-bottom: var(--resume-spacing-md);
+  border-bottom: 2px solid var(--resume-primary);
 }
 
 .my-name {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  color: #1a202c;
-  letter-spacing: -0.025em;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: var(--resume-spacing-xs);
+  color: var(--resume-text-dark);
+  letter-spacing: -0.02em;
 }
 
 .my-role {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: #9c83ff;
-  margin-bottom: 1rem;
+  color: var(--resume-primary);
+  margin-bottom: var(--resume-spacing-sm);
 }
 
 .contact-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  font-size: 0.875rem;
+  gap: var(--resume-spacing-sm) var(--resume-spacing-md);
+  font-size: 0.8125rem;
+  color: var(--resume-text-medium);
 }
 
 .contact-item {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.contact-item strong {
+  font-weight: 600;
+  color: var(--resume-text-dark);
 }
 
 .contact-item a {
-  color: #9c83ff;
+  color: var(--resume-primary);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .contact-item a:hover {
+  color: #3730A3;
   text-decoration: underline;
 }
 
-/* Sections */
+/* ============================================
+   SECTIONS
+   ============================================ */
 section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--resume-spacing-lg);
+}
+
+section:last-child {
+  margin-bottom: 0;
 }
 
 .page-subheader {
-  font-size: 1.5rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e2e8f0;
+  color: var(--resume-primary);
+  margin-bottom: var(--resume-spacing-sm);
+  padding-bottom: var(--resume-spacing-xs);
+  border-bottom: 1px solid var(--resume-border);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
 }
 
-/* Job Entry */
+section > p {
+  font-size: 0.8125rem;
+  color: var(--resume-text-medium);
+  line-height: 1.6;
+  margin-bottom: var(--resume-spacing-sm);
+}
+
+section > p:last-child {
+  margin-bottom: 0;
+}
+
+/* ============================================
+   JOB / PROJECT ENTRIES
+   ============================================ */
 .job-entry,
 .project-entry {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--resume-spacing-md);
+  padding-bottom: var(--resume-spacing-sm);
+  border-bottom: 1px solid var(--resume-border);
+}
+
+.job-entry:last-child,
+.project-entry:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .job-header,
@@ -102,128 +162,165 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.5rem;
-  gap: 1rem;
+  gap: var(--resume-spacing-md);
+  margin-bottom: var(--resume-spacing-xs);
 }
 
 .job-title,
 .project-title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #2d3748;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--resume-text-dark);
+  line-height: 1.3;
 }
 
 .company-name,
 .institution-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #4a5568;
-  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--resume-text-medium);
+  margin-top: 0.125rem;
 }
 
 .date-range {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  color: #718096;
+  color: var(--resume-primary);
   white-space: nowrap;
-  background-color: #f7fafc;
-  padding: 0.25rem 0.75rem;
+  background-color: var(--resume-primary-light);
+  padding: 0.25rem 0.625rem;
   border-radius: 9999px;
+  flex-shrink: 0;
 }
 
 .job-location,
 .location {
-  font-size: 0.875rem;
-  color: #718096;
-  margin-bottom: 0.5rem;
-  font-style: italic;
+  font-size: 0.75rem;
+  color: var(--resume-text-light);
+  margin-bottom: var(--resume-spacing-xs);
 }
 
+/* ============================================
+   TECH STACK
+   ============================================ */
 .tech-stack {
-  font-size: 0.875rem;
-  color: #4a5568;
-  margin: 0.75rem 0;
-  padding: 0.75rem;
-  background-color: #f7fafc;
-  border-left: 3px solid #9c83ff;
-  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--resume-text-medium);
+  margin: var(--resume-spacing-xs) 0;
+  padding: var(--resume-spacing-xs) var(--resume-spacing-sm);
+  background-color: var(--resume-bg-subtle);
+  border-left: 2px solid var(--resume-primary);
+  border-radius: 2px;
+  line-height: 1.5;
 }
 
 .tech-stack strong {
-  color: #2d3748;
+  font-weight: 600;
+  color: var(--resume-text-dark);
 }
 
-/* Lists */
+/* ============================================
+   LISTS
+   ============================================ */
 ul {
   list-style: none;
   padding-left: 0;
-  margin-top: 0.5rem;
+  margin: var(--resume-spacing-xs) 0 0;
 }
 
 ul li {
   position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #4a5568;
-  font-size: 0.9375rem;
+  padding-left: 1rem;
+  margin-bottom: 0.375rem;
+  color: var(--resume-text-medium);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
 }
 
 ul li::before {
-  content: "•";
+  content: "▸";
   position: absolute;
-  left: 0.5rem;
-  color: #9c83ff;
-  font-weight: bold;
+  left: 0;
+  color: var(--resume-primary);
+  font-size: 0.625rem;
+  top: 0.25rem;
 }
 
-/* Education */
+/* ============================================
+   EDUCATION
+   ============================================ */
 .education-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.75rem;
-  gap: 1rem;
+  gap: var(--resume-spacing-md);
+  margin-bottom: var(--resume-spacing-xs);
 }
 
 .degree-title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #2d3748;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--resume-text-dark);
 }
 
-/* Skills Grid */
+.education-header + p {
+  font-size: 0.8125rem;
+  color: var(--resume-text-medium);
+  margin-top: var(--resume-spacing-xs);
+}
+
+/* ============================================
+   SKILLS GRID
+   ============================================ */
 .skills-grid {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 3fr;
-  gap: 0.75rem 1.5rem;
+  grid-template-columns: 140px 1fr;
+  gap: var(--resume-spacing-xs) var(--resume-spacing-md);
   align-items: baseline;
 }
 
 .skill-category {
   font-weight: 600;
-  color: #2d3748;
-  font-size: 0.9375rem;
+  color: var(--resume-text-dark);
+  font-size: 0.75rem;
+  padding: 0.125rem 0;
 }
 
 .skill-items {
-  color: #4a5568;
-  font-size: 0.9375rem;
-  line-height: 1.7;
+  color: var(--resume-text-medium);
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
 
-/* Project Description */
+/* ============================================
+   PROJECT DESCRIPTION
+   ============================================ */
 .project-description {
-  font-size: 0.9375rem;
-  color: #4a5568;
+  font-size: 0.8125rem;
+  color: var(--resume-text-light);
   font-style: italic;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--resume-spacing-xs);
 }
 
-/* Print Styles - Optimized for A4 Paper */
+/* ============================================
+   NO PRINT ELEMENTS
+   ============================================ */
+.no-print {
+  position: relative;
+  z-index: 100;
+}
+
+/* ============================================
+   PRINT STYLES (A4 Export)
+   ============================================ */
 @media print {
   @page {
     size: A4;
-    margin: 0; /* Set page margin to 0, we'll handle margins in content */
+    margin: 10mm 12mm;
   }
 
   * {
@@ -231,12 +328,12 @@ ul li::before {
     print-color-adjust: exact !important;
   }
 
-  html,
-  body {
+  html, body {
     margin: 0 !important;
     padding: 0 !important;
-    width: 210mm; /* A4 width */
-    height: 297mm; /* A4 height */
+    width: 210mm;
+    background: white !important;
+    font-size: 9pt;
   }
 
   .no-print {
@@ -244,254 +341,210 @@ ul li::before {
   }
 
   .resume-container {
-    background-color: white;
-    margin: 0 !important;
+    background: white !important;
     padding: 0 !important;
-    width: 210mm;
-    min-height: 297mm;
+    margin: 0 !important;
+    min-height: auto;
   }
 
   .page-layout {
     max-width: 100%;
-    width: 210mm;
-    min-height: 297mm;
+    width: 100%;
+    min-height: auto;
     margin: 0 !important;
-    padding: 12mm 15mm; /* Tighter internal padding for content margins */
+    padding: 0;
     box-shadow: none;
     border-radius: 0;
-    font-size: 9.5pt; /* Slightly smaller for better fit */
+    font-size: 9pt;
     line-height: 1.35;
-    box-sizing: border-box;
   }
 
+  /* Header */
   .page-head {
     margin-bottom: 6pt;
-    padding-bottom: 4pt;
-    border-bottom-width: 2pt;
+    padding-bottom: 5pt;
+    border-bottom-width: 1.5pt;
   }
 
   .my-name {
-    font-size: 16pt;
+    font-size: 15pt;
     margin-bottom: 2pt;
   }
 
   .my-role {
-    font-size: 10pt;
+    font-size: 9pt;
     margin-bottom: 3pt;
   }
 
   .contact-info {
-    font-size: 8pt;
-    gap: 4pt 8pt;
-    flex-wrap: wrap;
+    font-size: 7.5pt;
+    gap: 2pt 8pt;
   }
 
+  /* Sections - Allow breaking, just keep headers with first item */
   section {
-    margin-bottom: 7pt;
-    page-break-inside: avoid; /* Keep sections together */
-    orphans: 3;
-    widows: 3;
-  }
-
-  /* Allow Professional Experience and Projects sections to break */
-  section:has(.job-entry),
-  section:has(.project-entry) {
-    page-break-inside: auto;
+    margin-bottom: 8pt;
+    page-break-inside: auto; /* Allow sections to break across pages */
   }
 
   .page-subheader {
-    font-size: 11pt;
+    font-size: 8.5pt;
     margin-bottom: 4pt;
     padding-bottom: 2pt;
-    page-break-after: avoid;
+    page-break-after: avoid; /* Keep header with first content */
     margin-top: 0;
   }
 
+  section > p {
+    font-size: 8pt;
+    line-height: 1.4;
+    margin-bottom: 4pt;
+  }
+
+  /* Job entries - Allow breaking within if needed */
   .job-entry,
   .project-entry {
     margin-bottom: 6pt;
-    page-break-inside: avoid; /* Keep each job/project entry together */
+    padding-bottom: 4pt;
+    page-break-inside: auto; /* Allow breaking within entries */
   }
 
   .job-header,
   .project-header {
-    page-break-after: avoid;
-    page-break-inside: avoid;
+    page-break-after: avoid; /* Keep title with first line */
+    gap: 6pt;
+    margin-bottom: 2pt;
   }
 
   .job-title,
   .project-title {
-    font-size: 10pt;
+    font-size: 8.5pt;
+    line-height: 1.2;
   }
 
   .company-name,
   .institution-name {
-    font-size: 9pt;
+    font-size: 8pt;
   }
 
   .date-range {
-    font-size: 8pt;
-    background-color: #f0f0f0;
-    padding: 1pt 5pt;
+    font-size: 6.5pt;
+    padding: 1pt 4pt;
   }
 
   .job-location,
   .location {
-    font-size: 8pt;
+    font-size: 7pt;
     margin-bottom: 2pt;
   }
 
   .tech-stack {
-    font-size: 8pt;
+    font-size: 7pt;
     padding: 2pt 4pt;
     margin: 2pt 0;
-    background-color: #f9f9f9;
-    border-left-width: 2pt;
-    page-break-inside: avoid;
-    page-break-after: avoid;
   }
 
-  /* Keep tech stack with following list */
-  .tech-stack + ul {
-    page-break-before: avoid;
-  }
-
+  /* Lists - Allow natural breaking */
   ul {
     margin-top: 2pt;
     margin-bottom: 2pt;
-    page-break-inside: auto; /* Lists can break if needed */
   }
 
   ul li {
-    font-size: 8.5pt;
+    font-size: 7.5pt;
     margin-bottom: 1.5pt;
-    padding-left: 10pt;
-    line-height: 1.25;
-    page-break-inside: avoid;
+    padding-left: 8pt;
+    line-height: 1.3;
   }
 
   ul li::before {
-    left: 3pt;
+    font-size: 5pt;
+    top: 1.5pt;
   }
 
+  /* Education */
   .education-header {
-    margin-bottom: 3pt;
-    page-break-inside: avoid;
-    page-break-after: avoid;
-  }
-
-  /* Keep education text with header */
-  .education-header + p {
-    page-break-before: avoid;
+    margin-bottom: 2pt;
   }
 
   .degree-title {
-    font-size: 10pt;
+    font-size: 8.5pt;
   }
 
+  .education-header + p {
+    font-size: 7.5pt;
+  }
+
+  /* Skills - Compact grid */
   .skills-grid {
-    gap: 2pt 6pt;
-    font-size: 8pt;
-    page-break-inside: auto;
+    font-size: 7pt;
+    gap: 1.5pt 6pt;
+    grid-template-columns: 90pt 1fr;
   }
 
   .skill-category {
-    font-size: 8.5pt;
-    page-break-after: avoid;
+    font-size: 7pt;
   }
 
   .skill-items {
-    font-size: 8pt;
+    font-size: 7pt;
     line-height: 1.35;
-    page-break-before: avoid;
   }
 
+  /* Projects */
   .project-description {
-    font-size: 8pt;
+    font-size: 7pt;
     margin-bottom: 2pt;
-    page-break-inside: avoid;
   }
 
-  /* Ensure proper page breaks */
-  h1,
-  h2,
-  h3,
-  .page-subheader {
-    page-break-after: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* Keep related content together - Critical for good layout */
-  .job-header + .job-location {
-    page-break-before: avoid;
-  }
-
-  .job-location + .tech-stack {
-    page-break-before: avoid;
-  }
-
-  .project-header + .project-description {
-    page-break-before: avoid;
-  }
-
-  .project-description + .tech-stack {
-    page-break-before: avoid;
-  }
-
-  /* Summary paragraphs should stay together */
-  section p {
-    page-break-inside: avoid;
-  }
-
-  section p + p {
-    page-break-before: avoid;
-  }
-
-  /* Print-specific colors (optimized for ink usage) */
-  .page-head {
-    border-bottom-color: #333;
-  }
-
-  .tech-stack {
-    border-left-color: #666;
-  }
-
+  /* Links */
   a {
-    color: #000;
-    text-decoration: none;
+    color: #000 !important;
+    text-decoration: none !important;
   }
 
-  a[href^="http"]::after {
-    content: "";
+  /* Keep title with next element only */
+  .page-subheader + .job-entry,
+  .page-subheader + .project-entry,
+  .page-subheader + .education-header,
+  .page-subheader + .skills-grid,
+  .page-subheader + p {
+    page-break-before: avoid;
   }
 }
 
-/* Responsive Design */
+/* ============================================
+   RESPONSIVE (Mobile Preview)
+   ============================================ */
 @media (max-width: 768px) {
+  .resume-container {
+    padding: 1rem;
+  }
+
   .page-layout {
-    margin: 1rem;
     padding: 1.5rem;
+    border-radius: 8px;
   }
 
   .my-name {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .my-role {
-    font-size: 1.125rem;
+    font-size: 0.9375rem;
   }
 
   .contact-info {
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.375rem;
   }
 
   .job-header,
   .project-header,
   .education-header {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.375rem;
   }
 
   .date-range {
@@ -500,11 +553,16 @@ ul li::before {
 
   .skills-grid {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 
   .skill-category {
+    margin-top: 0.5rem;
     font-weight: 700;
-    margin-top: 0.75rem;
+    color: var(--resume-primary);
+  }
+
+  .skill-category:first-child {
+    margin-top: 0;
   }
 }

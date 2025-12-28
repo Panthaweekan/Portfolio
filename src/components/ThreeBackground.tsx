@@ -274,12 +274,15 @@ export function ThreeBackground() {
         }}
         gl={{
           alpha: true,
-          antialias: true,
-          powerPreference: "high-performance"
+          antialias: false, // Disable for better performance
+          powerPreference: "high-performance",
+          stencil: false,
+          depth: true,
         }}
+        dpr={[1, 1.5]} // Limit device pixel ratio for performance
+        performance={{ min: 0.5 }} // Allow frame dropping under load
         onCreated={({ gl }) => {
           gl.setClearColor('#000000', 0);
-          console.log('Three.js Canvas created successfully');
         }}
         onError={(error) => {
           console.error('Three.js Canvas error:', error);

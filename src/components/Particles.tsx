@@ -7,29 +7,25 @@ interface Particle {
   vy: number;
   size: number;
   opacity: number;
-  color: string;
   colorRgb: { r: number; g: number; b: number };
-  hue: number;
-  pulsePhase: number;
-  pulseSpeed: number;
 }
 
 const COLORS = [
-  { hex: '#9C83FF', rgb: { r: 156, g: 131, b: 255 }, hue: 262 }, // Primary purple
-  { hex: '#FF9051', rgb: { r: 255, g: 144, b: 81 }, hue: 20 },   // Secondary orange
-  { hex: '#2DBBEE', rgb: { r: 45, g: 187, b: 238 }, hue: 195 },  // Accent cyan
-  { hex: '#B19BFF', rgb: { r: 177, g: 155, b: 255 }, hue: 262 }, // Light purple
+  { r: 156, g: 131, b: 255 }, // Primary purple
+  { r: 255, g: 144, b: 81 },  // Secondary orange
+  { r: 45, g: 187, b: 238 },  // Accent cyan
 ];
 
 export function Particles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     // Set canvas size
@@ -40,14 +36,28 @@ export function Particles() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Track mouse position
+    // Track mouse position with throttling
+    let mouseMoveTimeout: ReturnType<typeof setTimeout> | null = null;
     const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
+      if (mouseMoveTimeout) return;
+      mouseMoveTimeout = setTimeout(() => {
+        mouseRef.current = { x: e.clientX, y: e.clientY };
+        mouseMoveTimeout = null;
+      }, 16); // ~60fps throttle for mouse
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-    // Create particles with varied colors
-    const particleCount = 80;
+    // Visibility observer - pause when off screen
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisibleRef.current = entries[0]?.isIntersecting ?? true;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    // Create fewer particles for better performance
+    const particleCount = 40; // Reduced from 80
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
@@ -55,42 +65,50 @@ export function Particles() {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2.5 + 1,
-        opacity: Math.random() * 0.4 + 0.2,
-        color: colorData.hex,
-        colorRgb: colorData.rgb,
-        hue: colorData.hue,
-        pulsePhase: Math.random() * Math.PI * 2,
-        pulseSpeed: Math.random() * 0.02 + 0.01,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.3 + 0.2,
+        colorRgb: colorData,
       });
     }
 
-    // Animation loop
+    // Animation loop with frame skipping
     let animationFrameId: number;
-    const animate = () => {
+    let lastFrameTime = 0;
+    const targetFPS = 30; // Limit to 30fps for smoother scrolling
+    const frameInterval = 1000 / targetFPS;
+
+    const animate = (currentTime: number) => {
+      animationFrameId = requestAnimationFrame(animate);
+
+      // Skip frame if not visible or too soon
+      if (!isVisibleRef.current) return;
+      if (currentTime - lastFrameTime < frameInterval) return;
+      lastFrameTime = currentTime;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach((particle) => {
-        // Mouse interaction - particles move away from cursor
+      // Update and draw particles
+      for (let i = 0; i < particles.length; i++) {
+        const particle = particles[i];
+
+        // Simple mouse interaction
         const dx = particle.x - mouseRef.current.x;
         const dy = particle.y - mouseRef.current.y;
-        const distanceToMouse = Math.sqrt(dx * dx + dy * dy);
-        const interactionRadius = 150;
+        const distSq = dx * dx + dy * dy;
+        const interactionRadiusSq = 22500; // 150^2
 
-        if (distanceToMouse < interactionRadius) {
-          const force = (interactionRadius - distanceToMouse) / interactionRadius;
-          const angle = Math.atan2(dy, dx);
-          particle.vx += Math.cos(angle) * force * 0.15;
-          particle.vy += Math.sin(angle) * force * 0.15;
+        if (distSq < interactionRadiusSq) {
+          const force = 0.1 * (1 - distSq / interactionRadiusSq);
+          const dist = Math.sqrt(distSq);
+          particle.vx += (dx / dist) * force;
+          particle.vy += (dy / dist) * force;
         }
 
-        // Apply velocity damping
+        // Apply velocity damping and update position
         particle.vx *= 0.98;
         particle.vy *= 0.98;
-
-        // Update position
         particle.x += particle.vx;
         particle.y += particle.vy;
 
@@ -100,66 +118,44 @@ export function Particles() {
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
 
-        // Update pulse animation
-        particle.pulsePhase += particle.pulseSpeed;
-        const pulseScale = 1 + Math.sin(particle.pulsePhase) * 0.3;
-        const pulseOpacity = particle.opacity * (0.7 + Math.sin(particle.pulsePhase) * 0.3);
-
-        // Draw particle with glow effect
-        const gradient = ctx.createRadialGradient(
-          particle.x, particle.y, 0,
-          particle.x, particle.y, particle.size * pulseScale * 2
-        );
-        gradient.addColorStop(0, `rgba(${particle.colorRgb.r}, ${particle.colorRgb.g}, ${particle.colorRgb.b}, ${pulseOpacity})`);
-        gradient.addColorStop(0.5, `rgba(${particle.colorRgb.r}, ${particle.colorRgb.g}, ${particle.colorRgb.b}, ${pulseOpacity * 0.5})`);
-        gradient.addColorStop(1, `rgba(${particle.colorRgb.r}, ${particle.colorRgb.g}, ${particle.colorRgb.b}, 0)`);
-
+        // Simple circle draw (no gradient for performance)
+        const { r, g, b } = particle.colorRgb;
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * pulseScale, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${particle.opacity})`;
         ctx.fill();
+      }
 
-        // Draw core
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.size * pulseScale * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${particle.colorRgb.r}, ${particle.colorRgb.g}, ${particle.colorRgb.b}, ${Math.min(1, pulseOpacity * 1.5)})`;
-        ctx.fill();
-      });
-
-      // Draw connections between nearby particles
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach((p2) => {
+      // Draw connections between nearby particles (simplified)
+      const maxDistSq = 10000; // 100^2 - reduced from 140
+      ctx.lineWidth = 0.5;
+      
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const maxDistance = 140;
+          const distSq = dx * dx + dy * dy;
 
-          if (distance < maxDistance) {
-            const opacity = 0.15 * (1 - distance / maxDistance);
-
-            // Create gradient line between particles
-            const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-            gradient.addColorStop(0, `rgba(${p1.colorRgb.r}, ${p1.colorRgb.g}, ${p1.colorRgb.b}, ${opacity})`);
-            gradient.addColorStop(1, `rgba(${p2.colorRgb.r}, ${p2.colorRgb.g}, ${p2.colorRgb.b}, ${opacity})`);
-
+          if (distSq < maxDistSq) {
+            const opacity = 0.1 * (1 - distSq / maxDistSq);
             ctx.beginPath();
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 1;
+            ctx.strokeStyle = `rgba(156, 131, 255, ${opacity})`;
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
-        });
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
+        }
+      }
     };
 
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
+      observer.disconnect();
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
@@ -174,3 +170,4 @@ export function Particles() {
     />
   );
 }
+

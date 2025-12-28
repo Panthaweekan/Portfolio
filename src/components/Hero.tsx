@@ -1,11 +1,14 @@
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { m } from 'framer-motion';
 import { Button } from './ui/button';
 import { H1, Body } from './ui/typography';
 import { Particles } from './Particles';
-import { ThreeBackground } from './ThreeBackground';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+
+// Lazy load ThreeBackground (Three.js) to reduce initial bundle size
+const ThreeBackground = lazy(() => import('./ThreeBackground').then(m => ({ default: m.ThreeBackground })));
+
 
 export function Hero() {
   const [text, setText] = useState('');
@@ -78,14 +81,36 @@ export function Hero() {
 
       <div className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          <H1 className="mb-6 font-black animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <H1 className="mb-2 font-black animate-in fade-in slide-in-from-bottom-4 duration-1000">
             Panthaweekan Somngam
           </H1>
-          <div className="text-2xl md:text-4xl font-heading font-semibold mb-8 h-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
+          <p className="text-lg md:text-xl text-muted-foreground mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-100">
+            Building scalable systems with clean architecture and attention to detail
+          </p>
+          <div className="text-2xl md:text-4xl font-heading font-semibold mb-6 h-12 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
             <span className="text-gradient">{text}</span>
             <span className="animate-pulse text-primary">|</span>
           </div>
-          <Body className="text-lg md:text-xl mb-12 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300" variant="muted">
+          
+          {/* Achievement Badges */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-250">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium">
+              <span>🎓</span> Second-Class Honours
+            </span>
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium">
+              <span>🚀</span> 5+ Production Systems
+            </span>
+          </div>
+          
+          {/* Availability Indicator */}
+          <div className="flex justify-center mb-8 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-275">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-sm font-medium text-green-600 dark:text-green-400">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+              Open to new opportunities
+            </span>
+          </div>
+          
+          <Body className="text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300" variant="muted">
             Passionate about building scalable web applications and solving complex problems
             with modern technologies.
           </Body>

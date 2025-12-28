@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // GitHub Pages SPA redirect with trailing slash handling
+    (function() {
+      var path = window.location.pathname;
+      var host = window.location.host;
+      var protocol = window.location.protocol;
+      
+      // Add trailing slash if missing (except for files with extensions)
+      if (!path.endsWith('/') && !path.includes('.')) {
+        window.location.replace(protocol + '//' + host + path + '/' + window.location.search + window.location.hash);
+      } else {
+        // Redirect to index.html for SPA routing
+        // Store the path in sessionStorage for the main app to restore
+        sessionStorage.setItem('spa-redirect-path', path + window.location.search + window.location.hash);
+        window.location.replace(protocol + '//' + host + '/Portfolio/');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

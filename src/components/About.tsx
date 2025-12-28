@@ -77,10 +77,13 @@ export function About() {
           className="max-w-4xl mx-auto mb-12"
         >
           <Body className="text-lg mb-4" variant="muted">
-            Associate Software Engineer with expertise in enterprise API gateway infrastructure, cloud migration, and full-stack web development. Currently contributing to SCB TechX's digital transformation initiatives, specializing in hybrid cloud architecture and API gateway solutions using CA Layer 7 and Kong API Gateway. Experienced in building scalable web applications with modern technologies including Go, TypeScript, Ruby on Rails, and React.
+            I'm an Associate Software Engineer at SCB TechX, where I focus on enterprise API gateway infrastructure and cloud migration initiatives. My work involves designing hybrid architectures that bridge legacy systems with modern cloud-native solutions—a challenge I find genuinely fascinating.
+          </Body>
+          <Body className="text-lg mb-4" variant="muted">
+            <span className="font-semibold text-foreground">Why clean architecture matters to me:</span> Early in my career, I inherited codebases that were difficult to maintain and even harder to test. That experience shaped my belief that sustainable software design isn't a luxury—it's a responsibility. I'm passionate about Hexagonal Architecture, Domain-Driven Design, and SOLID principles because they make systems that teams can actually evolve with confidence.
           </Body>
           <Body className="text-lg" variant="muted">
-            Passionate about clean code architecture and sustainable software design, with extensive experience implementing Hexagonal Architecture, Domain-Driven Design, and SOLID principles across production systems. Strong advocate for microservices patterns, with hands-on experience building production-grade systems that serve real users.
+            <span className="font-semibold text-foreground">What I'm looking for:</span> I thrive in environments where engineering excellence is valued, where I can contribute to meaningful products, and where there's room to grow into system design and technical leadership. If you're building something ambitious with a team that cares about quality, I'd love to connect.
           </Body>
         </m.div>
 

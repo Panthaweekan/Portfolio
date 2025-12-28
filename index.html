@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="/Portfolio/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Panthaweekan Somngam" />
@@ -10,8 +11,10 @@
     />
     <meta
       name="keywords"
-      content="Full-Stack Developer, Go Developer, TypeScript, React, Web Development, Portfolio, Software Engineer"
+      content="Full-Stack Developer, Go Developer, TypeScript, React, Web Development, Portfolio, Software Engineer, API Gateway, Hexagonal Architecture"
     />
+    <meta name="theme-color" content="#9C83FF" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -21,42 +24,74 @@
     />
     <meta
       property="og:title"
-      content="Panthaweekan Somngam | Full-Stack Developer Portfolio"
+      content="Panthaweekan Somngam | Full-Stack Developer"
     />
     <meta
       property="og:description"
-      content="Full-Stack Developer specializing in Go, TypeScript, and React. Building scalable web applications with modern technologies."
+      content="Associate Software Engineer at SCB TechX. Building scalable systems with Go, TypeScript, and React. 5+ production systems serving 2,000+ users."
     />
+    <meta
+      property="og:image"
+      content="https://panthaweekan.github.io/Portfolio/imgs/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Panthaweekan Somngam Portfolio" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
-      property="twitter:url"
+      name="twitter:url"
       content="https://panthaweekan.github.io/Portfolio/"
     />
     <meta
-      property="twitter:title"
-      content="Panthaweekan Somngam | Full-Stack Developer Portfolio"
+      name="twitter:title"
+      content="Panthaweekan Somngam | Full-Stack Developer"
     />
     <meta
-      property="twitter:description"
-      content="Full-Stack Developer specializing in Go, TypeScript, and React. Building scalable web applications with modern technologies."
+      name="twitter:description"
+      content="Associate Software Engineer at SCB TechX. Building scalable systems with Go, TypeScript, and React."
+    />
+    <meta
+      name="twitter:image"
+      content="https://panthaweekan.github.io/Portfolio/imgs/og-image.png"
     />
 
-    <link rel="icon" type="image/svg+xml" href="/imgs/bolt.svg" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://panthaweekan.github.io/Portfolio/" />
 
-    <!-- Google Fonts: Montserrat & Roboto for monochromatic typography -->
+    <link rel="icon" type="image/svg+xml" href="imgs/bolt.svg" />
+
+    <!-- Google Fonts: Montserrat & Roboto - Async Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <title>Panthaweekan Somngam | Full-Stack Developer</title>
   </head>
   <body>
+    <!-- GitHub Pages SPA redirect restoration -->
+    <script>
+      (function() {
+        var redirectPath = sessionStorage.getItem('spa-redirect-path');
+        if (redirectPath) {
+          sessionStorage.removeItem('spa-redirect-path');
+          history.replaceState(null, '', redirectPath);
+        }
+      })();
+    </script>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="src/main.tsx"></script>
   </body>
 </html>
