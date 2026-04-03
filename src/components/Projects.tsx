@@ -190,74 +190,27 @@ export function Projects() {
 
   const projects = [
     {
-      title: "Inventory Asset Management System",
-      subtitle:
-        "Enterprise-grade full-stack asset management solution with centralized tracking and workflow automation",
-      dateRange: "2025",
-      status: "Production",
-      impact: "Streamlined asset tracking for 100+ employees",
-      description:
-        "Developed and architected a full-stack Inventory Asset Management System (Ruby on Rails, React, TypeScript) featuring full CRUD operations, asset request/return workflows, and a centralized database serving as a single source of truth for company-wide asset tracking.",
-      highlights: [
-        "Built complete asset lifecycle management with request/return workflows",
-        "Implemented role-based access control for admins and employees",
-        "Designed centralized database as single source of truth",
-      ],
-      technologies: [
-        "Ruby on Rails",
-        "React",
-        "TypeScript",
-        "PostgreSQL",
-        "RESTful APIs",
-      ],
-      github: "https://github.com/Panthaweekan",
-      demo: "#",
-      architecture: `graph TB
-    subgraph "Client Layer"
-        UI[React + TypeScript UI]
-    end
-
-    subgraph "Application Layer"
-        Rails[Ruby on Rails API]
-        Auth[Authentication Service]
-    end
-
-    subgraph "Data Layer"
-        DB[(PostgreSQL<br/>Asset Database)]
-        Cache[(Redis Cache)]
-    end
-
-    UI -->|HTTP/REST| Rails
-    Rails -->|Auth Check| Auth
-    Rails -->|CRUD Operations| DB
-    Rails -->|Session Data| Cache
-
-    style UI fill:#9C83FF,stroke:#fff,color:#fff
-    style Rails fill:#FF9051,stroke:#fff,color:#fff
-    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
-    style Cache fill:#1e293b,stroke:#FF9051,color:#fff`,
-    },
-    {
       title: "Custom Hybrid API Gateway Solution",
       subtitle:
-        "Experimental API gateway combining CA Layer 7 and Kong best practices with database-driven architecture",
-      dateRange: "2025",
+        "API Gateway microservice bridging on-premise CA Layer 7 with cloud-native Kong for zero-downtime deployment",
+      dateRange: "2025 - Present",
       status: "Production",
-      impact: "Processing 10K+ API requests daily",
+      impact: "Enabling zero-downtime deployment for SCB Easy (10M+ users)",
       description:
-        "Led the experimental development of a custom API gateway solution that preserved existing CA Layer 7 logic while integrating Kong API Gateway best practices. Designed a hybrid architecture—implemented in Go using the Fiber (fasthttp) framework—that combined the strengths of both platforms through a database event-driven design.",
+        "Designed and developed an API Gateway microservice in Go (Fiber/FastHTTP) to replace legacy CA Layer 7 gateway on-premise, preserving complex routing logic while integrating with Kong upstream. Architected with hexagonal architecture and DDD for independent testing and safer deployments.",
       highlights: [
-        "Preserved existing CA Layer 7 business logic during migration",
-        "Implemented database event-driven design for config propagation",
-        "Achieved sub-millisecond routing latency with Go Fiber (fasthttp)",
+        "Bridged on-premise CA Layer 7 logic with cloud-native Kong",
+        "Enabled incremental deployment with zero downtime",
+        "Architected with hexagonal architecture and DDD, decoupling routing, authentication, and logging into SOLID-aligned domains",
       ],
       technologies: [
         "Go",
-        "Fiber Framework",
+        "Fiber/FastHTTP",
         "PostgreSQL",
-        "CA Layer 7",
-        "Kong API Gateway",
-        "Microservices",
+        "Redis",
+        "Kong",
+        "Kubernetes",
+        "Microservice",
       ],
       github: "https://github.com/Panthaweekan",
       demo: "#",
@@ -301,31 +254,73 @@ export function Projects() {
     style EventDB fill:#1e293b,stroke:#9C83FF,color:#fff`,
     },
     {
+      title: "Inventory Asset Management System",
+      subtitle:
+        "Enterprise asset-tracking platform with request/return workflows and role-based access control",
+      dateRange: "2025",
+      status: "Production",
+      impact: "Streamlined asset tracking for enterprise workforce",
+      description:
+        "Designed and developed an internal enterprise Inventory Asset Management platform with asset requests, RBAC, financial reporting, and centralized asset data. Built with Ruby on Rails backend and React frontend with PostgreSQL.",
+      highlights: [
+        "Built complete asset lifecycle management with request/return workflows",
+        "Implemented role-based access control for admins and employees",
+        "Integrated financial reporting and centralized asset data",
+      ],
+      technologies: [
+        "Ruby on Rails",
+        "React",
+        "PostgreSQL",
+        "REST APIs",
+        "Docker",
+      ],
+      github: "https://github.com/Panthaweekan",
+      demo: "#",
+      architecture: `graph TB
+    subgraph "Client Layer"
+        UI[React + TypeScript UI]
+    end
+
+    subgraph "Application Layer"
+        Rails[Ruby on Rails API]
+        Auth[Authentication Service]
+    end
+
+    subgraph "Data Layer"
+        DB[(PostgreSQL<br/>Asset Database)]
+        Cache[(Redis Cache)]
+    end
+
+    UI -->|HTTP/REST| Rails
+    Rails -->|Auth Check| Auth
+    Rails -->|CRUD Operations| DB
+    Rails -->|Session Data| Cache
+
+    style UI fill:#9C83FF,stroke:#fff,color:#fff
+    style Rails fill:#FF9051,stroke:#fff,color:#fff
+    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
+    style Cache fill:#1e293b,stroke:#FF9051,color:#fff`,
+    },
+    {
       title: "SD-Booking — Room Reservation System",
       subtitle:
-        "Enterprise room booking platform with role-based access control and real-time notification system",
-      dateRange: "2023 - 2025",
+        "Real-time room booking platform with role-based access, admin dashboard, and push notifications via webhooks",
+      dateRange: "2023 - 2024",
       status: "Production",
-      impact: "Serving 800+ daily active users",
+      impact: "Serving 500+ active users",
       description:
-        "Designed and developed following Hexagonal Architecture principles using Go, TypeScript, React, Vite, Tailwind CSS, and PostgreSQL with production deployment on Docker. Supports status checks, bookings, and admin approvals with real-time updates. Integrated Web Hook-based PWA notifications via SDQueue, reducing user wait time by 60%.",
+        "Real-time room booking platform with role-based access, admin dashboard, and push notifications via webhooks. Built with Go and React/TypeScript frontend with PWA support for real-time notifications.",
       highlights: [
-        "Implemented real-time PWA notifications reducing user wait time by 60%",
+        "Implemented real-time PWA push notifications via webhooks",
         "Built complete booking lifecycle with admin approval workflows",
         "Applied Hexagonal Architecture for clean separation of concerns",
       ],
       technologies: [
         "Go",
-        "Fiber Framework",
-        "TypeScript",
         "React",
-        "Vite",
-        "Tailwind CSS",
-        "PostgreSQL",
-        "Docker",
-        "Hexagonal Architecture",
+        "TypeScript",
         "PWA",
-        "WebHooks",
+        "Webhooks",
       ],
       github: "https://github.com/Panthaweekan",
       demo: "#",
@@ -361,61 +356,6 @@ export function Projects() {
     style Ports fill:#9C83FF,stroke:#fff,color:#fff
     style REST fill:#1e293b,stroke:#9C83FF,color:#fff
     style DBAdapter fill:#1e293b,stroke:#9C83FF,color:#fff`,
-    },
-    {
-      title: "LongPlan — Study Plan Validator",
-      subtitle:
-        "Algorithmic study plan validation system enforcing complex curriculum rules and graduation requirements",
-      dateRange: "2023 - 2025",
-      status: "Production",
-      impact: "Senior Thesis • Validates 200+ curriculum rules",
-      description:
-        "Senior Thesis Project that validates subject prerequisites, credits, and graduation rules following student's enrolled courses and curriculum. Provides a user-friendly interface for students to view and plan their academic progression. Used by engineering faculty students for course planning.",
-      highlights: [
-        "Implemented graph algorithms for prerequisite chain validation",
-        "Built custom rule engine for complex graduation requirements",
-        "Created intuitive drag-and-drop interface for course planning",
-      ],
-      technologies: [
-        "Go",
-        "Fiber Framework",
-        "TypeScript",
-        "React",
-        "PostgreSQL",
-        "Graph Algorithms",
-        "Rule Engine",
-        "Hexagonal Architecture",
-        "Docker",
-      ],
-      github: "https://github.com/Panthaweekan",
-      demo: "#",
-    },
-    {
-      title: "SD-Letter — Certificate Request System",
-      subtitle:
-        "Digital certificate request workflow system with multi-stage approval process and automated notifications",
-      dateRange: "2023 - 2025",
-      status: "Production",
-      impact: "Processing 500+ certificate requests/semester",
-      description:
-        "Supports interaction between Admin and Student for Certificate Request workflows (Approved, Rejected, Resubmitted, Published). Uses Web Hooks to push notifications via SDQueue for real-time status updates, reducing administrative processing time by 40%.",
-      highlights: [
-        "Reduced administrative processing time by 40% with automation",
-        "Built multi-stage approval workflow with state machine pattern",
-        "Integrated WebHook notifications via SDQueue for real-time updates",
-      ],
-      technologies: [
-        "Go",
-        "Fiber Framework",
-        "TypeScript",
-        "React",
-        "PostgreSQL",
-        "WebHooks",
-        "Docker",
-        "Hexagonal Architecture",
-      ],
-      github: "https://github.com/Panthaweekan",
-      demo: "#",
     },
   ];
 
