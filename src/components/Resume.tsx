@@ -1,152 +1,73 @@
 import { Button } from "./ui/button";
-import { FileDown, ArrowLeft } from "lucide-react";
+import { ArrowLeft, Download } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-import "../styles/resume.css";
-import {
-  personalInfo,
-  technicalSkills,
-  experiences,
-  projects,
-  education,
-} from "@/data/portfolio-data";
 
 function Resume() {
   const navigate = useNavigate();
 
   return (
-    <div className="resume-container">
-      <div
-        className="no-print"
-        style={{ padding: "1rem", maxWidth: "1200px", margin: "0 auto" }}
-      >
-        <Button onClick={() => navigate("/")} variant="outline" size="sm">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Portfolio
-        </Button>
-      </div>
-
-      <div
-        className="no-print"
-        style={{ position: "fixed", top: "1rem", right: "1rem", zIndex: 1000 }}
-      >
-        <Button asChild>
-          <a href="/cv.pdf" download="Panthaweekan_Somngam_CV.pdf">
-            <FileDown className="mr-2 h-4 w-4" />
-            Export to PDF
-          </a>
-        </Button>
-      </div>
-
-      <div className="page-layout" id="cv">
-        {/* HEADER */}
-        <div className="page-head">
-          <div className="my-name">{personalInfo.name}</div>
-          <div className="my-role">{personalInfo.title}</div>
-          <div className="contact-info">
-            <div className="contact-item">
-              {personalInfo.location} &nbsp;|&nbsp; {personalInfo.availability}
-            </div>
-            <div className="contact-item">
-              <a href={`mailto:${personalInfo.email}`}>
-                {personalInfo.email}
-              </a>
-              &nbsp;|&nbsp; {personalInfo.phone}
-            </div>
-            <div className="contact-item">
-              <a href={personalInfo.github}>
-                github.com/Panthaweekan
-              </a>
-              &nbsp;|&nbsp;
-              <a href={personalInfo.portfolio}>
-                Portfolio
-              </a>
-            </div>
-            <div className="contact-item" style={{ fontSize: '0.85em', color: '#4B5563' }}>
-              Languages: {personalInfo.spokenLanguages.join(", ")}
-            </div>
-          </div>
+    <div className="h-screen w-full flex flex-col bg-zinc-950 overflow-hidden">
+      {/* Header Bar */}
+      <header className="flex-none h-16 w-full flex items-center justify-between px-6 bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800 z-10">
+        <div className="flex items-center gap-4">
+          <Button
+            onClick={() => navigate("/")}
+            variant="ghost"
+            size="sm"
+            className="text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Portfolio
+          </Button>
+          <div className="h-4 w-px bg-zinc-700 hidden sm:block"></div>
+          <span className="text-zinc-200 font-medium text-sm hidden sm:block">
+            Curriculum Vitae
+          </span>
         </div>
 
-        {/* TECHNICAL SKILLS */}
-        <section>
-          <div className="page-subheader">Technical Skills</div>
-          <div className="skills-grid">
-            {technicalSkills.map((category) => (
-              <div key={category.name} style={{ display: 'contents' }}>
-                <div className="skill-category">{category.name}</div>
-                <div className="skill-items">
-                  {category.items.map((item) => {
-                    const label = item.subtitle
-                      ? `${item.label} (${item.subtitle})`
-                      : item.label;
-                    return label;
-                  }).join(" • ")}
-                </div>
-              </div>
-            ))}
+        <Button
+          asChild
+          size="sm"
+          className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-lg shadow-indigo-900/20 transition-all border border-indigo-500/50"
+        >
+          <a href="/cv.pdf" download="Panthaweekan_Somngam_CV.pdf">
+            <Download className="mr-2 h-4 w-4" />
+            Download PDF
+          </a>
+        </Button>
+      </header>
+
+      {/* PDF Viewer Container */}
+      <main className="flex-1 w-full bg-zinc-950 p-4 sm:p-8 flex justify-center items-center overflow-hidden">
+        <div className="w-full max-w-5xl h-full shadow-[0_0_40px_rgba(0,0,0,0.5)] rounded-lg overflow-hidden border border-zinc-800 bg-zinc-900 relative group">
+          {/* Fallback overlay (visible before load or if object fails) */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-zinc-900 -z-10">
+            <Download className="h-12 w-12 text-zinc-700 mb-4" />
+            <h3 className="text-xl font-medium text-zinc-300 mb-2">Native PDF Viewer Unavailable</h3>
+            <p className="text-zinc-500 text-sm max-w-md mx-auto mb-6">
+              Your browser limits inline PDF viewing. Please download the document to view it.
+            </p>
           </div>
-        </section>
 
-        {/* WORK EXPERIENCE */}
-        <section>
-          <div className="page-subheader">Professional Experience</div>
-
-          {experiences.map((job, index) => (
-            <div key={index} className="job-entry">
-              <div className="job-header">
-                <div>
-                  <div className="job-title">{job.title}</div>
-                  <div className="company-name">{job.company}</div>
-                </div>
-                <div className="date-range">{job.period}</div>
-              </div>
-              <div className="job-location">{job.location}</div>
-              <ul>
-                {job.highlights.map((bullet, i) => (
-                  <li key={i}>{bullet.text}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
-
-        {/* EDUCATION */}
-        <section>
-          <div className="page-subheader">Education</div>
-          <div className="education-header">
-            <div>
-              <div className="degree-title">{education.degree}</div>
-              <div className="institution-name">{education.school}</div>
-              <div className="location">
-                {education.honours} &nbsp; GPA: {education.gpa}
-              </div>
-            </div>
-            <div className="date-range">Graduated {education.graduated}</div>
-          </div>
-          <p style={{ marginTop: "0.5rem" }}>
-            <strong>Thesis:</strong> <em>{education.thesis}</em>
-          </p>
-        </section>
-
-        {/* KEY PROJECTS */}
-        <section>
-          <div className="page-subheader">Key Projects</div>
-
-          {projects.slice(0, 3).map((project, index) => (
-            <div key={index} className="project-entry">
-              <div className="project-header">
-                <div className="project-title">{project.title}</div>
-                <div className="date-range">{project.dateRange}</div>
-              </div>
-              <div className="tech-stack">
-                {project.technologies.join(" • ")}
-              </div>
-              <p>{project.description}</p>
-            </div>
-          ))}
-        </section>
-      </div>
+          {/* Native Viewer */}
+          <object
+            data="/cv.pdf"
+            type="application/pdf"
+            className="w-full h-full z-10 relative bg-white"
+          >
+            {/* Iframe fallback for object */}
+            <iframe
+              src="/cv.pdf"
+              className="w-full h-full border-none bg-white"
+              title="Resume PDF Viewer"
+            >
+              <p className="text-zinc-500 text-sm p-8 text-center">
+                PDF cannot be displayed. You can download it using the button above.
+              </p>
+            </iframe>
+          </object>
+        </div>
+      </main>
     </div>
   );
 }
