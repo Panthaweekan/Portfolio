@@ -16,7 +16,7 @@ export function Hero() {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const roles = ['Full-Stack Developer', 'Go Developer', 'Software Engineer'];
+  const roles = ['Software Engineer', 'Go Developer', 'Full-Stack Developer'];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -98,7 +98,7 @@ export function Hero() {
               <span>🎓</span> Second-Class Honours
             </span>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-sm font-medium">
-              <span>🚀</span> 5+ Production Systems
+              <span>🚀</span> SCB TechX · 10M+ Users
             </span>
           </div>
           

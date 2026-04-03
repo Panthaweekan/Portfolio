@@ -1,51 +1,80 @@
 import { m } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { H2, Body } from './ui/typography';
-import { Code2, Database, Server, GraduationCap, Users, Lightbulb } from 'lucide-react';
+import { Code2, GraduationCap, Lightbulb } from 'lucide-react';
 import { FloatingShapes3D } from './FloatingShapes3D';
 
 export function About() {
   // Vibrant color scheme with purple, cyan, and orange accents
   const programmingSkills = [
     { label: 'Go (Primary)', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
-    { label: 'TypeScript (Primary)', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
-    { label: 'Ruby', color: 'bg-secondary/90 text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
-    { label: 'Python', color: 'bg-accent/90 text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
-    { label: 'Java', color: 'bg-primary/80 text-primary-foreground border-2 border-primary/20 shadow-md' },
-    { label: 'C++', color: 'bg-secondary/80 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
-    { label: 'Haskell', color: 'bg-accent/80 text-accent-foreground border-2 border-accent/20 shadow-md' },
-    { label: 'OCaml', color: 'bg-primary/70 text-primary-foreground border-2 border-primary/20 shadow-md' },
-    { label: 'Rust (Learning)', color: 'bg-gradient-to-r from-secondary to-primary text-white border-2 border-primary/20 shadow-md' },
+    { label: 'TypeScript', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'JavaScript', color: 'bg-secondary/90 text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Ruby', color: 'bg-accent/90 text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'Python', color: 'bg-primary/80 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'SQL', color: 'bg-secondary/80 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Rust (Intermediate)', color: 'bg-accent/80 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Haskell', color: 'bg-primary/70 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'HTML/CSS', color: 'bg-gradient-to-r from-secondary to-primary text-white border-2 border-primary/20 shadow-md' },
   ];
 
-  const webDevSkills = [
-    { label: 'React', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+  const backendSkills = [
+    { label: 'Fiber/Gin', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
     { label: 'Ruby on Rails', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
-    { label: 'Go Fiber', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
-    { label: 'Node.js', color: 'bg-accent/85 text-accent-foreground border-2 border-accent/20 shadow-md' },
-    { label: 'Express.js', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
-    { label: 'Tailwind CSS', color: 'bg-accent/75 text-accent-foreground border-2 border-accent/20 shadow-md' },
-    { label: 'Vite', color: 'bg-gradient-to-r from-primary to-accent text-white border-2 border-primary/20 shadow-md' },
+    { label: 'NodeJS', color: 'bg-accent/90 text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'RESTful APIs', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'gRPC', color: 'bg-secondary/85 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Microservices', color: 'bg-accent/80 text-accent-foreground border-2 border-accent/20 shadow-md' },
+  ];
+
+  const frontendSkills = [
+    { label: 'React', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
+    { label: 'TypeScript', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'NextJS', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Vite', color: 'bg-accent/85 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Tailwind CSS', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'TanStack', color: 'bg-secondary/85 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Shadcn', color: 'bg-accent/75 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'PWA', color: 'bg-gradient-to-r from-primary to-accent text-white border-2 border-primary/20 shadow-md' },
+  ];
+
+  const apiGatewaySkills = [
+    { label: 'Kong API Gateway', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'API Routing', color: 'bg-secondary/90 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Rate Limiting', color: 'bg-accent/90 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Zero-Downtime Deployment', color: 'bg-primary/80 text-primary-foreground border-2 border-primary/20 shadow-md' },
   ];
 
   const databaseSkills = [
     { label: 'PostgreSQL', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
-    { label: 'MySQL', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Redis', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Database Design', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'Indexing', color: 'bg-accent/80 text-accent-foreground border-2 border-accent/20 shadow-md' },
   ];
 
   const devopsSkills = [
+    { label: 'Kubernetes', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
     { label: 'Docker', color: 'bg-accent text-accent-foreground border-2 border-accent/20 shadow-lg hover:shadow-accent/30' },
-    { label: 'Basic CI/CD (Github action)', color: 'bg-primary text-primary-foreground border-2 border-primary/20 shadow-lg hover:shadow-primary/30' },
+    { label: 'AWS', color: 'bg-secondary text-secondary-foreground border-2 border-secondary/20 shadow-lg hover:shadow-secondary/30' },
+    { label: 'Jenkins CI/CD', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'HashiCorp Vault', color: 'bg-accent/85 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Linux', color: 'bg-secondary/85 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
   ];
 
-  const softSkills = [
-    { label: 'Effective Communication', color: 'bg-gradient-to-r from-primary/80 to-accent/80 text-white border border-primary/30 shadow-md' },
-    { label: 'Active Listening', color: 'bg-gradient-to-r from-accent/80 to-secondary/80 text-white border border-accent/30 shadow-md' },
-    { label: 'Respect & Support', color: 'bg-gradient-to-r from-secondary/80 to-primary/80 text-white border border-secondary/30 shadow-md' },
-    { label: 'Teamwork', color: 'bg-gradient-to-r from-primary/80 to-secondary/80 text-white border border-primary/30 shadow-md' },
-    { label: 'Adaptive', color: 'bg-gradient-to-r from-accent/80 to-primary/80 text-white border border-accent/30 shadow-md' },
-    { label: 'Problem-Solving', color: 'bg-gradient-to-r from-secondary/80 to-accent/80 text-white border border-secondary/30 shadow-md' },
-    { label: 'Abstract Thinking', color: 'bg-gradient-to-r from-primary/80 to-accent/80 text-white border border-primary/30 shadow-md' },
+  const monitoringSkills = [
+    { label: 'Prometheus', color: 'bg-primary/90 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'Grafana', color: 'bg-secondary/90 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Kibana (ELK Stack)', color: 'bg-accent/90 text-accent-foreground border-2 border-accent/20 shadow-md' },
+  ];
+
+  const practicesSkills = [
+    { label: 'Agile/Scrum', color: 'bg-primary/85 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'TDD', color: 'bg-secondary/85 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
+    { label: 'Code Review', color: 'bg-accent/85 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Git', color: 'bg-primary/80 text-primary-foreground border-2 border-primary/20 shadow-md' },
+    { label: 'AI-Driven Development', color: 'bg-gradient-to-r from-secondary to-primary text-white border-2 border-primary/20 shadow-md' },
+    { label: 'SDLC', color: 'bg-accent/80 text-accent-foreground border-2 border-accent/20 shadow-md' },
+    { label: 'Functional Programming', color: 'bg-secondary/80 text-secondary-foreground border-2 border-secondary/20 shadow-md' },
   ];
 
   return (
@@ -122,7 +151,7 @@ export function About() {
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">
-                Full-Stack Development, Cloud Architecture, DevSecOps
+                API Gateway Architecture, Cloud-Native Systems, AI-Driven Development
               </p>
             </CardContent>
           </Card>
@@ -138,11 +167,11 @@ export function About() {
           <div>
             <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
               <Code2 className="h-6 w-6 text-primary" />
-              Programming Skills
+              Technical Skills
             </h3>
             <div className="space-y-4">
               <div>
-                <h4 className="font-semibold mb-3 text-muted-foreground">Core Development</h4>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Languages</h4>
                 <div className="flex flex-wrap gap-3">
                   {programmingSkills.map((skill, index) => (
                     <span
@@ -156,9 +185,37 @@ export function About() {
               </div>
 
               <div>
-                <h4 className="font-semibold mb-3 text-muted-foreground">Web Development</h4>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Backend</h4>
                 <div className="flex flex-wrap gap-3">
-                  {webDevSkills.map((skill, index) => (
+                  {backendSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Frontend</h4>
+                <div className="flex flex-wrap gap-3">
+                  {frontendSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">API Gateway</h4>
+                <div className="flex flex-wrap gap-3">
+                  {apiGatewaySkills.map((skill, index) => (
                     <span
                       key={index}
                       className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
@@ -184,7 +241,7 @@ export function About() {
               </div>
 
               <div>
-                <h4 className="font-semibold mb-3 text-muted-foreground">DevOps</h4>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Cloud/DevOps</h4>
                 <div className="flex flex-wrap gap-3">
                   {devopsSkills.map((skill, index) => (
                     <span
@@ -196,23 +253,34 @@ export function About() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div>
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-              <Users className="h-6 w-6 text-primary" />
-              Soft Skills
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {softSkills.map((skill, index) => (
-                <span
-                  key={index}
-                  className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
-                >
-                  {skill.label}
-                </span>
-              ))}
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Monitoring</h4>
+                <div className="flex flex-wrap gap-3">
+                  {monitoringSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3 text-muted-foreground">Practices</h4>
+                <div className="flex flex-wrap gap-3">
+                  {practicesSkills.map((skill, index) => (
+                    <span
+                      key={index}
+                      className={`px-3 py-1 rounded-full text-sm font-medium hover:scale-105 transition-transform ${skill.color}`}
+                    >
+                      {skill.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </m.div>
