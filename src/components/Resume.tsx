@@ -30,7 +30,7 @@ function Resume() {
           size="sm"
           className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-lg shadow-indigo-900/20 transition-all border border-indigo-500/50"
         >
-          <a href="/cv.pdf" download="Panthaweekan_Somngam_CV.pdf">
+          <a href={`${import.meta.env.BASE_URL}cv.pdf`} download="Panthaweekan_Somngam_CV.pdf">
             <Download className="mr-2 h-4 w-4" />
             Download PDF
           </a>
@@ -51,13 +51,13 @@ function Resume() {
 
           {/* Native Viewer */}
           <object
-            data="/cv.pdf"
+            data={`${import.meta.env.BASE_URL}cv.pdf`}
             type="application/pdf"
             className="w-full h-full z-10 relative bg-white"
           >
             {/* Iframe fallback for object */}
             <iframe
-              src="/cv.pdf"
+              src={`${import.meta.env.BASE_URL}cv.pdf`}
               className="w-full h-full border-none bg-white"
               title="Resume PDF Viewer"
             >
