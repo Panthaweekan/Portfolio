@@ -314,22 +314,19 @@ export function PortfolioBento() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {dataProjects.map((project, index) => (
-              <BentoCard key={index} className="p-5 group">
+              <BentoCard key={index} className="p-5 group transition-all hover:-translate-y-0.5 hover:ring-1 hover:ring-zinc-200 dark:hover:ring-zinc-800">
                 <div className="flex items-center justify-end mb-2">
                   <span className="text-xs text-zinc-500 font-mono">{project.dateRange}</span>
                 </div>
                 <h3 className="font-bold text-sm mb-1 tracking-tight group-hover:text-primary transition-colors">{project.title}</h3>
-                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-2 line-clamp-2">{project.description}</p>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 mb-4">{project.description}</p>
                 {project.impact && (
                   <p className="text-xs text-primary dark:text-primary font-medium mb-3">{project.impact}</p>
                 )}
                 <div className="flex flex-wrap gap-1 mt-auto">
-                  {project.technologies.slice(0, 3).map((tech, i) => (
+                  {project.technologies.map((tech, i) => (
                     <Badge key={i}>{tech}</Badge>
                   ))}
-                  {project.technologies.length > 3 && (
-                    <Badge>+{project.technologies.length - 3}</Badge>
-                  )}
                 </div>
               </BentoCard>
             ))}

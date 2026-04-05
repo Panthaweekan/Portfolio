@@ -233,11 +233,11 @@ export const projects: Project[] = [
     dateRange: "2025 – Present",
     status: "Production",
     impact: "Enabling phase rollout for SCB Easy",
-    description: "Built a token service and routing migration layer in Go behind Kong, designed to incrementally replace a legacy CA Layer 7 gateway — with tooling to diff current and target route configurations to support safe phased rollouts.",
+    description: "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
     highlights: [
-      "Built a token service and routing migration layer in Go behind Kong, designed to incrementally replace a legacy CA Layer 7 gateway — with tooling to diff current and target route configurations to support safe phased rollouts.",
-      "Implemented response caching, circuit breakers per backend service, and retry with exponential backoff to improve reliability under high traffic.",
-      "Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and GitOps-style config management."
+      "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
+      "Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and response caching — enabling GitOps-style config management and safe phased rollouts.",
+      "Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies."
     ],
     technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
     github: "https://github.com/Panthaweekan",
@@ -373,10 +373,10 @@ export const projects: Project[] = [
     subtitle: "Side Project",
     dateRange: "2026",
     status: "Completed",
-    description: "Built a full-stack fitness app with workout logging, nutrition tracking, body metrics monitoring, and AI-powered food image recognition for automated meal scanning.",
+    description: "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.",
     highlights: [
-      "Built a full-stack fitness app with workout logging, nutrition tracking, body metrics monitoring, and AI-powered food image recognition for automated meal scanning.",
-      "Designed analytics dashboards with performance trends and calorie tracking. Deployed as a monorepo with Supabase backend and Vercel frontend."
+      "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.",
+      "Designed analytics dashboards for performance trends and calorie tracking; architected as a monorepo with Supabase (auth, DB, storage) and Vercel edge deployment for fast cold starts."
     ],
     technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel"],
     github: "https://github.com/Panthaweekan/silver-octo-palm-tree",
@@ -387,10 +387,10 @@ export const projects: Project[] = [
     subtitle: "Side Project",
     dateRange: "2026",
     status: "Completed",
-    description: "Developed a real-time Twitch chat-to-speech bot that streams audio directly from memory with minimal resource usage, supporting Thai and English neural voices.",
+    description: "Engineered a real-time Twitch TTS bot that pipes synthesized audio directly from memory to playback, eliminating disk I/O and reducing per-message overhead versus file-based approaches — supporting Thai and English neural voices via Microsoft Edge TTS.",
     highlights: [
-      "Developed a real-time Twitch chat-to-speech bot that streams audio directly from memory with minimal resource usage, supporting Thai and English neural voices.",
-      "Implemented message priority queue, anti-spam protection, and automated authentication flow."
+      "Engineered a real-time Twitch TTS bot that pipes synthesized audio directly from memory to playback, eliminating disk I/O and reducing per-message overhead versus file-based approaches — supporting Thai and English neural voices via Microsoft Edge TTS.",
+      "Built a message priority queue with anti-spam filtering and automated OAuth token refresh to handle high-volume chat reliably without manual intervention."
     ],
     technologies: ["Bun", "Microsoft Edge TTS", "tmi.js", "FFplay"],
     github: "https://github.com/Panthaweekan/tts",
