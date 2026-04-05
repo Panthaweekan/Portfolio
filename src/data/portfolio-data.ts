@@ -2,7 +2,7 @@
 // Portfolio Data — Single Source of Truth
 // ============================================================================
 // All portfolio content lives here. Update this file to update the entire site.
-// Baseline: cv.tex | Portfolio may include extra items not on the CV.
+// Strictly synchronized with cv.tex.
 // ============================================================================
 
 // ── Type Definitions ────────────────────────────────────────────────────────
@@ -53,11 +53,17 @@ export interface Experience {
 
 export interface Project {
   title: string;
+  subtitle?: string;
   dateRange: string;
+  status?: string;
   technologies: string[];
   description: string;
+  highlights?: string[];
   /** Optional impact metric (e.g. "10M+ users") */
   impact?: string;
+  github?: string;
+  demo?: string;
+  architecture?: string;
 }
 
 export interface Education {
@@ -78,7 +84,7 @@ export const personalInfo: PersonalInfo = {
   title: "Software Engineer",
   location: "Bangkok, Thailand (GMT+7)",
   timezone: "Asia/Bangkok",
-  availability: "Open to Remote",
+  availability: "Open to Remote / Hybrid",
   email: "panthaweekansomngam@gmail.com",
   phone: "+66 946359510",
   github: "https://github.com/Panthaweekan",
@@ -91,105 +97,82 @@ export const personalInfo: PersonalInfo = {
 };
 
 // ── Technical Skills ────────────────────────────────────────────────────────
-// 9 categories matching CV + portfolio extras
 
 export const technicalSkills: SkillCategory[] = [
   {
     name: "Languages",
     items: [
-      { label: "Go", highlight: true, subtitle: "primary" },
+      { label: "Go", highlight: true },
       { label: "TypeScript", highlight: true },
       { label: "JavaScript" },
       { label: "Ruby" },
       { label: "Python" },
       { label: "SQL" },
+      { label: "Java" },
       { label: "HTML/CSS" },
       { label: "Haskell" },
-      { label: "Java" },
-      { label: "C++" },
-      { label: "Rust", subtitle: "Learning" },
     ],
   },
   {
-    name: "Backend",
+    name: "Frameworks",
     items: [
-      { label: "Fiber/Gin", highlight: true },
+      { label: "Fiber", highlight: true },
+      { label: "Gin" },
       { label: "Ruby on Rails" },
-      { label: "NodeJS" },
-      { label: "RESTful APIs" },
-      { label: "gRPC" },
-      { label: "Microservices Architecture" },
-    ],
-  },
-  {
-    name: "Frontend",
-    items: [
       { label: "React", highlight: true },
-      { label: "TypeScript", highlight: true },
+      { label: "Next.js" },
+      { label: "Node.js" },
       { label: "Vite" },
       { label: "Tailwind CSS" },
-      { label: "PWA" },
-      { label: "TanStack" },
-      { label: "Shadcn" },
-      { label: "NextJS" },
+      { label: "MUI" },
+      { label: "TanStack Query" },
     ],
   },
   {
-    name: "API Gateway",
-    items: [
-      { label: "Kong API Gateway", highlight: true },
-      { label: "API Routing" },
-      { label: "Rate Limiting" },
-      { label: "Zero-Downtime Deployment" },
-    ],
-  },
-  {
-    name: "Databases",
+    name: "Infrastructure",
     items: [
       { label: "PostgreSQL", highlight: true },
-      { label: "Redis", highlight: true },
-      { label: "MySQL" }, // portfolio extra
-      { label: "Database Design" },
-      { label: "Indexing" },
-      { label: "Database-Driven Architecture" },
-    ],
-  },
-  {
-    name: "Cloud/DevOps",
-    items: [
-      { label: "Kubernetes", highlight: true },
+      { label: "Redis" },
       { label: "Docker", highlight: true },
+      { label: "Kubernetes" },
       { label: "AWS" },
-      { label: "Jenkins CI/CD" },
-      { label: "HashiCorp Vault" },
+      { label: "Kong API Gateway", highlight: true },
+      { label: "CA Layer 7" },
+      { label: "Nginx" },
+      { label: "Supabase" },
+      { label: "Vercel" },
       { label: "Linux" },
     ],
   },
   {
-    name: "Monitoring",
+    name: "Observability",
     items: [
       { label: "Prometheus" },
       { label: "Grafana" },
-      { label: "Kibana (ELK Stack)" },
+      { label: "ELK Stack" },
     ],
   },
   {
-    name: "AI Agent Tooling",
+    name: "Tools",
     items: [
-      { label: "Prompt Engineering" },
-      { label: "Agentic Workflow Design" },
+      { label: "Git" },
+      { label: "GitHub Actions" },
+      { label: "Jenkins" },
+      { label: "HashiCorp Vault" },
     ],
   },
   {
     name: "Practices",
     items: [
-      { label: "Agile/Scrum" },
+      { label: "System Design", highlight: true },
+      { label: "Data Structures & Algorithms" },
+      { label: "REST APIs" },
+      { label: "Microservices" },
+      { label: "CI/CD" },
       { label: "TDD" },
-      { label: "Code Review" },
-      { label: "Git" },
-      { label: "AI-Driven Development" },
-      { label: "SDLC" },
-      { label: "Functional Programming" },
+      { label: "SOLID" },
+      { label: "OOP" },
+      { label: "Agile/Scrum" },
     ],
   },
 ];
@@ -205,19 +188,16 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "Kong", "Rails", "React", "TypeScript"],
     highlights: [
       {
-        text: "Designed and developed an API Gateway microservice in Go (Fiber/FastHTTP) to replace legacy CA Layer 7 gateway on-premise, preserving complex routing logic while integrating with Kong upstream, enabling zero-downtime deployment for SCB Easy (10M+ users).",
+        text: "Developed a Go microservice handling token validation, authentication, and request routing for SCB Easy's 10M+ user platform, integrated behind Kong as part of a phased migration away from a legacy on-premise gateway.",
       },
       {
-        text: "Architected the gateway with hexagonal architecture and DDD, decoupling routing, authentication, and logging into SOLID-aligned domains for independent testing and safer deployments.",
+        text: "Designed the plugin system, routing engine, caching layer, and observability infrastructure for the new gateway, with Prometheus metrics and structured logging ready for production rollout.",
       },
       {
-        text: "Integrated AI agent tools as a core part of the engineering workflow, applying them across code generation, refactoring, architecture review, and documentation to accelerate delivery on complex features.",
+        text: "Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications, used across the organization.",
       },
       {
-        text: "Designed and developed internal enterprise tools, including an Inventory Asset Management platform with asset requests, RBAC, financial reporting, and centralized asset data.",
-      },
-      {
-        text: "Maintained internal service tools such as Overtime Request and Employee Timesheet workflows, streamlining HR operations across the organization.",
+        text: "Leveraged AI-assisted development tools across code generation, unit-testing, refactoring, architecture review, and documentation to accelerate delivery on complex features.",
       },
     ],
   },
@@ -229,13 +209,16 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "React", "TypeScript", "PostgreSQL", "Docker"],
     highlights: [
       {
-        text: "Designed and deployed production web applications serving 500+ active users, from stakeholder requirements through Docker-based deployment.",
+        text: "Designed and deployed two production web applications serving 500+ active users, owning the full lifecycle from stakeholder requirements through containerized deployment.",
       },
       {
-        text: "Built RESTful backend APIs in Go (Fiber) with React/TypeScript frontend and PostgreSQL, consistently applying hexagonal architecture and TDD.",
+        text: "Developed a real-time room reservation system with role-based access, admin dashboard, and mobile push notifications, adopted by the faculty for daily scheduling.",
       },
       {
-        text: "Developed SD-Booking (room reservation with real-time PWA notifications), SD-Letter (multi-stage certificate approval workflow), and LongPlan (algorithmic study-plan validator using graph algorithms).",
+        text: "Developed a multi-stage certificate approval workflow that digitized a paper-based process, reducing turnaround from days to hours.",
+      },
+      {
+        text: "Applied clean architecture and test-driven development across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
       },
     ],
   },
@@ -245,59 +228,174 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
   {
-    title: "Custom Hybrid API Gateway Solution",
+    title: "API Gateway Microservice",
+    subtitle: "SCB TechX",
     dateRange: "2025 – Present",
-    technologies: [
-      "Go",
-      "Fiber/FastHTTP",
-      "PostgreSQL",
-      "Redis",
-      "Kong",
-      "Kubernetes",
-      "Microservice",
+    status: "Production",
+    impact: "Enabling phase rollout for SCB Easy",
+    description: "Built a token service and routing migration layer in Go behind Kong, designed to incrementally replace a legacy CA Layer 7 gateway — with tooling to diff current and target route configurations to support safe phased rollouts.",
+    highlights: [
+      "Built a token service and routing migration layer in Go behind Kong, designed to incrementally replace a legacy CA Layer 7 gateway — with tooling to diff current and target route configurations to support safe phased rollouts.",
+      "Implemented response caching, circuit breakers per backend service, and retry with exponential backoff to improve reliability under high traffic.",
+      "Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and GitOps-style config management."
     ],
-    description:
-      "Bridged on-premise CA Layer 7 logic with cloud-native Kong, enabling incremental deployment with zero downtime.",
-    impact: "Handle all Easy App Requests",
+    technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
+    github: "https://github.com/Panthaweekan",
+    demo: "#",
+    architecture: `graph LR
+    subgraph "Client Applications"
+        App1[Mobile App]
+        App2[Web App]
+        App3[Partner APIs]
+    end
+
+    subgraph "Hybrid API Gateway - Go Fiber"
+        GW[API Gateway<br/>Request Router]
+        L7Logic[CA Layer 7<br/>Logic Engine]
+        KongPolicy[Kong<br/>Policy Engine]
+        EventDB[(PostgreSQL<br/>Event Store)]
+    end
+
+    subgraph "Backend Microservices"
+        Auth[Auth Service]
+        User[User Service]
+        Payment[Payment Service]
+        Catalog[Catalog Service]
+    end
+
+    App1 -->|HTTPS| GW
+    App2 -->|HTTPS| GW
+    App3 -->|HTTPS| GW
+
+    GW -->|Route Logic| L7Logic
+    GW -->|Apply Policies| KongPolicy
+    GW -->|Log Events| EventDB
+
+    GW -->|Forward| Auth
+    GW -->|Forward| User
+    GW -->|Forward| Payment
+    GW -->|Forward| Catalog
+
+    style GW fill:#FF9051,stroke:#fff,color:#fff
+    style L7Logic fill:#9C83FF,stroke:#fff,color:#fff
+    style KongPolicy fill:#9C83FF,stroke:#fff,color:#fff
+    style EventDB fill:#1e293b,stroke:#9C83FF,color:#fff`
   },
   {
     title: "Inventory Asset Management System",
+    subtitle: "SCB TechX",
     dateRange: "2025",
-    technologies: [
-      "Ruby on Rails",
-      "React",
-      "PostgreSQL",
-      "REST APIs",
-      "Docker",
+    status: "Production",
+    impact: "Used across the organization",
+    description: "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
+    highlights: [
+      "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
+      "Implemented role-based access control for six user roles with Azure AD single sign-on.",
+      "Built reporting dashboards aggregating asset requests, utilization, financial summaries, and processing efficiency, with Excel and CSV export.",
+      "Developed the frontend with reusable components, type-safe API clients generated from the backend specification, and full offline-capable PWA support with push notifications."
     ],
-    description:
-      "Enterprise asset-tracking platform with request/return workflows, role-based access control",
-    impact: "800+ employees",
+    technologies: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Azure AD", "Docker"],
+    github: "https://github.com/Panthaweekan",
+    demo: "#",
+    architecture: `graph TB
+    subgraph "Client Layer"
+        UI[React + TypeScript UI]
+    end
+
+    subgraph "Application Layer"
+        Rails[Ruby on Rails API]
+        Auth[Authentication Service]
+    end
+
+    subgraph "Data Layer"
+        DB[(PostgreSQL<br/>Asset Database)]
+        Cache[(Redis Cache)]
+    end
+
+    UI -->|HTTP/REST| Rails
+    Rails -->|Auth Check| Auth
+    Rails -->|CRUD Operations| DB
+    Rails -->|Session Data| Cache
+
+    style UI fill:#9C83FF,stroke:#fff,color:#fff
+    style Rails fill:#FF9051,stroke:#fff,color:#fff
+    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
+    style Cache fill:#1e293b,stroke:#FF9051,color:#fff`
   },
   {
-    title: "SD-Booking (Room Reservation System)",
+    title: "SD-Booking — Room Reservation System",
+    subtitle: "Chiang Mai University",
     dateRange: "2023 – 2024",
-    technologies: ["Go", "React", "TypeScript", "PWA", "Webhooks"],
-    description:
-      "Real-time room booking platform with role-based access, admin dashboard, and push notifications via webhooks.",
-    impact: "500+ active users",
+    status: "Production",
+    impact: "Serving 500+ active users",
+    description: "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations.",
+    highlights: [
+      "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations."
+    ],
+    technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
+    github: "https://github.com/Panthaweekan",
+    demo: "#",
+    architecture: `graph TB
+    subgraph "Adapters - Driving Side"
+        REST[REST API<br/>Go Fiber]
+        WebUI[React UI<br/>Vite + Tailwind]
+    end
+
+    subgraph "Application Core - Hexagonal Architecture"
+        Ports[Ports/Interfaces]
+        Domain[Domain Logic<br/>Booking Rules]
+        UseCases[Use Cases<br/>Book/Approve/Cancel]
+    end
+
+    subgraph "Adapters - Driven Side"
+        DBAdapter[PostgreSQL<br/>Repository]
+        WebHook[WebHook<br/>Notifier]
+        PWA[PWA Push<br/>Service]
+    end
+
+    WebUI -->|HTTP| REST
+    REST -->|Inbound| Ports
+    Ports -->|Execute| UseCases
+    UseCases -->|Business Rules| Domain
+    Domain -->|Outbound| Ports
+    Ports -->|Persist| DBAdapter
+    Ports -->|Notify| WebHook
+    Ports -->|Push| PWA
+
+    style Domain fill:#FF9051,stroke:#fff,color:#fff
+    style UseCases fill:#9C83FF,stroke:#fff,color:#fff
+    style Ports fill:#9C83FF,stroke:#fff,color:#fff
+    style REST fill:#1e293b,stroke:#9C83FF,color:#fff
+    style DBAdapter fill:#1e293b,stroke:#9C83FF,color:#fff`
   },
   {
-    title: "LongPlan Validator",
-    dateRange: "2023 – 2025",
-    technologies: ["Go", "React", "Graph Algorithms"],
-    description:
-      "Senior thesis validating 200+ curriculum rules for prerequisites and graduation.",
-    impact: "Senior Thesis",
+    title: "FitJourney — Fitness Tracking Platform",
+    subtitle: "Side Project",
+    dateRange: "2026",
+    status: "Completed",
+    description: "Built a full-stack fitness app with workout logging, nutrition tracking, body metrics monitoring, and AI-powered food image recognition for automated meal scanning.",
+    highlights: [
+      "Built a full-stack fitness app with workout logging, nutrition tracking, body metrics monitoring, and AI-powered food image recognition for automated meal scanning.",
+      "Designed analytics dashboards with performance trends and calorie tracking. Deployed as a monorepo with Supabase backend and Vercel frontend."
+    ],
+    technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel"],
+    github: "https://github.com/Panthaweekan/silver-octo-palm-tree",
+    demo: "https://github.com/Panthaweekan/silver-octo-palm-tree",
   },
   {
-    title: "SD-Letter",
-    dateRange: "2023 – 2025",
-    technologies: ["Go", "React", "TypeScript", "WebHooks"],
-    description:
-      "Certificate request workflow with multi-stage approval, reducing processing time by 40%.",
-    impact: "500+ requests/semester",
-  },
+    title: "Twitch Chat TTS Bot",
+    subtitle: "Side Project",
+    dateRange: "2026",
+    status: "Completed",
+    description: "Developed a real-time Twitch chat-to-speech bot that streams audio directly from memory with minimal resource usage, supporting Thai and English neural voices.",
+    highlights: [
+      "Developed a real-time Twitch chat-to-speech bot that streams audio directly from memory with minimal resource usage, supporting Thai and English neural voices.",
+      "Implemented message priority queue, anti-spam protection, and automated authentication flow."
+    ],
+    technologies: ["Bun", "Microsoft Edge TTS", "tmi.js", "FFplay"],
+    github: "https://github.com/Panthaweekan/tts",
+    demo: "https://github.com/Panthaweekan/tts",
+  }
 ];
 
 // ── Education ───────────────────────────────────────────────────────────────
@@ -309,7 +407,7 @@ export const education: Education = {
   honours: "Second-Class Honours",
   gpa: "3.32/4.00",
   thesis:
-    "LongPlan — Study Plan Validator (algorithmic validation with graph algorithms and curriculum rule enforcement)",
+    "LongPlan — Study plan validator using graph algorithms (topological sort, cycle detection) and curriculum rule enforcement. Built in Go with React frontend.",
 };
 
 // ── Bento Grid Display Helpers ──────────────────────────────────────────────
@@ -318,17 +416,14 @@ export const education: Education = {
 /** Skill categories rendered as icon grids in PortfolioBento */
 export const bentoGridSkillCategories = [
   "Languages",
-  "Backend",
-  "Frontend",
-  "API Gateway",
-  "Databases",
-  "Cloud/DevOps",
-  "Monitoring",
+  "Frameworks",
+  "Infrastructure",
+  "Observability",
+  "Tools",
 ] as const;
 
 /** Skill categories rendered as badge lists in PortfolioBento */
 export const bentoBadgeSkillCategories = [
-  "AI Agent Tooling",
   "Practices",
 ] as const;
 

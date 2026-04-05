@@ -1,0 +1,79 @@
+<svg viewBox="0 0 512 512" width="512" height="512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define clips -->
+  <defs>
+    <clipPath id="headClip">
+      <path d="M 180 110 C 220 95, 292 95, 332 110 C 440 140, 480 250, 460 360 C 450 440, 390 470, 256 470 C 122 470, 62 440, 52 360 C 32 250, 72 140, 180 110 Z" />
+    </clipPath>
+    <clipPath id="rightPupil">
+      <ellipse cx="362" cy="220" rx="35" ry="65" />
+    </clipPath>
+  </defs>
+
+  <!-- Ears (Drawn first so they sit behind the head) -->
+  <g stroke="#000" stroke-width="12">
+    <!-- Left Ear -->
+    <circle cx="120" cy="140" r="55" fill="#7A5E4F" />
+    <!-- Left Ear Inner -->
+    <circle cx="120" cy="140" r="30" fill="none" />
+    
+    <!-- Right Ear -->
+    <circle cx="392" cy="140" r="55" fill="#7A5E4F" />
+    <!-- Right Ear Inner -->
+    <circle cx="392" cy="140" r="30" fill="none" />
+  </g>
+
+  <!-- Head Base -->
+  <path d="M 180 110 C 220 95, 292 95, 332 110 C 440 140, 480 250, 460 360 C 450 440, 390 470, 256 470 C 122 470, 62 440, 52 360 C 32 250, 72 140, 180 110 Z" 
+        fill="#7A5E4F" />
+
+  <!-- Muzzle (Clipped to Head) -->
+  <g clip-path="url(#headClip)">
+    <path d="M 100 480 C 100 320, 160 270, 256 270 C 352 270, 412 320, 412 480" 
+          fill="#CFC1B8" />
+    <path d="M 100 480 C 100 320, 160 270, 256 270 C 352 270, 412 320, 412 480" 
+          fill="none" stroke="#000" stroke-width="12" />
+  </g>
+
+  <!-- Head Outline (Drawn after muzzle so it covers the clipped edges nicely) -->
+  <path d="M 180 110 C 220 95, 292 95, 332 110 C 440 140, 480 250, 460 360 C 450 440, 390 470, 256 470 C 122 470, 62 440, 52 360 C 32 250, 72 140, 180 110 Z" 
+        fill="none" stroke="#000" stroke-width="12" />
+
+  <!-- Nose -->
+  <ellipse cx="256" cy="295" rx="36" ry="18" fill="#4E392B" stroke="#000" stroke-width="8" />
+
+  <!-- Left Eye (Viewer's Left) -->
+  <g transform="rotate(-15 145 220)">
+    <ellipse cx="145" cy="220" rx="55" ry="95" fill="#EBEBEB" stroke="#000" stroke-width="12" />
+    <!-- Left Pupil -->
+    <ellipse cx="150" cy="220" rx="35" ry="65" fill="#AF3849" stroke="#000" stroke-width="8" />
+    <!-- Yellow Oval -->
+    <ellipse cx="130" cy="180" rx="14" ry="22" fill="#D9D763" />
+    <!-- Teal Ring -->
+    <circle cx="130" cy="245" r="10" fill="none" stroke="#4D929D" stroke-width="5" />
+    <circle cx="130" cy="245" r="3" fill="#EBEBEB" />
+    <!-- White Highlight -->
+    <circle cx="170" cy="260" r="12" fill="#EBEBEB" />
+  </g>
+
+  <!-- Right Eye (Viewer's Right) -->
+  <g transform="rotate(15 367 220)">
+    <ellipse cx="367" cy="220" rx="55" ry="95" fill="#EBEBEB" stroke="#000" stroke-width="12" />
+    <!-- Right Pupil Internals -->
+    <g clip-path="url(#rightPupil)">
+       <!-- Base Color -->
+       <ellipse cx="362" cy="220" rx="35" ry="65" fill="#0F0C0A" />
+       
+       <!-- Blue crescent simulation (Offset shape that gets cut by black) -->
+       <ellipse cx="362" cy="220" rx="45" ry="75" fill="#598E9B" />
+       <ellipse cx="378" cy="220" rx="35" ry="75" fill="#0F0C0A" />
+
+       <!-- Accents -->
+       <ellipse cx="335" cy="190" rx="14" ry="24" fill="#8B2936" transform="rotate(25 335 190)" />
+       <circle cx="365" cy="240" r="10" fill="none" stroke="#B48261" stroke-width="4" />
+       <circle cx="365" cy="240" r="3" fill="#4D929D" />
+       <ellipse cx="376" cy="265" rx="8" ry="12" fill="#CFCA83" transform="rotate(-30 376 265)" />
+    </g>
+    <!-- Right Pupil Outline -->
+    <ellipse cx="362" cy="220" rx="35" ry="65" fill="none" stroke="#000" stroke-width="8" />
+  </g>
+</svg>

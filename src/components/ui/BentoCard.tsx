@@ -10,15 +10,15 @@ const BentoCard = React.forwardRef<HTMLDivElement, BentoCardProps>(
     <div
       ref={ref}
       className={cn(
-        // Use CSS variables for theme support
-        "bg-white/50 dark:bg-zinc-900/50",
-        "border border-zinc-200/50 dark:border-zinc-800/50",
-        "backdrop-blur-sm rounded-3xl p-6",
+        // Solid, sharp engineering aesthetic
+        "bg-card text-card-foreground",
+        "border border-border",
+        "rounded-xl p-6",
         "flex flex-col relative overflow-hidden group transition-all duration-300",
         !noHover && [
-          "hover:bg-zinc-100/80 dark:hover:bg-zinc-800/80",
+          "hover:bg-zinc-50 dark:hover:bg-zinc-800",
           "hover:border-zinc-300 dark:hover:border-zinc-700",
-          "hover:shadow-2xl hover:shadow-indigo-500/10"
+          "hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/20"
         ],
         className
       )}

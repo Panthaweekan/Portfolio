@@ -12,8 +12,8 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import { ExternalLink, Github, ChevronDown } from "lucide-react";
-import { FluentEmoji } from "@lobehub/ui";
 import { use3DTilt } from "../hooks/use3DTilt";
+import { projects } from "../data/portfolio-data";
 
 // Lazy load MermaidDiagram to avoid loading 910KB+ library on initial page load
 const MermaidDiagram = lazy(() => import("./MermaidDiagram").then(m => ({ default: m.MermaidDiagram })));
@@ -188,176 +188,7 @@ export function Projects() {
     };
   }, []);
 
-  const projects = [
-    {
-      title: "Custom Hybrid API Gateway Solution",
-      subtitle:
-        "API Gateway microservice bridging on-premise CA Layer 7 with cloud-native Kong for zero-downtime deployment",
-      dateRange: "2025 - Present",
-      status: "Production",
-      impact: "Enabling zero-downtime deployment for SCB Easy (10M+ users)",
-      description:
-        "Designed and developed an API Gateway microservice in Go (Fiber/FastHTTP) to replace legacy CA Layer 7 gateway on-premise, preserving complex routing logic while integrating with Kong upstream. Architected with hexagonal architecture and DDD for independent testing and safer deployments.",
-      highlights: [
-        "Bridged on-premise CA Layer 7 logic with cloud-native Kong",
-        "Enabled incremental deployment with zero downtime",
-        "Architected with hexagonal architecture and DDD, decoupling routing, authentication, and logging into SOLID-aligned domains",
-      ],
-      technologies: [
-        "Go",
-        "Fiber/FastHTTP",
-        "PostgreSQL",
-        "Redis",
-        "Kong",
-        "Kubernetes",
-        "Microservice",
-      ],
-      github: "https://github.com/Panthaweekan",
-      demo: "#",
-      architecture: `graph LR
-    subgraph "Client Applications"
-        App1[Mobile App]
-        App2[Web App]
-        App3[Partner APIs]
-    end
 
-    subgraph "Hybrid API Gateway - Go Fiber"
-        GW[API Gateway<br/>Request Router]
-        L7Logic[CA Layer 7<br/>Logic Engine]
-        KongPolicy[Kong<br/>Policy Engine]
-        EventDB[(PostgreSQL<br/>Event Store)]
-    end
-
-    subgraph "Backend Microservices"
-        Auth[Auth Service]
-        User[User Service]
-        Payment[Payment Service]
-        Catalog[Catalog Service]
-    end
-
-    App1 -->|HTTPS| GW
-    App2 -->|HTTPS| GW
-    App3 -->|HTTPS| GW
-
-    GW -->|Route Logic| L7Logic
-    GW -->|Apply Policies| KongPolicy
-    GW -->|Log Events| EventDB
-
-    GW -->|Forward| Auth
-    GW -->|Forward| User
-    GW -->|Forward| Payment
-    GW -->|Forward| Catalog
-
-    style GW fill:#FF9051,stroke:#fff,color:#fff
-    style L7Logic fill:#9C83FF,stroke:#fff,color:#fff
-    style KongPolicy fill:#9C83FF,stroke:#fff,color:#fff
-    style EventDB fill:#1e293b,stroke:#9C83FF,color:#fff`,
-    },
-    {
-      title: "Inventory Asset Management System",
-      subtitle:
-        "Enterprise asset-tracking platform with request/return workflows and role-based access control",
-      dateRange: "2025",
-      status: "Production",
-      impact: "Streamlined asset tracking for enterprise workforce",
-      description:
-        "Designed and developed an internal enterprise Inventory Asset Management platform with asset requests, RBAC, financial reporting, and centralized asset data. Built with Ruby on Rails backend and React frontend with PostgreSQL.",
-      highlights: [
-        "Built complete asset lifecycle management with request/return workflows",
-        "Implemented role-based access control for admins and employees",
-        "Integrated financial reporting and centralized asset data",
-      ],
-      technologies: [
-        "Ruby on Rails",
-        "React",
-        "PostgreSQL",
-        "REST APIs",
-        "Docker",
-      ],
-      github: "https://github.com/Panthaweekan",
-      demo: "#",
-      architecture: `graph TB
-    subgraph "Client Layer"
-        UI[React + TypeScript UI]
-    end
-
-    subgraph "Application Layer"
-        Rails[Ruby on Rails API]
-        Auth[Authentication Service]
-    end
-
-    subgraph "Data Layer"
-        DB[(PostgreSQL<br/>Asset Database)]
-        Cache[(Redis Cache)]
-    end
-
-    UI -->|HTTP/REST| Rails
-    Rails -->|Auth Check| Auth
-    Rails -->|CRUD Operations| DB
-    Rails -->|Session Data| Cache
-
-    style UI fill:#9C83FF,stroke:#fff,color:#fff
-    style Rails fill:#FF9051,stroke:#fff,color:#fff
-    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
-    style Cache fill:#1e293b,stroke:#FF9051,color:#fff`,
-    },
-    {
-      title: "SD-Booking — Room Reservation System",
-      subtitle:
-        "Real-time room booking platform with role-based access, admin dashboard, and push notifications via webhooks",
-      dateRange: "2023 - 2024",
-      status: "Production",
-      impact: "Serving 500+ active users",
-      description:
-        "Real-time room booking platform with role-based access, admin dashboard, and push notifications via webhooks. Built with Go and React/TypeScript frontend with PWA support for real-time notifications.",
-      highlights: [
-        "Implemented real-time PWA push notifications via webhooks",
-        "Built complete booking lifecycle with admin approval workflows",
-        "Applied Hexagonal Architecture for clean separation of concerns",
-      ],
-      technologies: [
-        "Go",
-        "React",
-        "TypeScript",
-        "PWA",
-        "Webhooks",
-      ],
-      github: "https://github.com/Panthaweekan",
-      demo: "#",
-      architecture: `graph TB
-    subgraph "Adapters - Driving Side"
-        REST[REST API<br/>Go Fiber]
-        WebUI[React UI<br/>Vite + Tailwind]
-    end
-
-    subgraph "Application Core - Hexagonal Architecture"
-        Ports[Ports/Interfaces]
-        Domain[Domain Logic<br/>Booking Rules]
-        UseCases[Use Cases<br/>Book/Approve/Cancel]
-    end
-
-    subgraph "Adapters - Driven Side"
-        DBAdapter[PostgreSQL<br/>Repository]
-        WebHook[WebHook<br/>Notifier]
-        PWA[PWA Push<br/>Service]
-    end
-
-    WebUI -->|HTTP| REST
-    REST -->|Inbound| Ports
-    Ports -->|Execute| UseCases
-    UseCases -->|Business Rules| Domain
-    Domain -->|Outbound| Ports
-    Ports -->|Persist| DBAdapter
-    Ports -->|Notify| WebHook
-    Ports -->|Push| PWA
-
-    style Domain fill:#FF9051,stroke:#fff,color:#fff
-    style UseCases fill:#9C83FF,stroke:#fff,color:#fff
-    style Ports fill:#9C83FF,stroke:#fff,color:#fff
-    style REST fill:#1e293b,stroke:#9C83FF,color:#fff
-    style DBAdapter fill:#1e293b,stroke:#9C83FF,color:#fff`,
-    },
-  ];
 
   return (
     <section
@@ -378,7 +209,7 @@ export function Projects() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <FluentEmoji emoji="🚀" size={50} type="3d" />
+            {/* <FluentEmoji emoji="🚀" size={50} type="3d" /> */}
             <h2 className="text-4xl md:text-5xl font-bold text-gradient">
               Key Projects & Portfolio
             </h2>
