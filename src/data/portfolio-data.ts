@@ -90,10 +90,10 @@ export const personalInfo: PersonalInfo = {
   github: "https://github.com/Panthaweekan",
   linkedin: "https://www.linkedin.com/in/panthaweekan/",
   portfolio: "https://panthaweekan.github.io/Portfolio/",
-  spokenLanguages: ["English (Intermediate)", "Thai (Native)"],
-  bio: "Associate Software Engineer at SCB TechX. Specializing in API gateway infrastructure, cloud-native solutions, and full-stack development with Go and TypeScript.",
+  spokenLanguages: ["EN (Intermediate)", "TH (Native)"],
+  bio: "Associate Software Engineer at SCB TechX. Specializing in enterprise API gateways, cloud migration, and full-stack development with Go, Ruby on Rails, and modern cloud-native architectures.",
   aboutSummary:
-    "I focus on enterprise API gateway infrastructure and cloud migration at SCB TechX. Passionate about Hexagonal Architecture, Domain-Driven Design, and SOLID principles—they create systems teams can evolve with confidence. Looking for environments where engineering excellence is valued.",
+    "I am an Associate Software Engineer at SCB TechX specializing in enterprise API gateways, cloud migration, and full-stack development. I focus on building scalable systems, from high-throughput Go microservices behind Kong to complex workflow engines using Ruby on Rails and React/TypeScript. Passionate about Hexagonal Architecture, strict layer separation, and SOLID principles—creating robust, testable applications that teams can evolve with confidence.",
 };
 
 // ── Technical Skills ────────────────────────────────────────────────────────
