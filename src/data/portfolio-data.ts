@@ -218,7 +218,7 @@ export const experiences: Experience[] = [
         text: "Developed a multi-stage certificate approval workflow that digitized a paper-based process, reducing turnaround from days to hours.",
       },
       {
-        text: "Applied clean architecture and test-driven development across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
+        text: "Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
       },
     ],
   },
