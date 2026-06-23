@@ -5,6 +5,7 @@ import { PortfolioBento } from './components/PortfolioBento';
 
 // Lazy load Resume page for code splitting
 const Resume = lazy(() => import('./components/Resume'));
+const Present = lazy(() => import('./components/Present'));
 
 // Loading spinner for lazy-loaded pages
 function LoadingSpinner() {
@@ -49,6 +50,19 @@ function App() {
                     transition={{ duration: 0.3 }}
                   >
                     <Resume />
+                  </m.div>
+                }
+              />
+              <Route
+                path="/present"
+                element={
+                  <m.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Present />
                   </m.div>
                 }
               />
