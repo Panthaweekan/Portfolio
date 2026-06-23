@@ -1,5 +1,5 @@
-import { useEffect, useRef, lazy, Suspense } from "react";
-import { m } from "framer-motion";
+import { useEffect, useRef, lazy, Suspense, useState } from "react";
+import { m, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -33,6 +33,8 @@ function ProjectCard({ project }: {
     glare: true,
     glareMaxOpacity: 0.15,
   });
+
+  const [archOpen, setArchOpen] = useState(false);
 
   return (
     <div ref={cardRef} style={{ position: 'relative' }}>
@@ -102,18 +104,44 @@ function ProjectCard({ project }: {
           </div>
           {"architecture" in project && project.architecture && (
             <div className="pt-4 border-t border-border">
-              <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-3">
-                <ChevronDown className="h-4 w-4" />
-                Architecture Overview
-              </div>
-              <div className="p-4 rounded-lg bg-muted/30 backdrop-blur-sm overflow-hidden">
-                <Suspense fallback={<div className="h-32 flex items-center justify-center text-muted-foreground text-sm">Loading diagram...</div>}>
-                  <MermaidDiagram
-                    chart={project.architecture}
-                    className="my-2"
-                  />
-                </Suspense>
-              </div>
+              <button
+                onClick={() => setArchOpen(v => !v)}
+                className="flex items-center justify-between w-full text-sm font-semibold text-primary hover:text-primary/80 transition-colors group"
+                aria-expanded={archOpen}
+              >
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  Architecture Overview
+                </span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform duration-300 ${archOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+              <AnimatePresence initial={false}>
+                {archOpen && (
+                  <m.div
+                    key="arch"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-3 p-3 sm:p-4 rounded-lg bg-muted/30 backdrop-blur-sm overflow-x-auto max-w-full">
+                      <Suspense fallback={
+                        <div className="h-32 flex items-center justify-center text-muted-foreground text-sm">
+                          Loading diagram...
+                        </div>
+                      }>
+                        <MermaidDiagram
+                          chart={project.architecture}
+                          className="my-2 min-w-[320px]"
+                        />
+                      </Suspense>
+                    </div>
+                  </m.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
         </CardContent>
