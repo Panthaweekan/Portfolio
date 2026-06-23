@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,10 +9,7 @@ import {
 import {
   personalInfo, experiences, projects, education, technicalSkills,
 } from '@/data/portfolio-data';
-
-const MermaidDiagram = lazy(() =>
-  import('./MermaidDiagram').then(m => ({ default: m.MermaidDiagram }))
-);
+import { VisualArchDiagram } from './VisualArchDiagram';
 
 // ── Motion variants ───────────────────────────────────────────────────────────
 
@@ -167,6 +164,19 @@ function S4() {
       <m.div variants={stagger.item} className="flex flex-wrap gap-2">
         {proj.technologies.map(t => <Tag key={t} accent>{t}</Tag>)}
       </m.div>
+      {proj.github && proj.github !== 'https://github.com/Panthaweekan' && (
+        <m.div variants={stagger.item}>
+          <a
+            href={proj.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-border hover:border-primary/40 hover:bg-primary/5 transition-colors text-sm text-muted-foreground hover:text-foreground"
+          >
+            <Github className="h-3.5 w-3.5" /> View Code
+          </a>
+        </m.div>
+      )}
     </m.div>
   );
 }
@@ -185,17 +195,11 @@ function S5() {
           Request flow from 10M+ mobile users through the hybrid gateway to backend microservices
         </p>
       </m.div>
-      <m.div variants={stagger.item} className="flex-1 bg-card border border-border rounded-xl p-4 overflow-auto">
-        <Suspense fallback={
-          <div className="h-48 flex items-center justify-center text-muted-foreground text-sm animate-pulse">
-            Loading diagram…
-          </div>
-        }>
-          {proj.architecture && (
-            <MermaidDiagram chart={proj.architecture} className="w-full" />
-          )}
-        </Suspense>
-      </m.div>
+      {proj.visualArch && (
+        <m.div variants={stagger.item} className="flex-1 bg-card border border-border rounded-xl p-4 overflow-auto">
+          <VisualArchDiagram layers={proj.visualArch} />
+        </m.div>
+      )}
     </m.div>
   );
 }
@@ -230,6 +234,19 @@ function S6() {
       <m.div variants={stagger.item} className="flex flex-wrap gap-2">
         {proj.technologies.map(t => <Tag key={t} accent>{t}</Tag>)}
       </m.div>
+      {proj.github && proj.github !== 'https://github.com/Panthaweekan' && (
+        <m.div variants={stagger.item}>
+          <a
+            href={proj.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card border border-border hover:border-primary/40 hover:bg-primary/5 transition-colors text-sm text-muted-foreground hover:text-foreground"
+          >
+            <Github className="h-3.5 w-3.5" /> View Code
+          </a>
+        </m.div>
+      )}
     </m.div>
   );
 }
@@ -248,17 +265,11 @@ function S7() {
           Multi-stage workflow engine with RBAC, Azure AD SSO, and financial reporting across 6 user roles
         </p>
       </m.div>
-      <m.div variants={stagger.item} className="flex-1 bg-card border border-border rounded-xl p-4 overflow-auto">
-        <Suspense fallback={
-          <div className="h-48 flex items-center justify-center text-muted-foreground text-sm animate-pulse">
-            Loading diagram…
-          </div>
-        }>
-          {proj.architecture && (
-            <MermaidDiagram chart={proj.architecture} className="w-full" />
-          )}
-        </Suspense>
-      </m.div>
+      {proj.visualArch && (
+        <m.div variants={stagger.item} className="flex-1 bg-card border border-border rounded-xl p-4 overflow-auto">
+          <VisualArchDiagram layers={proj.visualArch} />
+        </m.div>
+      )}
     </m.div>
   );
 }
@@ -314,8 +325,22 @@ function S9() {
             </div>
             <p className="text-muted-foreground text-xs">{proj.subtitle} · {proj.dateRange}</p>
             <p className="text-muted-foreground text-xs leading-relaxed line-clamp-3">{proj.description}</p>
-            <div className="flex flex-wrap gap-1 mt-auto pt-1">
-              {proj.technologies.slice(0, 3).map(t => <Tag key={t}>{t}</Tag>)}
+            <div className="flex items-center justify-between mt-auto pt-1">
+              <div className="flex flex-wrap gap-1">
+                {proj.technologies.slice(0, 3).map(t => <Tag key={t}>{t}</Tag>)}
+              </div>
+              {proj.github && (
+                <a
+                  href={proj.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="text-muted-foreground hover:text-foreground transition-colors shrink-0 ml-2"
+                  title="View Code"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                </a>
+              )}
             </div>
           </div>
         ))}
