@@ -375,12 +375,44 @@ export const projects: Project[] = [
     status: "Completed",
     description: "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.",
     highlights: [
-      "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.",
-      "Designed analytics dashboards for performance trends and calorie tracking; architected as a monorepo with Supabase (auth, DB, storage) and Vercel edge deployment for fast cold starts."
+      "Built with Next.js App Router + Supabase (auth, DB, storage) — Google SSO via Supabase Auth for zero-friction sign-in.",
+      "Designed analytics dashboards for performance trends and calorie tracking; deployed to Vercel Edge for fast global cold starts.",
+      "Integrated OpenAI Vision API for AI-powered meal scanning — point camera at food, get instant macro breakdown."
     ],
-    technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel"],
-    github: "https://github.com/Panthaweekan/silver-octo-palm-tree",
-    demo: "https://github.com/Panthaweekan/silver-octo-palm-tree",
+    technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel", "Google SSO"],
+    github: "https://github.com/Panthaweekan/FitJourney",
+    demo: "https://github.com/Panthaweekan/FitJourney",
+    architecture: `graph TB
+    subgraph "Client — Vercel Edge"
+        Next["Next.js 14\nApp Router"]
+        PWA["PWA\nOffline Cache"]
+    end
+
+    subgraph "Supabase BaaS"
+        Auth["Supabase Auth\nGoogle SSO"]
+        DB[("PostgreSQL\n+ Row Level Security")]
+        Storage["Supabase\nFile Storage"]
+    end
+
+    subgraph "External Services"
+        Google["Google OAuth\nProvider"]
+        OpenAI["OpenAI Vision\nMeal Scanner"]
+    end
+
+    Next -->|"Auth Request"| Auth
+    Auth -->|"OAuth Flow"| Google
+    Next -->|"Data CRUD"| DB
+    Next -->|"Media Upload"| Storage
+    Next -->|"AI Scan"| OpenAI
+    PWA -.->|"Cache Layer"| Next
+
+    style Next fill:#9C83FF,stroke:#fff,color:#fff
+    style PWA fill:#9C83FF,stroke:#fff,color:#fff
+    style Auth fill:#FF9051,stroke:#fff,color:#fff
+    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
+    style Storage fill:#1e293b,stroke:#9C83FF,color:#fff
+    style Google fill:#FF9051,stroke:#fff,color:#fff
+    style OpenAI fill:#1e293b,stroke:#FF9051,color:#fff`
   },
   {
     title: "Twitch Chat TTS Bot",
@@ -389,12 +421,46 @@ export const projects: Project[] = [
     status: "Completed",
     description: "Engineered a real-time Twitch TTS bot that pipes synthesized audio directly from memory to playback, eliminating disk I/O and reducing per-message overhead versus file-based approaches — supporting Thai and English neural voices via Microsoft Edge TTS.",
     highlights: [
-      "Engineered a real-time Twitch TTS bot that pipes synthesized audio directly from memory to playback, eliminating disk I/O and reducing per-message overhead versus file-based approaches — supporting Thai and English neural voices via Microsoft Edge TTS.",
-      "Built a message priority queue with anti-spam filtering and automated OAuth token refresh to handle high-volume chat reliably without manual intervention."
+      "Pipes synthesized audio directly from memory to playback — no disk I/O — reducing per-message latency versus file-based approaches.",
+      "Built a priority message queue with anti-spam filtering and automated OAuth token refresh to handle high-volume chat reliably.",
+      "Supports Thai and English neural voices via Microsoft Edge TTS with language auto-detection per message."
     ],
     technologies: ["Bun", "Microsoft Edge TTS", "tmi.js", "FFplay"],
     github: "https://github.com/Panthaweekan/tts",
     demo: "https://github.com/Panthaweekan/tts",
+    architecture: `graph LR
+    subgraph "Twitch Platform"
+        Chat["Twitch Chat\n(IRC)"]
+    end
+
+    subgraph "Bot Core — Bun Runtime"
+        Client["tmi.js\nIRC Client"]
+        Filter["Anti-Spam\nFilter"]
+        Queue["Priority\nMessage Queue"]
+        Synth["Language\nDetector + Synth"]
+    end
+
+    subgraph "Audio Pipeline"
+        EdgeTTS["Microsoft\nEdge TTS API"]
+        Buffer["In-Memory\nAudio Buffer"]
+        FFplay["FFplay\nPlayback"]
+    end
+
+    Chat -->|"WebSocket"| Client
+    Client -->|"Raw msg"| Filter
+    Filter -->|"Filtered"| Queue
+    Queue -->|"Dequeue"| Synth
+    Synth -->|"TH / EN voice"| EdgeTTS
+    EdgeTTS -->|"Audio stream"| Buffer
+    Buffer -->|"Pipe"| FFplay
+
+    style Client fill:#9C83FF,stroke:#fff,color:#fff
+    style Filter fill:#334155,stroke:#9C83FF,color:#fff
+    style Queue fill:#FF9051,stroke:#fff,color:#fff
+    style Synth fill:#9C83FF,stroke:#fff,color:#fff
+    style EdgeTTS fill:#FF9051,stroke:#fff,color:#fff
+    style Buffer fill:#1e293b,stroke:#9C83FF,color:#fff
+    style FFplay fill:#1e293b,stroke:#FF9051,color:#fff`
   }
 ];
 

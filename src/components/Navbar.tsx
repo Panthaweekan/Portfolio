@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { m } from 'framer-motion';
-import { Moon, Sun, Menu, X, FileText } from 'lucide-react';
+import { Moon, Sun, Menu, X, FileText, Presentation } from 'lucide-react';
 import { Button } from './ui/button';
 
 export function Navbar() {
@@ -103,6 +103,12 @@ export function Navbar() {
               Contact
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
             </m.button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/present">
+                <Presentation className="mr-2 h-4 w-4" />
+                Present
+              </Link>
+            </Button>
             <Button variant="default" size="sm" asChild>
               <Link to="/resume">
                 <FileText className="mr-2 h-4 w-4" />
@@ -164,6 +170,12 @@ export function Navbar() {
             >
               Contact
             </button>
+            <Button variant="outline" className="w-full justify-start" asChild>
+              <Link to="/present">
+                <Presentation className="mr-2 h-4 w-4" />
+                Present Mode
+              </Link>
+            </Button>
             <Button variant="default" className="w-full justify-start" asChild>
               <Link to="/resume">
                 <FileText className="mr-2 h-4 w-4" />

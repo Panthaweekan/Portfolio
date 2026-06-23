@@ -4,7 +4,7 @@ import { m } from 'framer-motion';
 import { Button } from './ui/button';
 import { H1, Body } from './ui/typography';
 import { Particles } from './Particles';
-import { Github, Linkedin, Mail, FileText } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText, Presentation } from 'lucide-react';
 
 // Lazy load ThreeBackground (Three.js) to reduce initial bundle size
 const ThreeBackground = lazy(() => import('./ThreeBackground').then(m => ({ default: m.ThreeBackground })));
@@ -118,6 +118,12 @@ export function Hero() {
             <Button size="lg" onClick={scrollToContact}>
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link to="/present">
+                <Presentation className="mr-2 h-5 w-5" />
+                View Slides
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link to="/resume">
