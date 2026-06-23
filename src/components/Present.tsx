@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,6 +9,10 @@ import {
 import {
   personalInfo, experiences, projects, education, technicalSkills,
 } from '@/data/portfolio-data';
+
+const MermaidDiagram = lazy(() =>
+  import('./MermaidDiagram').then(m => ({ default: m.MermaidDiagram }))
+);
 
 // ── Motion variants ───────────────────────────────────────────────────────────
 
@@ -133,15 +137,30 @@ function S3() {
   );
 }
 
+// S4 — API Gateway: description
 function S4() {
   const proj = projects[0];
   return (
     <m.div className="flex flex-col gap-5" variants={stagger.container} initial="hidden" animate="show">
-      <m.div variants={stagger.item}><Label text="the_build" /></m.div>
+      <m.div variants={stagger.item}><Label text="project_01 / api_gateway" /></m.div>
       <m.div variants={stagger.item}>
         <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground">{proj.title}</h2>
-        <p className="text-primary font-semibold mt-1">{proj.subtitle} · {proj.dateRange}</p>
+        <div className="flex flex-wrap items-center gap-3 mt-1">
+          <span className="text-primary font-semibold">{proj.subtitle}</span>
+          <span className="text-muted-foreground text-sm">{proj.dateRange}</span>
+          {proj.status && (
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-green-500 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+              {proj.status}
+            </span>
+          )}
+        </div>
       </m.div>
+      {proj.impact && (
+        <m.div variants={stagger.item} className="inline-flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-lg w-fit">
+          <span>📊</span> {proj.impact}
+        </m.div>
+      )}
       <m.div variants={stagger.item} className="flex flex-col gap-2.5">
         {(proj.highlights ?? []).map((h, i) => <Bullet key={i} text={h} />)}
       </m.div>
@@ -152,7 +171,100 @@ function S4() {
   );
 }
 
+// S5 — API Gateway: architecture diagram
 function S5() {
+  const proj = projects[0];
+  return (
+    <m.div className="flex flex-col gap-5 h-full" variants={stagger.container} initial="hidden" animate="show">
+      <m.div variants={stagger.item}><Label text="project_01 / architecture" /></m.div>
+      <m.div variants={stagger.item}>
+        <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground">
+          {proj.title} — System Design
+        </h2>
+        <p className="text-muted-foreground text-sm mt-1">
+          Request flow from 10M+ mobile users through the hybrid gateway to backend microservices
+        </p>
+      </m.div>
+      <m.div variants={stagger.item} className="flex-1 bg-card border border-border rounded-xl p-4 overflow-auto">
+        <Suspense fallback={
+          <div className="h-48 flex items-center justify-center text-muted-foreground text-sm animate-pulse">
+            Loading diagram…
+          </div>
+        }>
+          {proj.architecture && (
+            <MermaidDiagram chart={proj.architecture} className="w-full" />
+          )}
+        </Suspense>
+      </m.div>
+    </m.div>
+  );
+}
+
+// S6 — Inventory: description
+function S6() {
+  const proj = projects[1];
+  return (
+    <m.div className="flex flex-col gap-5" variants={stagger.container} initial="hidden" animate="show">
+      <m.div variants={stagger.item}><Label text="project_02 / inventory_management" /></m.div>
+      <m.div variants={stagger.item}>
+        <h2 className="font-heading text-3xl lg:text-4xl font-bold text-foreground">{proj.title}</h2>
+        <div className="flex flex-wrap items-center gap-3 mt-1">
+          <span className="text-primary font-semibold">{proj.subtitle}</span>
+          <span className="text-muted-foreground text-sm">{proj.dateRange}</span>
+          {proj.status && (
+            <span className="inline-flex items-center gap-1 text-xs font-semibold text-green-500 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+              {proj.status}
+            </span>
+          )}
+        </div>
+      </m.div>
+      {proj.impact && (
+        <m.div variants={stagger.item} className="inline-flex items-center gap-2 text-sm font-medium text-primary bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-lg w-fit">
+          <span>📊</span> {proj.impact}
+        </m.div>
+      )}
+      <m.div variants={stagger.item} className="flex flex-col gap-2.5">
+        {(proj.highlights ?? []).map((h, i) => <Bullet key={i} text={h} />)}
+      </m.div>
+      <m.div variants={stagger.item} className="flex flex-wrap gap-2">
+        {proj.technologies.map(t => <Tag key={t} accent>{t}</Tag>)}
+      </m.div>
+    </m.div>
+  );
+}
+
+// S7 — Inventory: architecture diagram
+function S7() {
+  const proj = projects[1];
+  return (
+    <m.div className="flex flex-col gap-5 h-full" variants={stagger.container} initial="hidden" animate="show">
+      <m.div variants={stagger.item}><Label text="project_02 / architecture" /></m.div>
+      <m.div variants={stagger.item}>
+        <h2 className="font-heading text-2xl lg:text-3xl font-bold text-foreground">
+          {proj.title} — System Design
+        </h2>
+        <p className="text-muted-foreground text-sm mt-1">
+          Multi-stage workflow engine with RBAC, Azure AD SSO, and financial reporting across 6 user roles
+        </p>
+      </m.div>
+      <m.div variants={stagger.item} className="flex-1 bg-card border border-border rounded-xl p-4 overflow-auto">
+        <Suspense fallback={
+          <div className="h-48 flex items-center justify-center text-muted-foreground text-sm animate-pulse">
+            Loading diagram…
+          </div>
+        }>
+          {proj.architecture && (
+            <MermaidDiagram chart={proj.architecture} className="w-full" />
+          )}
+        </Suspense>
+      </m.div>
+    </m.div>
+  );
+}
+
+// S8 — Technical Skills
+function S8() {
   return (
     <m.div className="flex flex-col gap-5" variants={stagger.container} initial="hidden" animate="show">
       <m.div variants={stagger.item}><Label text="stack" /></m.div>
@@ -180,8 +292,9 @@ function S5() {
   );
 }
 
-function S6() {
-  const builds = [projects[1], projects[3], projects[4]];
+// S9 — Other builds
+function S9() {
+  const builds = [projects[2], projects[3], projects[4]];
   return (
     <m.div className="flex flex-col gap-5" variants={stagger.container} initial="hidden" animate="show">
       <m.div variants={stagger.item}><Label text="selected_builds" /></m.div>
@@ -191,7 +304,14 @@ function S6() {
       <m.div variants={stagger.item} className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {builds.map(proj => (
           <div key={proj.title} className="bg-card border border-border rounded-xl p-4 flex flex-col gap-2">
-            <p className="font-heading font-semibold text-foreground text-sm leading-tight">{proj.title}</p>
+            <div className="flex items-start justify-between gap-2">
+              <p className="font-heading font-semibold text-foreground text-sm leading-tight">{proj.title}</p>
+              {proj.status && (
+                <span className="shrink-0 text-xs font-mono text-green-500 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded-full">
+                  {proj.status}
+                </span>
+              )}
+            </div>
             <p className="text-muted-foreground text-xs">{proj.subtitle} · {proj.dateRange}</p>
             <p className="text-muted-foreground text-xs leading-relaxed line-clamp-3">{proj.description}</p>
             <div className="flex flex-wrap gap-1 mt-auto pt-1">
@@ -219,7 +339,8 @@ const PRINCIPLES = [
   },
 ];
 
-function S7() {
+// S10 — Principles
+function S10() {
   return (
     <m.div className="flex flex-col gap-6" variants={stagger.container} initial="hidden" animate="show">
       <m.div variants={stagger.item}><Label text="principles" /></m.div>
@@ -243,7 +364,8 @@ function S7() {
   );
 }
 
-function S8() {
+// S11 — Contact
+function S11() {
   const [copied, setCopied] = useState(false);
 
   function copyEmail(e: React.MouseEvent) {
@@ -303,7 +425,7 @@ function S8() {
   );
 }
 
-const SLIDES = [S1, S2, S3, S4, S5, S6, S7, S8];
+const SLIDES = [S1, S2, S3, S4, S5, S6, S7, S8, S9, S10, S11];
 const TOTAL = SLIDES.length;
 
 // ── Main deck component ───────────────────────────────────────────────────────
@@ -364,9 +486,9 @@ export default function Present() {
         case 'End': e.preventDefault(); go(TOTAL - 1, 1); break;
         case 'f': case 'F': toggleFullscreen(); break;
         default:
-          if (e.key >= '1' && e.key <= '8') {
+          if (e.key >= '1' && e.key <= '9') {
             const idx = parseInt(e.key, 10) - 1;
-            go(idx, idx > slide ? 1 : -1);
+            if (idx < TOTAL) go(idx, idx > slide ? 1 : -1);
           }
       }
     }
