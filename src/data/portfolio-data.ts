@@ -51,6 +51,19 @@ export interface Experience {
   highlights: ExperienceBullet[];
 }
 
+export interface ArchNode {
+  label: string;
+  sublabel?: string;
+  iconUrl?: string;
+  iconEmoji?: string;
+  color: string;
+}
+
+export interface ArchLayer {
+  name: string;
+  nodes: ArchNode[];
+}
+
 export interface Project {
   title: string;
   subtitle?: string;
@@ -59,11 +72,10 @@ export interface Project {
   technologies: string[];
   description: string;
   highlights?: string[];
-  /** Optional impact metric (e.g. "10M+ users") */
   impact?: string;
   github?: string;
   demo?: string;
-  architecture?: string;
+  visualArch?: ArchLayer[];
 }
 
 export interface Education {
@@ -226,6 +238,9 @@ export const experiences: Experience[] = [
 
 // ── Key Projects ────────────────────────────────────────────────────────────
 
+const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons';
+const di = (name: string, variant = 'original') => `${DI}/${name}/${name}-${variant}.svg`;
+
 export const projects: Project[] = [
   {
     title: "API Gateway Microservice",
@@ -242,44 +257,41 @@ export const projects: Project[] = [
     technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
     github: "https://github.com/Panthaweekan",
     demo: "#",
-    architecture: `graph LR
-    subgraph "Client Applications"
-        App1[Mobile App]
-        App2[Web App]
-        App3[Partner APIs]
-    end
-
-    subgraph "Hybrid API Gateway - Go Fiber"
-        GW[API Gateway<br/>Request Router]
-        L7Logic[CA Layer 7<br/>Logic Engine]
-        KongPolicy[Kong<br/>Policy Engine]
-        EventDB[(PostgreSQL<br/>Event Store)]
-    end
-
-    subgraph "Backend Microservices"
-        Auth[Auth Service]
-        User[User Service]
-        Payment[Payment Service]
-        Catalog[Catalog Service]
-    end
-
-    App1 -->|HTTPS| GW
-    App2 -->|HTTPS| GW
-    App3 -->|HTTPS| GW
-
-    GW -->|Route Logic| L7Logic
-    GW -->|Apply Policies| KongPolicy
-    GW -->|Log Events| EventDB
-
-    GW -->|Forward| Auth
-    GW -->|Forward| User
-    GW -->|Forward| Payment
-    GW -->|Forward| Catalog
-
-    style GW fill:#FF9051,stroke:#fff,color:#fff
-    style L7Logic fill:#9C83FF,stroke:#fff,color:#fff
-    style KongPolicy fill:#9C83FF,stroke:#fff,color:#fff
-    style EventDB fill:#1e293b,stroke:#9C83FF,color:#fff`
+    visualArch: [
+      {
+        name: "Clients",
+        nodes: [
+          { label: "Mobile App",   iconEmoji: "📱", color: "#9C83FF" },
+          { label: "Web App",      iconEmoji: "🌐", color: "#9C83FF" },
+          { label: "Partner APIs", iconEmoji: "🔌", color: "#9C83FF" },
+        ],
+      },
+      {
+        name: "API Gateway",
+        nodes: [
+          { label: "Kong",     sublabel: "Policy Engine",  iconEmoji: "🔷", color: "#003459" },
+          { label: "Go · Fiber", sublabel: "Token Service", iconUrl: di("go"), color: "#00ADD8" },
+        ],
+      },
+      {
+        name: "Microservices",
+        nodes: [
+          { label: "Auth",    iconEmoji: "🔐", color: "#FF9051" },
+          { label: "User",    iconEmoji: "👤", color: "#FF9051" },
+          { label: "Payment", iconEmoji: "💳", color: "#FF9051" },
+          { label: "Catalog", iconEmoji: "📦", color: "#FF9051" },
+        ],
+      },
+      {
+        name: "Data & Observability",
+        nodes: [
+          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
+          { label: "Redis",      iconUrl: di("redis"),      color: "#DC382D" },
+          { label: "Prometheus", iconEmoji: "🔥",           color: "#E6522C" },
+          { label: "Kubernetes", iconUrl: di("kubernetes", "plain"), color: "#326CE5" },
+        ],
+      },
+    ],
   },
   {
     title: "Inventory Asset Management System",
@@ -297,30 +309,35 @@ export const projects: Project[] = [
     technologies: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Azure AD", "Docker"],
     github: "https://github.com/Panthaweekan",
     demo: "#",
-    architecture: `graph TB
-    subgraph "Client Layer"
-        UI[React + TypeScript UI]
-    end
-
-    subgraph "Application Layer"
-        Rails[Ruby on Rails API]
-        Auth[Authentication Service]
-    end
-
-    subgraph "Data Layer"
-        DB[(PostgreSQL<br/>Asset Database)]
-        Cache[(Redis Cache)]
-    end
-
-    UI -->|HTTP/REST| Rails
-    Rails -->|Auth Check| Auth
-    Rails -->|CRUD Operations| DB
-    Rails -->|Session Data| Cache
-
-    style UI fill:#9C83FF,stroke:#fff,color:#fff
-    style Rails fill:#FF9051,stroke:#fff,color:#fff
-    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
-    style Cache fill:#1e293b,stroke:#FF9051,color:#fff`
+    visualArch: [
+      {
+        name: "Identity",
+        nodes: [
+          { label: "Azure AD", sublabel: "SSO", iconUrl: di("azure"), color: "#0078D4" },
+        ],
+      },
+      {
+        name: "Frontend",
+        nodes: [
+          { label: "React",      iconUrl: di("react"),      color: "#61DAFB" },
+          { label: "TypeScript", iconUrl: di("typescript"), color: "#3178C6" },
+        ],
+      },
+      {
+        name: "Backend API",
+        nodes: [
+          { label: "Ruby on Rails", iconUrl: di("ruby"),   color: "#CC342D" },
+          { label: "Docker",        iconUrl: di("docker"), color: "#2496ED" },
+        ],
+      },
+      {
+        name: "Data",
+        nodes: [
+          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
+          { label: "Redis",      iconUrl: di("redis"),      color: "#DC382D" },
+        ],
+      },
+    ],
   },
   {
     title: "SD-Booking — Room Reservation System",
@@ -335,38 +352,38 @@ export const projects: Project[] = [
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
     github: "https://github.com/Panthaweekan",
     demo: "#",
-    architecture: `graph TB
-    subgraph "Adapters - Driving Side"
-        REST[REST API<br/>Go Fiber]
-        WebUI[React UI<br/>Vite + Tailwind]
-    end
-
-    subgraph "Application Core - Hexagonal Architecture"
-        Ports[Ports/Interfaces]
-        Domain[Domain Logic<br/>Booking Rules]
-        UseCases[Use Cases<br/>Book/Approve/Cancel]
-    end
-
-    subgraph "Adapters - Driven Side"
-        DBAdapter[PostgreSQL<br/>Repository]
-        WebHook[WebHook<br/>Notifier]
-        PWA[PWA Push<br/>Service]
-    end
-
-    WebUI -->|HTTP| REST
-    REST -->|Inbound| Ports
-    Ports -->|Execute| UseCases
-    UseCases -->|Business Rules| Domain
-    Domain -->|Outbound| Ports
-    Ports -->|Persist| DBAdapter
-    Ports -->|Notify| WebHook
-    Ports -->|Push| PWA
-
-    style Domain fill:#FF9051,stroke:#fff,color:#fff
-    style UseCases fill:#9C83FF,stroke:#fff,color:#fff
-    style Ports fill:#9C83FF,stroke:#fff,color:#fff
-    style REST fill:#1e293b,stroke:#9C83FF,color:#fff
-    style DBAdapter fill:#1e293b,stroke:#9C83FF,color:#fff`
+    visualArch: [
+      {
+        name: "Frontend",
+        nodes: [
+          { label: "React",      iconUrl: di("react"),      color: "#61DAFB" },
+          { label: "TypeScript", iconUrl: di("typescript"), color: "#3178C6" },
+          { label: "PWA",        iconEmoji: "📲",           color: "#9C83FF" },
+        ],
+      },
+      {
+        name: "API Layer",
+        nodes: [
+          { label: "Go · Fiber", iconUrl: di("go"), color: "#00ADD8" },
+        ],
+      },
+      {
+        name: "Core (Hexagonal)",
+        nodes: [
+          { label: "Ports",      iconEmoji: "🔌", color: "#9C83FF" },
+          { label: "Domain",     iconEmoji: "⚙️", color: "#FF9051" },
+          { label: "Use Cases",  iconEmoji: "📋", color: "#9C83FF" },
+        ],
+      },
+      {
+        name: "Data & Notifications",
+        nodes: [
+          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
+          { label: "Docker",     iconUrl: di("docker"),     color: "#2496ED" },
+          { label: "Push",       iconEmoji: "🔔",           color: "#FF9051" },
+        ],
+      },
+    ],
   },
   {
     title: "FitJourney — Fitness Tracking Platform",
@@ -382,37 +399,36 @@ export const projects: Project[] = [
     technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel", "Google SSO"],
     github: "https://github.com/Panthaweekan/FitJourney",
     demo: "https://github.com/Panthaweekan/FitJourney",
-    architecture: `graph TB
-    subgraph "Client — Vercel Edge"
-        Next["Next.js 14\nApp Router"]
-        PWA["PWA\nOffline Cache"]
-    end
-
-    subgraph "Supabase BaaS"
-        Auth["Supabase Auth\nGoogle SSO"]
-        DB[("PostgreSQL\n+ Row Level Security")]
-        Storage["Supabase\nFile Storage"]
-    end
-
-    subgraph "External Services"
-        Google["Google OAuth\nProvider"]
-        OpenAI["OpenAI Vision\nMeal Scanner"]
-    end
-
-    Next -->|"Auth Request"| Auth
-    Auth -->|"OAuth Flow"| Google
-    Next -->|"Data CRUD"| DB
-    Next -->|"Media Upload"| Storage
-    Next -->|"AI Scan"| OpenAI
-    PWA -.->|"Cache Layer"| Next
-
-    style Next fill:#9C83FF,stroke:#fff,color:#fff
-    style PWA fill:#9C83FF,stroke:#fff,color:#fff
-    style Auth fill:#FF9051,stroke:#fff,color:#fff
-    style DB fill:#1e293b,stroke:#9C83FF,color:#fff
-    style Storage fill:#1e293b,stroke:#9C83FF,color:#fff
-    style Google fill:#FF9051,stroke:#fff,color:#fff
-    style OpenAI fill:#1e293b,stroke:#FF9051,color:#fff`
+    visualArch: [
+      {
+        name: "Client",
+        nodes: [
+          { label: "Next.js",  sublabel: "App Router", iconEmoji: "▲", color: "#000000" },
+          { label: "PWA",      iconEmoji: "📲",         color: "#9C83FF" },
+          { label: "Vercel",   sublabel: "Edge",        iconEmoji: "▲", color: "#000000" },
+        ],
+      },
+      {
+        name: "Auth",
+        nodes: [
+          { label: "Supabase Auth", sublabel: "Google SSO", iconEmoji: "⚡", color: "#3ECF8E" },
+          { label: "Google OAuth",  iconEmoji: "🔑",          color: "#4285F4" },
+        ],
+      },
+      {
+        name: "Backend as a Service",
+        nodes: [
+          { label: "PostgreSQL", sublabel: "+ RLS",  iconUrl: di("postgresql"), color: "#336791" },
+          { label: "Storage",    iconEmoji: "🗄️",    color: "#3ECF8E" },
+        ],
+      },
+      {
+        name: "AI",
+        nodes: [
+          { label: "OpenAI Vision", sublabel: "Meal Scanner", iconEmoji: "🤖", color: "#10A37F" },
+        ],
+      },
+    ],
   },
   {
     title: "Twitch Chat TTS Bot",
@@ -428,39 +444,36 @@ export const projects: Project[] = [
     technologies: ["Bun", "Microsoft Edge TTS", "tmi.js", "FFplay"],
     github: "https://github.com/Panthaweekan/tts",
     demo: "https://github.com/Panthaweekan/tts",
-    architecture: `graph LR
-    subgraph "Twitch Platform"
-        Chat["Twitch Chat\n(IRC)"]
-    end
-
-    subgraph "Bot Core — Bun Runtime"
-        Client["tmi.js\nIRC Client"]
-        Filter["Anti-Spam\nFilter"]
-        Queue["Priority\nMessage Queue"]
-        Synth["Language\nDetector + Synth"]
-    end
-
-    subgraph "Audio Pipeline"
-        EdgeTTS["Microsoft\nEdge TTS API"]
-        Buffer["In-Memory\nAudio Buffer"]
-        FFplay["FFplay\nPlayback"]
-    end
-
-    Chat -->|"WebSocket"| Client
-    Client -->|"Raw msg"| Filter
-    Filter -->|"Filtered"| Queue
-    Queue -->|"Dequeue"| Synth
-    Synth -->|"TH / EN voice"| EdgeTTS
-    EdgeTTS -->|"Audio stream"| Buffer
-    Buffer -->|"Pipe"| FFplay
-
-    style Client fill:#9C83FF,stroke:#fff,color:#fff
-    style Filter fill:#334155,stroke:#9C83FF,color:#fff
-    style Queue fill:#FF9051,stroke:#fff,color:#fff
-    style Synth fill:#9C83FF,stroke:#fff,color:#fff
-    style EdgeTTS fill:#FF9051,stroke:#fff,color:#fff
-    style Buffer fill:#1e293b,stroke:#9C83FF,color:#fff
-    style FFplay fill:#1e293b,stroke:#FF9051,color:#fff`
+    visualArch: [
+      {
+        name: "Input",
+        nodes: [
+          { label: "Twitch Chat", iconEmoji: "💬", color: "#9146FF" },
+          { label: "tmi.js",      sublabel: "IRC Client", iconEmoji: "🔗", color: "#9146FF" },
+        ],
+      },
+      {
+        name: "Processing (Bun Runtime)",
+        nodes: [
+          { label: "Anti-Spam",   iconEmoji: "🛡️", color: "#334155" },
+          { label: "Queue",       sublabel: "Priority", iconEmoji: "📋", color: "#FF9051" },
+          { label: "Lang Detect", iconEmoji: "🌐",        color: "#9C83FF" },
+        ],
+      },
+      {
+        name: "Synthesis",
+        nodes: [
+          { label: "Edge TTS",    sublabel: "TH / EN", iconEmoji: "🔊", color: "#0078D4" },
+          { label: "In-Memory",   sublabel: "Buffer",  iconEmoji: "💾", color: "#334155" },
+        ],
+      },
+      {
+        name: "Output",
+        nodes: [
+          { label: "FFplay", sublabel: "Playback", iconEmoji: "▶️", color: "#FF9051" },
+        ],
+      },
+    ],
   }
 ];
 

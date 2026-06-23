@@ -1,4 +1,4 @@
-import { useEffect, useRef, lazy, Suspense, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,9 +14,7 @@ import { Button } from "./ui/button";
 import { ExternalLink, Github, ChevronDown } from "lucide-react";
 import { use3DTilt } from "../hooks/use3DTilt";
 import { projects } from "../data/portfolio-data";
-
-// Lazy load MermaidDiagram to avoid loading 910KB+ library on initial page load
-const MermaidDiagram = lazy(() => import("./MermaidDiagram").then(m => ({ default: m.MermaidDiagram })));
+import { VisualArchDiagram } from "./VisualArchDiagram";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,15 +100,15 @@ function ProjectCard({ project }: {
               ))}
             </div>
           </div>
-          {"architecture" in project && project.architecture && (
+          {"visualArch" in project && project.visualArch && (
             <div className="pt-4 border-t border-border">
               <button
                 onClick={() => setArchOpen(v => !v)}
-                className="flex items-center justify-between w-full text-sm font-semibold text-primary hover:text-primary/80 transition-colors group"
+                className="flex items-center justify-between w-full text-sm font-semibold text-primary hover:text-primary/80 transition-colors"
                 aria-expanded={archOpen}
               >
                 <span className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   Architecture Overview
                 </span>
                 <ChevronDown
@@ -127,17 +125,8 @@ function ProjectCard({ project }: {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-3 p-3 sm:p-4 rounded-lg bg-muted/30 backdrop-blur-sm overflow-x-auto max-w-full">
-                      <Suspense fallback={
-                        <div className="h-32 flex items-center justify-center text-muted-foreground text-sm">
-                          Loading diagram...
-                        </div>
-                      }>
-                        <MermaidDiagram
-                          chart={project.architecture}
-                          className="my-2 min-w-[320px]"
-                        />
-                      </Suspense>
+                    <div className="mt-3 p-3 rounded-lg bg-muted/30 backdrop-blur-sm">
+                      <VisualArchDiagram layers={project.visualArch} />
                     </div>
                   </m.div>
                 )}
