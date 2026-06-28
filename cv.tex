@@ -54,18 +54,18 @@ Bangkok, Thailand (GMT+7) \quad\textbar\quad Open to Remote / Hybrid\\
 \textbf{Associate Software Engineer} \hfill \textit{May 2025 -- Present}\\
 SCB TechX, Bangkok, Thailand (Hybrid)
 \begin{itemize}
-  \item Developed a Go microservice handling token validation, authentication, and request routing for SCB Easy's 10M+ user platform, integrated behind Kong as part of a phased migration away from a legacy on-premise gateway.
-  \item Designed the plugin system, routing engine, caching layer, and observability infrastructure for the new gateway, with Prometheus metrics and structured logging ready for production rollout.
-  \item Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications, used across the organization.
+  \item Developing a Go microservice for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform.
+  \item Designed the plugin system, routing engine, and observability infrastructure (Prometheus metrics, structured logging) for the new gateway, currently progressing through phased migration to production.
+  \item Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications.
   \item Leveraged AI-assisted development tools across code generation, unit-testing, refactoring, architecture review, and documentation to accelerate delivery on complex features.
 \end{itemize}
 
 \textbf{Full Stack Developer (Work-Study Scholarship)} \hfill \textit{2023 -- 2025}\\
 Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand
 \begin{itemize}
-  \item Designed and deployed two production web applications serving 500+ active users, owning the full lifecycle from stakeholder requirements through containerized deployment.
-  \item Developed a real-time room reservation system with role-based access, admin dashboard, and mobile push notifications, adopted by the faculty for daily scheduling.
-  \item Developed a multi-stage certificate approval workflow that digitized a paper-based process, reducing turnaround from days to hours.
+  \item Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment.
+  \item Developed a real-time room reservation system with role-based access, an admin dashboard, and mobile push notifications --- adopted by the faculty for daily scheduling and still in active use today.
+  \item Developed a multi-stage certificate approval workflow that digitized a previously paper-based process, streamlining manual approval turnaround.
   \item Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.
 \end{itemize}
 
@@ -79,9 +79,9 @@ Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand
   {2025 -- Present}
   {Go, Fiber, PostgreSQL, Redis, Kong, Prometheus, Kubernetes}
   {\begin{itemize}
-  \item Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.
-  \item Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and response caching — enabling GitOps-style config management and safe phased rollouts.
-  \item Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies.
+  \item Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.
+  \item Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.
+  \item Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design --- keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies.
   \end{itemize}}
 
 \project
@@ -92,7 +92,7 @@ Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand
     \item Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.
     \item Implemented role-based access control for six user roles with Azure AD single sign-on.
     \item Built reporting dashboards aggregating asset requests, utilization, financial summaries, and processing efficiency, with Excel and CSV export.
-    \item Developed the frontend with reusable components, type-safe API clients generated from the backend specification, and full offline-capable PWA support with push notifications.
+    \item Developed the frontend with reusable components, partially generated type-safe API clients, and an installable PWA with push notifications.
   \end{itemize}}
 
 \newpage
@@ -102,7 +102,7 @@ Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand
   {2023 -- 2024}
   {Go, React, TypeScript, PostgreSQL, PWA, Docker}
   {\begin{itemize}
-    \item Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations.
+    \item Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications --- adopted for daily operations and still in use today.
   \end{itemize}}
 
 \project
@@ -136,7 +136,8 @@ Chiang Mai University \hfill Second-Class Honours\quad GPA: 3.32/4.00\\
 % ═══════════════════════════════════════════
 \section*{Skills}
 
-\textbf{Languages:} Go, TypeScript, JavaScript, Ruby, Python, SQL, Java, HTML/CSS, Haskell\\[2pt]
+\textbf{Languages:} Go, TypeScript, JavaScript, Ruby, Python, SQL, HTML/CSS\\[2pt]
+\textbf{Familiar:} Java, Haskell\\[2pt]
 \textbf{Frameworks:} Fiber, Gin, Ruby on Rails, React, Next.js, Node.js, Vite, Tailwind CSS, MUI, TanStack Query\\[2pt]
 \textbf{Infrastructure:} PostgreSQL, Redis, Docker, Kubernetes, AWS, Kong API Gateway, CA Layer 7, Nginx, Supabase, Vercel, Linux\\[2pt]
 \textbf{Observability:} Prometheus, Grafana, ELK Stack\\[2pt]
