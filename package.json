@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:deck": "node scripts/check-deck.mjs",
+    "dump:deck-golden": "node scripts/dump-golden.mjs"
   },
   "repository": {
     "type": "git",
