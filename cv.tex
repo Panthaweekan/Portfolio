@@ -16,7 +16,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1pt}
 \setlength{\emergencystretch}{3em}
-\setlist[itemize]{leftmargin=1.2em, itemsep=1.5pt, topsep=2pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.2em, itemsep=1pt, topsep=1pt, parsep=0pt}
 
 \definecolor{textdark}{HTML}{1F2937}
 \definecolor{textmuted}{HTML}{4B5563}
@@ -46,6 +46,12 @@
   #4\par\vspace{3pt}%
 }
 
+% Named project inside an Experience entry — keeps each role's projects
+% visually separate while staying linear/plain-text for ATS parsing.
+\newcommand{\workproject}[2]{%
+  \vspace{2pt}\textit{#1} {\small\textcolor{textmuted}{--- #2}}\par\vspace{-2pt}%
+}
+
 \begin{document}
 
 % ═══════════════════════════════════════════
@@ -53,7 +59,7 @@
 % ═══════════════════════════════════════════
 {\LARGE \textbf{Panthaweekan Somngam}}\\[3pt]
 Software Engineer \quad\textbar\quad Backend \& Full-Stack (Go, TypeScript)\\[1pt]
-Bangkok, Thailand (GMT+7) \quad\textbar\quad Open to Remote / Hybrid\\
+Bangkok, Thailand (GMT+7) \quad\textbar\quad Open to Remote / Hybrid \quad\textbar\quad Thai (Native), English (Intermediate)\\
 \href{mailto:panthaweekansomngam@gmail.com}{panthaweekansomngam@gmail.com} \quad\textbar\quad +66 946359510\\
 \href{https://github.com/Panthaweekan}{github.com/Panthaweekan} \quad\textbar\quad \href{https://www.linkedin.com/in/panthaweekan/}{linkedin.com/in/panthaweekan} \quad\textbar\quad \href{https://panthaweekan.github.io/Portfolio/}{panthaweekan.github.io/Portfolio}
 
@@ -61,7 +67,7 @@ Bangkok, Thailand (GMT+7) \quad\textbar\quad Open to Remote / Hybrid\\
 %  SUMMARY
 % ═══════════════════════════════════════════
 \section*{Summary}
-Software engineer shipping production systems since 2023, currently building the Go API gateway layer carrying SCB Easy's 10M+ user banking platform off its legacy on-premise gateway. Strongest in backend architecture --- hexagonal design, REST APIs, incremental microservice migration --- and used to owning delivery end to end, from requirements to containerized deployment.
+Software engineer shipping production systems since 2023, currently building the Go API gateway layer carrying SCB Easy's 10M+ user banking platform off its legacy on-premise gateway. Strongest in backend architecture --- hexagonal design, REST APIs, microservice migration --- and used to owning delivery end to end.
 
 % ═══════════════════════════════════════════
 %  SKILLS — near the top, plain comma-separated (ATS-safe)
@@ -73,7 +79,7 @@ Software engineer shipping production systems since 2023, currently building the
 \textbf{Frontend:} React, Next.js, Vite, Tailwind CSS, MUI, TanStack Query, PWA\\[1pt]
 \textbf{Infrastructure:} PostgreSQL, Redis, Docker, Kubernetes, AWS, Kong API Gateway, CA Layer 7, Nginx, Supabase, Vercel, Linux\\[1pt]
 \textbf{Observability \& CI/CD:} Prometheus, Grafana, ELK Stack, GitHub Actions, Jenkins, HashiCorp Vault, Git\\[1pt]
-\textbf{Practices:} Data Structures \& Algorithms, TDD, SOLID, OOP, Agile/Scrum, AI-Assisted Development \quad\textbar\quad \textit{Spoken:} Thai (Native), English (Intermediate)
+\textbf{Practices:} Data Structures \& Algorithms, TDD, SOLID, OOP, CI/CD, Agile/Scrum, AI-Assisted Development
 
 % ═══════════════════════════════════════════
 %  EXPERIENCE
@@ -81,24 +87,34 @@ Software engineer shipping production systems since 2023, currently building the
 \section*{Experience}
 
 \textbf{Associate Software Engineer} \hfill \textit{May 2025 -- Present}\\
-SCB TechX, Bangkok, Thailand (Hybrid) \hfill {\small\textcolor{textmuted}{Go, Fiber, Kong, Ruby on Rails, React, TypeScript, PostgreSQL, Redis, Kubernetes}}
+SCB TechX, Bangkok, Thailand (Hybrid)
+
+\workproject{API Gateway Migration}{Go, Fiber, Kong, Redis, Prometheus, Kubernetes}
 \begin{itemize}
   \item Building the Go token-validation and routing service that sits behind Kong to replace a legacy on-premise gateway, letting SCB Easy's 10M+ user platform move service by service instead of through one high-risk cutover.
-  \item Designed the gateway's plugin system, routing engine, and observability stack (Prometheus, structured logging), giving the migration team per-route visibility before rollout.
+  \item Designed the plugin system, routing engine, and observability stack (Prometheus, structured logging), giving the migration team per-route visibility before rollout.
   \item Structured the service in hexagonal architecture with dependency injection and interface-driven design, keeping business logic fully unit-testable and decoupled from Kong, Redis, and every infrastructure dependency.
   \item Prototyped declarative config sync (Kong decK pattern: YAML route definitions with diff and rollback) and per-service circuit breaking, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.
-  \item Delivered an enterprise asset management platform end to end: a database-driven workflow engine covering four parallel lifecycles (request, spare, repair, return), enforcing approval chains per role and step for six user roles under Azure AD SSO.
+\end{itemize}
+
+\workproject{Inventory Asset Management Platform}{Ruby on Rails, React, TypeScript, PostgreSQL, Azure AD}
+\begin{itemize}
+  \item Delivered the platform end to end: a database-driven workflow engine covering four parallel lifecycles (request, spare, repair, return), enforcing approval chains per role and step for six user roles under Azure AD SSO.
   \item Built its reporting dashboards (utilization, financial summaries, processing efficiency, Excel/CSV export) and an installable PWA with push notifications, so asset managers self-serve reports.
-  \item Applied AI-assisted development across code generation, testing, refactoring, and architecture review to speed delivery.
 \end{itemize}
 
 \textbf{Full Stack Developer (Work-Study Scholarship)} \hfill \textit{2023 -- 2025}\\
-Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand \hfill {\small\textcolor{textmuted}{Go, React, TypeScript, PostgreSQL, Docker}}
+Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand\\
+{\small Owned two production web apps from requirements to containerized deployment --- hexagonal architecture, Go APIs, React/TypeScript, PostgreSQL.}
+
+\workproject{SD-Booking --- Room Reservation System}{Go, React, TypeScript, PostgreSQL, PWA, Docker}
 \begin{itemize}
-  \item Shipped two production web applications adopted across the faculty, owning each from requirements through containerized deployment.
-  \item Built SD-Booking, a real-time room reservation system with booking-conflict detection, role-based access, an admin dashboard, and mobile push notifications --- adopted for daily faculty scheduling and still in active use today.
+  \item Built a real-time booking platform with booking-conflict detection, role-based access, an admin dashboard, and mobile push notifications --- adopted for daily faculty scheduling and still in active use today.
+\end{itemize}
+
+\workproject{Certificate Approval Workflow}{Go, React, TypeScript, PostgreSQL}
+\begin{itemize}
   \item Digitized a paper-based certificate process into a multi-stage approval workflow, removing manual routing between offices and cutting turnaround on every request.
-  \item Applied hexagonal architecture across both systems, building RESTful Go APIs against React/TypeScript frontends on PostgreSQL.
 \end{itemize}
 
 % ═══════════════════════════════════════════
