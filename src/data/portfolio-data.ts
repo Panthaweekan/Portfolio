@@ -200,16 +200,25 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "Kong", "Rails", "React", "TypeScript"],
     highlights: [
       {
-        text: "Developed a Go microservice handling token validation, authentication, and request routing for SCB Easy's 10M+ user platform, integrated behind Kong as part of a phased migration away from a legacy on-premise gateway.",
+        text: "Building the Go token-validation and routing service that sits behind Kong to replace a legacy on-premise gateway, letting SCB Easy's 10M+ user platform move service by service instead of through one high-risk cutover.",
       },
       {
-        text: "Designed the plugin system, routing engine, caching layer, and observability infrastructure for the new gateway, with Prometheus metrics and structured logging ready for production rollout.",
+        text: "Designed the gateway's plugin system, routing engine, and observability stack (Prometheus, structured logging), giving the migration team per-route visibility before rollout.",
       },
       {
-        text: "Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications, used across the organization.",
+        text: "Structured the service in hexagonal architecture with dependency injection and interface-driven design, keeping business logic fully unit-testable and decoupled from Kong, Redis, and every infrastructure dependency.",
       },
       {
-        text: "Leveraged AI-assisted development tools across code generation, unit-testing, refactoring, architecture review, and documentation to accelerate delivery on complex features.",
+        text: "Prototyped declarative config sync (Kong decK pattern: YAML route definitions with diff and rollback) and per-service circuit breaking, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
+      },
+      {
+        text: "Delivered an enterprise asset management platform end to end: a database-driven workflow engine covering four parallel lifecycles (request, spare, repair, return), enforcing approval chains per role and step for six user roles under Azure AD SSO.",
+      },
+      {
+        text: "Built its reporting dashboards (utilization, financial summaries, processing efficiency, Excel/CSV export) and an installable PWA with push notifications, so asset managers self-serve reports.",
+      },
+      {
+        text: "Applied AI-assisted development across code generation, testing, refactoring, and architecture review to speed delivery.",
       },
     ],
   },
@@ -221,16 +230,16 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "React", "TypeScript", "PostgreSQL", "Docker"],
     highlights: [
       {
-        text: "Designed and deployed two production web applications serving 500+ active users, owning the full lifecycle from stakeholder requirements through containerized deployment.",
+        text: "Shipped two production web applications adopted across the faculty, owning each from requirements through containerized deployment.",
       },
       {
-        text: "Developed a real-time room reservation system with role-based access, admin dashboard, and mobile push notifications, adopted by the faculty for daily scheduling.",
+        text: "Built SD-Booking, a real-time room reservation system with booking-conflict detection, role-based access, an admin dashboard, and mobile push notifications — adopted for daily faculty scheduling and still in active use today.",
       },
       {
-        text: "Developed a multi-stage certificate approval workflow that digitized a paper-based process, reducing turnaround from days to hours.",
+        text: "Digitized a paper-based certificate process into a multi-stage approval workflow, removing manual routing between offices and cutting turnaround on every request.",
       },
       {
-        text: "Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
+        text: "Applied hexagonal architecture across both systems, building RESTful Go APIs against React/TypeScript frontends on PostgreSQL.",
       },
     ],
   },
@@ -248,10 +257,10 @@ export const projects: Project[] = [
     dateRange: "2025 – Present",
     status: "Production",
     impact: "Enabling phase rollout for SCB Easy",
-    description: "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
+    description: "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
     highlights: [
-      "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
-      "Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and response caching — enabling GitOps-style config management and safe phased rollouts.",
+      "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
+      "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
       "Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies."
     ],
     technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
@@ -304,7 +313,7 @@ export const projects: Project[] = [
       "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
       "Implemented role-based access control for six user roles with Azure AD single sign-on.",
       "Built reporting dashboards aggregating asset requests, utilization, financial summaries, and processing efficiency, with Excel and CSV export.",
-      "Developed the frontend with reusable components, type-safe API clients generated from the backend specification, and full offline-capable PWA support with push notifications."
+      "Developed the frontend with reusable components, partially generated type-safe API clients, and an installable PWA with push notifications."
     ],
     technologies: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Azure AD", "Docker"],
     github: "https://github.com/Panthaweekan",
@@ -344,10 +353,10 @@ export const projects: Project[] = [
     subtitle: "Chiang Mai University",
     dateRange: "2023 – 2024",
     status: "Production",
-    impact: "Serving 500+ active users",
-    description: "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations.",
+    impact: "Still in daily use across the faculty",
+    description: "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today.",
     highlights: [
-      "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations."
+      "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today."
     ],
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
     github: "https://github.com/Panthaweekan",
