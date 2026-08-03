@@ -200,22 +200,22 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "Kong", "Rails", "React", "TypeScript"],
     highlights: [
       {
-        text: "Moving SCB Easy's 10M+ user platform off a legacy on-premise gateway one service at a time, rather than in a single high-risk cutover — a Go token-validation and routing service running behind Kong.",
+        text: "Building the Go token-validation and routing service that sits behind Kong to replace a legacy on-premise gateway, letting SCB Easy's 10M+ user platform move service by service instead of through one high-risk cutover.",
       },
       {
-        text: "Gave the migration team per-route visibility before rollout, through the gateway's plugin system, routing engine, and observability stack (Prometheus, structured logging).",
+        text: "Designed the gateway's plugin system, routing engine, and observability stack (Prometheus, structured logging), giving the migration team per-route visibility before rollout.",
       },
       {
-        text: "Kept core business logic testable without standing up Kong or Redis, by structuring the service in hexagonal architecture with dependency injection and interface-driven boundaries.",
+        text: "Structured the service in hexagonal architecture with dependency injection and interface-driven design, keeping business logic fully unit-testable and decoupled from Kong, Redis, and every infrastructure dependency.",
       },
       {
-        text: "Made route changes reviewable and reversible across the migration's 30+ services, prototyping declarative config sync (Kong decK pattern: YAML definitions with diff and rollback) and per-service circuit breaking.",
+        text: "Prototyped declarative config sync (Kong decK pattern: YAML route definitions with diff and rollback) and per-service circuit breaking, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
       },
       {
-        text: "Replaced manual asset tracking for six user roles with a workflow engine spanning four parallel lifecycles (request, spare, repair, return), enforcing approval chains per role and step under Azure AD SSO.",
+        text: "Delivered an enterprise asset management platform end to end: a database-driven workflow engine covering four parallel lifecycles (request, spare, repair, return), enforcing approval chains per role and step for six user roles under Azure AD SSO.",
       },
       {
-        text: "Let asset managers pull their own reports instead of filing requests — dashboards for utilization, financial summaries, and processing efficiency with Excel/CSV export, plus an installable PWA with push notifications.",
+        text: "Built its reporting dashboards (utilization, financial summaries, processing efficiency, Excel/CSV export) and an installable PWA with push notifications, so asset managers self-serve reports.",
       },
       {
         text: "Applied AI-assisted development across code generation, testing, refactoring, and architecture review to speed delivery.",
@@ -230,13 +230,16 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "React", "TypeScript", "PostgreSQL", "Docker"],
     highlights: [
       {
-        text: "Owned two production web apps from requirements to containerized deployment — hexagonal architecture, RESTful Go APIs, React/TypeScript frontends, PostgreSQL.",
+        text: "Shipped two production web applications adopted across the faculty, owning each from requirements through containerized deployment.",
       },
       {
-        text: "Replaced the faculty's manual room scheduling with a real-time booking platform (SD-Booking) — conflict detection, role-based access, an admin dashboard, and mobile push notifications; still in daily use today.",
+        text: "Built SD-Booking, a real-time room reservation system with booking-conflict detection, role-based access, an admin dashboard, and mobile push notifications — adopted for daily faculty scheduling and still in active use today.",
       },
       {
-        text: "Cut turnaround on every certificate request by replacing a paper process with a multi-stage approval workflow, ending manual routing between offices.",
+        text: "Digitized a paper-based certificate process into a multi-stage approval workflow, removing manual routing between offices and cutting turnaround on every request.",
+      },
+      {
+        text: "Applied hexagonal architecture across both systems, building RESTful Go APIs against React/TypeScript frontends on PostgreSQL.",
       },
     ],
   },
@@ -254,9 +257,9 @@ export const projects: Project[] = [
     dateRange: "2025 – Present",
     status: "Production",
     impact: "Enabling phase rollout for SCB Easy",
-    description: "Moving SCB Easy's platform off a legacy on-premise gateway one service at a time — a Go token service and routing layer behind Kong, with token authentication and plugin-based request transformation.",
+    description: "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
     highlights: [
-      "Moving SCB Easy's platform off a legacy on-premise gateway one service at a time — a Go token service and routing layer behind Kong, with token authentication and plugin-based request transformation.",
+      "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
       "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
       "Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies."
     ],
@@ -351,9 +354,9 @@ export const projects: Project[] = [
     dateRange: "2023 – 2024",
     status: "Production",
     impact: "Still in daily use across the faculty",
-    description: "Replaced the faculty's manual room scheduling with a real-time booking platform — conflict detection, role-based access, and mobile push notifications; still in daily use today.",
+    description: "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today.",
     highlights: [
-      "Replaced the faculty's manual room scheduling with a real-time booking platform — conflict detection, role-based access, and mobile push notifications; still in daily use today."
+      "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today."
     ],
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
     github: "https://github.com/Panthaweekan",
@@ -396,7 +399,7 @@ export const projects: Project[] = [
     subtitle: "Side Project",
     dateRange: "2026",
     status: "Completed",
-    description: "Replaced four separate tracking apps with one self-hosted PWA — workout logging, nutrition, body metrics, and AI-powered meal scanning in a single tool.",
+    description: "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.",
     highlights: [
       "Built with Next.js App Router + Supabase (auth, DB, storage) — Google SSO via Supabase Auth for zero-friction sign-in.",
       "Designed analytics dashboards for performance trends and calorie tracking; deployed to Vercel Edge for fast global cold starts.",
@@ -441,7 +444,7 @@ export const projects: Project[] = [
     subtitle: "Side Project",
     dateRange: "2026",
     status: "Completed",
-    description: "Keeps a Twitch TTS bot running unattended through high-volume chat — audio piped straight from memory to playback with no disk I/O, supporting Thai and English neural voices via Microsoft Edge TTS.",
+    description: "Engineered a real-time Twitch TTS bot that pipes synthesized audio directly from memory to playback, eliminating disk I/O and reducing per-message overhead versus file-based approaches — supporting Thai and English neural voices via Microsoft Edge TTS.",
     highlights: [
       "Pipes synthesized audio directly from memory to playback — no disk I/O — reducing per-message latency versus file-based approaches.",
       "Built a priority message queue with anti-spam filtering and automated OAuth token refresh to handle high-volume chat reliably.",
