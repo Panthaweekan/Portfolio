@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { education, experiences, personalInfo, technicalSkills } from '@/data/portfolio-data';
+import { FigureOne } from './FigureOne';
 import { Masthead } from './Masthead';
 
 const CV_URL = `${import.meta.env.BASE_URL}cv.pdf`;
@@ -52,7 +53,7 @@ export function ReportHome() {
                 </a>
               </div>
             </div>
-            <div className="col-span-12 md:col-span-7">{/* Figure 1: Task 6 */}</div>
+            <div className="col-span-12 md:col-span-7"><FigureOne /></div>
           </section>
 
           <section id="systems" aria-labelledby="systems-title" className="border-t border-ink pt-12">
