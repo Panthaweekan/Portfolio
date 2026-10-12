@@ -54,7 +54,7 @@ export function Chapter({ project, figureNumber }: ChapterProps) {
               aria-expanded={open}
               aria-controls={bodyId}
               onClick={() => setOpen((o) => !o)}
-              className="mt-6 text-sm font-semibold underline hover:text-field"
+              className="mt-6 text-sm font-semibold underline hover:decoration-2"
             >
               {open ? 'Close the chapter' : 'Read the full chapter'}
             </button>

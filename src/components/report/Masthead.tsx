@@ -14,6 +14,10 @@ const SECTIONS = [
 
 const linkClass = 'text-sm text-muted hover:text-ink hover:underline';
 
+// Build in-page links from the current document: under <base href="/Portfolio/">
+// a bare "#id" resolves to /Portfolio/#id and reloads from /Portfolio or ?query URLs.
+const here = () => `${window.location.pathname}${window.location.search}`;
+
 interface MastheadProps {
   page: 'home' | 'resume';
 }
@@ -31,7 +35,7 @@ export function Masthead({ page }: MastheadProps) {
         {page === 'home' && (
           <nav aria-label="Sections" className="hidden items-center gap-5 md:flex">
             {SECTIONS.map((s) => (
-              <a key={s.href} href={s.href} className={linkClass}>
+              <a key={s.href} href={`${here()}${s.href}`} className={linkClass}>
                 {s.label}
               </a>
             ))}
@@ -48,7 +52,7 @@ export function Masthead({ page }: MastheadProps) {
                 onClick={(e) => e.currentTarget.closest('details')?.removeAttribute('open')}
               >
                 {SECTIONS.map((s) => (
-                  <a key={s.href} href={s.href} className={linkClass}>
+                  <a key={s.href} href={`${here()}${s.href}`} className={linkClass}>
                     {s.label}
                   </a>
                 ))}
@@ -82,7 +86,7 @@ export function Masthead({ page }: MastheadProps) {
             href={CV_URL}
             download="Panthaweekan_Somngam_CV.pdf"
             aria-label="Download CV (PDF)"
-            className="inline-flex h-9 items-center gap-2 bg-field px-3 text-sm font-semibold text-on-field hover:opacity-90 sm:px-4"
+            className="inline-flex h-9 items-center gap-2 bg-ink px-3 text-sm font-semibold text-ground hover:opacity-90 sm:px-4"
           >
             <Download className="h-4 w-4" aria-hidden />
             <span className="sm:hidden">CV</span>

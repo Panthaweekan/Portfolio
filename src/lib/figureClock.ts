@@ -23,14 +23,14 @@ export const FINAL_FRAME: FigureFrame = {
   revealed: STATION_COUNT,
 };
 
-// Damped: quick start, long settle, no overshoot.
-const easeOut = (x: number) => 1 - Math.pow(1 - x, 4);
+// Ease in and out of every station so the call reads as one continuous move.
+const easeInOut = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
 
 export function frameAt(elapsedMs: number): FigureFrame {
   const t = ((elapsedMs % LOOP_MS) + LOOP_MS) % LOOP_MS;
   const travel = SEGMENT_MS * (STATION_COUNT - 1);
   if (t >= travel) return FINAL_FRAME;
   const segment = Math.floor(t / SEGMENT_MS);
-  const fraction = easeOut((t - segment * SEGMENT_MS) / SEGMENT_MS);
+  const fraction = easeInOut((t - segment * SEGMENT_MS) / SEGMENT_MS);
   return { segment, fraction, active: segment + 1, revealed: segment + 1 };
 }

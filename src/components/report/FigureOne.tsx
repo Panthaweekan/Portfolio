@@ -3,15 +3,17 @@ import { useReducedMotion } from 'framer-motion';
 import { FINAL_FRAME, frameAt, type FigureFrame } from '@/lib/figureClock';
 
 // Illustrative values, labelled as such in the caption. Not computed.
-const STATIONS = [
+const STATIONS: { name: string; value: string; amount?: string }[] = [
   { name: 'Agent step', value: '1,200 input · 300 output tokens' },
   { name: 'Collector', value: 'Usage signal received' },
   { name: 'Kafka', value: 'Queued, in order, for the engine' },
-  { name: 'Engine', value: '1,200 × $3/M + 300 × $15/M = USD 0.0081' },
-  { name: 'Dashboard', value: 'Team › Project › Run › Step' },
-] as const;
+  { name: 'Engine', value: '1,200 × $3/M + 300 × $15/M' },
+  // The call lands as a priced, attributed line item.
+  { name: 'Dashboard', value: 'Team › Project › Run › Step', amount: 'USD 0.0081' },
+];
 
-// Station dot centre, measured from the top of each list item.
+// Station dot centre from the top of each list item: the dot's mt-[10px] plus
+// half of its h-2.5. Change those classes and this together.
 const DOT_OFFSET = 15;
 
 export function FigureOne() {
@@ -78,11 +80,8 @@ export function FigureOne() {
 
   return (
     <figure ref={rootRef} className="on-field flex h-full flex-col bg-field p-8 text-on-field md:p-12">
-      <figcaption className="mb-10">
-        <span className="block text-sm font-semibold tabular-nums">Figure 1</span>
-        <span className="mt-1 block text-2xl font-semibold leading-tight md:text-3xl">
-          One LLM call becomes money
-        </span>
+      <figcaption className="mb-10 text-2xl font-semibold leading-tight md:text-3xl">
+        <span className="tabular-nums">Figure 1</span> · One LLM call becomes money
       </figcaption>
 
       <div className="relative my-auto">
@@ -92,6 +91,12 @@ export function FigureOne() {
               aria-hidden
               className="absolute left-[7px] w-0.5 bg-on-field-muted"
               style={{ top: centers[0], height: centers[STATIONS.length - 1] - centers[0] }}
+            />
+            {/* The travelled path is the call itself: solid up to the marker. */}
+            <div
+              aria-hidden
+              className="absolute left-[7px] w-0.5 bg-on-field"
+              style={{ top: centers[0], height: markerTop - centers[0] }}
             />
             {!reduceMotion && (
               <div
@@ -106,6 +111,7 @@ export function FigureOne() {
           {STATIONS.map((station, i) => {
             const reached = i < frame.revealed;
             const next = i === frame.active && !reached;
+            const tone = reached ? 'text-on-field' : 'text-on-field-muted';
             const dot = next
               ? 'border-on-field bg-field'
               : reached
@@ -115,11 +121,14 @@ export function FigureOne() {
               <li key={station.name} className="pl-10">
                 <span aria-hidden className={`absolute left-[3px] mt-[10px] h-2.5 w-2.5 rounded-full border-2 ${dot}`} />
                 <span className="block font-semibold">{station.name}</span>
-                <span
-                  className={`block tabular-nums transition-opacity duration-500 ${reached ? 'opacity-100' : 'opacity-40'}`}
-                >
-                  {station.value}
-                </span>
+                {station.amount ? (
+                  <span className={`flex flex-wrap items-baseline justify-between gap-x-6 transition-colors duration-500 ${tone}`}>
+                    <span>{station.value}</span>
+                    <span className="whitespace-nowrap text-2xl font-semibold tabular-nums md:text-3xl">{station.amount}</span>
+                  </span>
+                ) : (
+                  <span className={`block tabular-nums transition-colors duration-500 ${tone}`}>{station.value}</span>
+                )}
               </li>
             );
           })}

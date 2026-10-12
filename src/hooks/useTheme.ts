@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 export type Theme = 'light' | 'dark';
 
 // Same `theme` key the /present deck reads, so one choice follows the visitor.
-function initialTheme(): Theme {
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light' || saved === 'dark') return saved;
+// Storage can throw when the visitor blocks site data; fall back to the OS.
+export function initialTheme(): Theme {
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch {
+    // storage blocked
+  }
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
@@ -19,7 +24,11 @@ export function useTheme(): { theme: Theme; toggle: () => void } {
   const toggle = () =>
     setTheme((current) => {
       const next: Theme = current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch {
+        // storage blocked: the choice lasts for this page only
+      }
       return next;
     });
 

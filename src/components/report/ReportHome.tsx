@@ -23,7 +23,7 @@ export function ReportHome() {
   return (
     <>
       <a
-        href="#main"
+        href={`${window.location.pathname}${window.location.search}#main`}
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-30 focus:bg-ground focus:p-2"
       >
         Skip to content
@@ -32,21 +32,27 @@ export function ReportHome() {
 
       <main id="main">
         <div className="mx-auto max-w-[80rem] px-6 md:px-10">
+          {/* Phones read name → Figure 1 → intro; desktop keeps the figure beside both. */}
           <section
             aria-labelledby="intro-title"
-            className="grid grid-cols-12 gap-x-6 gap-y-10 py-10 md:min-h-[calc(100svh-3.5rem)] md:py-12"
+            className="grid grid-cols-12 gap-x-6 gap-y-10 py-10 md:min-h-[calc(100svh-3.5rem)] md:grid-rows-[1fr_auto_auto_1fr] md:gap-y-6 md:py-12"
           >
-            <div className="col-span-12 flex flex-col justify-center md:col-span-5">
+            <div className="col-span-12 md:col-span-5 md:row-start-2">
               <h1 id="intro-title" className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl">
                 {personalInfo.name}
               </h1>
               <p className="mt-6 text-2xl leading-snug md:text-[1.75rem]">{personalInfo.positioning}</p>
-              <p className="mt-6 max-w-measure text-muted">{personalInfo.intro}</p>
+            </div>
+            <div className="col-span-12 md:col-span-7 md:col-start-6 md:row-span-4 md:row-start-1">
+              <FigureOne />
+            </div>
+            <div className="col-span-12 md:col-span-5 md:row-start-3">
+              <p className="max-w-measure text-muted">{personalInfo.intro}</p>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                 <a
                   href={CV_URL}
                   download="Panthaweekan_Somngam_CV.pdf"
-                  className="inline-flex h-11 items-center bg-field px-5 font-semibold text-on-field hover:opacity-90"
+                  className="inline-flex h-11 items-center bg-ink px-5 font-semibold text-ground hover:opacity-90"
                 >
                   Download CV
                 </a>
@@ -58,7 +64,6 @@ export function ReportHome() {
                 </a>
               </div>
             </div>
-            <div className="col-span-12 md:col-span-7"><FigureOne /></div>
           </section>
 
           <section id="systems" aria-labelledby="systems-title" className="border-t border-ink pt-12">

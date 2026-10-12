@@ -15,13 +15,13 @@
   }
 
   .dark {
-    --ground: #0E1016;
+    --ground: #16181D;
     --ink: #E8EAF0;
-    --muted: #A0A6B4;
-    --rule: #2A2F3A;
+    --muted: #A3A8B4;
+    --rule: #343843;
     --field: #3550E8;
     --on-field: #FFFFFF;
-    --on-field-muted: #D3DAFF;
+    --on-field-muted: #E0E5FF;
     color-scheme: dark;
   }
 
@@ -40,12 +40,12 @@
   }
 
   ::selection {
-    background-color: var(--field);
-    color: var(--on-field);
+    background-color: var(--ink);
+    color: var(--ground);
   }
 
   :focus-visible {
-    outline: 2px solid var(--field);
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
   }
 

@@ -16,10 +16,13 @@ assert.equal(LOOP_MS, 8000);
 // Start: on segment 0, the first station shown, the second one marked next.
 assert.deepEqual(frameAt(0), { segment: 0, fraction: 0, active: 1, revealed: 1 });
 
-// Damped easing: past halfway at half the segment time, not yet arrived.
-const mid = frameAt(SEGMENT_MS / 2);
-assert.equal(mid.segment, 0);
-assert.ok(mid.fraction > 0.5 && mid.fraction < 1, `eased fraction was ${mid.fraction}`);
+// Ease in and out of every station, so the call reads as one continuous move:
+// slow leaving, half-way at half time, slow arriving.
+const at = (share) => frameAt(SEGMENT_MS * share).fraction;
+assert.equal(frameAt(SEGMENT_MS / 2).segment, 0);
+assert.ok(at(0.25) < 0.25, `leaves softly (fraction at 25% was ${at(0.25)})`);
+assert.ok(Math.abs(at(0.5) - 0.5) < 1e-9, `half-way at half time (was ${at(0.5)})`);
+assert.ok(at(0.75) > 0.75, `arrives softly (fraction at 75% was ${at(0.75)})`);
 
 // Arrival at station 1 reveals it and marks station 2.
 assert.deepEqual(frameAt(SEGMENT_MS), { segment: 1, fraction: 0, active: 2, revealed: 2 });
