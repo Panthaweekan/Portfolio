@@ -24,6 +24,12 @@ export interface PersonalInfo {
   spokenLanguages: string[];
   bio: string;
   aboutSummary: string;
+  /** One-line positioning shown first on the home page. */
+  positioning: string;
+  /** First-person introduction under the positioning line. */
+  intro: string;
+  /** Month the CV PDF was last updated, shown on /resume. */
+  cvUpdated: string;
 }
 
 export interface SkillItem {
@@ -66,6 +72,8 @@ export interface ArchLayer {
 }
 
 export interface Project {
+  /** Stable anchor id for deep links, e.g. "finops" → /#finops */
+  id: string;
   title: string;
   subtitle?: string;
   dateRange: string;
@@ -107,6 +115,10 @@ export const personalInfo: PersonalInfo = {
   bio: "Associate Software Engineer at SCB TechX, building the FinOps cost engine for its agentic AI platform. Specializing in Go platform services, API gateway migration, and full-stack development with Go, Ruby on Rails, and React/TypeScript.",
   aboutSummary:
     "I am an Associate Software Engineer at SCB TechX building the FinOps cost engine for its agentic AI platform — pricing every LLM call and showing customers where their AI spend goes. I focus on building maintainable systems, from Go services on Kafka and behind Kong to complex workflow engines using Ruby on Rails and React/TypeScript. Passionate about Hexagonal Architecture, strict layer separation, and SOLID principles—creating robust, testable applications that teams can evolve with confidence.",
+  positioning: "I take systems from a written spec to running code.",
+  intro:
+    "I'm an Associate Software Engineer at SCB TechX in Bangkok. Since September 2026 I've been building the FinOps engine for TechX's agentic AI platform: it works out what every LLM call costs and shows customers where that money went.",
+  cvUpdated: "October 2026",
 };
 
 // ── Technical Skills ────────────────────────────────────────────────────────
@@ -256,6 +268,29 @@ const di = (name: string, variant = 'original') => `${DI}/${name}/${name}-${vari
 
 export const projects: Project[] = [
   {
+    id: "finops",
+    title: "FinOps Engine — Agentic AI Platform",
+    subtitle: "SCB TechX",
+    dateRange: "Sep 2026 – Present",
+    status: "In progress",
+    technologies: ["Go", "Kafka", "OpenTelemetry", "PostgreSQL", "AWS", "Next.js", "TypeScript"],
+    description: "Ran discovery for the FinOps module of SCB TechX's agentic AI platform, then built, with two teammates, the Go engine that prices every LLM call and the console dashboard that shows customers where that money went.",
+    highlights: [
+      "Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.",
+      "Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree — redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.",
+      "Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).",
+      "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes."
+    ],
+    visualArch: [
+      { name: "Platform", nodes: [{ label: "Agent step", sublabel: "emits a usage signal per LLM call", color: "#1F3BD6" }] },
+      { name: "Ingestion", nodes: [{ label: "Collector", color: "#1F3BD6" }, { label: "Kafka", sublabel: "usage, retry and dead-letter topics", color: "#1F3BD6" }] },
+      { name: "FinOps engine (Go)", nodes: [{ label: "Pricing", sublabel: "price and FX rate in force", color: "#1F3BD6" }, { label: "Attribution", sublabel: "organisation tree", color: "#1F3BD6" }, { label: "Reports API", color: "#1F3BD6" }] },
+      { name: "Data", nodes: [{ label: "PostgreSQL", sublabel: "multi-tenant", color: "#1F3BD6" }] },
+      { name: "Console", nodes: [{ label: "AI cost dashboard", sublabel: "organisation down to one step (in review)", color: "#1F3BD6" }] },
+    ],
+  },
+  {
+    id: "gateway",
     title: "API Gateway Microservice",
     subtitle: "SCB TechX",
     dateRange: "2025 – 2026",
@@ -268,8 +303,6 @@ export const projects: Project[] = [
       "Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies."
     ],
     technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
-    github: "https://github.com/Panthaweekan",
-    demo: "#",
     visualArch: [
       {
         name: "Clients",
@@ -307,6 +340,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "assets",
     title: "Inventory Asset Management System",
     subtitle: "SCB TechX",
     dateRange: "2025",
@@ -318,8 +352,6 @@ export const projects: Project[] = [
       "Developed the frontend with reusable components, partially generated type-safe API clients, and an installable PWA with push notifications."
     ],
     technologies: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Azure AD", "Docker"],
-    github: "https://github.com/Panthaweekan",
-    demo: "#",
     visualArch: [
       {
         name: "Identity",
@@ -351,6 +383,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "sd-booking",
     title: "SD-Booking — Room Reservation System",
     subtitle: "Chiang Mai University",
     dateRange: "2023 – 2024",
@@ -361,8 +394,6 @@ export const projects: Project[] = [
       "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today."
     ],
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
-    github: "https://github.com/Panthaweekan",
-    demo: "#",
     visualArch: [
       {
         name: "Frontend",
@@ -397,6 +428,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "fitjourney",
     title: "FitJourney — Fitness Tracking Platform",
     subtitle: "Side Project",
     dateRange: "2026",
@@ -409,7 +441,6 @@ export const projects: Project[] = [
     ],
     technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel", "Google SSO"],
     github: "https://github.com/Panthaweekan/FitJourney",
-    demo: "https://github.com/Panthaweekan/FitJourney",
     visualArch: [
       {
         name: "Client",
@@ -442,6 +473,7 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "tts",
     title: "Twitch Chat TTS Bot",
     subtitle: "Side Project",
     dateRange: "2026",
@@ -454,7 +486,6 @@ export const projects: Project[] = [
     ],
     technologies: ["Bun", "Microsoft Edge TTS", "tmi.js", "FFplay"],
     github: "https://github.com/Panthaweekan/tts",
-    demo: "https://github.com/Panthaweekan/tts",
     visualArch: [
       {
         name: "Input",
