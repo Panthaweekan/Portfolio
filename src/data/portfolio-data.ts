@@ -530,29 +530,3 @@ export const education: Education = {
   thesis:
     "LongPlan — Study plan validator using graph algorithms (topological sort, cycle detection) and curriculum rule enforcement. Built in Go with React frontend.",
 };
-
-// ── Bento Grid Display Helpers ──────────────────────────────────────────────
-// Categories that show as icon grids in the bento layout vs. badge lists
-
-/** Skill categories rendered as icon grids in PortfolioBento */
-export const bentoGridSkillCategories = [
-  "Languages",
-  "Frameworks",
-  "Infrastructure",
-  "Observability",
-  "Tools",
-] as const;
-
-/** Skill categories rendered as badge lists in PortfolioBento */
-export const bentoBadgeSkillCategories = [
-  "Practices",
-] as const;
-
-/** Interests shown in the bento Interests card */
-export const interests = [
-  "System Design",
-  "Clean Architecture",
-  "API Design",
-  "DevOps",
-  "Functional Programming",
-];
