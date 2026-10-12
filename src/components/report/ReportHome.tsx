@@ -35,13 +35,18 @@ export function ReportHome() {
           {/* Phones read name → Figure 1 → intro; desktop keeps the figure beside both. */}
           <section
             aria-labelledby="intro-title"
-            className="grid grid-cols-12 gap-x-6 gap-y-10 py-10 md:min-h-[calc(100svh-3.5rem)] md:grid-rows-[1fr_auto_auto_1fr] md:gap-y-6 md:py-12"
+            className="grid grid-cols-12 gap-x-6 gap-y-8 pb-10 pt-8 md:min-h-[calc(100svh-3.5rem)] md:grid-rows-[1fr_auto_auto_1fr] md:gap-y-6 md:py-12"
           >
             <div className="col-span-12 md:col-span-5 md:row-start-2">
               <h1 id="intro-title" className="text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl">
                 {personalInfo.name}
               </h1>
               <p className="mt-6 text-2xl leading-snug md:text-[1.75rem]">{personalInfo.positioning}</p>
+              {/* Phones put Figure 1 next, so keep a way to make contact on the first screen. */}
+              <p className="mt-4 flex gap-x-6 md:hidden">
+                <a href={`mailto:${personalInfo.email}`} className="font-semibold underline">Email</a>
+                <a href={personalInfo.linkedin} className="font-semibold underline">LinkedIn</a>
+              </p>
             </div>
             <div className="col-span-12 md:col-span-7 md:col-start-6 md:row-span-4 md:row-start-1">
               <FigureOne />

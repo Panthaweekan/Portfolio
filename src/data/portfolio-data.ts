@@ -315,12 +315,9 @@ export const projects: Project[] = [
         ],
       },
       {
-        name: "Microservices",
+        name: "Backend services",
         nodes: [
-          { label: "Auth" },
-          { label: "User" },
-          { label: "Payment" },
-          { label: "Catalog" },
+          { label: "30+ services", sublabel: "moved behind the new gateway in phases" },
         ],
       },
       {

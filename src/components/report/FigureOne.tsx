@@ -79,8 +79,8 @@ export function FigureOne() {
     : 0;
 
   return (
-    <figure ref={rootRef} className="on-field flex h-full flex-col bg-field p-8 text-on-field md:p-12">
-      <figcaption className="mb-10 text-2xl font-semibold leading-tight md:text-3xl">
+    <figure ref={rootRef} className="on-field flex h-full flex-col bg-field p-6 text-on-field sm:p-8 md:p-12">
+      <figcaption className="mb-8 text-2xl md:mb-10 font-semibold leading-tight md:text-3xl">
         <span className="tabular-nums">Figure 1</span> · One LLM call becomes money
       </figcaption>
 
@@ -89,7 +89,7 @@ export function FigureOne() {
           <>
             <div
               aria-hidden
-              className="absolute left-[7px] w-0.5 bg-on-field-muted"
+              className="absolute left-[7px] w-0.5 bg-on-field opacity-30"
               style={{ top: centers[0], height: centers[STATIONS.length - 1] - centers[0] }}
             />
             {/* The travelled path is the call itself: solid up to the marker. */}
