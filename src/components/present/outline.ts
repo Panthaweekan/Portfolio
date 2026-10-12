@@ -20,7 +20,7 @@ export const OUTLINE = [
   { id: 'gateway', kind: 'divider', chapter: 'II', title: 'API gateway' },
   { id: 'gateway-fix', kind: 'content', title: 'From an appliance to a service' },
   { id: 'earlier', kind: 'divider', chapter: 'III', title: 'Earlier systems' },
-  { id: 'earlier-two-up', kind: 'content', title: 'Two systems people use every day' },
+  { id: 'earlier-two-up', kind: 'content', title: 'Two systems I built before FinOps' },
   { id: 'how-i-work', kind: 'content', title: 'How I work' },
   { id: 'close', kind: 'close', title: 'Questions?' },
 ] as const satisfies readonly OutlineEntry[];

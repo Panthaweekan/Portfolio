@@ -90,7 +90,7 @@ function FinopsDiscovery() {
     <SlideFrame id="finops-discovery">
       <Headline>I started with the spec.</Headline>
       <div className="mt-14 grid grid-cols-12 gap-x-6">
-        <p className="col-span-6 text-[40px] leading-snug">
+        <p className="col-span-6 border-t border-ink pt-6 text-[52px] leading-tight">
           Before any code, I wrote the requirements, the module spec and the service topology for the product owner and
           the engineering manager.
         </p>
@@ -106,13 +106,9 @@ function FinopsDiscovery() {
 }
 
 function FinopsFigure() {
-  // FigureOne is sized for the web page and measures its own geometry, so scale it
-  // whole: 1.375 lifts its 16px station text to the 22px caption floor.
   return (
     <SlideFrame id="finops-figure">
-      <div className="origin-top-left scale-[1.375]" style={{ width: 1680 / 1.375, height: `${100 / 1.375}%` }}>
-        <FigureOne still />
-      </div>
+      <FigureOne slide />
     </SlideFrame>
   );
 }
@@ -195,7 +191,7 @@ function EarlierTwoUp() {
   const booking = project('sd-booking');
   return (
     <SlideFrame id="earlier-two-up">
-      <Headline>Two systems people use every day</Headline>
+      <Headline>Two systems I built before FinOps</Headline>
       <div className="mt-14 grid grid-cols-2 gap-x-16">
         <Column
           title="Enterprise asset platform"
@@ -248,7 +244,7 @@ function CloseSlide() {
   return (
     <SlideFrame id="close">
       <div className="grid h-full grid-cols-12 gap-x-6">
-        <h2 className="col-span-6 self-center text-[160px] font-semibold leading-none tracking-tight">Questions?</h2>
+        <h2 className="col-span-6 self-center text-[140px] font-semibold leading-none tracking-tight">Questions?</h2>
         <ul className="col-span-6 col-start-7 self-center space-y-6 whitespace-nowrap text-[36px]">
           <li>{personalInfo.email}</li>
           <li>{strip(personalInfo.linkedin)}</li>

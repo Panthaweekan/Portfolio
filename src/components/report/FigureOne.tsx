@@ -12,18 +12,45 @@ const STATIONS: { name: string; value: string; amount?: string }[] = [
   { name: 'Dashboard', value: 'Team › Project › Run › Step', amount: 'USD 0.0081' },
 ];
 
-// Station dot centre from the top of each list item: the dot's mt-[10px] plus
-// half of its h-2.5. Change those classes and this together.
-const DOT_OFFSET = 15;
+// Class sets for the web page and the deck slide. The slide canvas is 1920px wide
+// whatever the viewport, so its set carries no breakpoint prefixes.
+// dotOffset: station dot centre from the top of each list item, the dot's top
+// margin plus half its height. Change those classes and it together.
+const SIZES = {
+  page: {
+    figure: 'p-6 sm:p-8 md:p-12',
+    caption: 'mb-8 text-2xl md:mb-10 md:text-3xl',
+    list: 'space-y-7',
+    item: 'pl-10',
+    name: 'block',
+    value: 'block',
+    dot: 'left-[3px] mt-[10px] h-2.5 w-2.5',
+    rail: 'left-[7px]',
+    note: 'mt-10 text-sm',
+    dotOffset: 15,
+  },
+  slide: {
+    figure: 'p-12',
+    caption: 'mb-10 text-[48px]',
+    list: 'space-y-7 text-[32px] leading-snug',
+    item: 'grid grid-cols-12 items-baseline gap-x-6 pl-14',
+    name: 'col-span-3',
+    value: 'col-span-9',
+    dot: 'left-[2px] mt-[14px] h-4 w-4',
+    rail: 'left-[9px]',
+    note: 'mt-10 text-[22px]',
+    dotOffset: 22,
+  },
+};
 
 interface FigureOneProps {
-  /** Deck slide: render the final frame without animation, and size the footnote
-   *  so it still reads at the 22px caption floor once the slide scales the figure. */
-  still?: boolean;
+  /** Deck slide: the final frame, no animation, at projection type sizes. */
+  slide?: boolean;
 }
 
-export function FigureOne({ still = false }: FigureOneProps) {
-  const reduceMotion = useReducedMotion() || still;
+export function FigureOne({ slide = false }: FigureOneProps) {
+  const size = slide ? SIZES.slide : SIZES.page;
+  const reduceMotion = useReducedMotion() || slide;
   const rootRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
   const [frame, setFrame] = useState<FigureFrame>(FINAL_FRAME);
@@ -34,12 +61,12 @@ export function FigureOne({ still = false }: FigureOneProps) {
     const list = listRef.current;
     if (!list) return;
     const measure = () =>
-      setCenters(Array.from(list.children, (li) => (li as HTMLElement).offsetTop + DOT_OFFSET));
+      setCenters(Array.from(list.children, (li) => (li as HTMLElement).offsetTop + size.dotOffset));
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(list);
     return () => observer.disconnect();
-  }, []);
+  }, [size.dotOffset]);
 
   // One clock. Runs only while the figure is on screen, the tab is visible,
   // and motion is allowed. ponytail: restarts the loop on resume; resume
@@ -85,8 +112,8 @@ export function FigureOne({ still = false }: FigureOneProps) {
     : 0;
 
   return (
-    <figure ref={rootRef} className="on-field flex h-full flex-col bg-field p-6 text-on-field sm:p-8 md:p-12">
-      <figcaption className="mb-8 text-2xl md:mb-10 font-semibold leading-tight md:text-3xl">
+    <figure ref={rootRef} className={`on-field flex h-full flex-col bg-field text-on-field ${size.figure}`}>
+      <figcaption className={`font-semibold leading-tight ${size.caption}`}>
         <span className="tabular-nums">Figure 1</span> · One LLM call becomes money
       </figcaption>
 
@@ -95,13 +122,13 @@ export function FigureOne({ still = false }: FigureOneProps) {
           <>
             <div
               aria-hidden
-              className="absolute left-[7px] w-0.5 bg-on-field opacity-30"
+              className={`absolute w-0.5 bg-on-field opacity-30 ${size.rail}`}
               style={{ top: centers[0], height: centers[STATIONS.length - 1] - centers[0] }}
             />
             {/* The travelled path is the call itself: solid up to the marker. */}
             <div
               aria-hidden
-              className="absolute left-[7px] w-0.5 bg-on-field"
+              className={`absolute w-0.5 bg-on-field ${size.rail}`}
               style={{ top: centers[0], height: markerTop - centers[0] }}
             />
             {!reduceMotion && (
@@ -113,7 +140,7 @@ export function FigureOne({ still = false }: FigureOneProps) {
             )}
           </>
         )}
-        <ol ref={listRef} className="relative space-y-7">
+        <ol ref={listRef} className={`relative ${size.list}`}>
           {STATIONS.map((station, i) => {
             const reached = i < frame.revealed;
             const next = i === frame.active && !reached;
@@ -124,16 +151,24 @@ export function FigureOne({ still = false }: FigureOneProps) {
                 ? 'border-on-field bg-on-field'
                 : 'border-on-field-muted bg-field';
             return (
-              <li key={station.name} className="pl-10">
-                <span aria-hidden className={`absolute left-[3px] mt-[10px] h-2.5 w-2.5 rounded-full border-2 ${dot}`} />
-                <span className="block font-semibold">{station.name}</span>
-                {station.amount ? (
+              <li key={station.name} className={size.item}>
+                <span aria-hidden className={`absolute rounded-full border-2 ${size.dot} ${dot}`} />
+                <span className={`${size.name} font-semibold`}>{station.name}</span>
+                {station.amount && slide ? (
+                  // On the slide the amount lands on its own line at display scale.
+                  <>
+                    <span className={`${size.value} ${tone}`}>{station.value}</span>
+                    <span className="col-span-9 col-start-4 mt-4 text-right text-[120px] font-semibold leading-none tabular-nums">
+                      {station.amount}
+                    </span>
+                  </>
+                ) : station.amount ? (
                   <span className={`flex flex-wrap items-baseline justify-between gap-x-6 transition-colors duration-500 ${tone}`}>
                     <span>{station.value}</span>
                     <span className="whitespace-nowrap text-2xl font-semibold tabular-nums md:text-3xl">{station.amount}</span>
                   </span>
                 ) : (
-                  <span className={`block tabular-nums transition-colors duration-500 ${tone}`}>{station.value}</span>
+                  <span className={`${size.value} tabular-nums transition-colors duration-500 ${tone}`}>{station.value}</span>
                 )}
               </li>
             );
@@ -141,7 +176,7 @@ export function FigureOne({ still = false }: FigureOneProps) {
         </ol>
       </div>
 
-      <p className={`text-on-field-muted ${still ? 'mt-8 text-base' : 'mt-10 text-sm'}`}>
+      <p className={`text-on-field-muted ${size.note}`}>
         Illustrative example · FinOps engine, SCB TechX agentic AI platform
       </p>
     </figure>
