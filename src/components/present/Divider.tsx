@@ -14,7 +14,7 @@ export function Divider({ id, subtitle, dates }: DividerProps) {
       <span className="text-[220px] font-semibold leading-none tabular-nums">{chapter?.numeral}</span>
       <div>
         <h2 className="text-[112px] font-semibold leading-[1.02] tracking-tight">{chapter?.title}</h2>
-        <p className="mt-6 max-w-[28ch] text-[44px] leading-snug">{subtitle}</p>
+        <p className="mt-6 max-w-[28ch] text-balance text-[44px] leading-snug">{subtitle}</p>
       </div>
       <div className="flex items-baseline justify-between border-t border-on-field-muted pt-5 text-[22px] tabular-nums text-on-field-muted">
         <span>{dates}</span>

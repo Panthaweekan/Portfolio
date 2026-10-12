@@ -9,8 +9,8 @@ interface LayerFigureProps {
 }
 
 const TYPE = {
-  page: { caption: 'text-sm', node: '' },
-  slide: { caption: 'text-[22px]', node: 'text-[28px]' },
+  page: { caption: 'text-sm', node: '', row: '' },
+  slide: { caption: 'text-[22px]', node: 'text-[28px]', row: 'items-baseline' },
 };
 
 // A system's architecture as a report figure: one row per layer, top to bottom
@@ -24,7 +24,7 @@ export function LayerFigure({ number, title, layers, size = 'page' }: LayerFigur
       </figcaption>
       <ol className="border-t border-ink">
         {layers.map((layer) => (
-          <li key={layer.name} className="grid grid-cols-12 gap-x-6 border-b border-rule py-3">
+          <li key={layer.name} className={`grid grid-cols-12 gap-x-6 border-b border-rule py-3 ${type.row}`}>
             <span className={`col-span-12 text-muted sm:col-span-4 ${type.caption}`}>{layer.name}</span>
             <ul className={`col-span-12 flex flex-wrap gap-x-6 gap-y-1 sm:col-span-8 ${type.node}`}>
               {layer.nodes.map((node) => (

@@ -19,10 +19,11 @@ const Headline = ({ children }: { children: ReactNode }) => (
   <h2 className="text-[72px] font-semibold leading-[1.05] tracking-tight">{children}</h2>
 );
 
-function Column({ title, items }: { title: string; items: string[] }) {
+function Column({ title, meta, items }: { title: string; meta?: string; items: string[] }) {
   return (
     <div className="border-t border-ink pt-6">
       <h3 className="text-[40px] font-semibold">{title}</h3>
+      {meta && <p className="mt-2 text-[22px] tabular-nums text-muted">{meta}</p>}
       <ul className="mt-6 space-y-5 text-[32px] leading-snug">
         {items.map((item) => (
           <li key={item}>{item}</li>
@@ -35,9 +36,8 @@ function Column({ title, items }: { title: string; items: string[] }) {
 function TitleSlide() {
   return (
     <div className="relative h-full bg-ground text-ink">
-      <div className="flex h-full w-[1200px] flex-col justify-between px-[120px] pb-[56px] pt-[96px]">
-        <span className="text-[22px] tabular-nums text-muted">Portfolio talk · {personalInfo.cvUpdated}</span>
-        <div>
+      <div className="flex h-full w-[1200px] flex-col px-[120px] pb-[56px] pt-[96px]">
+        <div className="my-auto">
           <h1 className="text-[140px] font-semibold leading-[0.98] tracking-tight">
             Panthaweekan
             <br />
@@ -48,9 +48,12 @@ function TitleSlide() {
             {currentRole.title} · {currentRole.company} · {currentRole.location.split(',')[0]}
           </p>
         </div>
-        <span className="text-[22px] tabular-nums text-muted">
-          p. {pageOf('title')} / {TOTAL_PAGES}
-        </span>
+        <div className="flex items-baseline justify-between border-t border-rule pt-5 text-[22px] tabular-nums text-muted">
+          <span>Portfolio talk · {personalInfo.cvUpdated}</span>
+          <span>
+            p. {pageOf('title')} / {TOTAL_PAGES}
+          </span>
+        </div>
       </div>
       <img
         src={PORTRAIT}
@@ -194,32 +197,24 @@ function EarlierTwoUp() {
     <SlideFrame id="earlier-two-up">
       <Headline>Two systems people use every day</Headline>
       <div className="mt-14 grid grid-cols-2 gap-x-16">
-        <div>
-          <p className="text-[22px] tabular-nums text-muted">
-            {assets.subtitle} · {assets.dateRange}
-          </p>
-          <Column
-            title="Enterprise asset platform"
-            items={[
-              'Replaced Excel and MS Forms with one platform for the asset lifecycle',
-              'Four request lifecycles, approval chains per role and step',
-              'Six roles on Azure AD single sign-on; Excel and CSV reports',
-            ]}
-          />
-        </div>
-        <div>
-          <p className="text-[22px] tabular-nums text-muted">
-            {booking.subtitle} · {booking.dateRange}
-          </p>
-          <Column
-            title="SD-Booking"
-            items={[
-              'Real-time room booking used across the faculty',
-              'Role-based access and booking conflict detection',
-              'Adopted for daily scheduling, and still in use today',
-            ]}
-          />
-        </div>
+        <Column
+          title="Enterprise asset platform"
+          meta={`${assets.subtitle} · ${assets.dateRange}`}
+          items={[
+            'Replaced Excel and MS Forms with one platform for the asset lifecycle',
+            'Four request lifecycles, approval chains per role and step',
+            'Six roles on Azure AD single sign-on; Excel and CSV reports',
+          ]}
+        />
+        <Column
+          title="SD-Booking"
+          meta={`${booking.subtitle} · ${booking.dateRange}`}
+          items={[
+            'Real-time room booking used across the faculty',
+            'Role-based access and booking conflict detection',
+            'Adopted for daily scheduling, and still in use today',
+          ]}
+        />
       </div>
     </SlideFrame>
   );
@@ -253,8 +248,8 @@ function CloseSlide() {
   return (
     <SlideFrame id="close">
       <div className="grid h-full grid-cols-12 gap-x-6">
-        <h2 className="col-span-6 self-center text-[180px] font-semibold leading-none tracking-tight">Questions?</h2>
-        <ul className="col-span-5 col-start-8 self-center space-y-6 text-[36px]">
+        <h2 className="col-span-6 self-center text-[160px] font-semibold leading-none tracking-tight">Questions?</h2>
+        <ul className="col-span-6 col-start-7 self-center space-y-6 whitespace-nowrap text-[36px]">
           <li>{personalInfo.email}</li>
           <li>{strip(personalInfo.linkedin)}</li>
           <li>{strip(personalInfo.github)}</li>
