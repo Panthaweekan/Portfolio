@@ -2,7 +2,8 @@
 // Portfolio Data — Single Source of Truth
 // ============================================================================
 // All portfolio content lives here. Update this file to update the entire site.
-// Strictly synchronized with cv.tex.
+// Facts are synchronized with cv.tex (cv.tex wording wins). The site may show
+// extra showcase items the 1-page CV omits (e.g. TTS Bot, thesis).
 // ============================================================================
 
 // ── Type Definitions ────────────────────────────────────────────────────────
@@ -103,9 +104,9 @@ export const personalInfo: PersonalInfo = {
   linkedin: "https://www.linkedin.com/in/panthaweekan/",
   portfolio: "https://panthaweekan.github.io/Portfolio/",
   spokenLanguages: ["EN (Intermediate)", "TH (Native)"],
-  bio: "Associate Software Engineer at SCB TechX. Specializing in enterprise API gateways, cloud migration, and full-stack development with Go, Ruby on Rails, and modern cloud-native architectures.",
+  bio: "Associate Software Engineer at SCB TechX, building the FinOps cost engine for its agentic AI platform. Specializing in Go platform services, API gateway migration, and full-stack development with Go, Ruby on Rails, and React/TypeScript.",
   aboutSummary:
-    "I am an Associate Software Engineer at SCB TechX specializing in enterprise API gateways, cloud migration, and full-stack development. I focus on building scalable systems, from high-throughput Go microservices behind Kong to complex workflow engines using Ruby on Rails and React/TypeScript. Passionate about Hexagonal Architecture, strict layer separation, and SOLID principles—creating robust, testable applications that teams can evolve with confidence.",
+    "I am an Associate Software Engineer at SCB TechX building the FinOps cost engine for its agentic AI platform — pricing every LLM call and showing customers where their AI spend goes. I focus on building maintainable systems, from Go services on Kafka and behind Kong to complex workflow engines using Ruby on Rails and React/TypeScript. Passionate about Hexagonal Architecture, strict layer separation, and SOLID principles—creating robust, testable applications that teams can evolve with confidence.",
 };
 
 // ── Technical Skills ────────────────────────────────────────────────────────
@@ -197,19 +198,31 @@ export const experiences: Experience[] = [
     company: "SCB TechX",
     period: "May 2025 – Present",
     location: "Bangkok, Thailand (Hybrid)",
-    technologies: ["Go", "Fiber", "Kong", "Rails", "React", "TypeScript"],
+    technologies: ["Go", "Kafka", "OpenTelemetry", "PostgreSQL", "AWS", "Kong", "Rails", "Next.js", "TypeScript"],
     highlights: [
       {
-        text: "Developed a Go microservice handling token validation, authentication, and request routing for SCB Easy's 10M+ user platform, integrated behind Kong as part of a phased migration away from a legacy on-premise gateway.",
+        text: "Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.",
       },
       {
-        text: "Designed the plugin system, routing engine, caching layer, and observability infrastructure for the new gateway, with Prometheus metrics and structured logging ready for production rollout.",
+        text: "Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree — redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.",
       },
       {
-        text: "Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications, used across the organization.",
+        text: "Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).",
       },
       {
-        text: "Leveraged AI-assisted development tools across code generation, unit-testing, refactoring, architecture review, and documentation to accelerate delivery on complex features.",
+        text: "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes.",
+      },
+      {
+        text: "Developed a Go service (Hexagonal Architecture, interface-driven design) for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform; handed over to the team in Sep 2026 as the migration continued.",
+      },
+      {
+        text: "Designed the plugin system, routing engine, and observability infrastructure (Prometheus metrics, structured logging) for the new gateway, which was progressing through phased migration to production at handover.",
+      },
+      {
+        text: "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
+      },
+      {
+        text: "Designed and developed an enterprise asset management platform: a database-driven workflow engine for four parallel request lifecycles (request, spare, repair, return) with approval chains per role and step, role-based access control for six user roles with Azure AD single sign-on, and reporting dashboards with Excel/CSV export.",
       },
     ],
   },
@@ -221,13 +234,13 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "React", "TypeScript", "PostgreSQL", "Docker"],
     highlights: [
       {
-        text: "Designed and deployed two production web applications serving 500+ active users, owning the full lifecycle from stakeholder requirements through containerized deployment.",
+        text: "Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment.",
       },
       {
-        text: "Developed a real-time room reservation system with role-based access, admin dashboard, and mobile push notifications, adopted by the faculty for daily scheduling.",
+        text: "Developed SD-Booking, a real-time room reservation system with role-based access, booking conflict detection, an admin dashboard, and mobile push notifications — adopted by the faculty for daily scheduling and still in active use today.",
       },
       {
-        text: "Developed a multi-stage certificate approval workflow that digitized a paper-based process, reducing turnaround from days to hours.",
+        text: "Developed a multi-stage certificate approval workflow that digitized a previously paper-based process, streamlining manual approval turnaround.",
       },
       {
         text: "Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
@@ -245,13 +258,13 @@ export const projects: Project[] = [
   {
     title: "API Gateway Microservice",
     subtitle: "SCB TechX",
-    dateRange: "2025 – Present",
-    status: "Production",
-    impact: "Enabling phase rollout for SCB Easy",
-    description: "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
+    dateRange: "2025 – 2026",
+    status: "Handed off",
+    impact: "Phased migration toward SCB Easy's 10M+ user platform",
+    description: "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
     highlights: [
-      "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
-      "Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and response caching — enabling GitOps-style config management and safe phased rollouts.",
+      "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
+      "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
       "Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies."
     ],
     technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
@@ -297,14 +310,12 @@ export const projects: Project[] = [
     title: "Inventory Asset Management System",
     subtitle: "SCB TechX",
     dateRange: "2025",
-    status: "Production",
-    impact: "Used across the organization",
     description: "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
     highlights: [
       "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
       "Implemented role-based access control for six user roles with Azure AD single sign-on.",
       "Built reporting dashboards aggregating asset requests, utilization, financial summaries, and processing efficiency, with Excel and CSV export.",
-      "Developed the frontend with reusable components, type-safe API clients generated from the backend specification, and full offline-capable PWA support with push notifications."
+      "Developed the frontend with reusable components, partially generated type-safe API clients, and an installable PWA with push notifications."
     ],
     technologies: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Azure AD", "Docker"],
     github: "https://github.com/Panthaweekan",
@@ -344,10 +355,10 @@ export const projects: Project[] = [
     subtitle: "Chiang Mai University",
     dateRange: "2023 – 2024",
     status: "Production",
-    impact: "Serving 500+ active users",
-    description: "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations.",
+    impact: "Still in daily use by the faculty",
+    description: "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today.",
     highlights: [
-      "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations."
+      "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today."
     ],
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
     github: "https://github.com/Panthaweekan",

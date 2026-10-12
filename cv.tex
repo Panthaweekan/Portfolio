@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage[margin=0.6in]{geometry}
+\usepackage[margin=0.5in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[scaled]{helvet}
@@ -10,126 +10,92 @@
 \usepackage{bookmark}
 \usepackage{enumitem}
 \usepackage{titlesec}
+\usepackage{ragged2e}
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
+\linespread{1.04}
 \setlength{\emergencystretch}{3em}
+% No hyphenation: split words break ATS keyword matching
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
 \setlist[itemize]{leftmargin=1.2em, itemsep=2pt, topsep=3pt, parsep=0pt}
 
 \definecolor{textdark}{HTML}{1F2937}
 \definecolor{textmuted}{HTML}{4B5563}
-\definecolor{rulegray}{HTML}{9CA3AF}
+\definecolor{rulegray}{HTML}{D1D5DB}
 \colorlet{RULEGRAY}{rulegray}
 
 \hypersetup{colorlinks=true, urlcolor={textdark}, linkcolor={textdark}}
 
-\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}[\color{rulegray}\titlerule]
-\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titleformat{\section}{\small\bfseries\uppercase}{}{0em}{}[\color{rulegray}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{5pt}
 
-% Project command
-\newcommand{\project}[4]{%
-  \textbf{#1} \hfill \textit{#2}\\[-1pt]%
-  {\small\textcolor{textmuted}{#3}}%
-  #4\par\vspace{5pt}%
+% Type roles: metadata (company/location, stack, dates) is muted and upright
+\newcommand{\meta}[1]{\textcolor{textmuted}{#1}}
+\newcommand{\sep}{\enspace\textcolor{rulegray}{|}\enspace}
+% Entry: title + dates, then employer + muted location
+\newcommand{\entry}[4]{%
+  \textbf{#1} \hfill \meta{#2}\\
+  #3 \meta{\textperiodcentered{} #4}%
+}
+
+% Sub-project heading inside an experience entry (plain text, ATS-safe)
+\newcommand{\subhead}[3]{%
+  \vspace{4pt}{\small\textbf{#1}\sep\meta{#2} \hfill \meta{#3}}\par\vspace{-2pt}%
 }
 
 \begin{document}
+\color{textdark}
+\RaggedRight
 
 % ═══════════════════════════════════════════
 %  HEADER — linear layout (ATS-safe)
 % ═══════════════════════════════════════════
-{\LARGE \textbf{Panthaweekan Somngam}}\\[3pt]
-Software Engineer\\[1pt]
-Bangkok, Thailand (GMT+7) \quad\textbar\quad Open to Remote / Hybrid\\
-\href{mailto:panthaweekansomngam@gmail.com}{panthaweekansomngam@gmail.com} \quad\textbar\quad +66 946359510\\
-\href{https://github.com/Panthaweekan}{github.com/Panthaweekan} \quad\textbar\quad \href{https://www.linkedin.com/in/panthaweekan/}{linkedin.com/in/panthaweekan} \quad\textbar\quad \href{https://panthaweekan.github.io/Portfolio/}{panthaweekan.github.io/Portfolio}\\
-{\small EN (Intermediate) \textbar{} TH (Native)}
+{\LARGE \textbf{Panthaweekan Somngam}}\\[4pt]
+\textbf{Software Engineer}\sep Bangkok, Thailand (GMT+7)\sep Open to Remote / Hybrid\sep +66 946359510\\[1pt]
+{\small\href{mailto:panthaweekansomngam@gmail.com}{panthaweekansomngam@gmail.com}\sep \href{https://panthaweekan.github.io/Portfolio/}{panthaweekan.github.io/Portfolio}\sep \href{https://github.com/Panthaweekan}{github.com/Panthaweekan}\sep \href{https://www.linkedin.com/in/panthaweekan/}{linkedin.com/in/panthaweekan}}
 
 % ═══════════════════════════════════════════
 %  PROFESSIONAL EXPERIENCE
 % ═══════════════════════════════════════════
 \section*{Professional Experience}
 
-\textbf{Associate Software Engineer} \hfill \textit{May 2025 -- Present}\\
-SCB TechX, Bangkok, Thailand (Hybrid)
+\entry{Associate Software Engineer}{May 2025 -- Present}{SCB TechX}{Bangkok, Thailand (Hybrid)}
+
+\subhead{Agentic AI Platform --- FinOps Engine}{Go, Kafka, OpenTelemetry, PostgreSQL, AWS, Next.js, TypeScript}{Sep 2026 -- Present}
 \begin{itemize}
-  \item Developing a Go microservice for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform.
-  \item Designed the plugin system, routing engine, and observability infrastructure (Prometheus metrics, structured logging) for the new gateway, currently progressing through phased migration to production.
-  \item Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications.
-  \item Leveraged AI-assisted development tools across code generation, unit-testing, refactoring, architecture review, and documentation to accelerate delivery on complex features.
+  \item Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.
+  \item Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree; redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.
+  \item Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).
+  \item Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes.
 \end{itemize}
 
-\textbf{Full Stack Developer (Work-Study Scholarship)} \hfill \textit{2023 -- 2025}\\
-Chiang Mai University, Faculty of Engineering, Chiang Mai, Thailand
+\subhead{API Gateway Migration}{Go, Fiber, Kong, Redis, PostgreSQL, Prometheus, Kubernetes}{2025 -- Sep 2026}
 \begin{itemize}
-  \item Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment.
-  \item Developed a real-time room reservation system with role-based access, an admin dashboard, and mobile push notifications --- adopted by the faculty for daily scheduling and still in active use today.
-  \item Developed a multi-stage certificate approval workflow that digitized a previously paper-based process, streamlining manual approval turnaround.
-  \item Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.
+  \item Developed a Go service (Hexagonal Architecture, interface-driven design) for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform; handed over to the team in Sep 2026 as the migration continued.
+  \item Designed the plugin system, routing engine, and observability (Prometheus metrics, structured logging), and prototyped declarative config sync (Kong decK pattern: YAML routes with diff and rollback) and per-service circuit breaking, targeting safe phased rollout across the migration's 30+ services.
 \end{itemize}
 
-% ═══════════════════════════════════════════
-%  PROJECTS
-% ═══════════════════════════════════════════
-\section*{Projects}
+\subhead{Enterprise Asset Management Platform}{Ruby on Rails, React, TypeScript, PostgreSQL, Azure AD, Docker}{2025}
+\begin{itemize}
+  \item Designed and developed a database-driven workflow engine for four parallel request lifecycles with per-role approval chains, role-based access control for six user roles with Azure AD single sign-on, and reporting dashboards with Excel/CSV export.
+\end{itemize}
 
-\project
-  {API Gateway Microservice \textnormal{\textcolor{textmuted}{--- SCB TechX}}}
-  {2025 -- Present}
-  {Go, Fiber, PostgreSQL, Redis, Kong, Prometheus, Kubernetes}
-  {\begin{itemize}
-  \item Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.
-  \item Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.
-  \item Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design --- keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies.
-  \end{itemize}}
-
-\project
-  {Inventory Asset Management System \textnormal{\textcolor{textmuted}{--- SCB TechX}}}
-  {2025}
-  {Ruby on Rails, React, TypeScript, PostgreSQL, Azure AD, Docker}
-  {\begin{itemize}
-    \item Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.
-    \item Implemented role-based access control for six user roles with Azure AD single sign-on.
-    \item Built reporting dashboards aggregating asset requests, utilization, financial summaries, and processing efficiency, with Excel and CSV export.
-    \item Developed the frontend with reusable components, partially generated type-safe API clients, and an installable PWA with push notifications.
-  \end{itemize}}
-
-\newpage
-
-\project
-  {SD-Booking --- Room Reservation System \textnormal{\textcolor{textmuted}{--- Chiang Mai University}}}
-  {2023 -- 2024}
-  {Go, React, TypeScript, PostgreSQL, PWA, Docker}
-  {\begin{itemize}
-    \item Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications --- adopted for daily operations and still in use today.
-  \end{itemize}}
-
-\project
-  {\href{https://github.com/Panthaweekan/silver-octo-palm-tree}{FitJourney --- Fitness Tracking Platform} \textnormal{\textcolor{textmuted}{--- Side Project}}}
-  {2026}
-  {Next.js, Supabase, Tailwind CSS, OpenAI API, Vercel}
-  {\begin{itemize}
-    \item Shipped a full-stack fitness PWA addressing a personal gap in daily tracking --- consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.
-    \item Designed analytics dashboards for performance trends and calorie tracking; architected as a monorepo with Supabase (auth, DB, storage) and Vercel edge deployment for fast cold starts.
-  \end{itemize}}
-
-\project
-  {\href{https://github.com/Panthaweekan/tts}{Twitch Chat TTS Bot} \textnormal{\textcolor{textmuted}{--- Side Project}}}
-  {2026}
-  {Bun, Microsoft Edge TTS, tmi.js, FFplay}
-  {\begin{itemize}
-    \item Engineered a real-time Twitch TTS bot that pipes synthesized audio directly from memory to playback, eliminating disk I/O and reducing per-message overhead versus file-based approaches --- supporting Thai and English neural voices via Microsoft Edge TTS.
-    \item Built a message priority queue with anti-spam filtering and automated OAuth token refresh to handle high-volume chat reliably without manual intervention.
-  \end{itemize}}
+\vspace{4pt}
+\entry{Full Stack Developer (Work-Study Scholarship)}{2023 -- 2025}{Chiang Mai University, Faculty of Engineering}{Chiang Mai, Thailand}
+\begin{itemize}
+  \item Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment (Go, React/TypeScript, PostgreSQL, hexagonal architecture), including a multi-stage certificate approval workflow that digitized a paper-based process.
+  \item Developed SD-Booking, a real-time room reservation system with role-based access, booking conflict detection, an admin dashboard, and mobile push notifications --- adopted by the faculty for daily scheduling and still in active use today.
+\end{itemize}
 
 % ═══════════════════════════════════════════
 %  EDUCATION
 % ═══════════════════════════════════════════
 \section*{Education}
-\textbf{Bachelor of Engineering in Computer Engineering} \hfill \textit{Graduated 2025}\\
-Chiang Mai University \hfill Second-Class Honours\quad GPA: 3.32/4.00\\
-{\small Thesis: \textit{LongPlan} --- Study plan validator using graph algorithms (topological sort, cycle detection) and curriculum rule enforcement. Built in Go with React frontend.}
+\textbf{Bachelor of Engineering in Computer Engineering} \hfill \meta{Graduated 2025}\\
+Chiang Mai University \meta{\textperiodcentered{} Second-Class Honours \textperiodcentered{} GPA 3.32/4.00}
 
 % ═══════════════════════════════════════════
 %  SKILLS — plain comma-separated (ATS-safe)
@@ -137,11 +103,10 @@ Chiang Mai University \hfill Second-Class Honours\quad GPA: 3.32/4.00\\
 \section*{Skills}
 
 \textbf{Languages:} Go, TypeScript, JavaScript, Ruby, Python, SQL, HTML/CSS\\[2pt]
-\textbf{Familiar:} Java, Haskell\\[2pt]
-\textbf{Frameworks:} Fiber, Gin, Ruby on Rails, React, Next.js, Node.js, Vite, Tailwind CSS, MUI, TanStack Query\\[2pt]
-\textbf{Infrastructure:} PostgreSQL, Redis, Docker, Kubernetes, AWS, Kong API Gateway, CA Layer 7, Nginx, Supabase, Vercel, Linux\\[2pt]
-\textbf{Observability:} Prometheus, Grafana, ELK Stack\\[2pt]
-\textbf{Tools:} Git, GitHub Actions, Jenkins, HashiCorp Vault\\[2pt]
-\textbf{Practices:} System Design, Data Structures \& Algorithms, REST APIs, Microservices, CI/CD, TDD, SOLID, OOP, Agile/Scrum
+\textbf{Frameworks:} Fiber, Gin, Echo, Ruby on Rails, React, Next.js, Node.js, Tailwind CSS, TanStack Query\\[2pt]
+\textbf{Infrastructure:} PostgreSQL, Redis, Kafka, Docker, Kubernetes, AWS (EKS, RDS, Secrets Manager), Kong API Gateway, Supabase, Vercel, Linux\\[2pt]
+\textbf{Observability \& Tools:} OpenTelemetry, Prometheus, Grafana, ELK Stack, Git, GitHub Actions, HashiCorp Vault\\[2pt]
+\textbf{Practices:} System Design, Data Structures \& Algorithms, REST APIs, Microservices, CI/CD, TDD, Agile/Scrum\\[2pt]
+\textbf{Spoken:} Thai (Native), English (Intermediate)
 
 \end{document}
