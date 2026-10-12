@@ -78,14 +78,14 @@ export function FigureOne() {
 
   return (
     <figure ref={rootRef} className="on-field flex h-full flex-col bg-field p-8 text-on-field md:p-12">
-      <figcaption>
+      <figcaption className="mb-10">
         <span className="block text-sm font-semibold tabular-nums">Figure 1</span>
         <span className="mt-1 block text-2xl font-semibold leading-tight md:text-3xl">
           One LLM call becomes money
         </span>
       </figcaption>
 
-      <div className="relative mt-10 flex-1">
+      <div className="relative my-auto">
         {measured && (
           <>
             <div

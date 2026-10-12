@@ -89,10 +89,10 @@ export function ReportHome() {
               <tbody>
                 {experiences.map((e) => (
                   <tr key={e.title} className="border-t border-rule align-top">
-                    <td className="py-3 pr-6 font-medium">{e.title}</td>
-                    <td className="py-3 pr-6">{e.company}</td>
+                    <td className="py-3 pr-4 font-medium sm:pr-6">{e.title}</td>
+                    <td className="py-3 pr-4 sm:pr-6">{e.company}</td>
                     <td className="hidden py-3 pr-6 text-muted md:table-cell">{e.location}</td>
-                    <td className="whitespace-nowrap py-3 text-right tabular-nums text-muted">{e.period}</td>
+                    <td className="py-3 text-right tabular-nums text-muted sm:whitespace-nowrap">{e.period}</td>
                   </tr>
                 ))}
               </tbody>
