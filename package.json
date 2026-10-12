@@ -7,8 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "check:deck": "node scripts/check-deck.mjs",
-    "check:figure": "node scripts/check-figure-clock.mjs",
-    "dump:deck-golden": "node scripts/dump-golden.mjs"
+    "check:figure": "node scripts/check-figure-clock.mjs"
   },
   "repository": {
     "type": "git",
