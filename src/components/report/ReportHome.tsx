@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { education, experiences, personalInfo, technicalSkills } from '@/data/portfolio-data';
+import { education, experiences, personalInfo, projects, technicalSkills } from '@/data/portfolio-data';
+import { Chapter } from './Chapter';
 import { FigureOne } from './FigureOne';
 import { Masthead } from './Masthead';
 
 const CV_URL = `${import.meta.env.BASE_URL}cv.pdf`;
 
 const sectionTitle = 'text-3xl font-semibold tracking-tight';
+
+// Figure 1 is the hero; chapter figures continue from 2.
+let figureCount = 1;
+const figureNumbers = projects.map((p) => (p.visualArch ? ++figureCount : null));
 
 export function ReportHome() {
   // Content renders after load, so the browser's own hash jump misses it.
@@ -61,7 +66,11 @@ export function ReportHome() {
               Systems
             </h2>
             <p className="mt-3 max-w-measure text-muted">Each chapter is one system I worked on, newest first.</p>
-            {/* Chapters: Task 7 */}
+            <div className="mt-8">
+              {projects.map((p, i) => (
+                <Chapter key={p.id} project={p} figureNumber={figureNumbers[i]} />
+              ))}
+            </div>
           </section>
 
           <section id="record" aria-labelledby="record-title" className="border-t border-ink pb-16 pt-12">

@@ -61,9 +61,6 @@ export interface Experience {
 export interface ArchNode {
   label: string;
   sublabel?: string;
-  iconUrl?: string;
-  iconEmoji?: string;
-  color: string;
 }
 
 export interface ArchLayer {
@@ -263,8 +260,6 @@ export const experiences: Experience[] = [
 
 // ── Key Projects ────────────────────────────────────────────────────────────
 
-const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons';
-const di = (name: string, variant = 'original') => `${DI}/${name}/${name}-${variant}.svg`;
 
 export const projects: Project[] = [
   {
@@ -282,11 +277,11 @@ export const projects: Project[] = [
       "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes."
     ],
     visualArch: [
-      { name: "Platform", nodes: [{ label: "Agent step", sublabel: "emits a usage signal per LLM call", color: "#1F3BD6" }] },
-      { name: "Ingestion", nodes: [{ label: "Collector", color: "#1F3BD6" }, { label: "Kafka", sublabel: "usage, retry and dead-letter topics", color: "#1F3BD6" }] },
-      { name: "FinOps engine (Go)", nodes: [{ label: "Pricing", sublabel: "price and FX rate in force", color: "#1F3BD6" }, { label: "Attribution", sublabel: "organisation tree", color: "#1F3BD6" }, { label: "Reports API", color: "#1F3BD6" }] },
-      { name: "Data", nodes: [{ label: "PostgreSQL", sublabel: "multi-tenant", color: "#1F3BD6" }] },
-      { name: "Console", nodes: [{ label: "AI cost dashboard", sublabel: "organisation down to one step (in review)", color: "#1F3BD6" }] },
+      { name: "Platform", nodes: [{ label: "Agent step", sublabel: "emits a usage signal per LLM call" }] },
+      { name: "Ingestion", nodes: [{ label: "Collector" }, { label: "Kafka", sublabel: "usage, retry and dead-letter topics" }] },
+      { name: "FinOps engine (Go)", nodes: [{ label: "Pricing", sublabel: "price and FX rate in force" }, { label: "Attribution", sublabel: "organisation tree" }, { label: "Reports API" }] },
+      { name: "Data", nodes: [{ label: "PostgreSQL", sublabel: "multi-tenant" }] },
+      { name: "Console", nodes: [{ label: "AI cost dashboard", sublabel: "organisation down to one step (in review)" }] },
     ],
   },
   {
@@ -307,34 +302,34 @@ export const projects: Project[] = [
       {
         name: "Clients",
         nodes: [
-          { label: "Mobile App",   iconEmoji: "📱", color: "#9C83FF" },
-          { label: "Web App",      iconEmoji: "🌐", color: "#9C83FF" },
-          { label: "Partner APIs", iconEmoji: "🔌", color: "#9C83FF" },
+          { label: "Mobile App" },
+          { label: "Web App" },
+          { label: "Partner APIs" },
         ],
       },
       {
         name: "API Gateway",
         nodes: [
-          { label: "Kong",     sublabel: "Policy Engine",  iconEmoji: "🔷", color: "#003459" },
-          { label: "Go · Fiber", sublabel: "Token Service", iconUrl: di("go"), color: "#00ADD8" },
+          { label: "Kong",     sublabel: "Policy Engine" },
+          { label: "Go · Fiber", sublabel: "Token Service" },
         ],
       },
       {
         name: "Microservices",
         nodes: [
-          { label: "Auth",    iconEmoji: "🔐", color: "#FF9051" },
-          { label: "User",    iconEmoji: "👤", color: "#FF9051" },
-          { label: "Payment", iconEmoji: "💳", color: "#FF9051" },
-          { label: "Catalog", iconEmoji: "📦", color: "#FF9051" },
+          { label: "Auth" },
+          { label: "User" },
+          { label: "Payment" },
+          { label: "Catalog" },
         ],
       },
       {
         name: "Data & Observability",
         nodes: [
-          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Redis",      iconUrl: di("redis"),      color: "#DC382D" },
-          { label: "Prometheus", iconEmoji: "🔥",           color: "#E6522C" },
-          { label: "Kubernetes", iconUrl: di("kubernetes", "plain"), color: "#326CE5" },
+          { label: "PostgreSQL" },
+          { label: "Redis" },
+          { label: "Prometheus" },
+          { label: "Kubernetes" },
         ],
       },
     ],
@@ -356,28 +351,28 @@ export const projects: Project[] = [
       {
         name: "Identity",
         nodes: [
-          { label: "Azure AD", sublabel: "SSO", iconUrl: di("azure"), color: "#0078D4" },
+          { label: "Azure AD", sublabel: "SSO" },
         ],
       },
       {
         name: "Frontend",
         nodes: [
-          { label: "React",      iconUrl: di("react"),      color: "#61DAFB" },
-          { label: "TypeScript", iconUrl: di("typescript"), color: "#3178C6" },
+          { label: "React" },
+          { label: "TypeScript" },
         ],
       },
       {
         name: "Backend API",
         nodes: [
-          { label: "Ruby on Rails", iconUrl: di("ruby"),   color: "#CC342D" },
-          { label: "Docker",        iconUrl: di("docker"), color: "#2496ED" },
+          { label: "Ruby on Rails" },
+          { label: "Docker" },
         ],
       },
       {
         name: "Data",
         nodes: [
-          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Redis",      iconUrl: di("redis"),      color: "#DC382D" },
+          { label: "PostgreSQL" },
+          { label: "Redis" },
         ],
       },
     ],
@@ -398,31 +393,31 @@ export const projects: Project[] = [
       {
         name: "Frontend",
         nodes: [
-          { label: "React",      iconUrl: di("react"),      color: "#61DAFB" },
-          { label: "TypeScript", iconUrl: di("typescript"), color: "#3178C6" },
-          { label: "PWA",        iconEmoji: "📲",           color: "#9C83FF" },
+          { label: "React" },
+          { label: "TypeScript" },
+          { label: "PWA" },
         ],
       },
       {
         name: "API Layer",
         nodes: [
-          { label: "Go · Fiber", iconUrl: di("go"), color: "#00ADD8" },
+          { label: "Go · Fiber" },
         ],
       },
       {
         name: "Core (Hexagonal)",
         nodes: [
-          { label: "Ports",      iconEmoji: "🔌", color: "#9C83FF" },
-          { label: "Domain",     iconEmoji: "⚙️", color: "#FF9051" },
-          { label: "Use Cases",  iconEmoji: "📋", color: "#9C83FF" },
+          { label: "Ports" },
+          { label: "Domain" },
+          { label: "Use Cases" },
         ],
       },
       {
         name: "Data & Notifications",
         nodes: [
-          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Docker",     iconUrl: di("docker"),     color: "#2496ED" },
-          { label: "Push",       iconEmoji: "🔔",           color: "#FF9051" },
+          { label: "PostgreSQL" },
+          { label: "Docker" },
+          { label: "Push" },
         ],
       },
     ],
@@ -445,29 +440,29 @@ export const projects: Project[] = [
       {
         name: "Client",
         nodes: [
-          { label: "Next.js",  sublabel: "App Router", iconEmoji: "▲", color: "#000000" },
-          { label: "PWA",      iconEmoji: "📲",         color: "#9C83FF" },
-          { label: "Vercel",   sublabel: "Edge",        iconEmoji: "▲", color: "#000000" },
+          { label: "Next.js",  sublabel: "App Router" },
+          { label: "PWA" },
+          { label: "Vercel",   sublabel: "Edge" },
         ],
       },
       {
         name: "Auth",
         nodes: [
-          { label: "Supabase Auth", sublabel: "Google SSO", iconEmoji: "⚡", color: "#3ECF8E" },
-          { label: "Google OAuth",  iconEmoji: "🔑",          color: "#4285F4" },
+          { label: "Supabase Auth", sublabel: "Google SSO" },
+          { label: "Google OAuth" },
         ],
       },
       {
         name: "Backend as a Service",
         nodes: [
-          { label: "PostgreSQL", sublabel: "+ RLS",  iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Storage",    iconEmoji: "🗄️",    color: "#3ECF8E" },
+          { label: "PostgreSQL", sublabel: "+ RLS" },
+          { label: "Storage" },
         ],
       },
       {
         name: "AI",
         nodes: [
-          { label: "OpenAI Vision", sublabel: "Meal Scanner", iconEmoji: "🤖", color: "#10A37F" },
+          { label: "OpenAI Vision", sublabel: "Meal Scanner" },
         ],
       },
     ],
@@ -490,29 +485,29 @@ export const projects: Project[] = [
       {
         name: "Input",
         nodes: [
-          { label: "Twitch Chat", iconEmoji: "💬", color: "#9146FF" },
-          { label: "tmi.js",      sublabel: "IRC Client", iconEmoji: "🔗", color: "#9146FF" },
+          { label: "Twitch Chat" },
+          { label: "tmi.js",      sublabel: "IRC Client" },
         ],
       },
       {
         name: "Processing (Bun Runtime)",
         nodes: [
-          { label: "Anti-Spam",   iconEmoji: "🛡️", color: "#334155" },
-          { label: "Queue",       sublabel: "Priority", iconEmoji: "📋", color: "#FF9051" },
-          { label: "Lang Detect", iconEmoji: "🌐",        color: "#9C83FF" },
+          { label: "Anti-Spam" },
+          { label: "Queue",       sublabel: "Priority" },
+          { label: "Lang Detect" },
         ],
       },
       {
         name: "Synthesis",
         nodes: [
-          { label: "Edge TTS",    sublabel: "TH / EN", iconEmoji: "🔊", color: "#0078D4" },
-          { label: "In-Memory",   sublabel: "Buffer",  iconEmoji: "💾", color: "#334155" },
+          { label: "Edge TTS",    sublabel: "TH / EN" },
+          { label: "In-Memory",   sublabel: "Buffer" },
         ],
       },
       {
         name: "Output",
         nodes: [
-          { label: "FFplay", sublabel: "Playback", iconEmoji: "▶️", color: "#FF9051" },
+          { label: "FFplay", sublabel: "Playback" },
         ],
       },
     ],
