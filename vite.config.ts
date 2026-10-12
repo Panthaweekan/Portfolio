@@ -66,12 +66,8 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           // Animation libraries
           'vendor-motion': ['framer-motion'],
-          // UI components (Radix UI primitives)
-          'vendor-ui': ['@radix-ui/react-slot'],
           // Icons
           'vendor-icons': ['lucide-react'],
-          // Utility libraries
-          'vendor-utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
         },
       },
     },

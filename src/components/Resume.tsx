@@ -1,68 +1,30 @@
-import { Button } from "./ui/button";
-import { ArrowLeft, Download } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { personalInfo } from '@/data/portfolio-data';
+import { Masthead } from './report/Masthead';
+
+const CV_URL = `${import.meta.env.BASE_URL}cv.pdf`;
 
 function Resume() {
-  const navigate = useNavigate();
-
   return (
-    <div className="h-screen w-full flex flex-col bg-zinc-950 overflow-hidden">
-      {/* Header Bar */}
-      <header className="flex-none h-16 w-full flex items-center justify-between px-6 bg-zinc-900/80 backdrop-blur-md border-b border-zinc-800 z-10">
-        <div className="flex items-center gap-4">
-          <Button
-            onClick={() => navigate("/")}
-            variant="ghost"
-            size="sm"
-            className="text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Portfolio
-          </Button>
-          <div className="h-4 w-px bg-zinc-700 hidden sm:block"></div>
-          <span className="text-zinc-200 font-medium text-sm hidden sm:block">
-            Curriculum Vitae
-          </span>
-        </div>
-
-        <Button
-          asChild
-          size="sm"
-          className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium shadow-lg shadow-indigo-900/20 transition-all border border-indigo-500/50"
-        >
-          <a href={`${import.meta.env.BASE_URL}cv.pdf`} download="Panthaweekan_Somngam_CV.pdf">
-            <Download className="mr-2 h-4 w-4" />
+    <div className="flex h-screen flex-col">
+      <Masthead page="resume" />
+      <main className="mx-auto flex w-full max-w-[80rem] flex-1 flex-col px-6 pb-6 md:px-10">
+        <div className="flex flex-wrap items-baseline justify-between gap-3 py-6">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Appendix: Curriculum Vitae{' '}
+            <span className="font-normal tabular-nums text-muted">{personalInfo.cvUpdated}</span>
+          </h1>
+          <a href={CV_URL} download="Panthaweekan_Somngam_CV.pdf" className="text-sm font-semibold underline">
             Download PDF
           </a>
-        </Button>
-      </header>
-
-      {/* PDF Viewer Container */}
-      <main className="flex-1 w-full bg-zinc-950 p-4 sm:p-8 flex justify-center items-center overflow-hidden">
-        <div className="w-full max-w-5xl h-full shadow-[0_0_40px_rgba(0,0,0,0.5)] rounded-lg overflow-hidden border border-zinc-800 bg-zinc-900 relative group">
-          {/* Fallback overlay (visible before load or if object fails) */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center bg-zinc-900 -z-10">
-            <Download className="h-12 w-12 text-zinc-700 mb-4" />
-            <h3 className="text-xl font-medium text-zinc-300 mb-2">Native PDF Viewer Unavailable</h3>
-            <p className="text-zinc-500 text-sm max-w-md mx-auto mb-6">
-              Your browser limits inline PDF viewing. Please download the document to view it.
-            </p>
-          </div>
-
-          {/* Native Viewer */}
-          <object
-            data={`${import.meta.env.BASE_URL}cv.pdf`}
-            type="application/pdf"
-            className="w-full h-full z-10 relative bg-white"
-          >
-            {/* Iframe fallback for object */}
-            <iframe
-              src={`${import.meta.env.BASE_URL}cv.pdf`}
-              className="w-full h-full border-none bg-white"
-              title="Resume PDF Viewer"
-            >
-              <p className="text-zinc-500 text-sm p-8 text-center">
-                PDF cannot be displayed. You can download it using the button above.
+        </div>
+        <div className="relative flex-1 border border-rule bg-white">
+          <object data={CV_URL} type="application/pdf" className="h-full w-full">
+            <iframe src={CV_URL} title="Curriculum Vitae (PDF)" className="h-full w-full border-0">
+              <p className="p-8 text-center text-muted">
+                This browser can't show the PDF inline.{' '}
+                <a href={CV_URL} download="Panthaweekan_Somngam_CV.pdf" className="underline">
+                  Download it instead.
+                </a>
               </p>
             </iframe>
           </object>
