@@ -317,7 +317,7 @@ export const projects: Project[] = [
       {
         name: "Backend services",
         nodes: [
-          { label: "30+ services", sublabel: "moved behind the new gateway in phases" },
+          { label: "30+ services", sublabel: "migrating behind the new gateway in phases" },
         ],
       },
       {
