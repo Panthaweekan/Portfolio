@@ -103,10 +103,11 @@ function FinopsDiscovery() {
 }
 
 function FinopsFigure() {
-  // FigureOne is sized for the web page; scale it to projection size.
+  // FigureOne is sized for the web page and measures its own geometry, so scale it
+  // whole: 1.375 lifts its 16px station text to the 22px caption floor.
   return (
     <SlideFrame id="finops-figure">
-      <div className="origin-top-left scale-[1.3]" style={{ width: 1680 / 1.3, height: `${100 / 1.3}%` }}>
+      <div className="origin-top-left scale-[1.375]" style={{ width: 1680 / 1.375, height: `${100 / 1.375}%` }}>
         <FigureOne still />
       </div>
     </SlideFrame>
@@ -155,7 +156,7 @@ function GatewayFix() {
   return (
     <SlideFrame id="gateway-fix">
       <Headline>From an appliance to a service</Headline>
-      <div className="mt-12 grid grid-cols-2 gap-x-16">
+      <div className="mt-10 grid grid-cols-2 gap-x-16">
         <Column
           title="The pain with CA Layer7"
           items={[
@@ -171,14 +172,12 @@ function GatewayFix() {
             'A Go token service behind Kong',
             'Declarative config sync, with diff and rollback',
             'Per-service circuit breaking',
-            'Both prototyped toward a phased rollout across 30+ services',
+            'Prototyped toward a phased rollout, 30+ services',
           ]}
         />
       </div>
       {gateway.visualArch && (
-        <div className="mt-6 origin-top-left scale-[1.25]" style={{ width: 1680 / 1.25 }}>
-          <LayerFigure number={2} title="API gateway" layers={gateway.visualArch} />
-        </div>
+        <LayerFigure number={2} title="API gateway" layers={gateway.visualArch} size="slide" />
       )}
     </SlideFrame>
   );

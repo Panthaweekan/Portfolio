@@ -17,7 +17,8 @@ const STATIONS: { name: string; value: string; amount?: string }[] = [
 const DOT_OFFSET = 15;
 
 interface FigureOneProps {
-  /** Render the final frame without animation (used on the deck slide). */
+  /** Deck slide: render the final frame without animation, and size the footnote
+   *  so it still reads at the 22px caption floor once the slide scales the figure. */
   still?: boolean;
 }
 
@@ -140,7 +141,7 @@ export function FigureOne({ still = false }: FigureOneProps) {
         </ol>
       </div>
 
-      <p className="mt-10 text-sm text-on-field-muted">
+      <p className={`text-on-field-muted ${still ? 'mt-8 text-base' : 'mt-10 text-sm'}`}>
         Illustrative example · FinOps engine, SCB TechX agentic AI platform
       </p>
     </figure>
