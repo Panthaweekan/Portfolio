@@ -66,17 +66,12 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           // Animation libraries
           'vendor-motion': ['framer-motion'],
-          // 3D Graphics (lazy-loaded via ThreeBackground)
-          'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
-          // Animation library (used in Projects)
-          'vendor-gsap': ['gsap', '@gsap/react'],
           // UI components (Radix UI primitives)
           'vendor-ui': ['@radix-ui/react-slot'],
           // Icons
           'vendor-icons': ['lucide-react'],
           // Utility libraries
           'vendor-utils': ['class-variance-authority', 'clsx', 'tailwind-merge'],
-          // Mermaid is lazy-loaded on demand
         },
       },
     },
@@ -88,7 +83,5 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
-    // Increase chunk size warning limit (Mermaid is large but lazy-loaded)
-    chunkSizeWarningLimit: 600,
   },
 });
