@@ -16,8 +16,13 @@ const STATIONS: { name: string; value: string; amount?: string }[] = [
 // half of its h-2.5. Change those classes and this together.
 const DOT_OFFSET = 15;
 
-export function FigureOne() {
-  const reduceMotion = useReducedMotion();
+interface FigureOneProps {
+  /** Render the final frame without animation (used on the deck slide). */
+  still?: boolean;
+}
+
+export function FigureOne({ still = false }: FigureOneProps) {
+  const reduceMotion = useReducedMotion() || still;
   const rootRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
   const [frame, setFrame] = useState<FigureFrame>(FINAL_FRAME);
