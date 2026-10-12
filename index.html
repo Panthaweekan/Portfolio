@@ -4,16 +4,25 @@
     <base href="/Portfolio/" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Apply the saved theme (or the OS preference) before first paint.
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    </script>
     <meta name="author" content="Panthaweekan Somngam" />
     <meta
       name="description"
-      content="Panthaweekan Somngam - Software Engineer specializing in Go, TypeScript, and React. Building scalable web applications with modern technologies."
+      content="Panthaweekan Somngam, software engineer in Bangkok. I take systems from a written spec to running code: Go services, data pipelines and the dashboards on top."
     />
     <meta
       name="keywords"
       content="Software Engineer, Go Developer, TypeScript, React, Web Development, Portfolio, API Gateway, Hexagonal Architecture, Cloud-Native, Microservices"
     />
-    <meta name="theme-color" content="#9C83FF" />
+    <meta name="theme-color" content="#1F3BD6" />
     <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
@@ -28,7 +37,7 @@
     />
     <meta
       property="og:description"
-      content="Associate Software Engineer at SCB TechX. Specializing in API gateway infrastructure, cloud-native solutions, and full-stack development with Go and TypeScript."
+      content="Panthaweekan Somngam, software engineer in Bangkok. I take systems from a written spec to running code: Go services, data pipelines and the dashboards on top."
     />
     <meta
       property="og:image"
@@ -50,7 +59,7 @@
     />
     <meta
       name="twitter:description"
-      content="Associate Software Engineer at SCB TechX. Specializing in API gateway infrastructure, cloud-native solutions, and full-stack development with Go and TypeScript."
+      content="Panthaweekan Somngam, software engineer in Bangkok. I take systems from a written spec to running code: Go services, data pipelines and the dashboards on top."
     />
     <meta
       name="twitter:image"
@@ -62,21 +71,6 @@
 
     <link rel="icon" type="image/svg+xml" href="imgs/image.svg" />
 
-    <!-- Google Fonts: Montserrat & Roboto - Async Loading -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
 
     <title>Panthaweekan Somngam | Software Engineer</title>
   </head>
