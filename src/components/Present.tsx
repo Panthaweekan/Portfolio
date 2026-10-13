@@ -72,7 +72,7 @@ export default function Present() {
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-ground text-ink">
       <div className="h-0.5 w-full shrink-0 bg-rule">
-        <div className="h-full bg-ink transition-[width] duration-300 ease-out" style={{ width: `${((slide + 1) / TOTAL) * 100}%` }} />
+        <div className="h-full bg-ink motion-safe:transition-[width] motion-safe:duration-300 motion-safe:ease-out" style={{ width: `${((slide + 1) / TOTAL) * 100}%` }} />
       </div>
 
       <header className="flex h-12 shrink-0 items-center justify-between border-b border-rule px-4 lg:px-6">
@@ -127,7 +127,7 @@ export default function Present() {
               onClick={() => go(i)}
               aria-label={`Go to slide ${i + 1}`}
               aria-current={i === slide ? 'step' : undefined}
-              className={`h-2 rounded-full transition-all ${i === slide ? 'w-5 bg-ink' : 'w-2 bg-rule'}`}
+              className={`h-2 rounded-full motion-safe:transition-all ${i === slide ? 'w-5 bg-ink' : 'w-2 bg-rule'}`}
             />
           ))}
         </div>

@@ -31,7 +31,7 @@ An end-to-end owner who takes a system from discovery to running code. The curre
 
 ## Capabilities and Constraints
 
-- Routes: `/` (home, in redesign scope), `/resume` (PDF viewer for `public/cv.pdf`, in scope), `/present` (fixed 1920×1080, 16-slide deck checked by `scripts/check-deck.mjs`; out of scope, keep as is).
+- Routes: `/` (home, in redesign scope), `/resume` (PDF viewer for `public/cv.pdf`, in scope), `/present` (fixed 1920×1080, 12-slide Contents and Chapters talk built from React components; slide order, contents and folios checked by `scripts/check-deck.mjs`).
 - Existing stack: React 19, TypeScript, Vite, Tailwind CSS, React Router, framer-motion; deployed to GitHub Pages under base path `/Portfolio/` on push to `main`.
 - Content lives in `src/data/portfolio-data.ts`, whose facts are synchronized with `cv.tex`; `cv.tex` wording wins on any conflict. The site may show showcase items the 1-page CV omits (Twitch TTS Bot, FitJourney, the LongPlan thesis).
 - `src/components/Experience.tsx`, `About.tsx` and `Projects.tsx` are unused and still carry claims that were removed as unverified; they must not be revived.

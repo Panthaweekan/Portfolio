@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-12T14:50:29.487Z",
+  "generatedAt": "2026-10-12T16:00:00.000Z",
   "title": "Design System: Panthaweekan Somngam, Portfolio",
   "extensions": {
     "colorMeta": {
@@ -271,6 +271,38 @@
       "label": {
         "displayName": "Label",
         "purpose": "Muted metadata, captions, table headers, masthead links. Sentence case, tabular."
+      },
+      "slide-numeral": {
+        "displayName": "Slide numeral",
+        "purpose": "Chapter numeral on a divider slide (220px, tabular)."
+      },
+      "slide-display": {
+        "displayName": "Slide display",
+        "purpose": "Name on the title slide and \"Questions?\" on the close (140px); Figure 1's landed amount sits at 120px."
+      },
+      "slide-divider-title": {
+        "displayName": "Slide divider title",
+        "purpose": "Chapter title on a divider slide (112px)."
+      },
+      "slide-headline": {
+        "displayName": "Slide headline",
+        "purpose": "Headline of every content slide (72px)."
+      },
+      "slide-title": {
+        "displayName": "Slide steps",
+        "purpose": "Step scale 56/52/48/44/40px: contents entries 56, lead statements 52, Figure 1 caption 48, divider subtitle 44, column and step titles 40."
+      },
+      "slide-body": {
+        "displayName": "Slide body",
+        "purpose": "Lists and step examples at 32px (the floor for running text); close contact lines at 36px."
+      },
+      "slide-node": {
+        "displayName": "Slide node",
+        "purpose": "Layer-figure nodes on a slide (28px, 500)."
+      },
+      "slide-caption": {
+        "displayName": "Slide caption",
+        "purpose": "Folios, figure captions, layer names, metadata (22px, tabular). The floor for anything on a slide."
       }
     },
     "shadows": [],
@@ -283,7 +315,7 @@
       {
         "name": "hairline",
         "value": "1px solid var(--rule)",
-        "purpose": "Separates rows; masthead bottom; menu and CV frame borders."
+        "purpose": "Separates rows; masthead bottom; menu and CV frame borders; the rule over every slide folio; deck chrome bars and the letterbox frame."
       },
       {
         "name": "focus",
@@ -327,7 +359,17 @@
         "name": "md",
         "value": "768px"
       }
-    ]
+    ],
+    "slideCanvas": {
+      "width": "1920px",
+      "height": "1080px",
+      "columns": 12,
+      "gutter": "24px",
+      "margin": "120px",
+      "paddingTop": "96px",
+      "paddingBottom": "56px",
+      "fit": "scaled as a whole to the stage, letterboxed, never reflowed"
+    }
   },
   "components": [
     {
@@ -391,23 +433,48 @@
       "description": "Full-bleed ultramarine closing band with on-field links; focus ring switches to on-field.",
       "html": "<section class=\"ds-contact\"><div><h2>Contact</h2><p>Based in Bangkok, open to remote or hybrid roles.</p></div><ul><li><a href=\"#\">Email</a></li><li><a href=\"#\">LinkedIn</a></li><li><a href=\"#\">Download CV (PDF)</a></li></ul></section>",
       "css": ".ds-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 24px; padding: 80px 40px; background: var(--field); color: var(--on-field); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-contact h2 { margin: 0; font-size: 36px; font-weight: 600; letter-spacing: -0.025em; } .ds-contact p { margin: 16px 0 0; color: var(--on-field-muted); } .ds-contact ul { list-style: none; margin: 0; padding: 0; font-size: 18px; } .ds-contact li + li { margin-top: 12px; } .ds-contact a { color: var(--on-field); text-decoration: underline; text-underline-offset: 0.2em; } .ds-contact a:focus-visible { outline: 2px solid var(--on-field); outline-offset: 3px; }"
+    },
+    {
+      "name": "Slide Folio",
+      "kind": "custom",
+      "refersTo": "slide-folio",
+      "description": "Foot of every slide: hairline, then chapter left and derived page right in 22px muted tabular figures.",
+      "html": "<div class=\"ds-folio\"><span>I · FinOps engine</span><span>p. 5 / 12</span></div>",
+      "css": ".ds-folio { display: flex; justify-content: space-between; align-items: baseline; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-size: 22px; color: var(--muted); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Chapter Divider",
+      "kind": "custom",
+      "refersTo": "chapter-divider",
+      "description": "Whole ultramarine slide: 220px numeral, 112px chapter title, 44px subtitle, on-field-muted folio with dates.",
+      "html": "<section class=\"ds-divider\"><span class=\"num\">I</span><div><h2>FinOps engine</h2><p>One LLM call becomes money</p></div><div class=\"folio\"><span>Sep 2026 – Present · SCB TechX</span><span>p. 3 / 12</span></div></section>",
+      "css": ".ds-divider { display: flex; flex-direction: column; justify-content: space-between; width: 1920px; height: 1080px; box-sizing: border-box; padding: 96px 120px 56px; background: var(--field); color: var(--on-field); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; zoom: 0.25; } .ds-divider .num { font-size: 220px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; } .ds-divider h2 { margin: 0; font-size: 112px; font-weight: 600; line-height: 1.02; letter-spacing: -0.025em; } .ds-divider p { margin: 24px 0 0; font-size: 44px; } .ds-divider .folio { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--on-field-muted); font-size: 22px; color: var(--on-field-muted); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Contents Page",
+      "kind": "custom",
+      "refersTo": "slide-frame",
+      "description": "Chapters under an ink rule, hairline rows: muted numeral, 56px title, derived page number.",
+      "html": "<section class=\"ds-contents\"><h2>Contents</h2><ol><li><span>I</span><b>FinOps engine</b><span>p. 3</span></li><li><span>II</span><b>API gateway</b><span>p. 7</span></li><li><span>III</span><b>Earlier systems</b><span>p. 9</span></li><li><span></span><b>Close</b><span>p. 12</span></li></ol></section>",
+      "css": ".ds-contents { width: 1920px; box-sizing: border-box; padding: 96px 120px 56px; background: var(--ground); color: var(--ink); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; zoom: 0.25; } .ds-contents h2 { margin: 0; font-size: 72px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; } .ds-contents ol { list-style: none; margin: 56px 0 0; padding: 0; border-top: 1px solid var(--ink); } .ds-contents li { display: grid; grid-template-columns: 1fr 9fr 2fr; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule); font-size: 40px; font-variant-numeric: tabular-nums; } .ds-contents li span:first-child { color: var(--muted); } .ds-contents li b { font-size: 56px; font-weight: 600; letter-spacing: -0.025em; } .ds-contents li span:last-child { text-align: right; }"
     }
   ],
   "narrative": {
     "northStar": "The Engineer's Annual Report",
-    "overview": "The site is set like a Swiss International Style annual report written by one person. Each system Panthaweekan built is a chapter with one exact figure, and the opening spread carries Figure 1, a live diagram of a single LLM call becoming a priced line item. The page is bright white stock with graphite type. Hierarchy comes from Archivo weight and size, flush-left setting, a 12-column grid and hairline rules, not from colour, cards or shadow.\n\nUltramarine is a field. It fills a whole region of a spread (the Figure 1 panel and the Contact close) and never appears as an accent on the white ground. Every action on ground is ink. The dark theme is the same report at night: the ground becomes ink, type lifts to a pale cool grey, and the field lightens so it stays legible.\n\nDensity is that of a reading document: generous section spacing (48px top, 64px bottom), a 68ch measure for prose, and tabular figures wherever a number or date appears. Motion is limited to Figure 1, which runs on one damped clock and stops when it is off screen or reduced motion is requested.",
+    "overview": "The site is set like a Swiss International Style annual report written by one person. Each system Panthaweekan built is a chapter with one exact figure, and the opening spread carries Figure 1, a live diagram of a single LLM call becoming a priced line item. The page is bright white stock with graphite type. Hierarchy comes from Archivo weight and size, flush-left setting, a 12-column grid and hairline rules, not from colour, cards or shadow.\n\nUltramarine is a field. It fills a whole region of a spread (the Figure 1 panel and the Contact close) and never appears as an accent on the white ground. Every action on ground is ink. The dark theme is the same report at night: the ground becomes ink, type lifts to a pale cool grey, and the field lightens so it stays legible.\n\nDensity is that of a reading document: generous section spacing (48px top, 64px bottom), a 68ch measure for prose, and tabular figures wherever a number or date appears. Motion is limited to Figure 1, which runs on one damped clock and stops when it is off screen or reduced motion is requested. The deck is the report read aloud: numbered pages, a contents page, and an ultramarine divider opening each chapter.",
     "keyCharacteristics": [
       "Bright stock, graphite ink, cool grey hairlines; one ultramarine field per spread.",
       "Archivo Variable throughout, weights 400/500/600, flush left, tabular numbers.",
       "Strict 12-column grid inside a 1280px container.",
       "Square corners everywhere; the only circles are Figure 1's station dots and marker.",
       "Flat: depth comes from an ink rule and grey hairline hierarchy, never shadow.",
-      "Figures are numbered and captioned in run-in style (\"Figure N · title\")."
+      "Figures are numbered and captioned in run-in style (\"Figure N · title\").",
+      "The deck is a fixed 1920×1080 page with folios (\"p. N / 12\") and ultramarine chapter dividers."
     ],
     "rules": [
       {
         "name": "The Whole Field Rule",
-        "body": "Ultramarine fills a whole region (a full figure panel or a full-bleed closing band) and is never used for text, links, buttons, icons or borders on the ground.",
+        "body": "Ultramarine fills a whole region (a full figure panel, a full-bleed closing band, or a whole divider slide) and is never used for text, links, buttons, icons or borders on the ground.",
         "section": "colors"
       },
       {
@@ -431,6 +498,11 @@
         "section": "typography"
       },
       {
+        "name": "The Projection Floor Rule",
+        "body": "On a slide nothing is set below 22px, and running text not below 32px.",
+        "section": "typography"
+      },
+      {
         "name": "The Rule Hierarchy Rule",
         "body": "A 1px ink rule opens a section or a figure table (Systems, Record, Skills, Education, each layer figure). A 1px grey hairline (`rule`) separates rows inside it (chapters, table rows, skill rows, layer rows). Never swap the two, and never add a shadow to separate content.",
         "section": "elevation"
@@ -443,7 +515,9 @@
       "**Do** set every number and date with tabular figures.",
       "**Do** open sections with a 1px ink rule and separate rows with 1px grey hairlines.",
       "**Do** dim pending text on the field by switching to on-field-muted, not by fading it.",
-      "**Do** cap prose at 68ch and keep everything flush left on the 12-column grid."
+      "**Do** cap prose at 68ch and keep everything flush left on the 12-column grid.",
+      "**Do** build every slide on the 1920×1080 canvas with 120px margins and a folio, deriving page numbers from the slide order.",
+      "**Do** keep slide type at 22px or larger, and running text at 32px or larger."
     ],
     "donts": [
       "**Don't** use ultramarine for links, buttons, icons, borders or highlights on the ground.",
@@ -451,7 +525,8 @@
       "**Don't** stack a small label above a heading; captions and metadata run in on one line.",
       "**Don't** add a second typeface or a weight above 600.",
       "**Don't** animate anything other than Figure 1, and never animate it when reduced motion is requested.",
-      "**Don't** apply this system to `/present`; it keeps its own styles."
+      "**Don't** fill a deck slide with ultramarine unless it is a chapter divider or the Figure 1 slide.",
+      "**Don't** type a page number into a slide or the contents page; derive it."
     ]
   }
 }
