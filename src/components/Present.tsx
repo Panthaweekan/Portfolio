@@ -22,6 +22,12 @@ export default function Present() {
   const [scale, setScale] = useState(1);
   const stageRef = useRef<HTMLDivElement>(null);
 
+  // Keep the place across a reload mid-talk.
+  useEffect(() => {
+    const { pathname, hash } = window.location;
+    window.history.replaceState(window.history.state, '', `${pathname}?slide=${slide + 1}${hash}`);
+  }, [slide]);
+
   const go = useCallback((index: number) => setSlide(Math.max(0, Math.min(TOTAL - 1, index))), []);
   const next = useCallback(() => setSlide((s) => Math.min(TOTAL - 1, s + 1)), []);
   const prev = useCallback(() => setSlide((s) => Math.max(0, s - 1)), []);
@@ -95,6 +101,10 @@ export default function Present() {
           </button>
         </div>
       </header>
+
+      <p className="hidden shrink-0 border-b border-rule px-4 py-2 text-sm text-muted max-sm:portrait:block">
+        Rotate your phone, or open this talk on a larger screen.
+      </p>
 
       {/* Click anywhere on the stage to advance. */}
       <main ref={stageRef} className="relative flex flex-1 cursor-pointer items-center justify-center overflow-hidden" onClick={next}>

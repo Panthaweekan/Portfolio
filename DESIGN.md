@@ -298,13 +298,13 @@ A chapter's architecture as a numbered table: a 14px muted run-in caption ("**Fi
 A section with a hairline top rule. On the left are the title, a muted tabular metadata line joined by middle dots, and the technology list. On the right are the body-lead description, an optional layer figure, and a "Read the full chapter" text toggle that reveals the highlights as a disc list within the measure.
 
 ### Slide Folio
-The foot of every slide: a 1px hairline, then a 22px muted tabular line with the chapter at the left ("I · FinOps engine") and the page at the right ("p. 5 / 12"). Slides outside a chapter (contents, close) carry the name instead; the title slide carries the talk and date. On a divider the rule turns on-field-muted and the left side carries the chapter's dates. The chapter and page are derived from the slide order, never typed.
+The foot of every slide: a 1px hairline, then a 22px muted tabular line with the chapter at the left ("I · FinOps engine") and the page at the right ("p. 5 / 12"). Slides outside a chapter (contents, the "How I work" coda, close) carry the name instead; the title slide carries the talk and date. On a divider the rule turns on-field-muted and the left side carries the chapter's dates. The chapter and page are derived from the slide order, never typed.
 
 ### Chapter Divider
 A whole slide filled with the ultramarine field: the chapter numeral at 220px top left, the chapter title (112px) and a 44px subtitle at the foot of the type area, then the folio. Three dividers, one per chapter; with the Figure 1 slide they are the only field pages in the deck.
 
 ### Contents Page
-A content slide listing the chapters and the close under an ink rule, one hairline row each: muted numeral, 56px semibold title, and the page number on the right in tabular figures. Page numbers come from the slide order, never typed.
+A content slide listing the chapters, the "How I work" coda and the close under an ink rule, one hairline row each: muted numeral, 56px semibold title, and the page number on the right in tabular figures. Page numbers come from the slide order, never typed.
 
 ### Figure Slide Variants
 - **Figure 1, slide:** the same ultramarine panel set inside the slide margins, showing the final frame only (no clock, no marker). Caption at 48px, stations at 32px on a 3/9 split with 16px dots, the landed amount right-aligned at 120px, the illustrative note at 22px.

@@ -70,7 +70,7 @@ function ContentsSlide() {
       <Headline>Contents</Headline>
       <ol className="mt-14 border-t border-ink">
         {contents().map((c) => (
-          <li key={c.title} className="grid grid-cols-12 items-baseline gap-x-6 border-b border-rule py-7">
+          <li key={c.title} className="grid grid-cols-12 items-baseline gap-x-6 border-b border-rule py-6">
             <span className="col-span-1 text-[40px] tabular-nums text-muted">{c.numeral}</span>
             <span className="col-span-9 text-[56px] font-semibold tracking-tight">{c.title}</span>
             <span className="col-span-2 text-right text-[40px] tabular-nums">p. {c.page}</span>
@@ -157,7 +157,7 @@ function GatewayFix() {
       <Headline>From an appliance to a service</Headline>
       <div className="mt-10 grid grid-cols-2 gap-x-16">
         <Column
-          title="The pain with CA Layer7"
+          title="The pain with the legacy gateway"
           items={[
             'Licences, not pods: capacity cost money',
             'A proprietary appliance, no GitOps',
@@ -197,7 +197,7 @@ function EarlierTwoUp() {
           title="Enterprise asset platform"
           meta={`${assets.subtitle} · ${assets.dateRange}`}
           items={[
-            'Replaced Excel and MS Forms with one platform for the asset lifecycle',
+            'Built to replace Excel and MS Forms for the asset lifecycle',
             'Four request lifecycles, approval chains per role and step',
             'Six roles on Azure AD single sign-on; Excel and CSV reports',
           ]}

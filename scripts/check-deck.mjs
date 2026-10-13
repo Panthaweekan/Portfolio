@@ -21,6 +21,7 @@ assert.deepEqual(contents(), [
   { numeral: 'I', title: 'FinOps engine', page: 3 },
   { numeral: 'II', title: 'API gateway', page: 7 },
   { numeral: 'III', title: 'Earlier systems', page: 9 },
+  { numeral: '', title: 'How I work', page: 11 },
   { numeral: '', title: 'Close', page: 12 },
 ]);
 
@@ -29,7 +30,10 @@ for (const s of OUTLINE.filter((x) => x.kind === 'content')) {
   assert.ok(chapterOf(s.id), `${s.id} has a chapter`);
 }
 assert.deepEqual(chapterOf('finops-figure'), { numeral: 'I', title: 'FinOps engine' });
-assert.deepEqual(chapterOf('how-i-work'), { numeral: 'III', title: 'Earlier systems' });
+assert.deepEqual(chapterOf('earlier-two-up'), { numeral: 'III', title: 'Earlier systems' });
+// How I work sums up every chapter, so it stands outside them, like Close.
+assert.equal(OUTLINE.find((s) => s.id === 'how-i-work').kind, 'coda');
+assert.equal(chapterOf('how-i-work'), null);
 assert.equal(chapterOf('title'), null);
 // The contents page lists Close on its own, outside chapter III.
 assert.equal(chapterOf('close'), null);
