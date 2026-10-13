@@ -210,28 +210,25 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Kafka", "OpenTelemetry", "PostgreSQL", "AWS", "Kong", "Rails", "Next.js", "TypeScript"],
     highlights: [
       {
-        text: "Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.",
+        text: "Ran discovery for the FinOps (AI cost management) module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service design for the product owner and engineering manager, and won agreement that budget enforcement should stay inside the platform.",
       },
       {
-        text: "Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree — redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.",
+        text: "Built, with two teammates, the engine that works out what each customer's AI usage costs, down to team and project level: a Go service consuming OpenTelemetry usage events from Kafka, with exact-money pricing at the price and FX rate in force, retry and dead-letter handling so no charge is lost or double-counted, and multi-tenant PostgreSQL with AWS IAM auth.",
       },
       {
-        text: "Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).",
+        text: "Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step (in review), over a typed reporting interface to the engine.",
       },
       {
-        text: "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes.",
+        text: "Set the team's engineering practices (architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering) and built an AI-assisted code review workflow, adopted team-wide, whose reviewer agents and verifier catch bugs human reviewers missed.",
       },
       {
-        text: "Developed a Go service (Hexagonal Architecture, interface-driven design) for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform; handed over to the team in Sep 2026 as the migration continued.",
+        text: "Built a new Go service behind Kong for token validation, authentication, and request routing, part of moving SCB Easy (10M+ users) off its legacy on-premise API gateway; handed over to the team in Sep 2026 as the migration continued.",
       },
       {
-        text: "Designed the plugin system, routing engine, and observability infrastructure (Prometheus metrics, structured logging) for the new gateway, which was progressing through phased migration to production at handover.",
+        text: "Designed the gateway's plugin system, routing engine, and Prometheus monitoring, and prototyped safer rollout across the migration's 30+ services: YAML config sync with diff and rollback (Kong decK pattern) and per-service circuit breaking.",
       },
       {
-        text: "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
-      },
-      {
-        text: "Designed and developed an enterprise asset management platform: a database-driven workflow engine for four parallel request lifecycles (request, spare, repair, return) with approval chains per role and step, role-based access control for six user roles with Azure AD single sign-on, and reporting dashboards with Excel/CSV export.",
+        text: "Replaced spreadsheet- and email-based asset tracking with an internal platform running four request lifecycles through per-role approval chains, with Azure AD single sign-on, six user roles, and reporting with Excel/CSV export.",
       },
     ],
   },
@@ -243,16 +240,10 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "React", "TypeScript", "PostgreSQL", "Docker"],
     highlights: [
       {
-        text: "Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment.",
+        text: "Built and launched two production web applications used across the faculty, owning everything from stakeholder requirements to containerized deployment (Go, React/TypeScript, PostgreSQL), including a multi-stage workflow that digitized paper-based certificate approvals and cut turnaround from weeks to days.",
       },
       {
-        text: "Developed SD-Booking, a real-time room reservation system with role-based access, booking conflict detection, an admin dashboard, and mobile push notifications — adopted by the faculty for daily scheduling and still in active use today.",
-      },
-      {
-        text: "Developed a multi-stage certificate approval workflow that digitized a previously paper-based process, streamlining manual approval turnaround.",
-      },
-      {
-        text: "Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
+        text: "Built SD-Booking, the room reservation system the faculty uses for daily scheduling, still in active use today: real-time booking with conflict detection, role-based access, an admin dashboard, and mobile push notifications.",
       },
     ],
   },
@@ -271,10 +262,10 @@ export const projects: Project[] = [
     technologies: ["Go", "Kafka", "OpenTelemetry", "PostgreSQL", "AWS", "Next.js", "TypeScript"],
     description: "Ran discovery for the FinOps module of SCB TechX's agentic AI platform, then built, with two teammates, the Go engine that prices every LLM call and the console dashboard that shows customers where that money went.",
     highlights: [
-      "Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.",
-      "Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree — redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.",
-      "Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).",
-      "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes."
+      "Ran discovery for the FinOps (AI cost management) module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service design for the product owner and engineering manager, and won agreement that budget enforcement should stay inside the platform.",
+      "Built, with two teammates, the engine that works out what each customer's AI usage costs, down to team and project level: a Go service consuming OpenTelemetry usage events from Kafka, with exact-money pricing at the price and FX rate in force, retry and dead-letter handling so no charge is lost or double-counted, and multi-tenant PostgreSQL with AWS IAM auth.",
+      "Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step (in review), over a typed reporting interface to the engine.",
+      "Set the team's engineering practices (architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering) and built an AI-assisted code review workflow, adopted team-wide, whose reviewer agents and verifier catch bugs human reviewers missed."
     ],
     visualArch: [
       { name: "Platform", nodes: [{ label: "Agent step", sublabel: "emits a usage signal per LLM call" }] },
@@ -336,7 +327,7 @@ export const projects: Project[] = [
     title: "Inventory Asset Management System",
     subtitle: "SCB TechX",
     dateRange: "2025",
-    description: "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
+    description: "Replaced spreadsheet- and email-based asset tracking with an internal platform: built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
     highlights: [
       "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
       "Implemented role-based access control for six user roles with Azure AD single sign-on.",
@@ -425,7 +416,7 @@ export const projects: Project[] = [
     subtitle: "Side Project",
     dateRange: "2026",
     status: "Completed",
-    description: "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single self-hosted tool.",
+    description: "Shipped a full-stack fitness PWA addressing a personal gap in daily tracking — consolidating workout logging, nutrition, body metrics, and AI-powered meal scanning into a single personal tool.",
     highlights: [
       "Built with Next.js App Router + Supabase (auth, DB, storage) — Google SSO via Supabase Auth for zero-friction sign-in.",
       "Designed analytics dashboards for performance trends and calorie tracking; deployed to Vercel Edge for fast global cold starts.",
