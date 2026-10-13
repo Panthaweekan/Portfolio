@@ -55,7 +55,8 @@
 % ═══════════════════════════════════════════
 {\LARGE \textbf{Panthaweekan Somngam}}\\[4pt]
 \textbf{Software Engineer}\sep Bangkok, Thailand (GMT+7)\sep Open to Remote / Hybrid\sep +66 946359510\\[1pt]
-{\small\href{mailto:panthaweekansomngam@gmail.com}{panthaweekansomngam@gmail.com}\sep \href{https://panthaweekan.github.io/Portfolio/}{panthaweekan.github.io/Portfolio}\sep \href{https://github.com/Panthaweekan}{github.com/Panthaweekan}\sep \href{https://www.linkedin.com/in/panthaweekan/}{linkedin.com/in/panthaweekan}}
+{\small\href{mailto:panthaweekansomngam@gmail.com}{panthaweekansomngam@gmail.com}\sep \href{https://panthaweekan.github.io/Portfolio/}{panthaweekan.github.io/Portfolio}\sep \href{https://github.com/Panthaweekan}{github.com/Panthaweekan}\sep \href{https://www.linkedin.com/in/panthaweekan/}{linkedin.com/in/panthaweekan}}\\[5pt]
+Full-stack software engineer at SCB TechX building AI-platform and banking infrastructure. Currently building the system that shows customers what their AI (LLM) usage costs; before that, a new API gateway service for SCB Easy (10M+ users).
 
 % ═══════════════════════════════════════════
 %  PROFESSIONAL EXPERIENCE
@@ -66,28 +67,28 @@
 
 \subhead{Agentic AI Platform --- FinOps Engine}{Go, Kafka, OpenTelemetry, PostgreSQL, AWS, Next.js, TypeScript}{Sep 2026 -- Present}
 \begin{itemize}
-  \item Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.
-  \item Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree; redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.
-  \item Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).
-  \item Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes.
+  \item Ran discovery for the FinOps (AI cost management) module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service design for the product owner and engineering manager, and won agreement that budget enforcement should stay inside the platform.
+  \item Built, with two teammates, the engine that works out what each customer's AI usage costs, down to team and project level: a Go service consuming OpenTelemetry usage events from Kafka, with exact-money pricing at the price and FX rate in force, retry and dead-letter handling so no charge is lost or double-counted, and multi-tenant PostgreSQL with AWS IAM auth.
+  \item Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step (in review), over a typed reporting interface to the engine.
+  \item Set the team's engineering practices (architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering) and built an AI-assisted code review workflow, adopted team-wide, whose reviewer agents and verifier catch bugs human reviewers missed.
 \end{itemize}
 
 \subhead{API Gateway Migration}{Go, Fiber, Kong, Redis, PostgreSQL, Prometheus, Kubernetes}{2025 -- Sep 2026}
 \begin{itemize}
-  \item Developed a Go service (Hexagonal Architecture, interface-driven design) for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform; handed over to the team in Sep 2026 as the migration continued.
-  \item Designed the plugin system, routing engine, and observability (Prometheus metrics, structured logging), and prototyped declarative config sync (Kong decK pattern: YAML routes with diff and rollback) and per-service circuit breaking, targeting safe phased rollout across the migration's 30+ services.
+  \item Built a new Go service behind Kong for token validation, authentication, and request routing, part of moving SCB Easy (10M+ users) off its legacy on-premise API gateway; handed over to the team in Sep 2026 as the migration continued.
+  \item Designed the gateway's plugin system, routing engine, and Prometheus monitoring, and prototyped safer rollout across the migration's 30+ services: YAML config sync with diff and rollback (Kong decK pattern) and per-service circuit breaking.
 \end{itemize}
 
 \subhead{Enterprise Asset Management Platform}{Ruby on Rails, React, TypeScript, PostgreSQL, Azure AD, Docker}{2025}
 \begin{itemize}
-  \item Designed and developed a database-driven workflow engine for four parallel request lifecycles with per-role approval chains, role-based access control for six user roles with Azure AD single sign-on, and reporting dashboards with Excel/CSV export.
+  \item Replaced spreadsheet- and email-based asset tracking with an internal platform running four request lifecycles through per-role approval chains, with Azure AD single sign-on, six user roles, and reporting with Excel/CSV export.
 \end{itemize}
 
 \vspace{4pt}
 \entry{Full Stack Developer (Work-Study Scholarship)}{2023 -- 2025}{Chiang Mai University, Faculty of Engineering}{Chiang Mai, Thailand}
 \begin{itemize}
-  \item Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment (Go, React/TypeScript, PostgreSQL, hexagonal architecture), including a multi-stage certificate approval workflow that digitized a paper-based process.
-  \item Developed SD-Booking, a real-time room reservation system with role-based access, booking conflict detection, an admin dashboard, and mobile push notifications --- adopted by the faculty for daily scheduling and still in active use today.
+  \item Built and launched two production web applications used across the faculty, owning everything from stakeholder requirements to containerized deployment (Go, React/TypeScript, PostgreSQL), including a multi-stage workflow that digitized paper-based certificate approvals and cut turnaround from weeks to days.
+  \item Built SD-Booking, the room reservation system the faculty uses for daily scheduling, still in active use today: real-time booking with conflict detection, role-based access, an admin dashboard, and mobile push notifications.
 \end{itemize}
 
 % ═══════════════════════════════════════════
