@@ -32,7 +32,6 @@ All content lives in `src/data/portfolio-data.ts`. `cv.tex` (built to `public/cv
 - **`FigureOne` geometry:** each class set in `SIZES` ties `dotOffset` to its dot and text classes, so change them together. The home page's Figure 1 must render unchanged.
 - **Tailwind:** it keeps only class names that appear whole in source, so write class strings as literals and never assemble them from fragments.
 - **`career-ops/`** is a separate nested repo, untracked here. Stage explicit paths; never `git add -A` at the root.
-- **Legacy files:** `resume.html`, `index.html.backup` and `DEPLOYMENT.md` are leftovers from the pre-React site and are not part of the build.
 
 ## Verify
 
