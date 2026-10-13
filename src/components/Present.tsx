@@ -48,6 +48,8 @@ export default function Present() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
+      // Space and Enter on a focused control press that control.
+      if ((e.key === ' ' || e.key === 'Enter') && (e.target as Element).closest?.('button, a')) return;
       switch (e.key) {
         case 'ArrowRight': case 'ArrowDown': case ' ': case 'PageDown':
           e.preventDefault(); next(); break;

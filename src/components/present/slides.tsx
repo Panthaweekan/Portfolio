@@ -169,9 +169,9 @@ function GatewayFix() {
           title="The fix I worked on"
           items={[
             'A Go token service behind Kong',
-            'Declarative config sync, with diff and rollback',
-            'Per-service circuit breaking',
-            'Prototyped toward a phased rollout, 30+ services',
+            'Prototyped: config sync with diff and rollback',
+            'Prototyped: per-service circuit breaking',
+            'Both aimed at a phased rollout, 30+ services',
           ]}
         />
       </div>
