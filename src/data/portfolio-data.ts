@@ -216,7 +216,7 @@ export const experiences: Experience[] = [
         text: "Built, with two teammates, the engine that works out what each customer's AI usage costs, down to team and project level: a Go service consuming OpenTelemetry usage events from Kafka, with exact-money pricing at the price and FX rate in force, retry and dead-letter handling so no charge is lost or double-counted, and multi-tenant PostgreSQL with AWS IAM auth.",
       },
       {
-        text: "Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step (in review), over a typed reporting interface to the engine.",
+        text: "Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step, over a typed reporting interface to the engine.",
       },
       {
         text: "Set the team's engineering practices (architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering) and built an AI-assisted code review workflow, adopted team-wide, whose reviewer agents and verifier catch bugs human reviewers missed.",
@@ -264,7 +264,7 @@ export const projects: Project[] = [
     highlights: [
       "Ran discovery for the FinOps (AI cost management) module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service design for the product owner and engineering manager, and won agreement that budget enforcement should stay inside the platform.",
       "Built, with two teammates, the engine that works out what each customer's AI usage costs, down to team and project level: a Go service consuming OpenTelemetry usage events from Kafka, with exact-money pricing at the price and FX rate in force, retry and dead-letter handling so no charge is lost or double-counted, and multi-tenant PostgreSQL with AWS IAM auth.",
-      "Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step (in review), over a typed reporting interface to the engine.",
+      "Built the AI cost dashboard in the platform's Next.js console, drilling from organisation down to team, project, workflow, run, and step, over a typed reporting interface to the engine.",
       "Set the team's engineering practices (architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering) and built an AI-assisted code review workflow, adopted team-wide, whose reviewer agents and verifier catch bugs human reviewers missed."
     ],
     visualArch: [
@@ -272,7 +272,7 @@ export const projects: Project[] = [
       { name: "Ingestion", nodes: [{ label: "Collector" }, { label: "Kafka", sublabel: "usage, retry and dead-letter topics" }] },
       { name: "FinOps engine (Go)", nodes: [{ label: "Pricing", sublabel: "price and FX rate in force" }, { label: "Attribution", sublabel: "organisation tree" }, { label: "Reports API" }] },
       { name: "Data", nodes: [{ label: "PostgreSQL", sublabel: "multi-tenant" }] },
-      { name: "Console", nodes: [{ label: "AI cost dashboard", sublabel: "organisation down to one step (in review)" }] },
+      { name: "Console", nodes: [{ label: "AI cost dashboard", sublabel: "organisation down to one step" }] },
     ],
   },
   {

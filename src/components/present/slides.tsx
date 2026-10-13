@@ -123,7 +123,7 @@ function FinopsBuilt() {
           items={[
             'A Go cost engine: OpenTelemetry usage signals from Kafka, priced with exact integer money at the rate in force.',
             "Attribution to each customer's organisation tree, multi-tenant on PostgreSQL.",
-            'The console dashboard, from organisation down to one step of one run (in review).',
+            'The console dashboard, from organisation down to one step of one run.',
           ]}
         />
         <Column

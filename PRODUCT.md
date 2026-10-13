@@ -35,7 +35,7 @@ An end-to-end owner who takes a system from discovery to running code. The curre
 - Existing stack: React 19, TypeScript, Vite, Tailwind CSS, React Router, framer-motion; deployed to GitHub Pages under base path `/Portfolio/` on push to `main`.
 - Content lives in `src/data/portfolio-data.ts`, whose facts are synchronized with `cv.tex`; `cv.tex` wording wins on any conflict. The site may show showcase items the 1-page CV omits (Twitch TTS Bot, FitJourney, the LongPlan thesis).
 - `src/components/Experience.tsx`, `About.tsx` and `Projects.tsx` are unused and still carry claims that were removed as unverified; they must not be revived.
-- Public-disclosure boundary for SCB TechX work, FinOps especially: employer, product, stack and what Panthaweekan built, matching the CV and LinkedIn text. A generic flow diagram is allowed (agent → collector → Kafka → engine → dashboard). Never show internal repo names, ticket IDs, colleagues' names, security internals, PR counts or deployment state. The AI cost dashboard is "in review"; nothing in FinOps is described as production.
+- Public-disclosure boundary for SCB TechX work, FinOps especially: employer, product, stack and what Panthaweekan built, matching the CV and LinkedIn text. A generic flow diagram is allowed (agent → collector → Kafka → engine → dashboard). Never show internal repo names, ticket IDs, colleagues' names, security internals, PR counts or deployment state. The AI cost dashboard carries no status label; nothing in FinOps is described as production.
 - English only.
 
 ## Brand Commitments
