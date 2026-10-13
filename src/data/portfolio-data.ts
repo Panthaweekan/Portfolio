@@ -2,7 +2,8 @@
 // Portfolio Data — Single Source of Truth
 // ============================================================================
 // All portfolio content lives here. Update this file to update the entire site.
-// Strictly synchronized with cv.tex.
+// Facts are synchronized with cv.tex (cv.tex wording wins). The site may show
+// extra showcase items the 1-page CV omits (e.g. TTS Bot, thesis).
 // ============================================================================
 
 // ── Type Definitions ────────────────────────────────────────────────────────
@@ -23,6 +24,12 @@ export interface PersonalInfo {
   spokenLanguages: string[];
   bio: string;
   aboutSummary: string;
+  /** One-line positioning shown first on the home page. */
+  positioning: string;
+  /** First-person introduction under the positioning line. */
+  intro: string;
+  /** Month the CV PDF was last updated, shown on /resume. */
+  cvUpdated: string;
 }
 
 export interface SkillItem {
@@ -54,9 +61,6 @@ export interface Experience {
 export interface ArchNode {
   label: string;
   sublabel?: string;
-  iconUrl?: string;
-  iconEmoji?: string;
-  color: string;
 }
 
 export interface ArchLayer {
@@ -65,6 +69,8 @@ export interface ArchLayer {
 }
 
 export interface Project {
+  /** Stable anchor id for deep links, e.g. "finops" → /#finops */
+  id: string;
   title: string;
   subtitle?: string;
   dateRange: string;
@@ -103,9 +109,13 @@ export const personalInfo: PersonalInfo = {
   linkedin: "https://www.linkedin.com/in/panthaweekan/",
   portfolio: "https://panthaweekan.github.io/Portfolio/",
   spokenLanguages: ["EN (Intermediate)", "TH (Native)"],
-  bio: "Associate Software Engineer at SCB TechX. Specializing in enterprise API gateways, cloud migration, and full-stack development with Go, Ruby on Rails, and modern cloud-native architectures.",
+  bio: "Associate Software Engineer at SCB TechX, building the FinOps cost engine for its agentic AI platform. Specializing in Go platform services, API gateway migration, and full-stack development with Go, Ruby on Rails, and React/TypeScript.",
   aboutSummary:
-    "I am an Associate Software Engineer at SCB TechX specializing in enterprise API gateways, cloud migration, and full-stack development. I focus on building scalable systems, from high-throughput Go microservices behind Kong to complex workflow engines using Ruby on Rails and React/TypeScript. Passionate about Hexagonal Architecture, strict layer separation, and SOLID principles—creating robust, testable applications that teams can evolve with confidence.",
+    "I am an Associate Software Engineer at SCB TechX building the FinOps cost engine for its agentic AI platform — pricing every LLM call and showing customers where their AI spend goes. I focus on building maintainable systems, from Go services on Kafka and behind Kong to complex workflow engines using Ruby on Rails and React/TypeScript. Passionate about Hexagonal Architecture, strict layer separation, and SOLID principles—creating robust, testable applications that teams can evolve with confidence.",
+  positioning: "I take systems from a written spec to running code.",
+  intro:
+    "I'm an Associate Software Engineer at SCB TechX in Bangkok. Since September 2026 I've been building the FinOps engine for TechX's agentic AI platform: it works out what every LLM call costs and shows customers where that money went.",
+  cvUpdated: "October 2026",
 };
 
 // ── Technical Skills ────────────────────────────────────────────────────────
@@ -197,19 +207,31 @@ export const experiences: Experience[] = [
     company: "SCB TechX",
     period: "May 2025 – Present",
     location: "Bangkok, Thailand (Hybrid)",
-    technologies: ["Go", "Fiber", "Kong", "Rails", "React", "TypeScript"],
+    technologies: ["Go", "Kafka", "OpenTelemetry", "PostgreSQL", "AWS", "Kong", "Rails", "Next.js", "TypeScript"],
     highlights: [
       {
-        text: "Developed a Go microservice handling token validation, authentication, and request routing for SCB Easy's 10M+ user platform, integrated behind Kong as part of a phased migration away from a legacy on-premise gateway.",
+        text: "Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.",
       },
       {
-        text: "Designed the plugin system, routing engine, caching layer, and observability infrastructure for the new gateway, with Prometheus metrics and structured logging ready for production rollout.",
+        text: "Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree — redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.",
       },
       {
-        text: "Designed and developed an enterprise asset management platform with multi-stage approval workflows, role-based access control for six user roles, financial reporting dashboards, and real-time notifications, used across the organization.",
+        text: "Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).",
       },
       {
-        text: "Leveraged AI-assisted development tools across code generation, unit-testing, refactoring, architecture review, and documentation to accelerate delivery on complex features.",
+        text: "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes.",
+      },
+      {
+        text: "Developed a Go service (Hexagonal Architecture, interface-driven design) for token validation, authentication, and request routing behind Kong, as part of a phased migration from a legacy on-premise gateway toward SCB Easy's 10M+ user platform; handed over to the team in Sep 2026 as the migration continued.",
+      },
+      {
+        text: "Designed the plugin system, routing engine, and observability infrastructure (Prometheus metrics, structured logging) for the new gateway, which was progressing through phased migration to production at handover.",
+      },
+      {
+        text: "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
+      },
+      {
+        text: "Designed and developed an enterprise asset management platform: a database-driven workflow engine for four parallel request lifecycles (request, spare, repair, return) with approval chains per role and step, role-based access control for six user roles with Azure AD single sign-on, and reporting dashboards with Excel/CSV export.",
       },
     ],
   },
@@ -221,13 +243,13 @@ export const experiences: Experience[] = [
     technologies: ["Go", "Fiber", "React", "TypeScript", "PostgreSQL", "Docker"],
     highlights: [
       {
-        text: "Designed and deployed two production web applications serving 500+ active users, owning the full lifecycle from stakeholder requirements through containerized deployment.",
+        text: "Designed and deployed two production web applications used across the faculty, owning the full lifecycle from stakeholder requirements through containerized deployment.",
       },
       {
-        text: "Developed a real-time room reservation system with role-based access, admin dashboard, and mobile push notifications, adopted by the faculty for daily scheduling.",
+        text: "Developed SD-Booking, a real-time room reservation system with role-based access, booking conflict detection, an admin dashboard, and mobile push notifications — adopted by the faculty for daily scheduling and still in active use today.",
       },
       {
-        text: "Developed a multi-stage certificate approval workflow that digitized a paper-based process, reducing turnaround from days to hours.",
+        text: "Developed a multi-stage certificate approval workflow that digitized a previously paper-based process, streamlining manual approval turnaround.",
       },
       {
         text: "Applied hexagonal architecture across all projects, building RESTful APIs in Go with React/TypeScript frontends and PostgreSQL.",
@@ -238,154 +260,167 @@ export const experiences: Experience[] = [
 
 // ── Key Projects ────────────────────────────────────────────────────────────
 
-const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons';
-const di = (name: string, variant = 'original') => `${DI}/${name}/${name}-${variant}.svg`;
 
 export const projects: Project[] = [
   {
+    id: "finops",
+    title: "FinOps Engine — Agentic AI Platform",
+    subtitle: "SCB TechX",
+    dateRange: "Sep 2026 – Present",
+    status: "In progress",
+    technologies: ["Go", "Kafka", "OpenTelemetry", "PostgreSQL", "AWS", "Next.js", "TypeScript"],
+    description: "Ran discovery for the FinOps module of SCB TechX's agentic AI platform, then built, with two teammates, the Go engine that prices every LLM call and the console dashboard that shows customers where that money went.",
+    highlights: [
+      "Ran discovery for the FinOps module of SCB TechX's agentic AI platform: wrote the requirements, module spec, and service topology for the product owner and engineering manager, and made the case that budget enforcement must stay inside the platform.",
+      "Designed and built, with two teammates, a Go cost engine that ingests OpenTelemetry LLM-usage signals from Kafka, prices each call with exact integer money at the price and FX rate in force, and attributes it to the customer's organisation tree — redelivery-safe, with retry and dead-letter topics, multi-tenant on PostgreSQL with AWS IAM database authentication.",
+      "Built the platform side of the integration: a typed reports port in the Next.js console and an AI cost dashboard that drills from organisation to team, project, workflow, run, and step-level trace (in review).",
+      "Set the team's engineering practices: architecture decision records, test-first development with a coverage gate, lint-enforced hexagonal layering, and an AI-assisted pull-request review workflow (multiple reviewer agents plus a verifier) used on teammates' changes."
+    ],
+    visualArch: [
+      { name: "Platform", nodes: [{ label: "Agent step", sublabel: "emits a usage signal per LLM call" }] },
+      { name: "Ingestion", nodes: [{ label: "Collector" }, { label: "Kafka", sublabel: "usage, retry and dead-letter topics" }] },
+      { name: "FinOps engine (Go)", nodes: [{ label: "Pricing", sublabel: "price and FX rate in force" }, { label: "Attribution", sublabel: "organisation tree" }, { label: "Reports API" }] },
+      { name: "Data", nodes: [{ label: "PostgreSQL", sublabel: "multi-tenant" }] },
+      { name: "Console", nodes: [{ label: "AI cost dashboard", sublabel: "organisation down to one step (in review)" }] },
+    ],
+  },
+  {
+    id: "gateway",
     title: "API Gateway Microservice",
     subtitle: "SCB TechX",
-    dateRange: "2025 – Present",
-    status: "Production",
-    impact: "Enabling phase rollout for SCB Easy",
-    description: "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
+    dateRange: "2025 – 2026",
+    status: "Handed off",
+    impact: "Phased migration toward SCB Easy's 10M+ user platform",
+    description: "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
     highlights: [
-      "Built a token service and routing migration layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication, plugin-based request transformation, and per-service circuit breaking with retry and exponential backoff across 30+ microservices.",
-      "Developed a declarative config sync system based on the Kong decK pattern, using YAML route definitions with diff, rollback, and response caching — enabling GitOps-style config management and safe phased rollouts.",
+      "Built a token service and routing layer in Go behind Kong to incrementally replace a legacy gateway, implementing token authentication and plugin-based request transformation.",
+      "Designed and prototyped a declarative config-sync approach (Kong decK pattern: YAML route definitions with diff and rollback) and a per-service circuit-breaking strategy, targeting GitOps-style config management and safe phased rollout across the migration's 30+ services.",
       "Structured the service using Hexagonal Architecture with strict layer separation, dependency injection, and interface-driven design — keeping core business logic fully testable and decoupled from Kong, Redis, and all infrastructure dependencies."
     ],
     technologies: ["Go", "Fiber", "PostgreSQL", "Redis", "Kong", "Prometheus", "Kubernetes"],
-    github: "https://github.com/Panthaweekan",
-    demo: "#",
     visualArch: [
       {
         name: "Clients",
         nodes: [
-          { label: "Mobile App",   iconEmoji: "📱", color: "#9C83FF" },
-          { label: "Web App",      iconEmoji: "🌐", color: "#9C83FF" },
-          { label: "Partner APIs", iconEmoji: "🔌", color: "#9C83FF" },
+          { label: "Mobile App" },
+          { label: "Web App" },
+          { label: "Partner APIs" },
         ],
       },
       {
         name: "API Gateway",
         nodes: [
-          { label: "Kong",     sublabel: "Policy Engine",  iconEmoji: "🔷", color: "#003459" },
-          { label: "Go · Fiber", sublabel: "Token Service", iconUrl: di("go"), color: "#00ADD8" },
+          { label: "Kong",     sublabel: "Policy Engine" },
+          { label: "Go · Fiber", sublabel: "Token Service" },
         ],
       },
       {
-        name: "Microservices",
+        name: "Backend services",
         nodes: [
-          { label: "Auth",    iconEmoji: "🔐", color: "#FF9051" },
-          { label: "User",    iconEmoji: "👤", color: "#FF9051" },
-          { label: "Payment", iconEmoji: "💳", color: "#FF9051" },
-          { label: "Catalog", iconEmoji: "📦", color: "#FF9051" },
+          { label: "30+ services", sublabel: "migration continuing after handover" },
         ],
       },
       {
         name: "Data & Observability",
         nodes: [
-          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Redis",      iconUrl: di("redis"),      color: "#DC382D" },
-          { label: "Prometheus", iconEmoji: "🔥",           color: "#E6522C" },
-          { label: "Kubernetes", iconUrl: di("kubernetes", "plain"), color: "#326CE5" },
+          { label: "PostgreSQL" },
+          { label: "Redis" },
+          { label: "Prometheus" },
+          { label: "Kubernetes" },
         ],
       },
     ],
   },
   {
+    id: "assets",
     title: "Inventory Asset Management System",
     subtitle: "SCB TechX",
     dateRange: "2025",
-    status: "Production",
-    impact: "Used across the organization",
     description: "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
     highlights: [
       "Built a database-driven workflow engine to handle complex request lifecycles across four parallel workflows (request, spare, repair, return), enforcing approval chains per role and step.",
       "Implemented role-based access control for six user roles with Azure AD single sign-on.",
       "Built reporting dashboards aggregating asset requests, utilization, financial summaries, and processing efficiency, with Excel and CSV export.",
-      "Developed the frontend with reusable components, type-safe API clients generated from the backend specification, and full offline-capable PWA support with push notifications."
+      "Developed the frontend with reusable components, partially generated type-safe API clients, and an installable PWA with push notifications."
     ],
     technologies: ["Ruby on Rails", "React", "TypeScript", "PostgreSQL", "Azure AD", "Docker"],
-    github: "https://github.com/Panthaweekan",
-    demo: "#",
     visualArch: [
       {
         name: "Identity",
         nodes: [
-          { label: "Azure AD", sublabel: "SSO", iconUrl: di("azure"), color: "#0078D4" },
+          { label: "Azure AD", sublabel: "SSO" },
         ],
       },
       {
         name: "Frontend",
         nodes: [
-          { label: "React",      iconUrl: di("react"),      color: "#61DAFB" },
-          { label: "TypeScript", iconUrl: di("typescript"), color: "#3178C6" },
+          { label: "React" },
+          { label: "TypeScript" },
         ],
       },
       {
         name: "Backend API",
         nodes: [
-          { label: "Ruby on Rails", iconUrl: di("ruby"),   color: "#CC342D" },
-          { label: "Docker",        iconUrl: di("docker"), color: "#2496ED" },
+          { label: "Ruby on Rails" },
+          { label: "Docker" },
         ],
       },
       {
         name: "Data",
         nodes: [
-          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Redis",      iconUrl: di("redis"),      color: "#DC382D" },
+          { label: "PostgreSQL" },
+          { label: "Redis" },
         ],
       },
     ],
   },
   {
+    id: "sd-booking",
     title: "SD-Booking — Room Reservation System",
     subtitle: "Chiang Mai University",
     dateRange: "2023 – 2024",
     status: "Production",
-    impact: "Serving 500+ active users",
-    description: "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations.",
+    impact: "Still in daily use by the faculty",
+    description: "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today.",
     highlights: [
-      "Built a real-time room booking platform serving 500+ faculty users with role-based access, booking conflict detection, and mobile push notifications, adopted for daily operations."
+      "Built a real-time room booking platform used across the faculty, with role-based access, booking conflict detection, and mobile push notifications — adopted for daily operations and still in use today."
     ],
     technologies: ["Go", "React", "TypeScript", "PostgreSQL", "PWA", "Docker"],
-    github: "https://github.com/Panthaweekan",
-    demo: "#",
     visualArch: [
       {
         name: "Frontend",
         nodes: [
-          { label: "React",      iconUrl: di("react"),      color: "#61DAFB" },
-          { label: "TypeScript", iconUrl: di("typescript"), color: "#3178C6" },
-          { label: "PWA",        iconEmoji: "📲",           color: "#9C83FF" },
+          { label: "React" },
+          { label: "TypeScript" },
+          { label: "PWA" },
         ],
       },
       {
         name: "API Layer",
         nodes: [
-          { label: "Go · Fiber", iconUrl: di("go"), color: "#00ADD8" },
+          { label: "Go · Fiber" },
         ],
       },
       {
         name: "Core (Hexagonal)",
         nodes: [
-          { label: "Ports",      iconEmoji: "🔌", color: "#9C83FF" },
-          { label: "Domain",     iconEmoji: "⚙️", color: "#FF9051" },
-          { label: "Use Cases",  iconEmoji: "📋", color: "#9C83FF" },
+          { label: "Ports" },
+          { label: "Domain" },
+          { label: "Use Cases" },
         ],
       },
       {
         name: "Data & Notifications",
         nodes: [
-          { label: "PostgreSQL", iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Docker",     iconUrl: di("docker"),     color: "#2496ED" },
-          { label: "Push",       iconEmoji: "🔔",           color: "#FF9051" },
+          { label: "PostgreSQL" },
+          { label: "Docker" },
+          { label: "Push" },
         ],
       },
     ],
   },
   {
+    id: "fitjourney",
     title: "FitJourney — Fitness Tracking Platform",
     subtitle: "Side Project",
     dateRange: "2026",
@@ -398,39 +433,39 @@ export const projects: Project[] = [
     ],
     technologies: ["Next.js", "Supabase", "Tailwind CSS", "OpenAI API", "Vercel", "Google SSO"],
     github: "https://github.com/Panthaweekan/FitJourney",
-    demo: "https://github.com/Panthaweekan/FitJourney",
     visualArch: [
       {
         name: "Client",
         nodes: [
-          { label: "Next.js",  sublabel: "App Router", iconEmoji: "▲", color: "#000000" },
-          { label: "PWA",      iconEmoji: "📲",         color: "#9C83FF" },
-          { label: "Vercel",   sublabel: "Edge",        iconEmoji: "▲", color: "#000000" },
+          { label: "Next.js",  sublabel: "App Router" },
+          { label: "PWA" },
+          { label: "Vercel",   sublabel: "Edge" },
         ],
       },
       {
         name: "Auth",
         nodes: [
-          { label: "Supabase Auth", sublabel: "Google SSO", iconEmoji: "⚡", color: "#3ECF8E" },
-          { label: "Google OAuth",  iconEmoji: "🔑",          color: "#4285F4" },
+          { label: "Supabase Auth", sublabel: "Google SSO" },
+          { label: "Google OAuth" },
         ],
       },
       {
         name: "Backend as a Service",
         nodes: [
-          { label: "PostgreSQL", sublabel: "+ RLS",  iconUrl: di("postgresql"), color: "#336791" },
-          { label: "Storage",    iconEmoji: "🗄️",    color: "#3ECF8E" },
+          { label: "PostgreSQL", sublabel: "+ RLS" },
+          { label: "Storage" },
         ],
       },
       {
         name: "AI",
         nodes: [
-          { label: "OpenAI Vision", sublabel: "Meal Scanner", iconEmoji: "🤖", color: "#10A37F" },
+          { label: "OpenAI Vision", sublabel: "Meal Scanner" },
         ],
       },
     ],
   },
   {
+    id: "tts",
     title: "Twitch Chat TTS Bot",
     subtitle: "Side Project",
     dateRange: "2026",
@@ -443,34 +478,33 @@ export const projects: Project[] = [
     ],
     technologies: ["Bun", "Microsoft Edge TTS", "tmi.js", "FFplay"],
     github: "https://github.com/Panthaweekan/tts",
-    demo: "https://github.com/Panthaweekan/tts",
     visualArch: [
       {
         name: "Input",
         nodes: [
-          { label: "Twitch Chat", iconEmoji: "💬", color: "#9146FF" },
-          { label: "tmi.js",      sublabel: "IRC Client", iconEmoji: "🔗", color: "#9146FF" },
+          { label: "Twitch Chat" },
+          { label: "tmi.js",      sublabel: "IRC Client" },
         ],
       },
       {
         name: "Processing (Bun Runtime)",
         nodes: [
-          { label: "Anti-Spam",   iconEmoji: "🛡️", color: "#334155" },
-          { label: "Queue",       sublabel: "Priority", iconEmoji: "📋", color: "#FF9051" },
-          { label: "Lang Detect", iconEmoji: "🌐",        color: "#9C83FF" },
+          { label: "Anti-Spam" },
+          { label: "Queue",       sublabel: "Priority" },
+          { label: "Lang Detect" },
         ],
       },
       {
         name: "Synthesis",
         nodes: [
-          { label: "Edge TTS",    sublabel: "TH / EN", iconEmoji: "🔊", color: "#0078D4" },
-          { label: "In-Memory",   sublabel: "Buffer",  iconEmoji: "💾", color: "#334155" },
+          { label: "Edge TTS",    sublabel: "TH / EN" },
+          { label: "In-Memory",   sublabel: "Buffer" },
         ],
       },
       {
         name: "Output",
         nodes: [
-          { label: "FFplay", sublabel: "Playback", iconEmoji: "▶️", color: "#FF9051" },
+          { label: "FFplay", sublabel: "Playback" },
         ],
       },
     ],
@@ -488,29 +522,3 @@ export const education: Education = {
   thesis:
     "LongPlan — Study plan validator using graph algorithms (topological sort, cycle detection) and curriculum rule enforcement. Built in Go with React frontend.",
 };
-
-// ── Bento Grid Display Helpers ──────────────────────────────────────────────
-// Categories that show as icon grids in the bento layout vs. badge lists
-
-/** Skill categories rendered as icon grids in PortfolioBento */
-export const bentoGridSkillCategories = [
-  "Languages",
-  "Frameworks",
-  "Infrastructure",
-  "Observability",
-  "Tools",
-] as const;
-
-/** Skill categories rendered as badge lists in PortfolioBento */
-export const bentoBadgeSkillCategories = [
-  "Practices",
-] as const;
-
-/** Interests shown in the bento Interests card */
-export const interests = [
-  "System Design",
-  "Clean Architecture",
-  "API Design",
-  "DevOps",
-  "Functional Programming",
-];

@@ -1,0 +1,532 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-12T16:00:00.000Z",
+  "title": "Design System: Panthaweekan Somngam, Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Bright Stock",
+        "canonical": "#FAFAFA",
+        "cssVar": "--ground",
+        "theme": "light",
+        "tonalRamp": [
+          "#3F3F3F",
+          "#717171",
+          "#A3A3A3",
+          "#D5D5D5",
+          "#FBFBFB",
+          "#FCFCFC",
+          "#FEFEFE",
+          "#FFFFFF"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Report Ink",
+        "canonical": "#16181D",
+        "cssVar": "--ink",
+        "theme": "light",
+        "tonalRamp": [
+          "#060607",
+          "#0A0B0D",
+          "#0E1013",
+          "#131419",
+          "#45464A",
+          "#7F8083",
+          "#B9BABB",
+          "#E8E8E8"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Graphite Muted",
+        "canonical": "#555A66",
+        "cssVar": "--muted",
+        "theme": "light",
+        "tonalRamp": [
+          "#15171A",
+          "#26282E",
+          "#373B42",
+          "#484D57",
+          "#777B85",
+          "#A2A4AB",
+          "#CCCED1",
+          "#EEEFF0"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Cool Hairline",
+        "canonical": "#C9CDD6",
+        "cssVar": "--rule",
+        "theme": "light",
+        "tonalRamp": [
+          "#323336",
+          "#5A5C60",
+          "#83858B",
+          "#ABAEB6",
+          "#D4D7DE",
+          "#E1E4E8",
+          "#EFF0F3",
+          "#FAFAFB"
+        ]
+      },
+      "field": {
+        "role": "primary",
+        "displayName": "Ultramarine Field",
+        "canonical": "#1F3BD6",
+        "cssVar": "--field",
+        "theme": "light",
+        "tonalRamp": [
+          "#080F36",
+          "#0E1B60",
+          "#14268B",
+          "#1A32B6",
+          "#4C62DE",
+          "#8493E8",
+          "#BCC4F3",
+          "#E9EBFB"
+        ]
+      },
+      "on-field": {
+        "role": "neutral",
+        "displayName": "On-Field White",
+        "canonical": "#FFFFFF",
+        "cssVar": "--on-field",
+        "theme": "light",
+        "tonalRamp": [
+          "#404040",
+          "#737373",
+          "#A6A6A6",
+          "#D9D9D9",
+          "#FFFFFF",
+          "#FFFFFF",
+          "#FFFFFF",
+          "#FFFFFF"
+        ]
+      },
+      "on-field-muted": {
+        "role": "neutral",
+        "displayName": "On-Field Mist",
+        "canonical": "#C7D0FF",
+        "cssVar": "--on-field-muted",
+        "theme": "light",
+        "tonalRamp": [
+          "#323440",
+          "#5A5E73",
+          "#8187A6",
+          "#A9B1D9",
+          "#D2D9FF",
+          "#E0E5FF",
+          "#EEF1FF",
+          "#F9FAFF"
+        ]
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Bright Stock (dark)",
+        "canonical": "#16181D",
+        "cssVar": "--ground",
+        "theme": "dark",
+        "tonalRamp": [
+          "#060607",
+          "#0A0B0D",
+          "#0E1013",
+          "#131419",
+          "#45464A",
+          "#7F8083",
+          "#B9BABB",
+          "#E8E8E8"
+        ]
+      },
+      "ink-dark": {
+        "role": "primary",
+        "displayName": "Report Ink (dark)",
+        "canonical": "#E8EAF0",
+        "cssVar": "--ink",
+        "theme": "dark",
+        "tonalRamp": [
+          "#3A3B3C",
+          "#68696C",
+          "#97989C",
+          "#C5C7CC",
+          "#EDEEF3",
+          "#F2F3F7",
+          "#F8F9FB",
+          "#FDFDFE"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Graphite Muted (dark)",
+        "canonical": "#A3A8B4",
+        "cssVar": "--muted",
+        "theme": "dark",
+        "tonalRamp": [
+          "#292A2D",
+          "#494C51",
+          "#6A6D75",
+          "#8B8F99",
+          "#B5B9C3",
+          "#CCCFD6",
+          "#E3E5E9",
+          "#F6F6F8"
+        ]
+      },
+      "rule-dark": {
+        "role": "neutral",
+        "displayName": "Cool Hairline (dark)",
+        "canonical": "#343843",
+        "cssVar": "--rule",
+        "theme": "dark",
+        "tonalRamp": [
+          "#0D0E11",
+          "#17191E",
+          "#22242C",
+          "#2C3039",
+          "#5D6069",
+          "#8F9298",
+          "#C2C3C7",
+          "#EBEBEC"
+        ]
+      },
+      "field-dark": {
+        "role": "primary",
+        "displayName": "Ultramarine Field (dark)",
+        "canonical": "#3550E8",
+        "cssVar": "--field",
+        "theme": "dark",
+        "tonalRamp": [
+          "#0D143A",
+          "#182468",
+          "#223497",
+          "#2D44C5",
+          "#5D73ED",
+          "#909FF2",
+          "#C2CBF8",
+          "#EBEEFD"
+        ]
+      },
+      "on-field-dark": {
+        "role": "neutral",
+        "displayName": "On-Field White (dark)",
+        "canonical": "#FFFFFF",
+        "cssVar": "--on-field",
+        "theme": "dark",
+        "tonalRamp": [
+          "#404040",
+          "#737373",
+          "#A6A6A6",
+          "#D9D9D9",
+          "#FFFFFF",
+          "#FFFFFF",
+          "#FFFFFF",
+          "#FFFFFF"
+        ]
+      },
+      "on-field-muted-dark": {
+        "role": "neutral",
+        "displayName": "On-Field Mist (dark)",
+        "canonical": "#E0E5FF",
+        "cssVar": "--on-field-muted",
+        "theme": "dark",
+        "tonalRamp": [
+          "#383940",
+          "#656773",
+          "#9295A6",
+          "#BEC3D9",
+          "#E6EAFF",
+          "#EEF1FF",
+          "#F6F7FF",
+          "#FCFCFF"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name on the opening spread only; 48px at md."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Positioning line under the name; 28px at md."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles; Contact 36px at md."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Chapter titles, CV viewer heading, Figure 1 caption (30px at md)."
+      },
+      "body-lead": {
+        "displayName": "Body lead",
+        "purpose": "Chapter description paragraph, max 68ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text, lists, table cells, max 68ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Muted metadata, captions, table headers, masthead links. Sentence case, tabular."
+      },
+      "slide-numeral": {
+        "displayName": "Slide numeral",
+        "purpose": "Chapter numeral on a divider slide (220px, tabular)."
+      },
+      "slide-display": {
+        "displayName": "Slide display",
+        "purpose": "Name on the title slide and \"Questions?\" on the close (140px); Figure 1's landed amount sits at 120px."
+      },
+      "slide-divider-title": {
+        "displayName": "Slide divider title",
+        "purpose": "Chapter title on a divider slide (112px)."
+      },
+      "slide-headline": {
+        "displayName": "Slide headline",
+        "purpose": "Headline of every content slide (72px)."
+      },
+      "slide-title": {
+        "displayName": "Slide steps",
+        "purpose": "Step scale 56/52/48/44/40px: contents entries 56, lead statements 52, Figure 1 caption 48, divider subtitle 44, column and step titles 40."
+      },
+      "slide-body": {
+        "displayName": "Slide body",
+        "purpose": "Lists and step examples at 32px (the floor for running text); close contact lines at 36px."
+      },
+      "slide-node": {
+        "displayName": "Slide node",
+        "purpose": "Layer-figure nodes on a slide (28px, 500)."
+      },
+      "slide-caption": {
+        "displayName": "Slide caption",
+        "purpose": "Folios, figure captions, layer names, metadata (22px, tabular). The floor for anything on a slide."
+      }
+    },
+    "shadows": [],
+    "borders": [
+      {
+        "name": "section-rule",
+        "value": "1px solid var(--ink)",
+        "purpose": "Opens a section or a figure table."
+      },
+      {
+        "name": "hairline",
+        "value": "1px solid var(--rule)",
+        "purpose": "Separates rows; masthead bottom; menu and CV frame borders; the rule over every slide folio; deck chrome bars and the letterbox frame."
+      },
+      {
+        "name": "focus",
+        "value": "outline: 2px solid var(--ink); outline-offset: 3px",
+        "purpose": "Global focus-visible; on-field inside .on-field regions."
+      }
+    ],
+    "motion": [
+      {
+        "name": "figure-segment",
+        "value": "1500ms",
+        "purpose": "Figure 1 marker travel between stations."
+      },
+      {
+        "name": "figure-hold",
+        "value": "2000ms",
+        "purpose": "Hold on the final frame before the 8000ms loop restarts."
+      },
+      {
+        "name": "ease-figure",
+        "value": "cubic ease-in-out (4x^3 / 1-(-2x+2)^3/2)",
+        "purpose": "Damped easing into and out of every station."
+      },
+      {
+        "name": "reveal-color",
+        "value": "color 500ms",
+        "purpose": "Station value switches from on-field-muted to on-field."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "static final frame, no marker",
+        "purpose": "Under prefers-reduced-motion; the clock also pauses off-screen or in a hidden tab."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      }
+    ],
+    "slideCanvas": {
+      "width": "1920px",
+      "height": "1080px",
+      "columns": 12,
+      "gutter": "24px",
+      "margin": "120px",
+      "paddingTop": "96px",
+      "paddingBottom": "56px",
+      "fit": "scaled as a whole to the stage, letterboxed, never reflowed"
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Download CV on the opening spread: square ink block, one per spread.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Download CV</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; background: var(--ink); color: var(--ground); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-weight: 600; font-size: 16px; text-decoration: none; border-radius: 0; } .ds-btn-primary:hover { opacity: 0.9; } .ds-btn-primary:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }"
+    },
+    {
+      "name": "Masthead CV Button",
+      "kind": "button",
+      "refersTo": "button-masthead-cv",
+      "description": "Persistent Download CV in the sticky masthead.",
+      "html": "<a class=\"ds-btn-cv\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg><span>Download CV</span></a>",
+      "css": ".ds-btn-cv { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; background: var(--ink); color: var(--ground); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 0; } .ds-btn-cv:hover { opacity: 0.9; } .ds-btn-cv:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "link-text",
+      "description": "Secondary actions (Email, LinkedIn, Read the full chapter): semibold underlined ink text.",
+      "html": "<a class=\"ds-link\" href=\"#\">Read the full chapter</a>",
+      "css": ".ds-link { color: var(--ink); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-weight: 600; font-size: 14px; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; } .ds-link:hover { text-decoration-thickness: 2px; } .ds-link:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }"
+    },
+    {
+      "name": "Masthead",
+      "kind": "nav",
+      "refersTo": "masthead",
+      "description": "Sticky 56px ground bar with hairline bottom border; muted section links turn ink on hover.",
+      "html": "<header class=\"ds-mast\"><strong>Panthaweekan S.</strong><nav><a href=\"#\">Systems</a><a href=\"#\">Record</a><a href=\"#\">Skills</a><a href=\"#\">Contact</a></nav><a class=\"ds-mast-cv\" href=\"#\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/><polyline points=\"7 10 12 15 17 10\"/><line x1=\"12\" x2=\"12\" y1=\"15\" y2=\"3\"/></svg><span>Download CV</span></a></header>",
+      "css": ".ds-mast { display: flex; align-items: center; gap: 24px; height: 56px; padding: 0 24px; background: var(--ground); color: var(--ink); border-bottom: 1px solid var(--rule); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-mast strong { font-weight: 600; letter-spacing: -0.025em; } .ds-mast nav { display: flex; gap: 20px; } .ds-mast nav a { font-size: 14px; color: var(--muted); text-decoration: none; } .ds-mast nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; } .ds-mast-cv { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; background: var(--ink); color: var(--ground); font-size: 14px; font-weight: 600; text-decoration: none; } .ds-mast-cv:hover { opacity: 0.9; }"
+    },
+    {
+      "name": "Figure 1 Field Panel",
+      "kind": "custom",
+      "refersTo": "field-panel",
+      "description": "Signature ultramarine figure: run-in caption, stations on a 2px rail; untravelled rail at 30% on-field, unreached values in on-field-muted.",
+      "html": "<figure class=\"ds-fig1\"><figcaption><span>Figure 1</span> · One LLM call becomes money</figcaption><ol><li class=\"on\"><b>Agent step</b><span>1,200 input · 300 output tokens</span></li><li class=\"on\"><b>Collector</b><span>Usage signal received</span></li><li class=\"next\"><b>Kafka</b><span>Queued, in order, for the engine</span></li><li><b>Dashboard</b><span>Team › Project › Run › Step</span></li></ol><p>Illustrative example</p></figure>",
+      "css": ".ds-fig1 { margin: 0; padding: 48px; background: var(--field); color: var(--on-field); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-fig1 figcaption { font-size: 30px; font-weight: 600; line-height: 1.25; margin-bottom: 40px; font-variant-numeric: tabular-nums; } .ds-fig1 ol { list-style: none; margin: 0; padding: 0; position: relative; } .ds-fig1 ol::before { content: ''; position: absolute; left: 7px; top: 15px; bottom: 15px; width: 2px; background: var(--on-field); opacity: 0.3; } .ds-fig1 li { position: relative; padding-left: 40px; margin-bottom: 28px; } .ds-fig1 li::before { content: ''; position: absolute; left: 3px; top: 10px; width: 10px; height: 10px; box-sizing: border-box; border-radius: 9999px; border: 2px solid var(--on-field-muted); background: var(--field); } .ds-fig1 li.on::before { border-color: var(--on-field); background: var(--on-field); } .ds-fig1 li.next::before { border-color: var(--on-field); } .ds-fig1 li b { display: block; font-weight: 600; } .ds-fig1 li span { display: block; color: var(--on-field-muted); font-variant-numeric: tabular-nums; transition: color 500ms; } .ds-fig1 li.on span { color: var(--on-field); } .ds-fig1 p { margin: 40px 0 0; font-size: 14px; color: var(--on-field-muted); }"
+    },
+    {
+      "name": "Layer Figure",
+      "kind": "custom",
+      "description": "Chapter architecture as a numbered table: run-in muted caption, ink top rule, hairline rows.",
+      "html": "<figure class=\"ds-layer\"><figcaption><b>Figure 2</b> · FinOps engine: architecture</figcaption><ol><li><span>Ingest</span><div><b>Collector</b> · usage events</div></li><li><span>Transport</span><div><b>Kafka</b></div></li><li><span>Compute</span><div><b>Go cost engine</b></div></li></ol></figure>",
+      "css": ".ds-layer { margin: 0; font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; color: var(--ink); } .ds-layer figcaption { font-size: 14px; color: var(--muted); margin-bottom: 12px; } .ds-layer figcaption b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; } .ds-layer ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); } .ds-layer li { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--rule); } .ds-layer li span { font-size: 14px; color: var(--muted); } .ds-layer li b { font-weight: 500; }"
+    },
+    {
+      "name": "Chapter",
+      "kind": "card",
+      "description": "One system per chapter: hairline top rule, 4/8 split, muted tabular metadata, body-lead description.",
+      "html": "<section class=\"ds-chapter\"><header><h3>FinOps engine</h3><p>SCB TechX · 2026 · In review</p></header><div><p class=\"lead\">Discovery, module spec, and a Go cost engine that prices every LLM call.</p><a href=\"#\">Read the full chapter</a></div></section>",
+      "css": ".ds-chapter { display: grid; grid-template-columns: 1fr 2fr; gap: 16px 24px; padding: 48px 0; border-top: 1px solid var(--rule); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; color: var(--ink); } .ds-chapter h3 { margin: 0; font-size: 24px; font-weight: 600; line-height: 1.25; letter-spacing: -0.025em; } .ds-chapter header p { margin: 8px 0 0; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; } .ds-chapter .lead { margin: 0; font-size: 18px; line-height: 1.625; max-width: 68ch; } .ds-chapter a { display: inline-block; margin-top: 24px; font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; } .ds-chapter a:hover { text-decoration-thickness: 2px; }"
+    },
+    {
+      "name": "Contact Close",
+      "kind": "custom",
+      "refersTo": "field-panel",
+      "description": "Full-bleed ultramarine closing band with on-field links; focus ring switches to on-field.",
+      "html": "<section class=\"ds-contact\"><div><h2>Contact</h2><p>Based in Bangkok, open to remote or hybrid roles.</p></div><ul><li><a href=\"#\">Email</a></li><li><a href=\"#\">LinkedIn</a></li><li><a href=\"#\">Download CV (PDF)</a></li></ul></section>",
+      "css": ".ds-contact { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 24px; padding: 80px 40px; background: var(--field); color: var(--on-field); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; } .ds-contact h2 { margin: 0; font-size: 36px; font-weight: 600; letter-spacing: -0.025em; } .ds-contact p { margin: 16px 0 0; color: var(--on-field-muted); } .ds-contact ul { list-style: none; margin: 0; padding: 0; font-size: 18px; } .ds-contact li + li { margin-top: 12px; } .ds-contact a { color: var(--on-field); text-decoration: underline; text-underline-offset: 0.2em; } .ds-contact a:focus-visible { outline: 2px solid var(--on-field); outline-offset: 3px; }"
+    },
+    {
+      "name": "Slide Folio",
+      "kind": "custom",
+      "refersTo": "slide-folio",
+      "description": "Foot of every slide: hairline, then chapter left and derived page right in 22px muted tabular figures.",
+      "html": "<div class=\"ds-folio\"><span>I · FinOps engine</span><span>p. 5 / 12</span></div>",
+      "css": ".ds-folio { display: flex; justify-content: space-between; align-items: baseline; padding-top: 20px; border-top: 1px solid var(--rule); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; font-size: 22px; color: var(--muted); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Chapter Divider",
+      "kind": "custom",
+      "refersTo": "chapter-divider",
+      "description": "Whole ultramarine slide: 220px numeral, 112px chapter title, 44px subtitle, on-field-muted folio with dates.",
+      "html": "<section class=\"ds-divider\"><span class=\"num\">I</span><div><h2>FinOps engine</h2><p>One LLM call becomes money</p></div><div class=\"folio\"><span>Sep 2026 – Present · SCB TechX</span><span>p. 3 / 12</span></div></section>",
+      "css": ".ds-divider { display: flex; flex-direction: column; justify-content: space-between; width: 1920px; height: 1080px; box-sizing: border-box; padding: 96px 120px 56px; background: var(--field); color: var(--on-field); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; zoom: 0.25; } .ds-divider .num { font-size: 220px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; } .ds-divider h2 { margin: 0; font-size: 112px; font-weight: 600; line-height: 1.02; letter-spacing: -0.025em; } .ds-divider p { margin: 24px 0 0; font-size: 44px; } .ds-divider .folio { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid var(--on-field-muted); font-size: 22px; color: var(--on-field-muted); font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Contents Page",
+      "kind": "custom",
+      "refersTo": "slide-frame",
+      "description": "Chapters under an ink rule, hairline rows: muted numeral, 56px title, derived page number.",
+      "html": "<section class=\"ds-contents\"><h2>Contents</h2><ol><li><span>I</span><b>FinOps engine</b><span>p. 3</span></li><li><span>II</span><b>API gateway</b><span>p. 7</span></li><li><span>III</span><b>Earlier systems</b><span>p. 9</span></li><li><span></span><b>Close</b><span>p. 12</span></li></ol></section>",
+      "css": ".ds-contents { width: 1920px; box-sizing: border-box; padding: 96px 120px 56px; background: var(--ground); color: var(--ink); font-family: 'Archivo Variable', Archivo, system-ui, sans-serif; zoom: 0.25; } .ds-contents h2 { margin: 0; font-size: 72px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; } .ds-contents ol { list-style: none; margin: 56px 0 0; padding: 0; border-top: 1px solid var(--ink); } .ds-contents li { display: grid; grid-template-columns: 1fr 9fr 2fr; gap: 24px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid var(--rule); font-size: 40px; font-variant-numeric: tabular-nums; } .ds-contents li span:first-child { color: var(--muted); } .ds-contents li b { font-size: 56px; font-weight: 600; letter-spacing: -0.025em; } .ds-contents li span:last-child { text-align: right; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineer's Annual Report",
+    "overview": "The site is set like a Swiss International Style annual report written by one person. Each system Panthaweekan built is a chapter with one exact figure, and the opening spread carries Figure 1, a live diagram of a single LLM call becoming a priced line item. The page is bright white stock with graphite type. Hierarchy comes from Archivo weight and size, flush-left setting, a 12-column grid and hairline rules, not from colour, cards or shadow.\n\nUltramarine is a field. It fills a whole region of a spread (the Figure 1 panel and the Contact close) and never appears as an accent on the white ground. Every action on ground is ink. The dark theme is the same report at night: the ground becomes ink, type lifts to a pale cool grey, and the field lightens so it stays legible.\n\nDensity is that of a reading document: generous section spacing (48px top, 64px bottom), a 68ch measure for prose, and tabular figures wherever a number or date appears. Motion is limited to Figure 1, which runs on one damped clock and stops when it is off screen or reduced motion is requested. The deck is the report read aloud: numbered pages, a contents page, and an ultramarine divider opening each chapter.",
+    "keyCharacteristics": [
+      "Bright stock, graphite ink, cool grey hairlines; one ultramarine field per spread.",
+      "Archivo Variable throughout, weights 400/500/600, flush left, tabular numbers.",
+      "Strict 12-column grid inside a 1280px container.",
+      "Square corners everywhere; the only circles are Figure 1's station dots and marker.",
+      "Flat: depth comes from an ink rule and grey hairline hierarchy, never shadow.",
+      "Figures are numbered and captioned in run-in style (\"Figure N · title\").",
+      "The deck is a fixed 1920×1080 page with folios (\"p. N / 12\") and ultramarine chapter dividers."
+    ],
+    "rules": [
+      {
+        "name": "The Whole Field Rule",
+        "body": "Ultramarine fills a whole region (a full figure panel, a full-bleed closing band, or a whole divider slide) and is never used for text, links, buttons, icons or borders on the ground.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ink Action Rule",
+        "body": "Primary buttons, the focus outline (2px solid, 3px offset) and text selection use ink on ground. Inside a field region (`.on-field`) the focus outline switches to on-field.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token Dimming Rule",
+        "body": "Text that is pending or secondary on the field changes to the on-field-muted token instead of fading with opacity. Opacity is reserved for non-text strokes and states: the untravelled Figure 1 rail (on-field at 30%) and the ink-button hover (90%).",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Figures Rule",
+        "body": "Every number, date, figure number and amount is set with tabular numerals (`tnum`).",
+        "section": "typography"
+      },
+      {
+        "name": "The Run-in Caption Rule",
+        "body": "A figure caption reads \"Figure N · title\" on one line: the figure number in semibold ink, a middle dot, then the title. It is never a separate stacked label above the title.",
+        "section": "typography"
+      },
+      {
+        "name": "The Projection Floor Rule",
+        "body": "On a slide nothing is set below 22px, and running text not below 32px.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rule Hierarchy Rule",
+        "body": "A 1px ink rule opens a section or a figure table (Systems, Record, Skills, Education, each layer figure). A 1px grey hairline (`rule`) separates rows inside it (chapters, table rows, skill rows, layer rows). Never swap the two, and never add a shadow to separate content.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** use ultramarine only as the full background of a region, with on-field and on-field-muted type on it.",
+      "**Do** make the primary action an ink block (44px, square, semibold) and keep the masthead CV button reachable in every viewport.",
+      "**Do** caption every figure in run-in style: \"Figure N · title\", with figure numbers counting on from Figure 1.",
+      "**Do** set every number and date with tabular figures.",
+      "**Do** open sections with a 1px ink rule and separate rows with 1px grey hairlines.",
+      "**Do** dim pending text on the field by switching to on-field-muted, not by fading it.",
+      "**Do** cap prose at 68ch and keep everything flush left on the 12-column grid.",
+      "**Do** build every slide on the 1920×1080 canvas with 120px margins and a folio, deriving page numbers from the slide order.",
+      "**Do** keep slide type at 22px or larger, and running text at 32px or larger."
+    ],
+    "donts": [
+      "**Don't** use ultramarine for links, buttons, icons, borders or highlights on the ground.",
+      "**Don't** add shadows, rounded rectangles, cards or gradients; depth is rules and fields only.",
+      "**Don't** stack a small label above a heading; captions and metadata run in on one line.",
+      "**Don't** add a second typeface or a weight above 600.",
+      "**Don't** animate anything other than Figure 1, and never animate it when reduced motion is requested.",
+      "**Don't** fill a deck slide with ultramarine unless it is a chapter divider or the Figure 1 slide.",
+      "**Don't** type a page number into a slide or the contents page; derive it."
+    ]
+  }
+}

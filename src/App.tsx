@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { LazyMotion, domAnimation, MotionConfig, AnimatePresence, m } from 'framer-motion';
-import { PortfolioBento } from './components/PortfolioBento';
+import { ReportHome } from './components/report/ReportHome';
 
 // Lazy load Resume page for code splitting
 const Resume = lazy(() => import('./components/Resume'));
@@ -9,11 +9,7 @@ const Present = lazy(() => import('./components/Present'));
 
 // Loading spinner for lazy-loaded pages
 function LoadingSpinner() {
-  return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
-      <div className="w-12 h-12 border-2 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin" />
-    </div>
-  );
+  return <div className="min-h-screen bg-ground" />;
 }
 
 function App() {
@@ -36,7 +32,7 @@ function App() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <PortfolioBento />
+                    <ReportHome />
                   </m.div>
                 }
               />
