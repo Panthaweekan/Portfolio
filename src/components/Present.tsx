@@ -18,7 +18,7 @@ const chromeButton = 'grid h-9 w-9 place-items-center text-muted hover:text-ink 
 // /present/:deck. An unknown deck name goes back to the chooser.
 export default function PresentRoute() {
   const { deck = '' } = useParams();
-  return isDeckId(deck) ? <Present deck={deck} /> : <Navigate to="/present" replace />;
+  return isDeckId(deck) ? <Present key={deck} deck={deck} /> : <Navigate to="/present" replace />;
 }
 
 function Present({ deck }: { deck: DeckId }) {

@@ -6,7 +6,7 @@ Date: 2026-10-16 · Branch: `feat/two-deck-present`
 
 Split `/present` into two talks, so Panthaweekan can open the one that fits the interview round:
 
-- **About me** (`/present/recruiter`): 11 slides, about 10 minutes, for recruiter and HR rounds. It is about Panthaweekan as a person: why Panthaweekan builds software, how the skills were learned, how the work with people and AI goes, life outside work, and what comes next. Stack is visible but secondary.
+- **About me** (`/present/recruiter`): 15 slides (11 at first; see Revision 1), about 10–15 minutes, for recruiter and HR rounds. It is about Panthaweekan as a person: why Panthaweekan builds software, how the skills were learned, how the work with people and AI goes, life outside work, and what comes next. Stack is visible but secondary.
 - **Technical deep dive** (`/present/technical`): the existing 12-slide deck, unchanged.
 
 Related documents:
@@ -19,7 +19,7 @@ Related documents:
 - **Two separate decks**, not one deck with two parts. Each has its own page count, folios and URL.
 - **Path routes** (`/present/recruiter`, `/present/technical`) sharing one stage component, not a query parameter and not a copied component.
 - **`/present` is a deck chooser.** Old shared links of the form `/present?slide=N` redirect to `/present/technical?slide=N`.
-- **The recruiter deck has no contents page and no chapter dividers.** It is a 10-minute talk, and dividers would add three slides with no content.
+- ~~**The recruiter deck has no contents page and no chapter dividers.**~~ Superseded by Revision 1: it now has an agenda and three dividers.
 - **Stack in the recruiter deck:** one Toolkit slide, plus a muted "Built with" line under the two story slides that describe built systems (slides 4 and 5).
 - **Slide copy is English** (`PRODUCT.md`: English only). Plain first person, short sentences, no hype words, no specific role name on slide 10.
 
@@ -54,7 +54,7 @@ Every claim traces to one of these:
 
 ## Recruiter deck: slides and copy
 
-The page count is 11, and folios read "p. N / 11". The folio's left side reads "Panthaweekan Somngam" on every content slide.
+This table records the original 11-slide order. Revision 1 below changes the order, the title line and slide 6's copy; the other copy stands as written here.
 
 | p. | id | Kind | Content |
 |---|---|---|---|
@@ -74,6 +74,33 @@ The page count is 11, and folios read "p. N / 11". The folio's left side reads "
 - No stack names in headlines or story copy. Stack appears only in the built-with lines and on the Toolkit slide.
 - The built-with line is a caption: 22px, muted, set above the folio rule.
 - Type, margins and grid follow `DESIGN.md`'s slide scale: headline about 72px, body at least 32px, captions 22px.
+
+## Revision 1 (2026-10-16): told from now back, with an agenda
+
+Panthaweekan asked for the talk to start from the present and go back in time, with clear sections and an agenda up front. The advisor's suggestions accepted: credit the flow to Panthaweekan, move the toolkit after chapter II, and use a recruiter-specific title line.
+
+| p. | id | Kind | Content |
+|---|---|---|---|
+| 1 | `about-title` | title | Positioning line for this deck only: "I build software that solves real problems, and I work AI-first to do it." The technical deck keeps `personalInfo.positioning`. |
+| 2 | `about-agenda` | contents | Headline "Agenda", listing chapters, codas and close with computed pages |
+| 3 | `about-now` | divider I | **Now · SCB TechX**; subtitle "How I work with a team and AI"; dates "2025 – now · SCB TechX" |
+| 4 | `about-spec` | content | unchanged |
+| 5 | `about-flow` | content | adds a 32px line under the headline: "I set this up for the team, so everyone agrees on scope and on how each feature is tested." Source: CV "Set the team's engineering practices" plus Panthaweekan's own account of introducing the flow. The ↺ after Deliver is `aria-hidden`. |
+| 6 | `about-review` | content | unchanged |
+| 7 | `about-before` | divider II | **Before · Chiang Mai University**; subtitle "Where I learned to work with product owners"; dates "2023 – 2025 · Faculty of Engineering" |
+| 8 | `about-start` | content | unchanged |
+| 9 | `about-users` | content | unchanged |
+| 10 | `about-toolkit` | coda | unchanged; sums up the tools across both jobs |
+| 11 | `about-self` | divider III | **Who I am**; subtitle "Why I build, and what I do outside work"; dates "Beyond the CV" |
+| 12 | `about-why` | content | unchanged |
+| 13 | `about-outside` | content | unchanged |
+| 14 | `about-next` | coda | unchanged |
+| 15 | `about-close` | close | unchanged |
+
+**Rules for this revision:**
+- Folios read "p. N / 15", with the chapter on the left inside a chapter and the name outside one.
+- The chooser reads "about 10–15 minutes".
+- An agenda with six or more rows uses tighter row padding, so the technical contents page renders unchanged.
 
 ## Technical deck
 

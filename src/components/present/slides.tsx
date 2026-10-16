@@ -47,7 +47,7 @@ function Points({ items }: { items: readonly { lead?: string; text: string }[] }
   );
 }
 
-function TitleSlide({ id, label }: { id: 'title' | 'about-title'; label: string }) {
+function TitleSlide({ id, label, positioning }: { id: 'title' | 'about-title'; label: string; positioning: ReactNode }) {
   return (
     <div className="relative h-full bg-ground text-ink">
       <div className="flex h-full w-[1200px] flex-col px-[120px] pb-[56px] pt-[96px]">
@@ -57,7 +57,7 @@ function TitleSlide({ id, label }: { id: 'title' | 'about-title'; label: string 
             <br />
             Somngam
           </h1>
-          <p className="mt-10 max-w-[22ch] text-[52px] leading-tight">{personalInfo.positioning}</p>
+          <p className="mt-10 max-w-[22ch] text-[52px] leading-tight">{positioning}</p>
           <p className="mt-8 text-[32px] text-muted">
             {currentRole.title} · {currentRole.company} · {currentRole.location.split(',')[0]}
           </p>
@@ -78,13 +78,18 @@ function TitleSlide({ id, label }: { id: 'title' | 'about-title'; label: string 
   );
 }
 
-function ContentsSlide() {
+function ContentsSlide({ id, deck, heading }: { id: 'contents' | 'about-agenda'; deck: DeckId; heading: string }) {
+  const rows = contents(deck);
   return (
-    <SlideFrame id="contents">
-      <Headline>Contents</Headline>
+    <SlideFrame id={id}>
+      <Headline>{heading}</Headline>
       <ol className="mt-14 border-t border-ink">
-        {contents('technical').map((c) => (
-          <li key={c.title} className="grid grid-cols-12 items-baseline gap-x-6 border-b border-rule py-6">
+        {rows.map((c) => (
+          <li
+            key={c.title}
+            // ponytail: six rows (the agenda) only fit with tighter rows; five keep the original rhythm
+            className={rows.length > 5 ? 'grid grid-cols-12 items-baseline gap-x-6 border-b border-rule py-4' : 'grid grid-cols-12 items-baseline gap-x-6 border-b border-rule py-6'}
+          >
             <span className="col-span-1 text-[40px] tabular-nums text-muted">{c.numeral}</span>
             <span className="col-span-9 text-[56px] font-semibold tracking-tight">{c.title}</span>
             <span className="col-span-2 text-right text-[40px] tabular-nums">p. {c.page}</span>
@@ -356,7 +361,7 @@ const FLOW: readonly (readonly [stage: string, gate?: string])[] = [
   ['Tests'],
   ['Code'],
   ['Review', 'Merge: a reviewer'],
-  ['Deliver ↺'],
+  ['Deliver'],
 ];
 
 function AboutFlow() {
@@ -366,12 +371,16 @@ function AboutFlow() {
       caption="With a small team, AI agents do the drafting. A person signs off at each gate, and each sprint repeats the loop."
     >
       <Headline>AI drafts. People decide.</Headline>
-      <ol className="mt-16 grid grid-cols-9 gap-x-3">
+      <p className="mt-6 text-[32px] leading-snug">
+        I set this up for the team, so everyone agrees on scope and on how each feature is tested.
+      </p>
+      <ol className="mt-12 grid grid-cols-9 gap-x-3">
         {FLOW.map(([stage, gate], i) => (
           <li key={stage} className="border-t border-ink pt-4">
             <span className="block text-[22px] tabular-nums text-muted">{i + 1}</span>
             <span className={gate ? 'mt-2 block text-[28px] font-semibold leading-tight' : 'mt-2 block text-[28px] font-medium leading-tight text-muted'}>
               {stage}
+              {i === FLOW.length - 1 && <span aria-hidden> ↺</span>}
             </span>
             {gate && (
               <span className="mt-6 block border-t border-rule pt-3 text-[22px] leading-snug">
@@ -464,7 +473,28 @@ function AboutNext() {
 }
 
 const RECRUITER: Record<DeckSlideId<'recruiter'>, ComponentType> = {
-  'about-title': () => <TitleSlide id="about-title" label="About me" />,
+  'about-agenda': () => <ContentsSlide id="about-agenda" deck="recruiter" heading="Agenda" />,
+  'about-now': () => <Divider id="about-now" subtitle="How I work with a team and AI" dates="2025 – now · SCB TechX" />,
+  'about-before': () => (
+    <Divider
+      id="about-before"
+      subtitle="Where I learned to work with product owners"
+      dates="2023 – 2025 · Faculty of Engineering"
+    />
+  ),
+  'about-self': () => <Divider id="about-self" subtitle="Why I build, and what I do outside work" dates="Beyond the CV" />,
+  'about-title': () => (
+    <TitleSlide
+      id="about-title"
+      label="About me"
+      positioning={
+        <>
+          I build software that solves real problems, and I work <span className="whitespace-nowrap">AI-first</span> to do
+          it.
+        </>
+      }
+    />
+  ),
   'about-why': AboutWhy,
   'about-start': AboutStart,
   'about-users': AboutUsers,
@@ -490,8 +520,8 @@ const RECRUITER: Record<DeckSlideId<'recruiter'>, ComponentType> = {
 };
 
 const TECHNICAL: Record<DeckSlideId<'technical'>, ComponentType> = {
-  title: () => <TitleSlide id="title" label="Portfolio talk" />,
-  contents: ContentsSlide,
+  title: () => <TitleSlide id="title" label="Portfolio talk" positioning={personalInfo.positioning} />,
+  contents: () => <ContentsSlide id="contents" deck="technical" heading="Contents" />,
   finops: FinopsDivider,
   'finops-discovery': FinopsDiscovery,
   'finops-figure': FinopsFigure,

@@ -186,7 +186,7 @@ Density is that of a reading document: generous section spacing (48px top, 64px 
 - Square corners everywhere; the only circles are Figure 1's station dots and marker.
 - Flat: depth comes from an ink rule and grey hairline hierarchy, never shadow.
 - Figures are numbered and captioned in run-in style ("Figure N · title").
-- Two decks share a fixed 1920×1080 page with folios ("p. N / {deck total}"): the technical talk has ultramarine chapter dividers; the About me talk has none.
+- Two decks share a fixed 1920×1080 page with folios ("p. N / {deck total}"): each opens with a contents page and an ultramarine divider per chapter. The technical talk runs newest system first; the About me talk runs from now back to university.
 
 ## Colors
 
@@ -194,7 +194,7 @@ A near-monochrome report palette (ground, ink, muted, rule) with one saturated u
 
 ### Primary
 - **Report Ink** (`ink`, dark `ink-dark`): all body and heading type, the fill of the primary button and the masthead CV button, the focus outline, the selection highlight, and the 1px rule that opens each section and each layer figure.
-- **Ultramarine Field** (`field`, dark `field-dark`): the background of the Figure 1 panel and the Contact close on the site; in the technical deck, the three chapter dividers and the Figure 1 slide. Nothing else.
+- **Ultramarine Field** (`field`, dark `field-dark`): the background of the Figure 1 panel and the Contact close on the site; in the decks, the chapter dividers (three per deck) and the Figure 1 slide. Nothing else.
 
 ### Neutral
 - **Bright Stock** (`ground`, dark `ground-dark`): page background, masthead background, the mobile menu panel, and the text colour on ink buttons. In dark mode the ground is the ink value itself.
@@ -260,7 +260,7 @@ A 12-column grid with a 24px gutter sits inside a centred 1280px container, with
 - **Grid:** 12 columns with a 24px gutter inside 120px side margins; 96px top and 56px bottom padding. The folio sits at the foot of that padding.
 - **Splits:** two-column slides split 6/6 with a 64px gap between columns; the contents page and the step list use 1/9/2 and 1/5/6 rows; Figure 1's stations use 3/9.
 - **Title slide:** the type sits in the left 1200px within the same margins; the portrait plate fills the right 720px at full height and bleeds to the edge. It is the only image in the deck.
-- **Chrome:** outside the canvas. A 2px progress rule (ink over a hairline track) and a 48px top bar (Portfolio link, "p. N / 12 · title", theme and fullscreen) above; a 56px bottom bar (previous, page dots, next) below. Both bars are separated from the stage by hairlines.
+- **Chrome:** outside the canvas. A 2px progress rule (ink over a hairline track) and a 48px top bar (Portfolio link, "p. N / {deck total} · title", theme and fullscreen) above; a 56px bottom bar (previous, page dots, next) below. Both bars are separated from the stage by hairlines.
 
 ## Elevation & Depth
 
@@ -298,13 +298,13 @@ A chapter's architecture as a numbered table: a 14px muted run-in caption ("**Fi
 A section with a hairline top rule. On the left are the title, a muted tabular metadata line joined by middle dots, and the technology list. On the right are the body-lead description, an optional layer figure, and a "Read the full chapter" text toggle that reveals the highlights as a disc list within the measure.
 
 ### Slide Folio
-The foot of every slide: a 1px hairline, then a 22px muted tabular line with the chapter at the left ("I · FinOps engine") and the page at the right ("p. 5 / 12"). Slides outside a chapter (contents, the "How I work" coda, close) carry the name instead, as does every slide of the About me deck, which has no chapters; the title slide carries the talk and date. On a divider the rule turns on-field-muted and the left side carries the chapter's dates. The chapter and page are derived from the slide order, never typed.
+The foot of every slide: a 1px hairline, then a 22px muted tabular line with the chapter at the left ("I · FinOps engine") and the page at the right ("p. 5 / 12"). Slides outside a chapter (contents or agenda, a coda such as "How I work" or "What I build with", close) carry the name instead; the title slide carries the talk and date. On a divider the rule turns on-field-muted and the left side carries the chapter's dates. The chapter and page are derived from the slide order, never typed.
 
 ### Chapter Divider
-A whole slide filled with the ultramarine field: the chapter numeral at 220px top left, the chapter title (112px) and a 44px subtitle at the foot of the type area, then the folio. Three dividers, one per chapter; with the Figure 1 slide they are the only field pages in the deck.
+A whole slide filled with the ultramarine field: the chapter numeral at 220px top left, the chapter title (112px) and a 44px subtitle at the foot of the type area, then the folio. Three dividers per deck, one per chapter; with the Figure 1 slide they are the only field pages in the decks.
 
 ### Contents Page
-A content slide listing the chapters, the "How I work" coda and the close under an ink rule, one hairline row each: muted numeral, 56px semibold title, and the page number on the right in tabular figures. Page numbers come from the slide order, never typed.
+A content slide ("Contents" in the technical deck, "Agenda" in About me; six or more rows tighten to 16px row padding) listing the chapters, the codas and the close under an ink rule, one hairline row each: muted numeral, 56px semibold title, and the page number on the right in tabular figures. Page numbers come from the slide order, never typed.
 
 ### Figure Slide Variants
 - **Figure 1, slide:** the same ultramarine panel set inside the slide margins, showing the final frame only (no clock, no marker). Caption at 48px, stations at 32px on a 3/9 split with 16px dots, the landed amount right-aligned at 120px, the illustrative note at 22px.

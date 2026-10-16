@@ -50,21 +50,44 @@ assert.equal(totalOf('close'), 12);
 assert.throws(() => pageOf('nope'), /unknown slide/);
 assert.throws(() => totalOf('nope'), /unknown slide/);
 
-// ── Recruiter: 11 slides, no chapters ──
+// ── Recruiter: 15 slides, told from now back to the start ──
 const R = DECKS.recruiter;
 assert.deepEqual(R.map((s) => s.id), [
-  'about-title', 'about-why', 'about-start', 'about-users', 'about-spec', 'about-flow',
-  'about-review', 'about-toolkit', 'about-outside', 'about-next', 'about-close',
+  'about-title', 'about-agenda',
+  'about-now', 'about-spec', 'about-flow', 'about-review',
+  'about-before', 'about-start', 'about-users',
+  'about-toolkit',
+  'about-self', 'about-why', 'about-outside',
+  'about-next', 'about-close',
 ]);
 assert.equal(R[0].kind, 'title');
+assert.equal(R[1].kind, 'contents');
 assert.equal(R.at(-1).kind, 'close');
-assert.ok(R.every((s) => s.kind !== 'divider' && s.kind !== 'contents'), 'a 10-minute talk has no chapters');
-for (const s of R) assert.equal(chapterOf(s.id), null, `${s.id} sits outside any chapter`);
-assert.deepEqual(contents('recruiter'), [{ numeral: '', title: 'Close', page: 11 }]);
+
+// The agenda lists chapters, codas and close, newest first.
+assert.deepEqual(contents('recruiter'), [
+  { numeral: 'I', title: 'Now · SCB TechX', page: 3 },
+  { numeral: 'II', title: 'Before · Chiang Mai University', page: 7 },
+  { numeral: '', title: 'What I build with', page: 10 },
+  { numeral: 'III', title: 'Who I am', page: 11 },
+  { numeral: '', title: "What I'm looking for", page: 14 },
+  { numeral: '', title: 'Close', page: 15 },
+]);
+
+const NOW = { numeral: 'I', title: 'Now · SCB TechX' };
+const BEFORE = { numeral: 'II', title: 'Before · Chiang Mai University' };
+const SELF = { numeral: 'III', title: 'Who I am' };
+for (const id of ['about-spec', 'about-flow', 'about-review']) assert.deepEqual(chapterOf(id), NOW, id);
+for (const id of ['about-start', 'about-users']) assert.deepEqual(chapterOf(id), BEFORE, id);
+for (const id of ['about-why', 'about-outside']) assert.deepEqual(chapterOf(id), SELF, id);
+// The toolkit sums up both jobs and what's next looks ahead, so both stand outside the chapters.
+for (const id of ['about-title', 'about-agenda', 'about-toolkit', 'about-next', 'about-close']) {
+  assert.equal(chapterOf(id), null, `${id} sits outside any chapter`);
+}
 
 // Each deck counts its own pages.
-assert.equal(pageOf('about-close'), 11);
-assert.equal(totalOf('about-flow'), 11);
+assert.equal(pageOf('about-close'), 15);
+assert.equal(totalOf('about-flow'), 15);
 assert.equal(totalOf('finops-figure'), 12);
 
 console.log('✓ deck outlines OK');

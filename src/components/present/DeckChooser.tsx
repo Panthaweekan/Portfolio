@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { DECKS, type DeckId } from './outline';
 
 const TALKS: { deck: DeckId; title: string; audience: string; detail: string }[] = [
-  { deck: 'recruiter', title: 'About me', audience: 'For recruiter rounds', detail: 'about 10 minutes' },
+  { deck: 'recruiter', title: 'About me', audience: 'For recruiter rounds', detail: 'about 10–15 minutes' },
   { deck: 'technical', title: 'Technical deep dive', audience: 'For technical rounds', detail: 'FinOps, API gateway, earlier systems' },
 ];
 

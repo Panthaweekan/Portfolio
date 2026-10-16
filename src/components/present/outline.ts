@@ -13,17 +13,22 @@ interface OutlineEntry {
 
 // Ids are unique across decks, so a slide id alone names its deck.
 export const DECKS = {
+  // Told from now back to the start.
   recruiter: [
     { id: 'about-title', kind: 'title', title: 'Panthaweekan Somngam' },
-    { id: 'about-why', kind: 'content', title: 'Why I build software' },
-    { id: 'about-start', kind: 'content', title: 'Where I started' },
-    { id: 'about-users', kind: 'content', title: 'Built for real users' },
+    { id: 'about-agenda', kind: 'contents', title: 'Agenda' },
+    { id: 'about-now', kind: 'divider', chapter: 'I', title: 'Now · SCB TechX' },
     { id: 'about-spec', kind: 'content', title: 'Shared understanding first' },
     { id: 'about-flow', kind: 'content', title: 'AI drafts, people decide' },
     { id: 'about-review', kind: 'content', title: 'When AI outpaces review' },
-    { id: 'about-toolkit', kind: 'content', title: 'What I build with' },
+    { id: 'about-before', kind: 'divider', chapter: 'II', title: 'Before · Chiang Mai University' },
+    { id: 'about-start', kind: 'content', title: 'Where I started' },
+    { id: 'about-users', kind: 'content', title: 'Built for real users' },
+    { id: 'about-toolkit', kind: 'coda', title: 'What I build with' },
+    { id: 'about-self', kind: 'divider', chapter: 'III', title: 'Who I am' },
+    { id: 'about-why', kind: 'content', title: 'Why I build software' },
     { id: 'about-outside', kind: 'content', title: 'Outside work' },
-    { id: 'about-next', kind: 'content', title: "What I'm looking for" },
+    { id: 'about-next', kind: 'coda', title: "What I'm looking for" },
     { id: 'about-close', kind: 'close', title: 'Questions?' },
   ],
   technical: [
