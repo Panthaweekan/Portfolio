@@ -1,4 +1,4 @@
-import { chapterOf, pageOf, TOTAL_PAGES, type SlideId } from './outline';
+import { chapterOf, pageOf, totalOf, type SlideId } from './outline';
 
 interface DividerProps {
   id: SlideId;
@@ -19,7 +19,7 @@ export function Divider({ id, subtitle, dates }: DividerProps) {
       <div className="flex items-baseline justify-between border-t border-on-field-muted pt-5 text-[22px] tabular-nums text-on-field-muted">
         <span>{dates}</span>
         <span>
-          p. {pageOf(id)} / {TOTAL_PAGES}
+          p. {pageOf(id)} / {totalOf(id)}
         </span>
       </div>
     </div>

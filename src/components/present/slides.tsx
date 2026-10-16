@@ -3,7 +3,7 @@ import { experiences, personalInfo, projects } from '@/data/portfolio-data';
 import { FigureOne } from '@/components/report/FigureOne';
 import { LayerFigure } from '@/components/report/LayerFigure';
 import { Divider } from './Divider';
-import { contents, OUTLINE, pageOf, TOTAL_PAGES, type SlideId } from './outline';
+import { contents, DECKS, pageOf, totalOf, type DeckId, type DeckSlideId } from './outline';
 import { SlideFrame } from './SlideFrame';
 
 const project = (id: string) => {
@@ -51,7 +51,7 @@ function TitleSlide() {
         <div className="flex items-baseline justify-between border-t border-rule pt-5 text-[22px] tabular-nums text-muted">
           <span>Portfolio talk · {personalInfo.cvUpdated}</span>
           <span>
-            p. {pageOf('title')} / {TOTAL_PAGES}
+            p. {pageOf('title')} / {totalOf('title')}
           </span>
         </div>
       </div>
@@ -69,7 +69,7 @@ function ContentsSlide() {
     <SlideFrame id="contents">
       <Headline>Contents</Headline>
       <ol className="mt-14 border-t border-ink">
-        {contents().map((c) => (
+        {contents('technical').map((c) => (
           <li key={c.title} className="grid grid-cols-12 items-baseline gap-x-6 border-b border-rule py-6">
             <span className="col-span-1 text-[40px] tabular-nums text-muted">{c.numeral}</span>
             <span className="col-span-9 text-[56px] font-semibold tracking-tight">{c.title}</span>
@@ -257,7 +257,7 @@ function CloseSlide() {
   );
 }
 
-const COMPONENTS: Record<SlideId, ComponentType> = {
+const TECHNICAL: Record<DeckSlideId<'technical'>, ComponentType> = {
   title: TitleSlide,
   contents: ContentsSlide,
   finops: FinopsDivider,
@@ -272,4 +272,13 @@ const COMPONENTS: Record<SlideId, ComponentType> = {
   close: CloseSlide,
 };
 
-export const SLIDES = OUTLINE.map((s) => ({ id: s.id, title: s.title, Component: COMPONENTS[s.id] }));
+const COMPONENTS: Partial<Record<DeckId, Record<string, ComponentType>>> = { technical: TECHNICAL };
+
+export function slidesFor(deck: DeckId) {
+  const components = COMPONENTS[deck];
+  if (!components) throw new Error(`deck not built yet: ${deck}`);
+  const slides: readonly { id: string; title: string }[] = DECKS[deck];
+  return slides.map((s) => ({ id: s.id, title: s.title, Component: components[s.id] }));
+}
+
+export const SLIDES = slidesFor('technical');

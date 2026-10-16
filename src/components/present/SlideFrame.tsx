@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { chapterOf, pageOf, TOTAL_PAGES, type SlideId } from './outline';
+import { chapterOf, pageOf, totalOf, type SlideId } from './outline';
 
 interface SlideFrameProps {
   id: SlideId;
@@ -15,7 +15,7 @@ export function SlideFrame({ id, children }: SlideFrameProps) {
       <div className="mt-10 flex items-baseline justify-between border-t border-rule pt-5 text-[22px] tabular-nums text-muted">
         <span>{chapter ? `${chapter.numeral} · ${chapter.title}` : 'Panthaweekan Somngam'}</span>
         <span>
-          p. {pageOf(id)} / {TOTAL_PAGES}
+          p. {pageOf(id)} / {totalOf(id)}
         </span>
       </div>
     </div>
