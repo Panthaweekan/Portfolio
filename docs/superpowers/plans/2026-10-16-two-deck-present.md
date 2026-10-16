@@ -301,7 +301,8 @@ const COMPONENTS: Partial<Record<DeckId, Record<string, ComponentType>>> = { tec
 export function slidesFor(deck: DeckId) {
   const components = COMPONENTS[deck];
   if (!components) throw new Error(`deck not built yet: ${deck}`);
-  return DECKS[deck].map((s) => ({ id: s.id as string, title: s.title as string, Component: components[s.id] }));
+  const slides: readonly { id: string; title: string }[] = DECKS[deck];
+  return slides.map((s) => ({ id: s.id, title: s.title, Component: components[s.id] }));
 }
 
 export const SLIDES = slidesFor('technical');
@@ -391,7 +392,7 @@ function CloseSlide({ id, headline, note }: { id: 'close' | 'about-close'; headl
           <li>{strip(personalInfo.github)}</li>
           <li>{strip(personalInfo.portfolio)}</li>
           <li className="text-muted">CV: {strip(personalInfo.portfolio)}/resume</li>
-          {note && <li className="pt-4 text-[22px] text-muted">{note}</li>}
+          {note && <li className="whitespace-normal pt-4 text-[22px] text-muted">{note}</li>}
         </ul>
       </div>
     </SlideFrame>
@@ -509,7 +510,7 @@ const FLOW = [
   ['Tests'],
   ['Code'],
   ['Review', 'Merge: a reviewer'],
-  ['Deliver'],
+  ['Deliver ↺'],
 ] as const;
 
 function AboutFlow() {
@@ -535,9 +536,6 @@ function AboutFlow() {
           </li>
         ))}
       </ol>
-      <p className="mt-12 text-[32px] leading-snug">
-        <span className="font-semibold">↺</span> After Deliver, the loop starts again at Requirement.
-      </p>
     </SlideFrame>
   );
 }
@@ -654,7 +652,8 @@ The flow slide's stage labels are real text in an `<ol>`, so screen readers read
 const COMPONENTS: Record<DeckId, Record<string, ComponentType>> = { recruiter: RECRUITER, technical: TECHNICAL };
 
 export function slidesFor(deck: DeckId) {
-  return DECKS[deck].map((s) => ({ id: s.id as string, title: s.title as string, Component: COMPONENTS[deck][s.id] }));
+  const slides: readonly { id: string; title: string }[] = DECKS[deck];
+  return slides.map((s) => ({ id: s.id, title: s.title, Component: COMPONENTS[deck][s.id] }));
 }
 
 export const SLIDES = slidesFor('technical');
@@ -744,8 +743,6 @@ From here to the end of the component, keep the current file's body exactly as i
   - `{SLIDES.map(({ id, title, Component }, i) => (` → `{slides.map(({ id, title, Component }, i) => (`;
   - `{SLIDES.map(({ id }, i) => (` → `{slides.map(({ id }, i) => (`;
   - in the key-handler effect's dependency array, `[next, prev, go, toggleFullscreen]` → `[next, prev, go, toggleFullscreen, TOTAL]`, because the `End` key uses `TOTAL`.
-
-  Change the "Back to portfolio" link from `to="/"` to `to="/present"` and its label from `Portfolio` to `Talks`, so the presenter returns to the chooser.
 
 - [ ] **Step 2: Remove `export const SLIDES = slidesFor('technical');`** from `slides.tsx`. Nothing imports it now.
 
@@ -1015,7 +1012,7 @@ await browser.close();
   - **Text:** no text is clipped or overflows the 120px margins. Slide 6 must show all nine stages on one row, with no word cut. Slide 8 must keep all five rows above the caption and folio.
   - **Folios:** every content slide reads "Panthaweekan Somngam … p. N / 11".
   - **Captions:** built-with captions appear on slides 4 and 5 only. "Full list in my CV" appears on slide 8. The honours line appears on slide 3.
-  - **Close slide:** slide 11 shows "Thank you. / Questions?" and the technical-deck line.
+  - **Close slide:** slide 11 shows "Thank you. / Questions?" and the technical-deck line, with that line inside the right margin.
   - **Dark theme:** all text is legible.
   - **Chooser:** at 375px the cards stack with no horizontal scroll, and at 1280px they sit side by side.
 
@@ -1029,7 +1026,7 @@ await browser.close();
   - build and preview, then take `/present?slide=1`, `?slide=5` and `?slide=12`;
   - switch back with `git switch feat/two-deck-present`.
 
-  The only allowed differences are the header's back-link label ("Talks" instead of "Portfolio") and nothing else. Also confirm the home page's Figure 1 still animates.
+  There must be no visible difference. Also confirm the home page's Figure 1 still animates.
 
 - [ ] **Step 6: Commit fixes (only if Step 4 changed files).**
 
