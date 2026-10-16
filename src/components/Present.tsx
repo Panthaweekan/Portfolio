@@ -1,23 +1,31 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight, Maximize2, Minimize2, Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/hooks/useTheme';
-import { SLIDES } from './present/slides';
+import { isDeckId, type DeckId } from './present/outline';
+import { slidesFor } from './present/slides';
 
 const DESIGN_W = 1920;
 const DESIGN_H = 1080;
-const TOTAL = SLIDES.length;
 
-function initialSlide(): number {
+function initialSlide(total: number): number {
   const n = parseInt(new URLSearchParams(window.location.search).get('slide') ?? '', 10);
-  return Number.isFinite(n) && n >= 1 && n <= TOTAL ? n - 1 : 0;
+  return Number.isFinite(n) && n >= 1 && n <= total ? n - 1 : 0;
 }
 
 const chromeButton = 'grid h-9 w-9 place-items-center text-muted hover:text-ink disabled:opacity-30';
 
-export default function Present() {
+// /present/:deck. An unknown deck name goes back to the chooser.
+export default function PresentRoute() {
+  const { deck = '' } = useParams();
+  return isDeckId(deck) ? <Present key={deck} deck={deck} /> : <Navigate to="/present" replace />;
+}
+
+function Present({ deck }: { deck: DeckId }) {
+  const slides = useMemo(() => slidesFor(deck), [deck]);
+  const TOTAL = slides.length;
   const { theme, toggle } = useTheme();
-  const [slide, setSlide] = useState(initialSlide);
+  const [slide, setSlide] = useState(() => initialSlide(TOTAL));
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [scale, setScale] = useState(1);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -28,8 +36,8 @@ export default function Present() {
     window.history.replaceState(window.history.state, '', `${pathname}?slide=${slide + 1}${hash}`);
   }, [slide]);
 
-  const go = useCallback((index: number) => setSlide(Math.max(0, Math.min(TOTAL - 1, index))), []);
-  const next = useCallback(() => setSlide((s) => Math.min(TOTAL - 1, s + 1)), []);
+  const go = useCallback((index: number) => setSlide(Math.max(0, Math.min(TOTAL - 1, index))), [TOTAL]);
+  const next = useCallback(() => setSlide((s) => Math.min(TOTAL - 1, s + 1)), [TOTAL]);
   const prev = useCallback(() => setSlide((s) => Math.max(0, s - 1)), []);
 
   const toggleFullscreen = useCallback(() => {
@@ -75,7 +83,7 @@ export default function Present() {
       document.removeEventListener('keydown', onKey);
       document.removeEventListener('fullscreenchange', onFullscreen);
     };
-  }, [next, prev, go, toggleFullscreen]);
+  }, [next, prev, go, toggleFullscreen, TOTAL]);
 
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-ground text-ink">
@@ -90,7 +98,7 @@ export default function Present() {
         </Link>
         <span className="text-sm tabular-nums text-muted" aria-live="polite">
           p. {slide + 1} / {TOTAL}
-          <span className="hidden md:inline"> · {SLIDES[slide].title}</span>
+          <span className="hidden md:inline"> · {slides[slide].title}</span>
         </span>
         <div className="flex items-center gap-1">
           <button type="button" onClick={toggle} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} className={chromeButton}>
@@ -112,7 +120,7 @@ export default function Present() {
           className="relative shrink-0 ring-1 ring-rule"
           style={{ width: DESIGN_W, height: DESIGN_H, transform: `scale(${scale})`, transformOrigin: 'center center' }}
         >
-          {SLIDES.map(({ id, title, Component }, i) => (
+          {slides.map(({ id, title, Component }, i) => (
             <section
               key={id}
               aria-roledescription="slide"
@@ -132,7 +140,7 @@ export default function Present() {
           <ChevronLeft className="h-5 w-5" />
         </button>
         <div className="flex items-center gap-1.5">
-          {SLIDES.map(({ id }, i) => (
+          {slides.map(({ id }, i) => (
             <button
               key={id}
               type="button"
