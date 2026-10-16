@@ -511,4 +511,3 @@ export function slidesFor(deck: DeckId) {
   return slides.map((s) => ({ id: s.id, title: s.title, Component: COMPONENTS[deck][s.id] }));
 }
 
-export const SLIDES = slidesFor('technical');
