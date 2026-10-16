@@ -6,7 +6,7 @@ Date: 2026-10-16 · Branch: `feat/two-deck-present`
 
 Split `/present` into two talks, so Panthaweekan can open the one that fits the interview round:
 
-- **About me** (`/present/recruiter`): 11 slides, about 10 minutes, for recruiter and HR rounds. It is about the person: why he builds software, how he learned, how he works with people and AI, what he does outside work, and what he wants next. Stack is visible but secondary.
+- **About me** (`/present/recruiter`): 11 slides, about 10 minutes, for recruiter and HR rounds. It is about Panthaweekan as a person: why Panthaweekan builds software, how the skills were learned, how the work with people and AI goes, life outside work, and what comes next. Stack is visible but secondary.
 - **Technical deep dive** (`/present/technical`): the existing 12-slide deck, unchanged.
 
 Related documents:
@@ -30,17 +30,17 @@ Every claim traces to one of these:
 1. **CV:** `cv.tex`.
 2. **Showcase items** already in `src/data/portfolio-data.ts`: FitJourney and the Twitch TTS Bot.
 3. **Statements Panthaweekan made and approved in the 2026-10-16 brainstorming session**:
-   - **Why he builds software:** to build products that solve users' real problems, can be extended and scaled, and have lasting value.
-   - **At CMU, he chose to practise two things:** working with product owners to turn pain points into requirements and design, and building the full stack (back end, front end, Docker infrastructure, networking).
+   - **Why Panthaweekan builds software:** to build products that solve users' real problems, can be extended and scaled, and have lasting value.
+   - **At CMU, Panthaweekan chose to practise two things:** working with product owners to turn pain points into requirements and design, and building the full stack (back end, front end, Docker infrastructure, networking).
    - **The CMU team:** two people. Panthaweekan was full-stack developer and PM; a friend was UX/UI designer and BA. Together they delivered both faculty apps.
    - **The team's way of working at SCB TechX:**
      - It runs AI-first with a human in the loop, to move fast with a small team and give everyone a shared understanding of scope and of how each feature is tested.
      - The flow, confirmed by Panthaweekan: Requirement → PRD → Design spec → Stories with acceptance criteria → Tasks → Tests → Code → Review → Deliver, looping by sprint.
      - People approve at three points: the PRD (PO and EM), the design (the team) and the merge (a reviewer).
      - ADRs are written whenever a significant decision comes up, not as a single stage.
-   - **Reusable AI skills:** he writes them for repeated work and shares them with the team as a standard. His question is how to keep code correct when AI writes it faster than people can review.
-   - **Outside work:** Twitch game streaming. He built the Twitch TTS Bot for his own streams, and builds side projects to fix his own pain points.
-   - **What he wants next:** he works AI-first today, believes this is how software work will be done from now on, and wants a role that brings AI into teams' daily work.
+   - **Reusable AI skills:** Panthaweekan writes them for repeated work and shares them with the team as a standard. The open question Panthaweekan works on is how to keep code correct when AI writes it faster than people can review.
+   - **Outside work:** Twitch game streaming. Panthaweekan built the Twitch TTS Bot for those streams, and builds side projects to fix personal pain points.
+   - **What Panthaweekan wants next:** works AI-first today, believes this is how software work will be done from now on, and wants a role that brings AI into teams' daily work.
    - **AI tools:** Claude Code (main, daily); has also used Codex and Gemini.
 
 **Left out:**
@@ -99,7 +99,7 @@ The existing 12 slides keep their ids, order, copy and assertions. Its address m
 - **`src/components/present/DeckChooser.tsx`** (new): the `/present` page.
 - **`src/App.tsx`:**
   - Routes `/present` (the chooser, or the redirect described below), `/present/recruiter` and `/present/technical`.
-  - Any other `/present/*` path goes to the chooser.
+  - Any other `/present/*` path goes to the chooser, including deeper paths like `/present/foo/bar`.
 
 ## /present chooser
 

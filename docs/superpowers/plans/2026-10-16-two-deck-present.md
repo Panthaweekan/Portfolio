@@ -31,7 +31,7 @@
 ## Review Focus
 
 1. **A GitHub Pages deep link gains a trailing slash.** `public/404.html` turns `/Portfolio/present/recruiter` into `/present/recruiter/`, which must still open the recruiter deck. Task 3 checks this in the preview.
-2. **Unknown deck names.** `/present/foo` must go to the chooser, not crash or show a blank stage. Task 3 checks this.
+2. **Unknown deck names and deeper paths.** `/present/foo` and `/present/foo/bar` must go to the chooser, not crash or show a blank stage. Task 3 checks this.
 3. **Out-of-range `?slide=`.** `/present/recruiter?slide=12`, which is past the 11 recruiter pages, and `?slide=abc` must open page 1, not render nothing. The range has to be checked against the deck's own total. Task 3 checks this.
 4. **Legacy links.** `/present?slide=5` must land on technical p. 5 via a replace navigation, so Back does not loop. Task 3 checks this.
 5. **Text overflow.** Slide 6 (the nine-stage flow) and slide 8 (five toolkit rows) are the densest slides, and their copy must not overflow the canvas in either theme. The screenshots in Task 5 check this.
@@ -501,7 +501,7 @@ function AboutSpec() {
 }
 
 // Stage, and who signs it off when a person does.
-const FLOW = [
+const FLOW: readonly (readonly [stage: string, gate?: string])[] = [
   ['Requirement'],
   ['PRD', 'Product owner, engineering manager'],
   ['Design spec', 'The team'],
@@ -511,7 +511,7 @@ const FLOW = [
   ['Code'],
   ['Review', 'Merge: a reviewer'],
   ['Deliver ↺'],
-] as const;
+];
 
 function AboutFlow() {
   return (
@@ -840,7 +840,9 @@ const DeckChooser = lazy(() => import('./components/present/DeckChooser'));
                   </m.div>
                 }
               />
+              <Route path="/present/*" element={<Navigate to="/present" replace />} />
 ```
+  - Add `Navigate` to the `react-router-dom` import: `import { Routes, Route, Navigate, useLocation } from 'react-router-dom';`.
 
 - [ ] **Step 5: Typecheck, build and run all checks.**
 
@@ -876,6 +878,7 @@ const cases = [
   ['/present/recruiter?slide=abc', (r) => r.label.includes('p. 1 / 11')],
   ['/present/technical?slide=12', (r) => r.label.includes('p. 12 / 12')],
   ['/present/foo', (r) => r.h1 === 'Two talks'],
+  ['/present/foo/bar', (r) => r.h1 === 'Two talks'],
 ];
 let failed = 0;
 for (const [path, ok] of cases) {
@@ -888,7 +891,7 @@ await browser.close();
 process.exit(failed ? 1 : 0);
 ```
 
-Expected: nine `✓` lines and exit code 0.
+Expected: ten `✓` lines and exit code 0.
 
 Then press Back once after loading `/present?slide=5`, and check it does not return to `/present`. The redirect uses `replace`, so Back leaves the site or returns to the previous page.
 
@@ -920,7 +923,7 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
 
 - [ ] **Step 1: Edit `PRODUCT.md`.**
   - Replace the `/present` part of the Routes bullet (line 34) with: `` `/present` (a chooser for two talks on a fixed 1920×1080 canvas, built from React components: `/present/recruiter`, an 11-slide "About me" talk for recruiter rounds, and `/present/technical`, the 12-slide Contents and Chapters talk; both outlines are checked by `scripts/check-deck.mjs`) ``.
-  - Under Evidence on Hand, add the bullet: `- Statements Panthaweekan approved on 2026-10-16 for the About me deck (why he builds software, the CMU work-study team and his PM role, the team's AI-first flow, reusable AI skills, Twitch streaming, what he wants next, AI tools used): recorded in docs/superpowers/specs/2026-10-16-two-deck-present-design.md. The PM role and AI tools are not yet in cv.tex.`
+  - Under Evidence on Hand, add the bullet: `- Statements Panthaweekan approved on 2026-10-16 for the About me deck (why Panthaweekan builds software, the CMU work-study team and Panthaweekan's PM role, the team's AI-first flow, reusable AI skills, Twitch streaming, the next role sought, AI tools used): recorded in docs/superpowers/specs/2026-10-16-two-deck-present-design.md. The PM role and AI tools are not yet in cv.tex.`
 
 - [ ] **Step 2: Edit `CLAUDE.md`.**
   - In Map, replace the `/present` bullet's first line with: ``- `/present` is `components/present/DeckChooser.tsx`; `/present/recruiter` and `/present/technical` are `components/Present.tsx` (the stage, keys, chrome and `?slide=N`) plus `components/present/`:``.
