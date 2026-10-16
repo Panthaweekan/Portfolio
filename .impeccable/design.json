@@ -461,7 +461,7 @@
   ],
   "narrative": {
     "northStar": "The Engineer's Annual Report",
-    "overview": "The site is set like a Swiss International Style annual report written by one person. Each system Panthaweekan built is a chapter with one exact figure, and the opening spread carries Figure 1, a live diagram of a single LLM call becoming a priced line item. The page is bright white stock with graphite type. Hierarchy comes from Archivo weight and size, flush-left setting, a 12-column grid and hairline rules, not from colour, cards or shadow.\n\nUltramarine is a field. It fills a whole region of a spread (the Figure 1 panel and the Contact close) and never appears as an accent on the white ground. Every action on ground is ink. The dark theme is the same report at night: the ground becomes ink, type lifts to a pale cool grey, and the field lightens so it stays legible.\n\nDensity is that of a reading document: generous section spacing (48px top, 64px bottom), a 68ch measure for prose, and tabular figures wherever a number or date appears. Motion is limited to Figure 1, which runs on one damped clock and stops when it is off screen or reduced motion is requested. The deck is the report read aloud: numbered pages, a contents page, and an ultramarine divider opening each chapter.",
+    "overview": "The site is set like a Swiss International Style annual report written by one person. Each system Panthaweekan built is a chapter with one exact figure, and the opening spread carries Figure 1, a live diagram of a single LLM call becoming a priced line item. The page is bright white stock with graphite type. Hierarchy comes from Archivo weight and size, flush-left setting, a 12-column grid and hairline rules, not from colour, cards or shadow.\n\nUltramarine is a field. It fills a whole region of a spread (the Figure 1 panel and the Contact close) and never appears as an accent on the white ground. Every action on ground is ink. The dark theme is the same report at night: the ground becomes ink, type lifts to a pale cool grey, and the field lightens so it stays legible.\n\nDensity is that of a reading document: generous section spacing (48px top, 64px bottom), a 68ch measure for prose, and tabular figures wherever a number or date appears. Motion is limited to Figure 1, which runs on one damped clock and stops when it is off screen or reduced motion is requested. The technical deck is the report read aloud: numbered pages, a contents page, and an ultramarine divider opening each chapter; the About me deck is the same page without chapters.",
     "keyCharacteristics": [
       "Bright stock, graphite ink, cool grey hairlines; one ultramarine field per spread.",
       "Archivo Variable throughout, weights 400/500/600, flush left, tabular numbers.",
@@ -469,7 +469,7 @@
       "Square corners everywhere; the only circles are Figure 1's station dots and marker.",
       "Flat: depth comes from an ink rule and grey hairline hierarchy, never shadow.",
       "Figures are numbered and captioned in run-in style (\"Figure N · title\").",
-      "The deck is a fixed 1920×1080 page with folios (\"p. N / 12\") and ultramarine chapter dividers."
+      "Two decks share a fixed 1920×1080 page with folios (\"p. N / {deck total}\"): the technical talk has ultramarine chapter dividers; the About me talk has none."
     ],
     "rules": [
       {

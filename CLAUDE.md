@@ -16,8 +16,8 @@ All content lives in `src/data/portfolio-data.ts`. `cv.tex` (built to `public/cv
 
 - `/` is `components/report/ReportHome.tsx`, built from `Masthead`, `Chapter`, `FigureOne` and `LayerFigure`.
 - `/resume` is `components/Resume.tsx`, which embeds `public/cv.pdf`.
-- `/present` is `components/Present.tsx` (the stage, keys, chrome and `?slide=N`) plus `components/present/`:
-  - `outline.ts`: slide order;
+- `/present` is `components/present/DeckChooser.tsx`; `/present/recruiter` and `/present/technical` are `components/Present.tsx` (the stage, keys, chrome and `?slide=N`) plus `components/present/`:
+  - `outline.ts`: both decks' slide order (`DECKS`);
   - `slides.tsx`: the slides;
   - `SlideFrame.tsx`: margins and folio;
   - `Divider.tsx`: chapter openers.
@@ -27,7 +27,7 @@ All content lives in `src/data/portfolio-data.ts`. `cv.tex` (built to `public/cv
 ## Gotchas
 
 - `index.html` sets `<base href="/Portfolio/">`, so a bare `#id` href reloads the page. Build in-page links from `window.location.pathname + search`, as `Masthead` does.
-- **Deck page numbers:** the contents page and every folio derive from `outline.ts`. Add or move slides there, never type a page number, and update `scripts/check-deck.mjs` to match.
+- **Deck page numbers:** contents pages and every folio derive from each deck's outline in `outline.ts` (`DECKS`). Slide ids must be unique across decks. Add or move slides there, never type a page number, and update `scripts/check-deck.mjs` to match.
 - **Deck canvas:** slides render on a fixed 1920×1080 canvas scaled to fit, so slide markup uses fixed px classes. `sm:`/`md:` prefixes follow the viewport, not the canvas, and reflow slides on phones. `FigureOne slide` and `LayerFigure size="slide"` are the breakpoint-free variants.
 - **`FigureOne` geometry:** each class set in `SIZES` ties `dotOffset` to its dot and text classes, so change them together. The home page's Figure 1 must render unchanged.
 - **Tailwind:** it keeps only class names that appear whole in source, so write class strings as literals and never assemble them from fragments.

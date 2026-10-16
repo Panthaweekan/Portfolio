@@ -31,7 +31,7 @@ An end-to-end owner who takes a system from discovery to running code. The curre
 
 ## Capabilities and Constraints
 
-- Routes: `/` (home, in redesign scope), `/resume` (PDF viewer for `public/cv.pdf`, in scope), `/present` (fixed 1920×1080, 12-slide Contents and Chapters talk built from React components; slide order, contents and folios checked by `scripts/check-deck.mjs`).
+- Routes: `/` (home, in redesign scope), `/resume` (PDF viewer for `public/cv.pdf`, in scope), `/present` (a chooser for two talks on a fixed 1920×1080 canvas, built from React components: `/present/recruiter`, an 11-slide "About me" talk for recruiter rounds, and `/present/technical`, the 12-slide Contents and Chapters talk; both outlines are checked by `scripts/check-deck.mjs`).
 - Existing stack: React 19, TypeScript, Vite, Tailwind CSS, React Router, framer-motion; deployed to GitHub Pages under base path `/Portfolio/` on push to `main`.
 - Content lives in `src/data/portfolio-data.ts`, whose facts are synchronized with `cv.tex`; `cv.tex` wording wins on any conflict. The site may show showcase items the 1-page CV omits (Twitch TTS Bot, FitJourney, the LongPlan thesis).
 - `src/components/Experience.tsx`, `About.tsx` and `Projects.tsx` are unused and still carry claims that were removed as unverified; they must not be revived.
@@ -49,6 +49,7 @@ An end-to-end owner who takes a system from discovery to running code. The curre
 - `public/cv.pdf` and `cv.tex`: the 1-page CV (Oct 2026).
 - `src/data/portfolio-data.ts`: experience, projects (with architecture layer data), skills, education.
 - `/present` deck and its assets under `public/present-icons` and `public/imgs`.
+- Statements Panthaweekan approved on 2026-10-16 for the About me deck (why Panthaweekan builds software, the CMU work-study team and Panthaweekan's PM role, the team's AI-first flow, reusable AI skills, Twitch streaming, the next role sought, AI tools used): recorded in docs/superpowers/specs/2026-10-16-two-deck-present-design.md. The PM role and AI tools are not yet in cv.tex.
 - Public GitHub repos: FitJourney, Twitch TTS Bot.
 - Quantities that are safe to state, because the CV states them: SCB Easy's 10M+ user platform (the gateway migration target), the migration's 30+ services, six user roles and four request lifecycles in the asset platform.
 - Absent, and not to be fabricated: testimonials, user counts for the CMU apps (an earlier "500+ users" claim was removed as unverified), organisation-wide adoption of the asset platform, production status for the gateway migration or FinOps, performance benchmarks.
